@@ -7,6 +7,8 @@ Repositório da equipe do projeto "Avaliação de Games"
 
 1 - Abra o git bash
 
+ou abra o VSCode e clique no menu "Terminal"
+
 2 - Execute os seguintes comandos para configurar o nome do seu usuário e o seu e-mail
 
 `git config --global user.name "Seu Nome"`
