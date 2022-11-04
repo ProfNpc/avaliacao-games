@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Produto - Pacifier Store</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/CSS/Tela_Produto.css" />
+    <link rel="stylesheet" href="/CSS/NavBar.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-bar">
+        <div class="logo">
+          <a href=""><img src="/imagens/Controle.png" alt="" /></a>
+        </div>
+        <div class="nav-list">
+          <ul>
+            <li class="nav-item"><a href="#" class="nav-link">Início</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
+            <li class="nav-item"><a href="#" class="nav-link"> Sobre</a></li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"
+                ><input type="text" placeholder="O que procura?"
+              /></a>
+            </li>
+          </ul>
+        </div>
+        <div class="login-button">
+          <button><a href="#">Entrar</a></button>
+        </div>
+
+        <div class="mobile-menu-icon">
+          <button onclick="menuShow()">
+            <img class="icon" src="/imagens/menu_white.svg" alt="" />
+          </button>
+        </div>
+      </nav>
+      <div class="mobile-menu">
+        <ul>
+          <li class="nav-item"><a href="#" class="nav-link">Início</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+        </ul>
+
+        <div class="login-button">
+          <button><a href="#">Entrar</a></button>
+        </div>
+      </div>
+
+      <!-- <div><img src="/imagens/menu.png" /></div>
+      <div><button>Home</button></div>
+      <div><button>Jogos</button></div>
+      <div><button>Comunidade</button></div>
+      <div class="areaPesquisa">
+        <input type="text" placeholder="Digite algo..." />
+      </div>
+      <div class="botaoPerfil">
+        <button>
+          <img src="/imagens/foto_perfil.png" />
+        </button>
+      </div> -->
+    </header>
+
+    <main>
+      <div class="produtoDiv">
+        <span class="nome">Nome do Produto</span>
+        <div
+          id="produtoCarrossel"
+          class="carousel carousel-dark slide"
+          data-bs-ride="true"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#produtoCarrossel"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#produtoCarrossel"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#produtoCarrossel"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="/imagens/BannerDoom.png"
+                class="d-block w-100 picture"
+                alt="aff"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="/imagens/mario_strikers.jpg"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="/imagens/mario_strikers.jpg"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#produtoCarrossel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#produtoCarrossel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <!-- <img src="images/mario_strikers.jpg"> -->
+        <span class="preco">R$ 300,00</span>
+        <div>
+          <img src="/imagens/carrinho_botao.png" onclick="teste()" />
+          <img src="/imagens/trocar_botao.png" onclick="teste2()" />
+        </div>
+        <br /><br />
+      </div>
+      <div class="produtoVendedor">
+        <img src="/imagens/foto_perfil.png" />
+        <div>
+          <span class="nome">Nome do vendedor</span> - LV. 1
+          <br />
+          2 produtos vendidos
+        </div>
+      </div>
+      <div class="produtoComentarios">
+        <span>Avaliação do Produto</span>
+
+        <div class="produtoClassificacao">
+          <span>4.5</span>
+          <img src="/imagens/estrela.png" />
+        </div>
+
+        <div class="produtoComentario">
+          <div class="conteudo">
+            <span>User1</span>
+            <p>Comentário</p>
+          </div>
+
+          <div class="classificacao">
+            <div><span>4</span></div>
+            <div><img src="/imagens/estrela.png" /></div>
+          </div>
+        </div>
+        <div class="produtoComentario">
+          <div class="conteudo">
+            <span>User2</span>
+            <p>Comentário</p>
+          </div>
+
+          <div class="classificacao">
+            <span>3</span>
+            <img src="/imagens/estrela.png" />
+          </div>
+        </div>
+      </div>
+
+      <div class="vendedorAnuncios">
+        <span>Anuncios do vendedor:</span>
+        <div>
+          <div
+            id="anunciosCarrossel"
+            class="carousel carousel-dark slide"
+            data-bs-ride="true"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#anunciosCarrossel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#anunciosCarrossel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#anunciosCarrossel"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  src="/imagens/mario_strikers.jpg"
+                  class="d-block w-100"
+                  alt="aff"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="/imagens/mario_strikers.jpg"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="/imagens/mario_strikers.jpg"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#anunciosCarrossel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#anunciosCarrossel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="produtosRelacionados">
+        <span>Produtos Relacionados</span>
+        <br />
+
+        <img src="/imagens/mario_strikers.jpg" />
+        <img src="/imagens/mario_strikers.jpg" />
+        <img src="/imagens/mario_strikers.jpg" />
+        <img src="/imagens/mario_strikers.jpg" />
+        <img src="/imagens/mario_strikers.jpg" />
+      </div>
+    </main>
+
+    <!-- Script para coisas do Bootstrap-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--Script da própria página-->
+    <script src="/JS/Tela_Produto.js"></script>
+    <script src="/JS/NavBar.js"></script>
+  </body>
+</html>

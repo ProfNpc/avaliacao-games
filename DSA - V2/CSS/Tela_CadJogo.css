@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap");
+
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(18, 18, 18);
+  align-items: center;
+  justify-content: center;
+  min-height: auto;
+}
+main {
+  background-color: #202124;
+  padding: 3em;
+  border-radius: 8%;
+  margin-top: 11%;
+  margin-bottom: 6%;
+  width: 40%;
+}
+
+label {
+  color: #eeeeee;
+}
+
+.btn-cad {
+  padding-top: 2em;
+}
+
+.botao {
+  background-color: aquamarine;
+  color: black;
+  width: 10em;
+  font-family: "Times New Roman", Times, serif;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 12em;
+  margin-left: 32%;
+}
+.botao :hover {
+  background-color: gray;
+}
+
+.anun {
+  color: aliceblue;
+  margin-top: 15%;
+}
+input[type="file"] {
+  display: none;
+}
+input[type="text"] {
+  border-radius: 9em;
+  align-items: flex-start;
+}
+.width {
+  max-width: 1000em;
+  width: 100%;
+}
+
+.container {
+  background-color: white;
+  border: 5px solid rgb(82, 82, 82);
+  border-radius: 3em;
+  width: 18em;
+  height: 15em;
+  margin-top: 6%;
+}
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+#photo {
+  margin-top: 1%;
+  max-width: 610em;
+  width: 100%;
+  height: 98%;
+  background-color: #eee;
+  border: 6px solid #ccc;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 15%;
+}
+#photo:hover {
+  background-color: grey;
+}
+
+#descricao {
+  padding-top: 12px;
+}
+textarea {
+  border-radius: 12px;
+  max-height: 30px;
+  max-width: 11em;
+  min-width: 10em;
+}
+#ldesc {
+  margin-left: 32mm;
+}
+details {
+  color: #ccc;
+  margin-left: 56%;
+}
+.form-select {
+  margin-left: 38px;
+  border-radius: 10px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+/* .logo {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  background: #23232e;
+  height: 8vh;
+}
+.nav-list {
+  list-style: none;
+  display: flex;
+}
+
+.nav-list li {
+  letter-spacing: 3px;
+  margin-left: 32px;
+} */

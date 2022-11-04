@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/CSS/Tela_CadJogo.css" />
+    <link rel="stylesheet" href="/CSS/NavBar.css">
+</head>
+
+
+<body>
+
+
+
+    <form action="">
+      
+    <header>
+        
+      <nav class="nav-bar">
+        <div class="logo">
+          <a href=""><img src="/imagens/Controle.png" alt="" /></a>
+        </div>
+        <div class="nav-list">
+          <ul>
+            <li class="nav-item"><a href="#" class="nav-link">Início</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
+            <li class="nav-item"><a href="#" class="nav-link"> Sobre</a></li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"
+                ><input type="text" placeholder="O que procura?"
+              /></a>
+            </li>
+          </ul>
+        </div>
+        <div class="login-button">
+          <button><a href="#">Entrar</a></button>
+        </div>
+
+        <div class="mobile-menu-icon">
+          <button onclick="menuShow()">
+            <img class="icon" src="/imagens/menu_white.svg" alt="" />
+          </button>
+        </div>
+      </nav>
+      <div class="mobile-menu">
+        <ul>
+          <li class="nav-item"><a href="#" class="nav-link">Início</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+        </ul>
+
+        <div class="login-button">
+          <button><a href="#">Entrar</a></button>
+        </div>
+      </div>
+    </header>
+
+
+    <main>
+    
+        <div class="width">
+            <div class="container">
+                <img src="/imagens/image-gallery.png" alt="selecione uma imagem" id="photo" 
+                
+              </div>
+            </div>
+
+        <div>
+            <input type="file" id="flImage" name="flimage" accept="/image">
+        
+        </div>
+        <br/>
+
+    <label for="name">Titulo:</label>
+    <label for="name" id="ldesc">Descrição:</label>
+    <br/>
+    <section>
+    <input type="text"
+    id="texto" 
+    class="texto" 
+    name="Titulo" 
+    placeholder="Informe um titulo:" />
+
+    <textarea rows="12" cols="28" maxlength="300" id="descricao"></textarea>
+
+</section>
+   
+    
+     <br/>
+    <label for="name">Preço:</label>
+    
+    
+    <input type="text"
+     id="preco" 
+     class="preco"
+      name="Preco" 
+      size="13"
+      maxlength="7"
+      placeholder="Informe um valor:">
+  
+<select id="disabledSelect" class="form-select">
+    <option>Genêro</option>
+    <option>Ação</option>
+    <option>Aventura</option>
+    <option>Corrida</option>
+</select>
+    </div>
+   
+    
+   <div class="btn-cad">
+        <input type="button" class="botao" value="Cadastrar" onclick="verificar()" />
+    </div>
+   
+
+    </main>
+   
+    <footer>
+        
+</footer>
+</form>
+  
+    <script src="/JS/Tela_CadJogo.js"></script>
+    <script src="/JS/NavBar.js"></script>
+</body>
+</html>

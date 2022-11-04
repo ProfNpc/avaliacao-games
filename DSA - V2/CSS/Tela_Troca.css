@@ -1,0 +1,132 @@
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgb(22, 22, 22);
+}
+
+.container-fluid img {
+  width: 5em;
+}
+
+.container-fluid {
+  background-color: rgb(22, 22, 22);
+}
+
+.home a {
+  color: white;
+}
+
+.container-fluid li a {
+  color: white;
+}
+
+/*Titulo*/
+.title {
+  text-align: center;
+  margin-left: 0.8em;
+  margin-bottom: 0.8em;
+  font-weight: bold;
+  font-size: 3em;
+  color: white;
+}
+
+/*Anucio (Imagem)*/
+.anuncio {
+  text-align: left;
+  list-style: none;
+}
+
+.anuncio img {
+  border-radius: 1em;
+  width: 34em;
+}
+
+/*Area de Preço, nome, descrição*/
+
+.sobreAnuncio {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+  margin-bottom: 2em;
+  list-style: none;
+}
+
+.titleDesc {
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  font-size: 1.2em;
+  list-style: none;
+}
+
+.desc {
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  font-size: 1em;
+  list-style: none;
+}
+
+.prop table {
+  text-align: center;
+  align-items: center;
+  /* margin-left: 2%;
+  margin-right: 3%; */
+  /* display: flex; */
+}
+
+.prop tr td {
+  padding: 12em;
+}
+
+.prop li {
+  list-style: none;
+}
+
+.prop img {
+  width: 15em;
+  border-radius: 1em;
+}
+
+.titleProp {
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  font-size: 2em;
+  list-style: none;
+  margin-top: 2.5em;
+}
+
+.buttonOne {
+  background-color: red;
+  color: white;
+  font-family: "Arial";
+  font-weight: bold;
+  width: 14em;
+  border-radius: 0.7em;
+}
+
+.buttonTwo {
+  background-color: white;
+  color: black;
+  font-family: "Arial";
+  font-weight: bold;
+  width: 8em;
+  border-radius: 0.7em;
+}
+
+.titleCadYour {
+  font-weight: bold;
+  color: white;
+  text-align: right;
+  font-size: 1.2em;
+  list-style: none;
+  font-family: "Arial";
+}
+
+.containerCadJogo {
+  text-align: right;
+}
