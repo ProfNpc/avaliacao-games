@@ -13,6 +13,7 @@ import com.belval.avaliacaogames.model.Usuario;
 @Controller
 public class UsuarioController {
 	
+	//Bla bla bla
 	private static List<Usuario> listaUsuarios = new ArrayList<>();
 
 	@GetMapping("/usuario")
