@@ -16,6 +16,12 @@ public class UsuarioController {
 	//Bla bla bla
 	private static List<Usuario> listaUsuarios = new ArrayList<>();
 
+	// Índice
+	@GetMapping("")
+	public String indice() {
+		return "home/home";
+	}
+	
 	@GetMapping("/usuario")
 	public String novo() {
 		return "usuario/form";
