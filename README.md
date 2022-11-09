@@ -76,3 +76,14 @@ ou
 
 `git push`
 
+## Como abrir o projeto no Spring
+
+1. No Spring, clique em File > Import
+
+2. Procure a pasta Maven, abra-a e clique duas vezes em "Existing Maven Projects"
+
+3. Em Root Directory, clique em Browse, navegue até a pasta do repositório e clique em "Selecionar pasta"
+
+4. Marque a caixinha que aparecer na seção "Projects" e clique em "Finish"
+
+5. Pronto. O Spring vai estar aberto diretamente na pasta do projeto dentro do repositório. Qualquer alteração que você fizer no projeto do Spring será diretamente salva no repositório.
