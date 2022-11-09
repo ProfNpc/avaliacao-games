@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+/*Body*/
+body {
+  background-color: rgb(18, 18, 18);
+}
+
+/*Header*/
+header {
+  background-color: #24252a;
+}
+
+/* Container para colocar a nav na lateral  */
+.container-button {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  float: left;
+  margin-right: 3em;
+}
+
+/* Container para dar margin na nav lateral */
+.nav-lateral {
+  margin-top: 3em;
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
+/* Botões */
+.button {
+  color: white;
+  background-color: #24252a;
+  border-color: rgb(48, 48, 48);
+}
+
+.button input {
+  width: 100%;
+  height: 52%;
+}
+
+.button:hover {
+  background-color: rgb(54, 54, 54);
+  cursor: pointer;
+}
+
+/*Container principal*/
+.container-biblioteca {
+  margin: 2em;
+  border-radius: 2em;
+  background-color: #24252a;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+/*Container da cor de fundo biblioteca*/
+.container-color {
+  margin: 2em;
+  border-radius: 2em;
+  background-color: rgb(64, 64, 64);
+}
+
+/*Imagens da biblioteca*/
+.container-picture {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.container-picture div {
+  flex: 1 1 5em;
+  margin: 2em;
+}
+
+.container-picture img {
+  width: 8em;
+  cursor: pointer;
+  border-radius: 1em;
+}
+
+.container-picture img:hover {
+  transform: scale(1.05);
+  transition: 0.2s;
+}
+
+/*Botões de cadastrar e deletar*/
+.container-button {
+  display: flex;
+  align-items: right;
+  justify-content: right;
+  margin-right: 2em;
+}
+
+.container-button button {
+  width: 8em;
+  height: 2em;
+  margin-top: 0.5em;
+  cursor: pointer;
+  margin-bottom: 2em;
+}
+
+.container-button button {
+  border-radius: 0.7em;
+  font-weight: bold;
+}
+
+.container-button label {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #eeeeee;
+  margin-right: 2em;
+}

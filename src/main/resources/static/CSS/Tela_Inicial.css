@@ -1,0 +1,366 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap");
+
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* background-color: rgb(22, 22, 22); */
+  /* background-color: #202124; */
+}
+
+/*Cor de fundo*/
+body {
+  background-color: #202124;
+}
+
+/*Banner*/
+header {
+  background: url(../imagens/ImgFundo.jpg) no-repeat center;
+  background-size: 200%;
+}
+
+/* Logo (controle) */
+/* .logo img {
+  position: relative;
+  top: 20px;
+  width: 6%;
+  float: left;
+  margin-left: 2em;
+} */
+
+/* Menu de controle */
+.menu {
+  text-align: right;
+  background: url(../imagens/ImgFundo.jpg) no-repeat center;
+  background-size: 130%;
+  border: 2px solid black;
+  padding: 0.02em;
+}
+
+.nav-header {
+  margin-top: 1.3em;
+}
+
+.menu nav li {
+  display: inline;
+  padding: 22px;
+}
+
+.menu nav a {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu nav a:hover {
+  color: black;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Botão pesquisa */
+.menu nav img {
+  width: 2%;
+}
+
+/* Nome do site menu */
+.nameSite {
+  text-align: center;
+  color: white;
+  font-size: 5em;
+  font-weight: bold;
+  margin-top: 1em;
+  text-shadow: 7px 7px 7px black;
+}
+
+/* Texto escrito abaixo do nome */
+.frase {
+  text-align: center;
+  color: white;
+  font-size: 2em;
+  margin: 5px 45px 10px 35px;
+  text-shadow: 8px 8px 8px black;
+}
+
+.titleDes {
+  text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+  color: white;
+  margin-top: 1em;
+}
+
+/* Pesquisa menu */
+.search {
+  display: flex;
+  justify-content: center;
+}
+
+.search input {
+  padding: 0.9rem;
+  width: 52rem;
+  border-radius: 2rem;
+  border: none;
+  box-shadow: 1px 1px 1px black;
+  margin-top: 2em;
+  margin-bottom: 5em;
+}
+
+.search input:hover {
+  background-color: rgb(236, 236, 236);
+  transition: 0.3s;
+}
+
+/*Carousel*/
+.carousel-inner {
+  width: 55em;
+  border-radius: 1em;
+}
+
+.carousel {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+}
+
+.carousel img {
+  border-radius: 1em;
+}
+
+/* Titulo de serviços */
+.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+  color: white;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+/* Jogos em ofertas */
+.margin-ofertas {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+/* Jogos em listas */
+.margin {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+/* Area de serviços */
+.serv {
+  text-align: center;
+  display: inline;
+}
+
+.serv ul li {
+  padding: 1em;
+  display: inline;
+}
+
+.serv img {
+  border-radius: 12px;
+}
+
+.serv img:hover {
+  transform: scale(1.05, 1.05);
+  transition: 0.1s;
+}
+
+/* Cor de fundo contatos */
+.backColor {
+  background-color: rgb(22, 22, 22);
+  border: 2px solid white;
+  margin-top: 2em;
+}
+
+/* Titulo contatos */
+.titleCont {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+}
+
+/* Area de contatos */
+.caixaCont li {
+  text-align: center;
+  list-style: none;
+  color: white;
+}
+
+.caixaCont p {
+  color: white;
+  margin-left: 160px;
+  margin-right: 160px;
+}
+
+@media screen and (max-width: 1200px) {
+  .nameSite {
+    font-size: 4em;
+  }
+  .frase {
+    font-size: 1.5em;
+  }
+  .search input {
+    padding: 0.8rem;
+    width: 45rem;
+  }
+  .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    color: white;
+    margin-bottom: 2%;
+    margin-top: 2%;
+  }
+}
+
+@media screen and (max-width: 1078px) {
+  .nameSite {
+    font-size: 3em;
+  }
+  .frase {
+    font-size: 1em;
+  }
+  .search input {
+    padding: 0.8rem;
+    width: 43rem;
+  }
+  .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+    color: white;
+    margin-bottom: 2%;
+    margin-top: 2%;
+  }
+  header {
+    background: url(../imagens/ImgFundo.jpg) no-repeat center;
+    background-size: 250%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .nameSite {
+    font-size: 4em;
+  }
+  .frase {
+    font-size: 1.5em;
+  }
+  .search input {
+    padding: 0.7rem;
+    width: 35rem;
+  }
+  .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+    color: white;
+    margin-bottom: 2%;
+    margin-top: 2%;
+  }
+}
+
+@media screen and (max-width: 715px) {
+  .nameSite {
+    font-size: 2.5em;
+  }
+  .frase {
+    font-size: 1em;
+  }
+  .search input {
+    padding: 0.5rem;
+    width: 28rem;
+  }
+  .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+    color: white;
+    margin-bottom: 2%;
+    margin-top: 2%;
+  }
+  header {
+    background: url(../imagens/ImgFundo.jpg) no-repeat center;
+    background-size: 300%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  /* Imagem de fundo */
+  header {
+    background: url(../imagens/ImgFundo.jpg) no-repeat center;
+    background-size: 480%;
+  }
+
+  /* nome e frase */
+  .nameSite {
+    font-size: 2.8em;
+  }
+  .frase {
+    font-size: 1.1em;
+  }
+
+  /* Barra de pesquisa */
+  .search input {
+    padding: 0.4rem;
+    width: 24rem;
+  }
+
+  /* Titulos */
+  .titleDes {
+    font-size: 2.3em;
+    margin-top: 1em;
+  }
+  .title {
+    font-size: 2.5em;
+    margin-bottom: 6%;
+    margin-top: 6%;
+  }
+
+  .backColor {
+    margin-top: 2em;
+  }
+  /*Carousel*/
+  .carousel-inner {
+    width: 30em;
+    border-radius: 1em;
+  }
+  /* Titulo contatos */
+  .titleCont {
+    font-size: 1em;
+  }
+  .caixaCont p {
+    font-size: 0.6em;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .nameSite {
+    font-size: 1.9em;
+  }
+  .frase {
+    font-size: 0.6em;
+  }
+  .search input {
+    padding: 0.2rem;
+    width: 17rem;
+  }
+  .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    color: white;
+    margin-bottom: 2%;
+    margin-top: 2%;
+  }
+}
