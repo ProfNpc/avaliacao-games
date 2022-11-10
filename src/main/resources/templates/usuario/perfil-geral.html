@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/CSS/Tela_Perfil.css" />
-    <link rel="stylesheet" href="/CSS/NavBar.css" />
+    <link rel="stylesheet" href="../CSS/Tela_Perfil.css" />
+    <link rel="stylesheet" href="../CSS/NavBar.css" />
     <title>Pacifier</title>
   </head>
   <body>
     <header>
       <nav class="nav-bar">
         <div class="logo">
-          <a href=""><img src="/imagens/Controle.png" alt="" /></a>
+          <a href=""><img src="../imagens/Controle.png" alt="" /></a>
         </div>
         <div class="nav-list">
           <ul>
@@ -29,7 +29,7 @@
 
         <div class="mobile-menu-icon">
           <button onclick="menuShow()">
-            <img class="icon" src="/imagens/menu_white.svg" alt="" />
+            <img class="icon" src="../imagens/menu_white.svg" alt="" />
           </button>
         </div>
       </nav>
@@ -84,18 +84,15 @@
             <div class="geral-info">
               <form action="">
                 <div class="text-info">
-                  <label for="">Seu e-mail:</label>
-                  <br />
-                  <input type="email" placeholder="E-mail" />
-                  <button>Editar</button>
-                </div>
-                <br />
-                <div class="text-info">
                   <label for="">Sua senha:</label>
                   <br />
-                  <input type="password" placeholder="Senha" />
-                  <button>Editar</button>
-                </div>
+                  <input type="password" placeholder="Senha" disabled />
+                  <button type="button">Editar</button>
+                </div> 
+                <div class="text-info">
+                  <button>Descartar Mudanças</button>
+                  <button>Salvar Mudanças</button>
+                </div> 
               </form>
             </div>
 
@@ -178,6 +175,7 @@
     </main>
     <footer></footer>
 
-    <script src="/JS/NavBar.js"></script>
+    <script src="../JS/NavBar.js"></script>
+    <script src="../JS/Tela_Perfil.js"></script>
   </body>
 </html>
