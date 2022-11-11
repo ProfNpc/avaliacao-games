@@ -6,6 +6,7 @@ public class Usuario {
 	private String email;
 	private String celular;
 	private String senha;
+	private String confirmarSenha;
 	private String genero;
 	
 	
@@ -83,7 +84,6 @@ public class Usuario {
 
 
 	public Usuario(String primeiroNome, String sobrenome, String email, String celular, String senha, String genero) {
-		super();
 		this.primeiroNome = primeiroNome;
 		this.sobrenome = sobrenome;
 		this.email = email;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.model.Usuario;
 
@@ -23,13 +24,18 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/usuario")
-	public String novo() {
-		return "usuario/form";
+	public String form() {
+		return "usuario/cadastro";
 	}
 	
-	@PostMapping("/usuario/novo")
-	public String criado(Usuario usuario, Model model) {
+	@PostMapping("/usuario/cadastrar")
+	public ModelAndView criado(Usuario usuario) {
+		
+		ModelAndView model = new ModelAndView("redirect:");
+		
 		listaUsuarios.add(usuario);
+		
+		model.addObject("usuario", usuario);
 		
 		System.out.println(usuario.getPrimeiroNome());
 		System.out.println(usuario.getSobrenome());
@@ -38,6 +44,8 @@ public class UsuarioController {
 		System.out.println(usuario.getSenha());
 		System.out.println(usuario.getGenero());
 		
-		return "home/home";
+		return model;
 	}
+	
+	
 }
