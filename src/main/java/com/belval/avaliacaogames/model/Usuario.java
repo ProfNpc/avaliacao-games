@@ -1,5 +1,7 @@
 package com.belval.avaliacaogames.model;
 
+import javax.persistence.Entity;
+
 public class Usuario {
 	private String primeiroNome;
 	private String sobrenome;
