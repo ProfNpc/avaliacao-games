@@ -34,7 +34,19 @@ public class UsuarioController {
 	@PostMapping("/usuario/cadastrar")
 	public ModelAndView criado(Usuario usuario) {
 		
-		ModelAndView model = new ModelAndView("redirect:/usuario/perfil");
+		if (
+				usuario.getPrimeiroNome().length() < 5
+			||	usuario.getSobrenome().length() < 5
+			|| 	(usuario.getEmail().length() < 5 || usuario.getEmail().indexOf('@') == -1)
+			||	usuario.getCelular().length() < 5
+			|| 	usuario.getSenha().length() < 5
+			|| 	usuario.getGenero().length() < 2
+		) {
+			// Dados enviados com erros
+			
+		}
+		
+		ModelAndView model = new ModelAndView("redirect:/");
 		
 		listaUsuario.add(usuario);
 		
@@ -44,6 +56,13 @@ public class UsuarioController {
 		
 		return model;
 	}
+	
+	/*
+	@GetMapping("/usuario/perfil")
+	public String verPerfil() {
+		return "usuario/perfil-geral";
+	}
+	*/
 	
 	@GetMapping("/usuario/{nome}/perfil")
 	public String perfil(
