@@ -1,9 +1,18 @@
 package com.belval.avaliacaogames.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Usuario {
-	private String primeiroNome;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	
+	// Atributos de usuario
+	private String nome;
 	private String sobrenome;
 	private String email;
 	private String celular;
@@ -12,15 +21,30 @@ public class Usuario {
 	private String genero;
 	
 	
+	// Constructors
+	public Usuario(String primeiroNome, String sobrenome, String email, String celular, String senha, String genero) {
+		this.nome = primeiroNome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.celular = celular;
+		this.senha = senha;
+		this.genero = genero;
+	}
 	
-	public String getPrimeiroNome() {
-		return primeiroNome;
+	public Usuario() {
+		
+	}
+
+
+	// Getter and Setters
+	public String getNome() {
+		return nome;
 	}
 
 
 
-	public void setPrimeiroNome(String primeiroNome) {
-		this.primeiroNome = primeiroNome;
+	public void setNome(String primeiroNome) {
+		this.nome = primeiroNome;
 	}
 
 
@@ -81,18 +105,12 @@ public class Usuario {
 
 	public void setGenero(String genero) {
 		this.genero = genero;
-	}
-
-
-
-	public Usuario(String primeiroNome, String sobrenome, String email, String celular, String senha, String genero) {
-		this.primeiroNome = primeiroNome;
-		this.sobrenome = sobrenome;
-		this.email = email;
-		this.celular = celular;
-		this.senha = senha;
-		this.genero = genero;
-	}
+	}	
 	
 	
+	// Metodos
+	@Override
+	public String toString() {
+		return "Nome: " + nome + " " + sobrenome + ", email: " + email + ", celular: " + celular;
+	}
 }
