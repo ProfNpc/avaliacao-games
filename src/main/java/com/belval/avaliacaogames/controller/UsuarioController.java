@@ -10,17 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.model.Usuario;
-import com.belval.avaliacaogames.repository.UsuarioRepository;
+import com.belval.avaliacaogames.repositories.UsuarioRepository;
+import com.belval.avaliacaogames.services.UsuarioService;
 
 @Controller
 public class UsuarioController {
 	
 	@Autowired
 	private UsuarioRepository repository;
+	
+	@Autowired
+	private UsuarioService service;
 	
 	// Armazena os dados
 	private static List<Usuario> listaUsuario = new ArrayList<>();
@@ -66,11 +71,11 @@ public class UsuarioController {
 	}
 	
 	// Perfil do usuario
-	@GetMapping("/usuario/{nome}")
+	@GetMapping("/usuario/{id}")
 	public String perfil(
-			@PathParam("nome") String nome, Model model) {
+			@PathVariable("id") Long id, Model model) {
 		
-		Usuario usuario = repository.findByNome(nome);
+		Usuario usuario = service.findById(id);
 		
 		if (usuario == null) {
 			return "usuario/usuario-nao-existe";
@@ -81,18 +86,18 @@ public class UsuarioController {
 	}
 	
 	// Editar dados do usuario
-	@GetMapping("/usuario/{nome}/edit")
+	@GetMapping("/usuario/{id}/edit")
 	public String edit(
-			@PathParam("nome") String nome, Model model) {
+			@PathVariable("id") Long id, Model model) {
 		
-		Usuario usuario = repository.findByNome(nome);
+		Usuario usuario = service.findById(id);
 		
 		if (usuario == null) {
 			return "usuario/usuario-nao-existe";
 		}
 		
 		model.addAttribute("usuario", usuario);
-		return "usuario/perfil-geral";
+		return "usuario/perfil-geral-edit";
 	}
 	
 }
