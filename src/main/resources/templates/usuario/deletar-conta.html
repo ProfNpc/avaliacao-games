@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="/CSS/Tela_Perfil.css" />
+	<link rel="stylesheet" href="/CSS/NavBar.css" />
+	<title>Pacifier</title>
+</head>
+
+<body>
+	<header>
+		<nav class="nav-bar">
+			<div class="logo">
+				<a href="/"><img src="/imagens/Controle.png" alt="" /></a>
+			</div>
+			<div class="nav-list">
+				<ul>
+					<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+					<li class="nav-item">
+						<a href="#" class="nav-link">COMUNIDADE</a>
+					</li>
+					<li class="nav-item"><a href="#" class="nav-link"> OFERTAS</a></li>
+				</ul>
+			</div>
+			<div class="login-button">
+				<button><a href="#">Entrar</a></button>
+			</div>
+
+			<div class="mobile-menu-icon">
+				<button onclick="menuShow()">
+					<img class="icon" src="/imagens/menu_white.svg" alt="" />
+				</button>
+			</div>
+		</nav>
+		<div class="mobile-menu">
+			<ul>
+				<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">COMUNIDADE</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">OFERTAS</a></li>
+			</ul>
+
+			<div class="login-button">
+				<button><a href="#">Entrar</a></button>
+			</div>
+		</div>
+	</header>
+	<main>
+		<!-- Arrumar o style dessa página! -->
+		<h2 style="color:white">Tem certeza de que quer deletar sua conta?</h2>
+		
+		<form th:action="@{/usuario/{path}/deletar(path=${id})}" method="post">
+			<button>Sim</button>
+		</form>
+		
+		<form th:action="@{/usuario/{path}(path=${id})}" method="get">
+			<button>Não</button>
+		</form>
+	</main>
+	<footer></footer>
+
+	<script src="/JS/NavBar.js"></script>
+	<script src="/JS/Tela_Perfil.js"></script>
+</body>
+
+</html>

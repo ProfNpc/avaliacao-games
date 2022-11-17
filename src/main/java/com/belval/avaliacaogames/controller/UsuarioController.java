@@ -100,4 +100,24 @@ public class UsuarioController {
 		return "usuario/perfil-geral-edit";
 	}
 	
+	// Deletar conta
+	@GetMapping("/usuario/{id}/deletar")
+	public String delete(
+			@PathVariable("id") Long id, Model model) {
+		
+		model.addAttribute("id", id);
+		return "usuario/deletar-conta";
+	}
+	
+	// Confirmar deletar conta
+	@PostMapping("/usuario/{id}/deletar")
+	public String deleteConfirm(
+			@PathVariable("id") Long id, Model model) {
+		
+		repository.deleteById(id);
+		
+		// Talvez essa não seja a maneira certa, aí tem que ver com o professor
+		return indice();
+	}
+	
 }
