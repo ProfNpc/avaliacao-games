@@ -5,8 +5,8 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="../CSS/Tela_Perfil.css" />
-	<link rel="stylesheet" href="../CSS/NavBar.css" />
+	<link rel="stylesheet" href="/CSS/Tela_Perfil.css" />
+	<link rel="stylesheet" href="/CSS/NavBar.css" />
 	<title>Pacifier</title>
 </head>
 
@@ -14,7 +14,7 @@
 	<header>
 		<nav class="nav-bar">
 			<div class="logo">
-				<a href="/"><img src="../imagens/Controle.png" alt="" /></a>
+				<a href="/"><img src="/imagens/Controle.png" alt="" /></a>
 			</div>
 			<div class="nav-list">
 				<ul>
@@ -31,7 +31,7 @@
 
 			<div class="mobile-menu-icon">
 				<button onclick="menuShow()">
-					<img class="icon" src="../imagens/menu_white.svg" alt="" />
+					<img class="icon" src="/imagens/menu_white.svg" alt="" />
 				</button>
 			</div>
 		</nav>
@@ -82,7 +82,7 @@
 							<button type="button">Editar</button>
 						</div>
 
-						<form action="/usuario/{id}/edit" method="get">
+						<form th:action="@{/usuario/{path}/edit(path=${id})}" method="get">
 							<div class="text-info">
 								<button>Alterar senha</button>
 							</div>
@@ -122,7 +122,7 @@
 							<span th:text="${usuario.celular}"></span>
 						</div>
 
-						<form action="/usuario/{id}/edit" method="get">
+						<form th:action="@{/usuario/{path}/edit(path=${id})}" method="get">
 							<div class="text-info">
 								<button>Alterar informações</button>
 							</div>
@@ -134,7 +134,7 @@
 							<h1>Endereço</h1>
 						</div>
 
-						<form action="/usuario/{id}/edit" method="get">
+						<form th:action="@{/usuario/{path}/edit(path=${id})}" method="get">
 							<div class="text-info">
 								<label for="">CEP:</label><br />
 								<input type="text" placeholder="CEP" />
@@ -167,8 +167,8 @@
 	</main>
 	<footer></footer>
 
-	<script src="../JS/NavBar.js"></script>
-	<script src="../JS/Tela_Perfil.js"></script>
+	<script src="/JS/NavBar.js"></script>
+	<script src="/JS/Tela_Perfil.js"></script>
 </body>
 
 </html>
