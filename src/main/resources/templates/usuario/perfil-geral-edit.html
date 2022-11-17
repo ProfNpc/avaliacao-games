@@ -82,7 +82,7 @@
               <h1>Informações da conta</h1>
             </div>
             <div class="geral-info">
-              <form action="">
+              <form action="/usuario/{id}/edit" method="get">
                 <div class="text-info">
                   <label for="">Sua senha:</label>
                   <br />
@@ -108,33 +108,24 @@
             </div>
 
             <div class="geral-detalhe">
-              <form action="/usuario/perfil" method="get">
+              <form action="/usuario/cadastrar" method="post">
                 <div class="text-info">
                   <label for="#">Nome:</label><br />
-                  <input type="text" placeholder="Nome" />
+                  <input type="text" placeholder="Nome"/>
                 </div>
                 <div class="text-info">
                   <label for="">Sobrenome:</label><br />
-                  <span th:text="${usuario.sobrenome}">aqui</span>
                   
                   <input type="text" placeholder="Sobrenome"/>
                 </div>
                 <div class="text-info">
-                  <label for="">CPF:</label><br />
-                  <input type="text" placeholder="CPF" />
-                </div>
-                <div class="text-info">
                   <label for="">Telefone:</label><br />
-                  <input type="text" placeholder="(xx) xxxxx-xxxx" />
-                </div>
-                <div class="text-info">
-                  <label for="">Idioma:</label><br />
-                  <input type="text" placeholder="Idioma" />
+                  <input type="text" placeholder="(xx) xxxxx-xxxx"/>
                 </div>
 
                 <div class="text-info">
                   <button>Descartar Mudanças</button>
-                  <button>Salvar Mudanças</button>
+                  <button type="submit">Salvar Mudanças</button>
                 </div>
               </form>
             </div>
@@ -144,7 +135,7 @@
                 <h1>Endereço</h1>
               </div>
 
-              <form action="">
+              <form action="/usuario/{id}/edit" method="get">
                 <div class="text-info">
                   <label for="">CEP:</label><br />
                   <input type="text" placeholder="CEP" />
