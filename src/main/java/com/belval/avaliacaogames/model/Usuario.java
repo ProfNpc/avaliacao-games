@@ -41,6 +41,18 @@ public class Usuario implements Serializable{
 
 
 	// Getter and Setters
+	public Long getId() {
+		return this.id;
+	}
+	
+	
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
+	
 	public String getNome() {
 		return nome;
 	}

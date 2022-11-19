@@ -100,6 +100,17 @@ public class UsuarioController {
 		return "usuario/perfil-geral-edit";
 	}
 	
+	// Confirmar alterações
+	@PostMapping("/usuario/{id}/edit")
+	public ModelAndView editConfirm(Usuario usuario) {
+		ModelAndView mv = 
+				new ModelAndView("redirect:/usuario/{id}");
+		
+		repository.save(usuario);
+		
+		return mv;
+	}
+	
 	// Deletar conta
 	@GetMapping("/usuario/{id}/deletar")
 	public String delete(
@@ -111,13 +122,14 @@ public class UsuarioController {
 	
 	// Confirmar deletar conta
 	@PostMapping("/usuario/{id}/deletar")
-	public String deleteConfirm(
+	public ModelAndView deleteConfirm(
 			@PathVariable("id") Long id, Model model) {
 		
 		repository.deleteById(id);
 		
-		// Talvez essa não seja a maneira certa, aí tem que ver com o professor
-		return indice();
+		ModelAndView mv = new ModelAndView("redirect:/");
+		
+		return mv;
 	}
 	
 }

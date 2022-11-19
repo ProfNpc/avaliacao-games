@@ -82,17 +82,21 @@
               <h1>Informações da conta</h1>
             </div>
             <div class="geral-info">
-              <form action="/usuario/{id}/edit" method="get">
+              <form th:action="@{/usuario/{path}/edit(path=${id})}" method="post">
                 <div class="text-info">
                   <label for="">Sua senha:</label>
                   <br />
-                  <input type="password" placeholder="Senha" disabled />
+                  <input type="password" name="senha" th:value="${usuario.senha}" placeholder="Senha" disabled />
                   <button type="button">Editar</button>
                 </div> 
                 <div class="text-info">
-                  <button>Descartar Mudanças</button>
                   <button>Salvar Mudanças</button>
                 </div> 
+              </form>
+              <form th:action="@{/usuario/{path}(path=${id})}" method="get">
+              	<div class="text-info">
+              		<button>Descartar Mudanças</button>
+              	</div>
               </form>
             </div>
 
@@ -108,25 +112,29 @@
             </div>
 
             <div class="geral-detalhe">
-              <form action="/usuario/cadastrar" method="post">
+              <form th:action="@{/usuario/{path}/edit(path=${id})}" method="post">
                 <div class="text-info">
                   <label for="#">Nome:</label><br />
-                  <input type="text" placeholder="Nome"/>
+                  <input type="text" name="nome" th:value="${usuario.nome}" placeholder="Nome"/>
                 </div>
                 <div class="text-info">
                   <label for="">Sobrenome:</label><br />
                   
-                  <input type="text" placeholder="Sobrenome"/>
+                  <input type="text" name="sobrenome" th:value="${usuario.sobrenome}" placeholder="Sobrenome"/>
                 </div>
                 <div class="text-info">
                   <label for="">Telefone:</label><br />
-                  <input type="text" placeholder="(xx) xxxxx-xxxx"/>
+                  <input type="text" name="celular" th:value="${usuario.celular}" placeholder="(xx) xxxxx-xxxx"/>
                 </div>
 
                 <div class="text-info">
-                  <button>Descartar Mudanças</button>
                   <button type="submit">Salvar Mudanças</button>
                 </div>
+              </form>
+              <form th:action="@{/usuario/{path}(path=${id})}" method="get">
+              	<div class="text-info">
+              		<button>Descartar Mudanças</button>
+              	</div>
               </form>
             </div>
 
@@ -135,7 +143,7 @@
                 <h1>Endereço</h1>
               </div>
 
-              <form action="/usuario/{id}/edit" method="get">
+              <form th:action="@{/usuario/{path}/edit(path=${id})}" method="post">
                 <div class="text-info">
                   <label for="">CEP:</label><br />
                   <input type="text" placeholder="CEP" />
@@ -157,9 +165,13 @@
                   <input type="text" placeholder="Numero" />
                 </div>
                 <div class="text-info">
-                  <button>Descartar Mudanças</button>
                   <button>Salvar Mudanças</button>
                 </div>
+              </form>
+              <form th:action="@{/usuario/{path}(path=${id})}" method="get">
+              	<div class="text-info">
+              		<button>Descartar Mudanças</button>
+              	</div>
               </form>
             </div>
           </div>
