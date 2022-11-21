@@ -66,7 +66,7 @@
                 required
               />
             </div>
-
+            
             <div class="input-box">
               <label for="password">Senha: </label>
               <input
@@ -82,7 +82,7 @@
               <label for="Confirmpassword">Confirme sua senha: </label>
               <input
                 type="password"
-                id="Confirmpassword"
+                id="confirmarSenha"
                 name="confirmarSenha"
                 placeholder="Digite sua senha"
                 required
@@ -120,10 +120,12 @@
 
           <div class="continue-button">
             <!-- <button><a href="#">Continuar</a></button>  -->
-            <input type="submit" value="Continuar">
+            <input onclick="confirmPass()" type="submit" value="Continuar">
           </div>
         </form>
       </div>
     </div>
+    
+    <script src="/JS/Tela_Cadastro.js"></script>
   </body>
 </html>
