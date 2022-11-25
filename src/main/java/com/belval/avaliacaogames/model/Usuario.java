@@ -25,7 +25,8 @@ public class Usuario implements Serializable{
 	
 	
 	// Constructors
-	public Usuario(String primeiroNome, String sobrenome, String email, String celular, String senha, String genero) {
+	public Usuario(Long id, String primeiroNome, String sobrenome, String email, String celular, String senha, String genero) {
+		this.id = id;
 		this.nome = primeiroNome;
 		this.sobrenome = sobrenome;
 		this.email = email;

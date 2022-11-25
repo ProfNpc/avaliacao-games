@@ -11,7 +11,7 @@ import com.belval.avaliacaogames.model.Usuario;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
 
 @Configuration
-@Profile("test")
+//@Profile("test")
 public class TestConfig implements CommandLineRunner{
 
 	@Autowired
@@ -20,8 +20,8 @@ public class TestConfig implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Usuario u1 = new Usuario("Abner", "Pereira", "abner@gmail.com", "11978889934", "123456", null);
-		Usuario u2 = new Usuario("Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456", null);
+		Usuario u1 = new Usuario(1L, "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456", null);
+		Usuario u2 = new Usuario(2L, "Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456", null);
 
 		userRepository.saveAll(Arrays.asList(u1, u2));
 	}
