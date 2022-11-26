@@ -104,6 +104,14 @@ public class UsuarioController {
 		ModelAndView mv = 
 				new ModelAndView("redirect:/usuario/{id}");
 		
+		Usuario usuarioOld = service.findById(usuario.getId());
+		
+		if (usuario.getNome() 		== null) 	usuario.setNome		(usuarioOld.getNome());
+		if (usuario.getSobrenome() 	== null) 	usuario.setSobrenome(usuarioOld.getSobrenome());
+		if (usuario.getEmail() 		== null) 	usuario.setEmail	(usuarioOld.getEmail());
+		if (usuario.getCelular() 	== null) 	usuario.setCelular	(usuarioOld.getCelular());
+		if (usuario.getSenha() 		== null) 	usuario.setSenha	(usuarioOld.getSenha());
+		
 		repository.save(usuario);
 		
 		return mv;
