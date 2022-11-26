@@ -130,4 +130,11 @@ public class UsuarioController {
 		return mv;
 	}
 	
+	// Ver lista de usuários
+	@GetMapping("/usuario/list")
+	public String list(Model model) {
+		model.addAttribute("usuarios", repository.findAll());
+		return "usuario/lista-usuario";
+	}
+	
 }
