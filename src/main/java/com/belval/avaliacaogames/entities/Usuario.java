@@ -1,4 +1,4 @@
-package com.belval.avaliacaogames.model;
+package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
 
