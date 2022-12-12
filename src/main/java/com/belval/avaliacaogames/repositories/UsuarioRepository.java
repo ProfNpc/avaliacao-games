@@ -6,6 +6,4 @@ import com.belval.avaliacaogames.entities.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-	/*List<Usuario> findBySobrenome(String sobrenome);
-	Usuario findByNome(String nome);*/
 }

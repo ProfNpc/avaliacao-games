@@ -1,27 +1,29 @@
 package com.belval.avaliacaogames.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Product {
+public class Produto implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-	// Attribute
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long cod_prod;
 	private String nome_prod;
 	private Integer valor_prod;
 
 	// Constructors
-	public Product() {
+	public Produto() {
 
 	}
 
-	public Product(Long id, String nome_prod, Integer valor_prod) {
-		this.id = id;
+	public Produto(Long cod_prod, String nome_prod, Integer valor_prod) {
+		this.cod_prod = cod_prod;
 		this.nome_prod = nome_prod;
 		this.valor_prod = valor_prod;
 	}
@@ -47,11 +49,10 @@ public class Product {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((cod_prod == null) ? 0 : cod_prod.hashCode());
 		return result;
 	}
 
-	// HashCode
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -60,12 +61,14 @@ public class Product {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
-		if (id == null) {
-			if (other.id != null)
+		Produto other = (Produto) obj;
+		if (cod_prod == null) {
+			if (other.cod_prod != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!cod_prod.equals(other.cod_prod))
 			return false;
 		return true;
 	}
+
+	
 }

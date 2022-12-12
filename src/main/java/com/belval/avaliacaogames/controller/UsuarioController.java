@@ -27,8 +27,6 @@ public class UsuarioController {
 	
 	// Armazena os dados
 	private static List<Usuario> listaUsuario = new ArrayList<>();
-
-	private static int next = 1;
 	
 	
 	// Home

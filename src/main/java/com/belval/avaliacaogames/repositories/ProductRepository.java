@@ -2,8 +2,8 @@ package com.belval.avaliacaogames.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.belval.avaliacaogames.entities.Product;
+import com.belval.avaliacaogames.entities.Produto;
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Produto, Long> {
 
 }

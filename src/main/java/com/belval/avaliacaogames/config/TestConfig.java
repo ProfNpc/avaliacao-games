@@ -5,36 +5,59 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
-import com.belval.avaliacaogames.entities.Product;
+import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.Endereco;
+import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Usuario;
+import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
+import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.ProductRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
 
 @Configuration
 //@Profile("test")
-public class TestConfig implements CommandLineRunner{
+public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private UsuarioRepository userRepository;
 
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
+	@Autowired
+	private Cad_ProdutoRepository cad_produtoRepository;
+
 	@Override
 	public void run(String... args) throws Exception {
+
+		Usuario u1 = new Usuario(1L, "89854665412", "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456");
+		Usuario u2 = new Usuario(2L, "47898763225","Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456");
+
+		Endereco e1 = new Endereco(1L, "06634080", 222, "Avenida Comandante", "Km 18", "Osasco", "São Paulo", "Brasil");
+		Endereco e2 = new Endereco(2L, "06192080", 198, "Rua Yang", "Rochdale", "Osasco", "São Paulo", "Brasil");
 		
-		Usuario u1 = new Usuario(1L, "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456", null);
-		Usuario u2 = new Usuario(2L, "Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456", null);
+		Cad_Produto cp1 = new Cad_Produto(1L, 2L, true);
+		Cad_Produto cp2 = new Cad_Produto(2L, 3L, true);
 		
-		Product p1 = new Product(null, "GTA V", 50);
-		Product p2 = new Product(null, "CS GO", 20);
-		Product p3 = new Product(null, "Outlast", 70);
+		cad_produtoRepository.saveAll(Arrays.asList(cp1,cp2));
+		userRepository.saveAll(Arrays.asList(u1, u2));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+
+		u1.getEnderecos().add(e2);
+		u2.getEnderecos().add(e1);
 		
 		userRepository.saveAll(Arrays.asList(u1, u2));
+		
+		Produto p1 = new Produto(null, "GTA V", 50);
+		Produto p2 = new Produto(null, "CS GO", 20);
+		Produto p3 = new Produto(null, "Outlast", 70);
+
+
 		productRepository.saveAll(Arrays.asList(p1, p2, p3));
 	}
-	
-	
+
 }
