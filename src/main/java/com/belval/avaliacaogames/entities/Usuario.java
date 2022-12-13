@@ -1,7 +1,9 @@
 package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -11,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Usuario implements Serializable {
@@ -29,6 +34,10 @@ public class Usuario implements Serializable {
 	private String senha;
 	private String genero;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario")
+	private List<Cad_Produto> cad_produto = new ArrayList<>();
+	
 	@ManyToMany
 	@JoinTable(name = "usuario_endereco", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "id_end"))
 	private Set<Endereco> enderecos = new HashSet<>();

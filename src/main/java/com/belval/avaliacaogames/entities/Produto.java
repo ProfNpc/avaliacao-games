@@ -1,11 +1,16 @@
 package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable {
@@ -17,6 +22,10 @@ public class Produto implements Serializable {
 	private String nome_prod;
 	private Integer valor_prod;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "produto")
+	private List<Cad_Produto> cad_produtos = new ArrayList<>();	
+	
 	// Constructors
 	public Produto() {
 

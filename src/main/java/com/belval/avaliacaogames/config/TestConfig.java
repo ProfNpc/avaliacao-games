@@ -39,13 +39,10 @@ public class TestConfig implements CommandLineRunner {
 
 		Endereco e1 = new Endereco(1L, "06634080", 222, "Avenida Comandante", "Km 18", "Osasco", "São Paulo", "Brasil");
 		Endereco e2 = new Endereco(2L, "06192080", 198, "Rua Yang", "Rochdale", "Osasco", "São Paulo", "Brasil");
-		
-		Cad_Produto cp1 = new Cad_Produto(1L, 2L, true);
-		Cad_Produto cp2 = new Cad_Produto(2L, 3L, true);
-		
-		cad_produtoRepository.saveAll(Arrays.asList(cp1,cp2));
+
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+
 
 		u1.getEnderecos().add(e2);
 		u2.getEnderecos().add(e1);
@@ -58,6 +55,11 @@ public class TestConfig implements CommandLineRunner {
 
 
 		productRepository.saveAll(Arrays.asList(p1, p2, p3));
+		
+		Cad_Produto cp1 = new Cad_Produto(1L, p2, 5L, u1, true);
+		Cad_Produto cp2 = new Cad_Produto(2L, p1, 2L, u2, true);
+		
+		cad_produtoRepository.saveAll(Arrays.asList(cp1,cp2));
 	}
 
 }
