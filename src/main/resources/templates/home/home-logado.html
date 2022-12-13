@@ -36,7 +36,7 @@
 						<ul class="dropdown-menu">
 
 							<li>
-								<form action="/usuario/{cpf}" method="get">
+								<form th:action="@{/usuario/{path}(path=${cpf})}" method="get">
 									<button>Perfil</button>
 									<form />
 							</li>

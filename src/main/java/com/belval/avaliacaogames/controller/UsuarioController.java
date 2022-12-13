@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Usuario;
@@ -36,14 +37,14 @@ public class UsuarioController {
 	}
 	
 	// Home (quando estiver logado)
-	@GetMapping("/home/{cpf}")
+	@GetMapping("/home")
 	public String logado() {
 		return "home/home-logado";
 	}
 	
 	// Mostra formulario
 	@GetMapping("/usuario/cadastrar")
-	public String form(Model model) {
+	public String form(Model model, Long cpf) {
 		
 		// testar
 		model.addAttribute("usuario", new Usuario());
@@ -53,7 +54,7 @@ public class UsuarioController {
 	
 	@PostMapping("/usuario/cadastrar")
 	public ModelAndView form(Usuario usuario) {
-		
+		usuario.getCpf();
 		ModelAndView model = new ModelAndView("redirect:/home/{cpf}");
 		
 		repository.save(usuario);
