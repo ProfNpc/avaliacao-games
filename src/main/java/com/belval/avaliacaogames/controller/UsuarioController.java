@@ -35,6 +35,12 @@ public class UsuarioController {
 		return "home/home";
 	}
 	
+	// Home (quando estiver logado)
+	@GetMapping("/home/{cpf}")
+	public String logado() {
+		return "home/home-logado";
+	}
+	
 	// Mostra formulario
 	@GetMapping("/usuario/cadastrar")
 	public String form(Model model) {
@@ -48,7 +54,7 @@ public class UsuarioController {
 	@PostMapping("/usuario/cadastrar")
 	public ModelAndView form(Usuario usuario) {
 		
-		ModelAndView model = new ModelAndView("redirect:/");
+		ModelAndView model = new ModelAndView("redirect:/home/{cpf}");
 		
 		repository.save(usuario);
 		
@@ -56,11 +62,11 @@ public class UsuarioController {
 	}
 	
 	// Perfil do usuario
-	@GetMapping("/usuario/{id}")
+	@GetMapping("/usuario/{cpf}")
 	public String perfil(
-			@PathVariable("id") Long id, Model model) {
+			@PathVariable("cpf") Long cpf, Model model) {
 		
-		Usuario usuario = service.findById(id);
+		Usuario usuario = service.findById(cpf);
 		
 		if (usuario == null) {
 			return "usuario/usuario-nao-existe";

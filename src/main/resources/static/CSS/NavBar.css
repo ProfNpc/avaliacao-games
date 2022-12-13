@@ -52,7 +52,7 @@
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
-  background-color: #0187a7;
+  background-color: #a70101;
 }
 
 .login-button button a {
@@ -60,6 +60,10 @@
   color: #fff;
   font-weight: 500;
   font-size: 1.1rem;
+}
+
+.login-button img {
+  width: 2em;
 }
 
 .mobile-menu-icon {

@@ -13,12 +13,12 @@
 <body>
 	<table>
 		<tr>
-			<th>ID</th>
+			<th>CPF</th>
 			<th>Nome</th>
 			<th></th>
 		</tr>
 		<tr th:each="usuario : ${usuarios}">
-			<td><span th:text="${usuario.id}"></span></td>
+			<td><span th:text="${usuario.cpf}"></span></td>
 			<td><span th:text="${usuario.nome}"></span></td>
 			<td></td>
 		</tr>

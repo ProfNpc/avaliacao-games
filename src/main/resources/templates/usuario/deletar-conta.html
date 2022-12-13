@@ -55,13 +55,13 @@
 		
 		<div class="opcoes">
 			<div class="sim">
-				<form th:action="@{/usuario/{path}/deletar(path=${id})}" method="post">
+				<form th:action="@{/usuario/{path}/deletar(path=${cpf})}" method="post">
 					<button>Sim</button>
 				</form>
 			</div>
 			
 			<div class="nao">
-				<form th:action="@{/usuario/{path}(path=${id})}" method="get">
+				<form th:action="@{/usuario/{path}(path=${cpf})}" method="get">
 					<button>Não</button>
 				</form>
 			</div>

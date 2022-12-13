@@ -82,7 +82,7 @@
 							<button type="button">Editar</button>
 						</div>
 
-						<form th:action="@{/usuario/{path}/edit(path=${id})}" method="get">
+						<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="get">
 							<div class="text-info">
 								<button>Alterar senha</button>
 							</div>
@@ -122,7 +122,7 @@
 							<span th:text="${usuario.celular}"></span>
 						</div>
 
-						<form th:action="@{/usuario/{path}/edit(path=${id})}" method="get">
+						<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="get">
 							<div class="text-info">
 								<button>Alterar informações</button>
 							</div>
@@ -134,7 +134,7 @@
 							<h1>Endereço</h1>
 						</div>
 
-						<form th:action="@{/usuario/{path}/edit(path=${id})}" method="get">
+						<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="get">
 							<div class="text-info">
 								<label for="">CEP:</label><br />
 								<input type="text" placeholder="CEP" />
@@ -165,7 +165,7 @@
 					
 					<!-- Arrumar o style desse botão! -->
 					<div class="delete">
-						<form th:action="@{/usuario/{path}/deletar(path=${id})}" method="get">
+						<form th:action="@{/usuario/{path}/deletar(path=${cpf})}" method="get">
 							<button>Deletar conta</button>
 						</form>
 					</div>
