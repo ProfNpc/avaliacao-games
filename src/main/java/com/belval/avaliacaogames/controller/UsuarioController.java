@@ -2,7 +2,6 @@ package com.belval.avaliacaogames.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Usuario;
@@ -55,11 +53,26 @@ public class UsuarioController {
 	@PostMapping("/usuario/cadastrar")
 	public ModelAndView form(Usuario usuario) {
 		usuario.getCpf();
-		ModelAndView model = new ModelAndView("redirect:/home/{cpf}");
+		ModelAndView model = new ModelAndView("redirect:/usuario/login");
 		
 		repository.save(usuario);
 		
 		return model;
+	}
+	
+	@GetMapping("usuario/login")
+	public String login() {
+		return "usuario/login-usuario";
+	}
+
+	@GetMapping("usuario/login")
+	public String login(@PathVariable("email") String email, @PathVariable("senha") String senha) {
+		
+		List<Usuario> usuario = service.findAll();
+
+		if(usuario.)
+		
+		return "usuario/usuario-nao-existe";
 	}
 	
 	// Perfil do usuario
