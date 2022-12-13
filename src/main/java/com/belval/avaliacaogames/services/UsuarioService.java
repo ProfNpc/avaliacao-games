@@ -19,8 +19,8 @@ public class UsuarioService {
 		return repository.findAll();
 	}
 	
-	public Usuario findById(Long id) {
-		Optional<Usuario> obj = repository.findById(id);
+	public Usuario findById(Long cpf) {
+		Optional<Usuario> obj = repository.findById(cpf);
 		return obj.get();
 	}
 }

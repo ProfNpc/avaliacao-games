@@ -34,8 +34,8 @@ public class TestConfig implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Usuario u1 = new Usuario(1L, "89854665412", "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456");
-		Usuario u2 = new Usuario(2L, "47898763225","Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456");
+		Usuario u1 = new Usuario(89854665412L, "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456");
+		Usuario u2 = new Usuario(47898763225L,"Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456");
 
 		Endereco e1 = new Endereco(1L, "06634080", 222, "Avenida Comandante", "Km 18", "Osasco", "São Paulo", "Brasil");
 		Endereco e2 = new Endereco(2L, "06192080", 198, "Rua Yang", "Rochdale", "Osasco", "São Paulo", "Brasil");

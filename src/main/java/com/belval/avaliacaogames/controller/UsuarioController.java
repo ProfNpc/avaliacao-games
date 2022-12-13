@@ -55,17 +55,6 @@ public class UsuarioController {
 		return model;
 	}
 	
-	// TESTAR
-	private void updateUsuario(Usuario usuario) {
-		ListIterator<Usuario> i = listaUsuario.listIterator();
-		while(i.hasNext()) {
-			Usuario atual = i.next(); 
-			if (atual.getNome() == usuario.getNome()) {
-				i.set(usuario);
-			}
-		}
-	}
-	
 	// Perfil do usuario
 	@GetMapping("/usuario/{id}")
 	public String perfil(
@@ -82,11 +71,11 @@ public class UsuarioController {
 	}
 	
 	// Editar dados do usuario
-	@GetMapping("/usuario/{id}/edit")
+	@GetMapping("/usuario/{cpf}/edit")
 	public String edit(
-			@PathVariable("id") Long id, Model model) {
+			@PathVariable("cpf") Long cpf, Model model) {
 		
-		Usuario usuario = service.findById(id);
+		Usuario usuario = service.findById(cpf);
 		
 		if (usuario == null) {
 			return "usuario/usuario-nao-existe";
@@ -97,12 +86,12 @@ public class UsuarioController {
 	}
 	
 	// Confirmar alterações
-	@PostMapping("/usuario/{id}/edit")
+	@PostMapping("/usuario/{cpf}/edit")
 	public ModelAndView editConfirm(Usuario usuario) {
 		ModelAndView mv = 
-				new ModelAndView("redirect:/usuario/{id}");
+				new ModelAndView("redirect:/usuario/{cpf}");
 		
-		Usuario usuarioOld = service.findById(usuario.getId());
+		Usuario usuarioOld = service.findById(usuario.getCpf());
 		
 		if (usuario.getNome() 		== null) 	usuario.setNome		(usuarioOld.getNome());
 		if (usuario.getSobrenome() 	== null) 	usuario.setSobrenome(usuarioOld.getSobrenome());
@@ -116,20 +105,20 @@ public class UsuarioController {
 	}
 	
 	// Deletar conta
-	@GetMapping("/usuario/{id}/deletar")
+	@GetMapping("/usuario/{cpf}/deletar")
 	public String delete(
-			@PathVariable("id") Long id, Model model) {
+			@PathVariable("cpf") Long cpf, Model model) {
 		
-		model.addAttribute("id", id);
+		model.addAttribute("cpf", cpf);
 		return "usuario/deletar-conta";
 	}
 	
 	// Confirmar deletar conta
-	@PostMapping("/usuario/{id}/deletar")
+	@PostMapping("/usuario/{cpf}/deletar")
 	public ModelAndView deleteConfirm(
-			@PathVariable("id") Long id, Model model) {
+			@PathVariable("cpf") Long cpf, Model model) {
 		
-		repository.deleteById(id);
+		repository.deleteById(cpf);
 		
 		ModelAndView mv = new ModelAndView("redirect:/");
 		

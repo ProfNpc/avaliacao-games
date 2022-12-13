@@ -22,11 +22,7 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-
-	// Atributos de usuario
-	private Long id;
-	private String cpf;
+	private Long cpf;
 	private String nome;
 	private String sobrenome;
 	private String email;
@@ -47,8 +43,8 @@ public class Usuario implements Serializable {
 
 	}
 
-	public Usuario(Long id, String cpf, String nome, String sobrenome, String email, String celular, String senha) {
-		this.id = id;
+	public Usuario(Long cpf, String nome, String sobrenome, String email, String celular, String senha) {
+	
 		this.cpf = cpf;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
@@ -66,19 +62,13 @@ public class Usuario implements Serializable {
 	}
 
 	// Getter and Setters
-	public Long getId() {
-		return this.id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public String getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 
