@@ -34,14 +34,8 @@
 							<img src="../imagens/foto_perfil.png" alt="">
 						</button>
 						<ul class="dropdown-menu">
-
-							<li>
-								<form th:action="@{/usuario/{path}(path=${cpf})}" method="get">
-									<button>Perfil</button>
-									<form />
-							</li>
-
-							<li><a class="dropdown-item" href="#">Sua biblioteca</a></li>
+							<li><a class="dropdown-item" th:href="@{/usuario/{path}(path=${cpf})}">Perfil</a></li>
+							<li><a class="dropdown-item" href="/">Sua biblioteca</a></li>
 							<li><a class="dropdown-item" href="#">Anunciar</a></li>
 						</ul>
 					</div>

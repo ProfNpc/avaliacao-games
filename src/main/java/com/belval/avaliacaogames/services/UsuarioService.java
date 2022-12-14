@@ -23,9 +23,8 @@ public class UsuarioService {
 		Optional<Usuario> obj = repository.findById(cpf);
 		return obj.get();
 	}
-	
-	public Usuario findByEmail(String email) {
-		Optional<Usuario> obj = repository.findBy(email);
-		return obj.get();
+
+	public List<Usuario> findAll(String email) {
+		return repository.findAll();
 	}
 }

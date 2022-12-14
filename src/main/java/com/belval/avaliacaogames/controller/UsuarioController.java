@@ -35,12 +35,12 @@ public class UsuarioController {
 	}
 	
 	// Home (quando estiver logado)
-	@GetMapping("/home")
+	@GetMapping("/home/{cpf}")
 	public String logado() {
 		return "home/home-logado";
 	}
 	
-	// Mostra formulario
+	// Metodo para cadastrar
 	@GetMapping("/usuario/cadastrar")
 	public String form(Model model, Long cpf) {
 		
@@ -50,6 +50,7 @@ public class UsuarioController {
 		return "usuario/cadastro";
 	}
 	
+	// Salvar o usuario 
 	@PostMapping("/usuario/cadastrar")
 	public ModelAndView form(Usuario usuario) {
 		usuario.getCpf();
@@ -60,22 +61,21 @@ public class UsuarioController {
 		return model;
 	}
 	
+	// Metodo para fazer login
 	@GetMapping("usuario/login")
 	public String login() {
 		return "usuario/login-usuario";
 	}
 
-	@GetMapping("usuario/login")
+	/*@GetMapping("usuario/login")
 	public String login(@PathVariable("email") String email, @PathVariable("senha") String senha) {
 		
 		List<Usuario> usuario = service.findAll();
-
-		if(usuario.)
 		
 		return "usuario/usuario-nao-existe";
-	}
+	}*/
 	
-	// Perfil do usuario
+	// Metodo para acessar perfil do usuario
 	@GetMapping("/usuario/{cpf}")
 	public String perfil(
 			@PathVariable("cpf") Long cpf, Model model) {
@@ -90,7 +90,7 @@ public class UsuarioController {
 		return "usuario/perfil-geral";
 	}
 	
-	// Editar dados do usuario
+	// Metodo para editar dados do usuario
 	@GetMapping("/usuario/{cpf}/edit")
 	public String edit(
 			@PathVariable("cpf") Long cpf, Model model) {
@@ -105,7 +105,7 @@ public class UsuarioController {
 		return "usuario/perfil-geral-edit";
 	}
 	
-	// Confirmar alterações
+	// Confirma as alterações
 	@PostMapping("/usuario/{cpf}/edit")
 	public ModelAndView editConfirm(Usuario usuario) {
 		ModelAndView mv = 
@@ -124,7 +124,7 @@ public class UsuarioController {
 		return mv;
 	}
 	
-	// Deletar conta
+	// Metodo para deletar conta
 	@GetMapping("/usuario/{cpf}/deletar")
 	public String delete(
 			@PathVariable("cpf") Long cpf, Model model) {
@@ -133,7 +133,7 @@ public class UsuarioController {
 		return "usuario/deletar-conta";
 	}
 	
-	// Confirmar deletar conta
+	// Confirma deletar a conta
 	@PostMapping("/usuario/{cpf}/deletar")
 	public ModelAndView deleteConfirm(
 			@PathVariable("cpf") Long cpf, Model model) {
