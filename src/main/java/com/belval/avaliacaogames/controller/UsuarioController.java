@@ -36,7 +36,12 @@ public class UsuarioController {
 	
 	// Home (quando estiver logado)
 	@GetMapping("/home/{cpf}")
-	public String logado() {
+	public String logado(
+			@PathVariable("cpf") Long cpf, Model model) {
+		
+		Usuario usuario = service.findById(cpf);
+		model.addAttribute(usuario);
+		
 		return "home/home-logado";
 	}
 	
