@@ -1,14 +1,13 @@
 package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Endereco implements Serializable {
@@ -25,8 +24,12 @@ public class Endereco implements Serializable {
 	private String estado_end;
 	private String pais_end;
 
-	@ManyToMany(mappedBy = "enderecos")
-	private Set<Usuario> usuarios = new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name = "cpf_usuario")
+	private Usuario usuario;
+	
+	//@ManyToMany(mappedBy = "enderecos")
+	//private Set<Usuario> usuarios = new HashSet<>();
 
 	// Constructors
 	public Endereco() {
@@ -34,7 +37,7 @@ public class Endereco implements Serializable {
 	}
 
 	public Endereco(Long id_end, String cep_end, Integer num_end, String rua_end, String bairro_end, String cidade_end,
-			String estado_end, String pais_end) {
+			String estado_end, String pais_end, Usuario usuario) {
 		super();
 		this.cep_end = cep_end;
 		this.num_end = num_end;
@@ -43,17 +46,18 @@ public class Endereco implements Serializable {
 		this.cidade_end = cidade_end;
 		this.estado_end = estado_end;
 		this.pais_end = pais_end;
-	}
-
-	public Set<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(Set<Usuario> usuarios) {
-		this.usuarios = usuarios;
+		this.usuario = usuario;
 	}
 
 	// Getters and Setters
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public Long getId_end() {
 		return id_end;

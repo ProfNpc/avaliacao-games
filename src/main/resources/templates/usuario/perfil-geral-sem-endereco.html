@@ -138,27 +138,28 @@
 						<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="get">
 							<div class="text-info">
 								<label for="">CEP:</label><br />
-								<span th:text="${endereco.cep_end}"></span>
+								<label for="">Não há cep cadastrado</label><br />
+
 							</div>
 							<div class="text-info">
 								<label for="">Estado:</label><br />
-								<span th:text="${endereco.estado_end}"></span>
+								<label for="">Não há estado cadastrado</label><br />
 							</div>
 							<div class="text-info">
 								<label for="">Cidade:</label><br />
-								<span th:text="${endereco.cidade_end}"></span>
+								<label for="">Não há cidade cadastrado</label><br />
 							</div>
 							<div class="text-info">
-								<label for="">Bairro:</label><br />
-								<span th:text="${endereco.bairro_end}"></span>
+								<label for="">Bairro</label><br />
+								<label for="">Não há bairro cadastrado</label><br />
 							</div>
 							<div class="text-info">
 								<label for="">Rua:</label><br />
-								<span th:text="${endereco.rua_end}"></span>
+								<label for="">Não há rua cadastrado</label><br />
 							</div>
 							<div class="text-info">
 								<label for="">Numero:</label><br />
-								<span th:text="${endereco.num_end}"></span>
+								<label for="">Não há numero cadastrado</label><br />
 							</div>
 
 							<div class="text-info">

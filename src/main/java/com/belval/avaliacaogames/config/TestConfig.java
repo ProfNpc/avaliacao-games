@@ -16,7 +16,6 @@ import com.belval.avaliacaogames.repositories.ProductRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
 
 @Configuration
-//@Profile("test")
 public class TestConfig implements CommandLineRunner {
 
 	@Autowired
@@ -37,17 +36,11 @@ public class TestConfig implements CommandLineRunner {
 		Usuario u1 = new Usuario(89854665412L, "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456");
 		Usuario u2 = new Usuario(47898763225L,"Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456");
 
-		Endereco e1 = new Endereco(1L, "06634080", 222, "Avenida Comandante", "Km 18", "Osasco", "São Paulo", "Brasil");
-		Endereco e2 = new Endereco(2L, "06192080", 198, "Rua Yang", "Rochdale", "Osasco", "São Paulo", "Brasil");
+		Endereco e1 = new Endereco(1L, "06634080", 222, "Avenida Comandante", "Km 18", "Osasco", "São Paulo", "Brasil", u2);
+		Endereco e2 = new Endereco(2L, "06192080", 198, "Rua Yang", "Rochdale", "Osasco", "São Paulo", "Brasil", u1);
 
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
-
-
-		u1.getEnderecos().add(e2);
-		u2.getEnderecos().add(e1);
-		
-		userRepository.saveAll(Arrays.asList(u1, u2));
 		
 		Produto p1 = new Produto(null, "GTA V", 50);
 		Produto p2 = new Produto(null, "CS GO", 20);

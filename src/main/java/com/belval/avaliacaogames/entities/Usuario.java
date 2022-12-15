@@ -32,9 +32,13 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario")
 	private List<Cad_Produto> cad_produto = new ArrayList<>();
 	
-	@ManyToMany
-	@JoinTable(name = "usuario_endereco", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "id_end"))
-	private Set<Endereco> enderecos = new HashSet<>();
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario")
+	private List<Endereco> enderecos = new ArrayList<>();
+	
+	//@ManyToMany
+	//@JoinTable(name = "usuario_endereco", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "id_end"))
+	//private Set<Endereco> enderecos = new HashSet<>();
 
 	// Constructors
 	public Usuario() {
@@ -51,13 +55,13 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-	public Set<Endereco> getEnderecos() {
+	/*public Set<Endereco> getEnderecos() {
 		return enderecos;
-	}
+	}*/
 
-	public void setEnderecos(Set<Endereco> enderecos) {
+	/*public void setEnderecos(Set<Endereco> enderecos) {
 		this.enderecos = enderecos;
-	}
+	}*/
 
 	// Getter and Setters
 

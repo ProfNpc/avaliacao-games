@@ -15,7 +15,7 @@
 			<img src="/imagens/WATCH DOGS.png" alt="" />
 		</div>
 		<div class="form">
-			<form action="/usuario/cadastrar" method="post">
+			<form th:action="@{/usuario/{path}/cadastrar/endereco(path=${cpf})}" method="post">
 				<div class="form-header">
 					<div class="title">
 						<h1>Endereço</h1>
