@@ -71,6 +71,29 @@ public class UsuarioController {
 	public String login() {
 		return "usuario/login-usuario";
 	}
+	
+	// Validar login
+	@PostMapping("usuario/login")
+	public ModelAndView loginValidar(Usuario data) {
+		String email = data.getEmail();
+		
+		ModelAndView model;
+		
+		if (!service.existsByEmail(email)) {
+			model = new ModelAndView("redirect:/usuario/login");
+			return model;
+		}
+		
+		Usuario usuario = service.findByEmail(email);
+		
+		if (data.getSenha().equals(usuario.getSenha())) {
+			model = new ModelAndView("redirect:/home/" + usuario.getCpf());
+		} else {
+			model = new ModelAndView("redirect:/usuario/login");
+		}
+		
+		return model;
+	}
 
 	/*@GetMapping("usuario/login")
 	public String login(@PathVariable("email") String email, @PathVariable("senha") String senha) {
