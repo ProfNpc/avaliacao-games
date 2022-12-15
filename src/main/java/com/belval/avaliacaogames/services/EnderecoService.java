@@ -25,8 +25,12 @@ public class EnderecoService {
 		return obj.get();
 	}
 	
-	public Endereco findByCpf_End(Usuario usuario) {
-		List<Endereco> obj = repository.findByUsuario(usuario);
-		return obj.get(0);
+	public Endereco findByUsuario(Usuario usuario) {
+		Optional<Endereco> obj = repository.findByUsuario(usuario);
+		if (obj.isPresent()) {
+			return obj.get();
+		} else {
+			return new Endereco();
+		}
 	}
 }

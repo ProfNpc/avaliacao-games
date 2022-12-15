@@ -94,25 +94,15 @@ public class UsuarioController {
 
 	// Metodo para acessar perfil do usuario
 	@GetMapping("/usuario/{cpf}")
-	public String perfil(@PathVariable("cpf") Long cpf, Model model, Model mod) {
+	public String perfil(@PathVariable("cpf") Long cpf, Model model) {
 
 		Usuario usuario = service.findById(cpf);
-		Endereco endereco = enderecoService.findByCpf_End(usuario);
-
-		if (usuario == null) {
-			return "usuario/usuario-nao-existe";
-		}
-
-		mod.addAttribute("endereco", endereco);
-		model.addAttribute("usuario", usuario);
-
-		if (!(endereco.getUsuario().equals(usuario))) {
-			//return "usuario/perfil-geral";
-			return "usuario/perfil-geral-sem-endereco";
-		} else {
-
-			return "usuario/perfil-geral";
-		}
+		Endereco endereco = enderecoService.findByUsuario(usuario);
+		
+		model.addAttribute(usuario);
+		model.addAttribute(endereco);
+		
+		return "usuario/perfil-geral";
 	}
 
 	// Metodo para editar dados do usuario
