@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
-import com.belval.avaliacaogames.repositories.UsuarioRepository;
 import com.belval.avaliacaogames.services.EnderecoService;
 import com.belval.avaliacaogames.services.UsuarioService;
 

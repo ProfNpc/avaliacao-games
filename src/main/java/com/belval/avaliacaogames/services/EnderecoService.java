@@ -22,6 +22,11 @@ public class EnderecoService {
 
 	public Endereco findById(Long id) {
 		Optional<Endereco> obj = repository.findById(id);
+		/*if (obj.isPresent()) {
+			return obj.get();
+		} else {
+			return new Endereco();
+		}*/
 		return obj.get();
 	}
 	

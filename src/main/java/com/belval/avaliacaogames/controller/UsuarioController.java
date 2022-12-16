@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Usuario;
+import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
 import com.belval.avaliacaogames.services.EnderecoService;
 import com.belval.avaliacaogames.services.UsuarioService;
@@ -25,6 +26,9 @@ public class UsuarioController {
 
 	@Autowired
 	private EnderecoService enderecoService;
+
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 
 	// Home
 	@GetMapping("/")
@@ -98,10 +102,10 @@ public class UsuarioController {
 
 		Usuario usuario = service.findById(cpf);
 		Endereco endereco = enderecoService.findByUsuario(usuario);
-		
+
 		model.addAttribute(usuario);
 		model.addAttribute(endereco);
-		
+
 		return "usuario/perfil-geral";
 	}
 
@@ -111,21 +115,27 @@ public class UsuarioController {
 
 		Usuario usuario = service.findById(cpf);
 
+		Endereco endereco = enderecoService.findByUsuario(usuario);
+
 		if (usuario == null) {
 			return "usuario/usuario-nao-existe";
 		}
 
+		model.addAttribute("endereco", endereco);
 		model.addAttribute("usuario", usuario);
+
 		return "usuario/perfil-geral-edit";
 	}
 
 	// Confirma as alterações
 	@PostMapping("/usuario/{cpf}/edit")
-	public ModelAndView editConfirm(Usuario usuario) {
+	public ModelAndView editConfirm(Usuario usuario, Endereco endereco) {
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}");
 
 		Usuario usuarioOld = service.findById(usuario.getCpf());
+		Endereco enderecoOld = enderecoService.findByUsuario(usuarioOld);
 
+		// Usuario
 		if (usuario.getNome() == null)
 			usuario.setNome(usuarioOld.getNome());
 		if (usuario.getSobrenome() == null)
@@ -137,7 +147,26 @@ public class UsuarioController {
 		if (usuario.getSenha() == null)
 			usuario.setSenha(usuarioOld.getSenha());
 
+		// Endereco
+		if (endereco.getCep_end() == null)
+			endereco.setCep_end(enderecoOld.getCep_end());
+		if (endereco.getPais_end() == null)
+			endereco.setPais_end(enderecoOld.getPais_end());
+		if (endereco.getEstado_end() == null)
+			endereco.setEstado_end(enderecoOld.getEstado_end());
+		if (endereco.getCidade_end() == null)
+			endereco.setCidade_end(enderecoOld.getCidade_end());
+		if (endereco.getBairro_end() == null)
+			endereco.setBairro_end(enderecoOld.getBairro_end());
+		if (endereco.getRua_end() == null)
+			endereco.setRua_end(enderecoOld.getRua_end());
+		if (endereco.getNum_end() == null)
+			endereco.setNum_end(enderecoOld.getNum_end());
+		if (endereco.getUsuario() == null)
+			endereco.setUsuario(usuario);
+
 		repository.save(usuario);
+		enderecoRepository.save(endereco);
 
 		return mv;
 	}
