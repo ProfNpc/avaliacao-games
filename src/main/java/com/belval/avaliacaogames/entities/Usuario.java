@@ -23,10 +23,12 @@ public class Usuario implements Serializable {
 	private String senha;
 	private String genero;
 
+	// Ligação com tabela cad_produto
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Cad_Produto> cad_produto = new ArrayList<>();
 	
+	// Ligação com tabela endereco
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Endereco> enderecos = new ArrayList<>();

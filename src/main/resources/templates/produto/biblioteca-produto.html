@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/CSS/Tela_Biblioteca.css" />
+	<link rel="stylesheet" href="/CSS/NavBar.css" />
+
+	<title>Pacifier</title>
+</head>
+
+<body>
+	<header>
+		<nav class="nav-bar">
+			<div class="logo">
+				<a href=""><img src="/imagens/Controle.png" alt="" /></a>
+			</div>
+			<div class="nav-list">
+				<ul>
+					<li class="nav-item"><a href="#" class="nav-link">Início</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
+					<li class="nav-item"><a href="#" class="nav-link"> Sobre</a></li>
+				</ul>
+			</div>
+			<div class="login-button">
+				<button><a href="#">Entrar</a></button>
+			</div>
+
+			<div class="mobile-menu-icon">
+				<button onclick="menuShow()">
+					<img class="icon" src="/imagens/menu_white.svg" alt="" />
+				</button>
+			</div>
+		</nav>
+		<div class="mobile-menu">
+			<ul>
+				<li class="nav-item"><a href="#" class="nav-link">Início</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+			</ul>
+
+			<div class="login-button">
+				<button><a href="#">Entrar</a></button>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<!-- Container da nav-bar lateral -->
+		<div class="nav-lateral">
+			<div class="container-button">
+				<div class="button">
+					<a href="Tela_Perfil.html"><input type="button" value="Geral" class="button" /></a>
+					<a href=""><input type="button" value="Preferencias" class="button" /></a>
+					<a href=""><input type="button" value="Privacidade" class="button" /></a>
+					<a href=""><input type="button" value="Segurança" class="button" /></a>
+					<a href="Tela_Biblioteca.html"><input type="button" value="Biblioteca" class="button" /></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="color">
+			<!-- Container da biblioteca -->
+			<div class="container-biblioteca">
+				<br />
+				<!-- Div para add cor ao fundo dos jogos -->
+				<div class="container-color">
+					<!-- Jogos que aparecerão na biblioteca -->
+					<section class="">
+						<!-- Primeiro -->
+						<div class="row row-cols-1 row-cols-md-3 g-4">
+							<div class="col">
+								<div class="card h-100">
+									<img src="..." class="card-img-top" alt="..." />
+									<div class="card-body">
+										<h5 class="card-title">
+											<span th:text="${produto.nome_prod}"></span>
+										</h5>
+										<p class="card-text">
+											Quantidade: <span th:text="${cad_produto.quantidade}"></span>
+										</p>
+										<p class="card-text">
+											Valor: R$<span th:text="${produto.valor_prod}"></span>
+										</p>
+										<a href="#" class="btn btn-primary">Excluir</a>
+									</div>
+								</div>
+							</div>
+							<!-- Segundo -->
+							<div class="col">
+								<div class="card h-100">
+									<img src="..." class="card-img-top" alt="..." />
+									<div class="card-body">
+										<h5 class="card-title">
+											<span th:text="${produto.nome_prod}"></span>
+										</h5>
+										<p class="card-text">
+											Quantidade: <span th:text="${cad_produto.quantidade}"></span>
+										</p>
+										<p class="card-text">
+											Valor: R$<span th:text="${produto.valor_prod}"></span>
+										</p>
+										<a href="#" class="btn btn-primary">Excluir</a>
+									</div>
+								</div>
+							</div>
+							<!-- Terceiro -->
+							<div class="col">
+								<div class="card h-100">
+									<img src="..." class="card-img-top" alt="..." />
+									<div class="card-body">
+										<h5 class="card-title">
+											<span th:text="${produto.nome_prod}"></span>
+										</h5>
+										<p class="card-text">
+											Quantidade: <span th:text="${cad_produto.quantidade}"></span>
+										</p>
+										<p class="card-text">
+											Valor: R$<span th:text="${produto.valor_prod}"></span>
+										</p>
+										<a href="#" class="btn btn-primary">Excluir</a>
+									</div>
+								</div>
+							</div>
+							<!-- Quarto -->
+							<div class="col">
+								<div class="card h-100">
+									<img src="..." class="card-img-top" alt="..." />
+									<div class="card-body">
+										<h5 class="card-title">
+											<span th:text="${produto.nome_prod}"></span>
+										</h5>
+										<p class="card-text">
+											Quantidade: <span th:text="${cad_produto.quantidade}"></span>
+										</p>
+										<p class="card-text">
+											Valor: R$<span th:text="${produto.valor_prod}"></span>
+										</p>
+										<a href="#" class="btn btn-primary">Excluir</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<!-- Botões de Excluir e Cadastrar -->
+		<section class="container-button">
+			<!-- Botão de Excluir -->
+			<div>
+				<label for="#">Excluir jogo: </label><br />
+				<a href=""><button>Excluir</button></a>
+			</div>
+			<!-- Botão de Cadastrar -->
+			<div>
+				<label for="#">Cadastrar jogo: </label><br />
+				<a href=""><button>Cadastrar</button></a>
+			</div>
+		</section>
+	</main>
+	<footer></footer>
+	<script src="/JS/NavBar.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

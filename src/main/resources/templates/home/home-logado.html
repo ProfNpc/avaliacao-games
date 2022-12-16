@@ -35,7 +35,7 @@
 						</button>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" th:href="@{/usuario/{path}(path=${cpf})}">Perfil</a></li>
-							<li><a class="dropdown-item" href="/">Sua biblioteca</a></li>
+							<li><a class="dropdown-item" th:href="@{/usuario/{path}/biblioteca(path=${cpf})}">Sua biblioteca</a></li>
 							<li><a class="dropdown-item" href="#">Anunciar</a></li>
 						</ul>
 					</div>

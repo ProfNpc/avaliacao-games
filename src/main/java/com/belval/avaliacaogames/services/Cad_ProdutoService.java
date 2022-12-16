@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.Produto;
+import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
 
 @Service
@@ -22,5 +24,23 @@ public class Cad_ProdutoService {
 	public Cad_Produto findById(Long id) {
 		Optional<Cad_Produto> obj = repository.findById(id);
 		return obj.get();
+	}
+	
+	public Cad_Produto findByUsuario(Usuario usuario) {
+		Optional<Cad_Produto> obj = repository.findByUsuario(usuario);
+		if (obj.isPresent()) {
+			return obj.get();
+		} else {
+			return new Cad_Produto();
+		}
+	}
+	
+	public Cad_Produto findByProduto(Produto produto) {
+		Optional<Cad_Produto> obj = repository.findByProduto(produto);
+		if (obj.isPresent()) {
+			return obj.get();
+		} else {
+			return new Cad_Produto();
+		}
 	}
 }

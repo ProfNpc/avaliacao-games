@@ -12,7 +12,7 @@ import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
-import com.belval.avaliacaogames.repositories.ProductRepository;
+import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
 
 @Configuration
@@ -22,7 +22,7 @@ public class TestConfig implements CommandLineRunner {
 	private UsuarioRepository userRepository;
 
 	@Autowired
-	private ProductRepository productRepository;
+	private ProdutoRepository productRepository;
 
 	@Autowired
 	private EnderecoRepository enderecoRepository;

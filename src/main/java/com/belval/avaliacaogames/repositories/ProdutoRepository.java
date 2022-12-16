@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.belval.avaliacaogames.entities.Produto;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Produto, Long> {
+public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
 }

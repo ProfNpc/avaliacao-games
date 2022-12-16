@@ -17,12 +17,14 @@ public class Cad_Produto implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cod_cad_prod;
 	
+	// Ligação com a tabela produto
 	@ManyToOne
 	@JoinColumn(name = "cod_produto")
 	private Produto produto;
 	
 	private Long quantidade;
 	
+	// Ligação com a tabela usuario
 	@ManyToOne
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;
@@ -41,6 +43,31 @@ public class Cad_Produto implements Serializable{
 		this.quantidade = quantidade;
 		this.usuario = usuario;
 		this.status = status;
+	}
+
+	// Produto
+	public Long getProdutoID() {
+		return produto.getCod_prod();
+	}
+	
+	public Produto getProduto() {
+		return produto;
+	}
+
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+
+	// Usuario
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 

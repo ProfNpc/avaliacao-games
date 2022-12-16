@@ -1,8 +1,8 @@
 package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,9 +22,10 @@ public class Produto implements Serializable {
 	private String nome_prod;
 	private Integer valor_prod;
 
+	// Ligação com a tabela cad_produto
 	@JsonIgnore
 	@OneToMany(mappedBy = "produto")
-	private List<Cad_Produto> cad_produtos = new ArrayList<>();	
+	private Set<Cad_Produto> cad_produtos = new HashSet<>();	
 	
 	// Constructors
 	public Produto() {
@@ -36,10 +37,23 @@ public class Produto implements Serializable {
 		this.nome_prod = nome_prod;
 		this.valor_prod = valor_prod;
 	}
+	
+	// Cad_Produto
+	public Set<Cad_Produto> getCad_produtos() {
+		return cad_produtos;
+	}
+
+	public void setCad_produtos(Set<Cad_Produto> cad_produtos) {
+		this.cad_produtos = cad_produtos;
+	}
 
 	// Getters and Setters
 	public String getNome_prod() {
 		return nome_prod;
+	}
+
+	public Long getCod_prod() {
+		return cod_prod;
 	}
 
 	public void setNome_prod(String nome_prod) {
