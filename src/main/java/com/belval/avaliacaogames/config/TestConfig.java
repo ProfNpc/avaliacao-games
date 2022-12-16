@@ -51,8 +51,10 @@ public class TestConfig implements CommandLineRunner {
 		
 		Cad_Produto cp1 = new Cad_Produto(1L, p2, 5L, u1, true);
 		Cad_Produto cp2 = new Cad_Produto(2L, p1, 2L, u2, true);
+		Cad_Produto cp3 = new Cad_Produto(3L, p3, 6L, u2, true);
+
 		
-		cad_produtoRepository.saveAll(Arrays.asList(cp1,cp2));
+		cad_produtoRepository.saveAll(Arrays.asList(cp1,cp2,cp3));
 	}
 
 }
