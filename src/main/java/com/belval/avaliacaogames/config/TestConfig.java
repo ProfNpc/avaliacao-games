@@ -43,14 +43,14 @@ public class TestConfig implements CommandLineRunner {
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		
 		Produto p1 = new Produto(null, "GTA V", 50);
-		Produto p2 = new Produto(null, "CS GO", 20);
+		Produto p2 = new Produto(null, "CS:GO", 20);
 		Produto p3 = new Produto(null, "Outlast", 70);
 
 
 		productRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
 		Cad_Produto cp1 = new Cad_Produto(1L, p2, 5L, u1, true);
-		Cad_Produto cp2 = new Cad_Produto(2L, p1, 2L, u2, true);
+		Cad_Produto cp2 = new Cad_Produto(2L, p1, 2L, u1, true);
 		Cad_Produto cp3 = new Cad_Produto(3L, p3, 6L, u2, true);
 
 		

@@ -26,13 +26,8 @@ public class Cad_ProdutoService {
 		return obj.get();
 	}
 	
-	public Cad_Produto findByUsuario(Usuario usuario) {
-		Optional<Cad_Produto> obj = repository.findByUsuario(usuario);
-		if (obj.isPresent()) {
-			return obj.get();
-		} else {
-			return new Cad_Produto();
-		}
+	public List<Cad_Produto> findByUsuario(Usuario usuario) {
+		return repository.findByUsuario(usuario);
 	}
 	
 	public Cad_Produto findByProduto(Produto produto) {

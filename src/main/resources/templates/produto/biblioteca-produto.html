@@ -69,8 +69,7 @@
 				<!-- Div para add cor ao fundo dos jogos -->
 				<div class="container-color">
 					<!-- Jogos que aparecerão na biblioteca -->
-					<section class="">
-						<!-- Primeiro -->
+					<section th:each="produto, iStat : ${produtos}" class="">
 						<div class="row row-cols-1 row-cols-md-3 g-4">
 							<div class="col">
 								<div class="card h-100">
@@ -80,61 +79,7 @@
 											<span th:text="${produto.nome_prod}"></span>
 										</h5>
 										<p class="card-text">
-											Quantidade: <span th:text="${cad_produto.quantidade}"></span>
-										</p>
-										<p class="card-text">
-											Valor: R$<span th:text="${produto.valor_prod}"></span>
-										</p>
-										<a href="#" class="btn btn-primary">Excluir</a>
-									</div>
-								</div>
-							</div>
-							<!-- Segundo -->
-							<div class="col">
-								<div class="card h-100">
-									<img src="..." class="card-img-top" alt="..." />
-									<div class="card-body">
-										<h5 class="card-title">
-											<span th:text="${produto.nome_prod}"></span>
-										</h5>
-										<p class="card-text">
-											Quantidade: <span th:text="${cad_produto.quantidade}"></span>
-										</p>
-										<p class="card-text">
-											Valor: R$<span th:text="${produto.valor_prod}"></span>
-										</p>
-										<a href="#" class="btn btn-primary">Excluir</a>
-									</div>
-								</div>
-							</div>
-							<!-- Terceiro -->
-							<div class="col">
-								<div class="card h-100">
-									<img src="..." class="card-img-top" alt="..." />
-									<div class="card-body">
-										<h5 class="card-title">
-											<span th:text="${produto.nome_prod}"></span>
-										</h5>
-										<p class="card-text">
-											Quantidade: <span th:text="${cad_produto.quantidade}"></span>
-										</p>
-										<p class="card-text">
-											Valor: R$<span th:text="${produto.valor_prod}"></span>
-										</p>
-										<a href="#" class="btn btn-primary">Excluir</a>
-									</div>
-								</div>
-							</div>
-							<!-- Quarto -->
-							<div class="col">
-								<div class="card h-100">
-									<img src="..." class="card-img-top" alt="..." />
-									<div class="card-body">
-										<h5 class="card-title">
-											<span th:text="${produto.nome_prod}"></span>
-										</h5>
-										<p class="card-text">
-											Quantidade: <span th:text="${cad_produto.quantidade}"></span>
+											Quantidade: <span th:text="${cad_produtos[iStat.index].quantidade}"></span>
 										</p>
 										<p class="card-text">
 											Valor: R$<span th:text="${produto.valor_prod}"></span>

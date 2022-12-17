@@ -1,5 +1,8 @@
 package com.belval.avaliacaogames.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,21 +32,21 @@ public class ProdutoController {
 	public String biblioteca(@PathVariable("cpf") Long cpf, Model model, Cad_Produto cad_prod, Usuario usu) {
 		
 		Usuario usuario = usuarioService.findById(cpf);
-		Cad_Produto cad_produto = cad_produtoService.findByUsuario(usuario);
 		
-		Long id_prod = cad_produto.getProdutoID();
+		List<Cad_Produto> cad_produtos = cad_produtoService.findByUsuario(usuario);
+		List<Long> id_prods = new ArrayList<Long>();
+		List<Produto> produtos = new ArrayList<Produto>();
 		
-		Produto produto = produtoService.findById(id_prod);
-		
-		if(cad_produto.getUsuario().equals(usuario)) {
-			
-			//if()
-			model.addAttribute("cad_produto", cad_produto);
-			model.addAttribute("produto", produto);
-			return "produto/biblioteca-produto";
-			
+		for (Cad_Produto cp : cad_produtos) {
+			Long id = cp.getProdutoID();
+			Produto prod = produtoService.findById(id);
+			id_prods.add(id);
+			produtos.add(prod);
 		}
-		return "produto/biblioteca-produto2-sem-cadastro";
 		
+		model.addAttribute("cad_produtos", cad_produtos);
+		model.addAttribute("produtos", produtos);
+		
+		return "produto/biblioteca-produto";
 	}
 }
