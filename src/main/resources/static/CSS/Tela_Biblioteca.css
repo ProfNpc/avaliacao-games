@@ -61,32 +61,16 @@ header {
 
 /*Container da cor de fundo biblioteca*/
 .container-color {
-  margin: 2em;
+  margin: 3em;
+  min-width: 45rem;
+  min-height: 25rem;
   border-radius: 2em;
   background-color: rgb(64, 64, 64);
 }
 
-/*Imagens da biblioteca*/
-.container-picture {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
-}
-
-.container-picture div {
-  flex: 1 1 5em;
-  margin: 2em;
-}
-
-.container-picture img {
-  width: 8em;
-  cursor: pointer;
-  border-radius: 1em;
-}
-
-.container-picture img:hover {
-  transform: scale(1.05);
-  transition: 0.2s;
+/*Espaçamento do produto*/
+.container-produto {
+  margin: 1.5em;
 }
 
 /*Botões de cadastrar e deletar*/
