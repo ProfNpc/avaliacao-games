@@ -57,12 +57,13 @@ header {
   align-items: center;
   justify-content: center;
   display: flex;
+  flex-direction: column;
 }
 
 /*Container da cor de fundo biblioteca*/
 .container-color {
   margin: 3em;
-  min-width: 45rem;
+  min-width: 90%;
   min-height: 25rem;
   border-radius: 2em;
   background-color: rgb(64, 64, 64);
@@ -76,8 +77,6 @@ header {
 /*Botões de cadastrar e deletar*/
 .container-button {
   display: flex;
-  align-items: right;
-  justify-content: right;
   margin-right: 2em;
 }
 
