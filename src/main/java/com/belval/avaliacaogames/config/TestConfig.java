@@ -42,9 +42,9 @@ public class TestConfig implements CommandLineRunner {
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		
-		Produto p1 = new Produto(null, "GTA V", 50);
-		Produto p2 = new Produto(null, "CS:GO", 20);
-		Produto p3 = new Produto(null, "Outlast", 70);
+		Produto p1 = new Produto(null, "GTA V", 50, "Grand Theft Auto V é um jogo eletrônico de ação-aventura desenvolvido pela Rockstar North e publicado pela Rockstar Games.");
+		Produto p2 = new Produto(null, "CS:GO", 20, "Counter-Strike: Global Offensive é um jogo online desenvolvido pela Valve Corporation e pela Hidden Path Entertainment, sendo uma sequência de Counter-Strike: Source. É o quarto título principal da franquia.");
+		Produto p3 = new Produto(null, "Outlast", 70, "O inferno é um experimento do qual não há escapatória em Outlast, um jogo de terror de sobrevivência em primeira pessoa da Red Barrels. Como o jornalista investigativo Miles Upshur, explore o Mount Massive Asylum e tente sobreviver tempo o bastante para");
 
 
 		productRepository.saveAll(Arrays.asList(p1, p2, p3));

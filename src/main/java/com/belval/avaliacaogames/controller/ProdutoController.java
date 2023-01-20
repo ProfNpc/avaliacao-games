@@ -28,6 +28,7 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoService produtoService;
 	
+	// Biblioteca
 	@GetMapping("/usuario/{cpf}/biblioteca")
 	public String biblioteca(@PathVariable("cpf") Long cpf, Model model, Cad_Produto cad_prod, Usuario usu) {
 		
@@ -49,4 +50,14 @@ public class ProdutoController {
 		
 		return "produto/biblioteca-produto";
 	}
+	
+	// Produto
+	@GetMapping("/usuario/produto/{cod_prod}")
+	public String printProduto(@PathVariable("cod_prod") Long cod_prod, Model model) {
+		Produto produto = produtoService.findById(cod_prod);
+		
+		model.addAttribute("produto", produto);
+		return "produto/produto";
+	}
+	
 }

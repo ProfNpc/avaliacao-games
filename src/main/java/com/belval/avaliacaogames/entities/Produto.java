@@ -21,6 +21,7 @@ public class Produto implements Serializable {
 	private Long cod_prod;
 	private String nome_prod;
 	private Integer valor_prod;
+	private String desc_prod;
 
 	// Ligação com a tabela cad_produto
 	@JsonIgnore
@@ -32,10 +33,11 @@ public class Produto implements Serializable {
 
 	}
 
-	public Produto(Long cod_prod, String nome_prod, Integer valor_prod) {
+	public Produto(Long cod_prod, String nome_prod, Integer valor_prod, String desc_prod) {
 		this.cod_prod = cod_prod;
 		this.nome_prod = nome_prod;
 		this.valor_prod = valor_prod;
+		this.desc_prod = desc_prod;
 	}
 	
 	// Cad_Produto
@@ -66,6 +68,14 @@ public class Produto implements Serializable {
 
 	public void setValor_prod(Integer valor_prod) {
 		this.valor_prod = valor_prod;
+	}
+
+	public String getDesc_prod() {
+		return desc_prod;
+	}
+
+	public void setDesc_prod(String desc_prod) {
+		this.desc_prod = desc_prod;
 	}
 
 	@Override

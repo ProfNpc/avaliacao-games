@@ -1,221 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap");
-
 * {
-  font-family: "Inter", sans-serif;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
   box-sizing: border-box;
 }
 
-/* ====== HEADER ====== */
+/*Body*/
+body {
+  background-color: rgb(18, 18, 18);
+}
 
-/* Botões Home, Jogos e Comunidade */
+/*Header*/
 header {
-  background-color: rgb(36, 36, 36);
+  background-color: #24252a;
 }
 
-/* Area de pesquisa */
-.areaPesquisa {
-  display: inline-block;
-  vertical-align: middle;
+/*Carousel*/
+.carousel-inner {
+  width: 22em;
 }
 
-.areaPesquisa input[type="text"] {
-  width: 480px;
-  height: 36px;
-  font-size: 18px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-indent: 16px;
-  border: none;
-  border-radius: 18px;
-}
-
-/* Botão de perfil */
-.botaoPerfil {
-  float: right;
-}
-
-.botaoPerfil img {
-  height: 100%;
-  border-radius: 50%;
-}
-
-/* ====== MAIN ====== */
-
-main {
-  padding: 20px;
-  background-color: rgb(18, 18, 18);
-  color: #eeeeee;
-}
-
-/* Div do produto */
-.picture {
-  max-width: 60em;
-}
-
-.produtoDiv {
-  width: 66%;
-  padding: 5px;
-  /* height: 300%; */
-  float: left;
-  background-color: rgb(36, 36, 36);
-}
-
-.produtoDiv .nome {
-  font-size: 2em;
-  padding: 2em;
-}
-
-.produtoDiv img {
-  width: 50em;
-}
-
-.produtoDiv div img {
-  width: 20em;
-}
-
-.produtoDiv .preco {
-  font-size: 10em;
-  font-weight: 500;
-}
-
-/* Div do vendedor */
-.produtoVendedor {
-  width: 33%;
-  margin: 5px;
-  float: right;
-  background-color: rgb(36, 36, 36);
-}
-
-.produtoVendedor img {
-  height: 4em;
-  border-radius: 50%;
-}
-
-.produtoVendedor div {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.produtoVendedor div .nome {
-  font-size: 1.5em;
-  font-weight: 700;
-}
-
-/* Div dos comentários */
-.produtoComentarios {
-  width: 33%;
-  height: 50em;
-  float: right;
-  text-align: center;
-  background-color: rgb(36, 36, 36);
-}
-
-.produtoComentarios span {
-  font-size: 2em;
-}
-
-/* Div da classificacao */
-.produtoClassificacao {
+/* Produto */
+.containerProduto {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2em;
 }
 
-.produtoClassificacao span {
-  font-size: 6em;
+/* Descricao do produto */
+.containerDescricao {
+  margin: 2em;
 }
 
-.produtoClassificacao img {
-  height: 6em;
+/* Produtos similiares e mais vendidos */
+.containerProdutos {
+  margin: 2em;
 }
 
-/* Div do comentario */
-.produtoComentario {
-  text-align: left;
-  overflow: hidden;
-  /* display: inline; pedir ajuda pro professor */
-  margin: 5px 5px;
-  background-color: rgb(18, 18, 18);
-}
-
-.produtoComentario .conteudo {
-  width: 85%;
-  float: left;
-  padding: 5px;
-  background-color: rgb(18, 18, 18);
-}
-
-.produtoComentario .conteudo span {
-  font-size: 1em;
-  font-weight: 700;
-}
-
-.produtoComentario .classificacao {
-  width: 15%;
-  height: 100%;
-  float: right;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(18, 18, 18);
-}
-
-.produtoComentario .classificacao span {
-  font-size: 2em;
-}
-
-.produtoComentario .classificacao img {
-  height: 2em;
-}
-
-/* Anuncios do vendedor */
-.vendedorAnuncios {
-  width: 33%;
-  float: right;
-  margin: 10px 0;
-  background-color: rgb(36, 36, 36);
-}
-
-.vendedorAnuncios span {
-  font-size: 2em;
-}
-
-.vendedorAnuncios .carousel .carousel-item {
-  height: 24em;
-}
-
-.vendedorAnuncios .carousel .carousel-item img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-height: 24em;
-}
-
-/* Div dos produtos relacionados */
-.produtosRelacionados {
-  display: inline-block;
-  width: 100%;
-  height: 18em;
-  margin: 10px 0;
-  background-color: rgb(36, 36, 36);
-}
-
-.produtosRelacionados span {
-  font-size: 2em;
-}
-
-.produtosRelacionados .carousel .carousel-item {
-  height: 12em;
-}
-
-.produtosRelacionados .carousel .carousel-item img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-height: 12em;
-}
-
-.produtosRelacionados img {
-  height: 80%;
+.tituloProduto {
+  font-size: 1.8em;
+  color: white;
 }

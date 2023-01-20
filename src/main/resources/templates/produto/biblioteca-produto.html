@@ -20,13 +20,22 @@
 			</div>
 			<div class="nav-list">
 				<ul>
-					<li class="nav-item"><a href="#" class="nav-link">Início</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
-					<li class="nav-item"><a href="#" class="nav-link"> Sobre</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">COMUNIDADE</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">CONTATO</a></li>
 				</ul>
 			</div>
 			<div class="login-button">
-				<button><a href="#">Entrar</a></button>
+				<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+							aria-expanded="false">
+							<img src="/imagens/foto_perfil.png" alt="">
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" th:href="@{/usuario/{path}/biblioteca(path=${cpf})}">Sua biblioteca</a></li>
+							<li><a class="dropdown-item" href="#">Anunciar</a></li>
+						</ul>
+					</div>
 			</div>
 
 			<div class="mobile-menu-icon">
@@ -37,9 +46,9 @@
 		</nav>
 		<div class="mobile-menu">
 			<ul>
-				<li class="nav-item"><a href="#" class="nav-link">Início</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">COMUNIDADE</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">CONTATO</a></li>
 			</ul>
 
 			<div class="login-button">
