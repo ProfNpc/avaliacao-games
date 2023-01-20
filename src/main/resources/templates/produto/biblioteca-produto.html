@@ -111,8 +111,10 @@
 					</div>
 					<!-- Botão de Cadastrar -->
 					<div>
-						<label for="#">Cadastrar jogo: </label><br />
-						<a href=""><button>Cadastrar</button></a>
+						<form th:action="@{/usuario/{cpf}/produto/cadastrar(cpf=${cpf})}" method="get">
+							<label for="#">Cadastrar jogo: </label><br />
+							<a href=""><button >Cadastrar</button></a>
+						</form>
 					</div>
 				</section>
 			</div>

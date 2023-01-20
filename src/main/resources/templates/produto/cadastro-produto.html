@@ -59,7 +59,7 @@
 
 
 	<main>
-		<form action="">
+		<form method="post" th:action="@{/usuario/{cpf}/produto/cadastrar(cpf=${cpf})}">
 			<div class="width">
 				<div class="container">
 					<img src="/imagens/image-gallery.png" alt="selecione uma imagem" id="photo">
@@ -76,9 +76,9 @@
 			<label for="name" id="ldesc">Descrição:</label>
 			<br />
 			<section>
-				<input type="text" id="texto" class="texto" name="Titulo" placeholder="Informe um titulo:" />
+				<input type="text" id="texto" class="texto" name="nome_prod" placeholder="Informe um titulo:" />
 
-				<textarea rows="12" cols="28" maxlength="300" id="descricao"></textarea>
+				<textarea rows="12" cols="28" maxlength="300" id="descricao" name= "desc_prod"></textarea>
 
 			</section>
 
@@ -86,10 +86,13 @@
 			<br />
 			<label for="name">Preço:</label>
 
-
-			<input type="text" id="preco" class="preco" name="Preco" size="13" maxlength="7"
+			
+			<input type="text" id="preco" class="preco" name="valor_prod" size="13" maxlength="7"
 				placeholder="Informe um valor:">
-
+			
+			<label for="quantidade">Quantidade:</label>
+			<input type="number" id="quantidade" class="quantidade" name="quantidade">
+			
 			<select id="disabledSelect" class="form-select">
 				<option>Genêro</option>
 				<option>Ação</option>
@@ -100,7 +103,7 @@
 
 
 			<div class="btn-cad">
-				<input type="submit" class="botao" value="Cadastrar" onclick="verificar()" />
+				<input type="submit" class="botao" value="Cadastrar" />
 			</div>
 
 

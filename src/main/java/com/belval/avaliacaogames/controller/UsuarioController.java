@@ -68,13 +68,13 @@ public class UsuarioController {
 	}
 
 	// Metodo para fazer login
-	@GetMapping("usuario/login")
+	@GetMapping("/usuario/login")
 	public String login() {
 		return "usuario/login-usuario";
 	}
 
 	// Validar login
-	@PostMapping("usuario/login")
+	@PostMapping("/usuario/login")
 	public ModelAndView loginValidar(Usuario data) {
 		String email = data.getEmail();
 
