@@ -51,6 +51,13 @@ public class ProdutoController {
 		return "produto/biblioteca-produto";
 	}
 	
+	// Cadastar produto
+	@GetMapping("usuario/{cpf}/cadastrar")
+	public String cadastrarProduto() {
+		return "";
+	}
+	
+	
 	// Produto
 	@GetMapping("/usuario/produto/{cod_prod}")
 	public String printProduto(@PathVariable("cod_prod") Long cod_prod, Model model) {
