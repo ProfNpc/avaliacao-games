@@ -62,7 +62,7 @@
 		<div class="nav-lateral">
 			<div class="container-button">
 				<div class="button">
-					<a href="Tela_Perfil.html"><input type="button" value="Geral" class="button" /></a>
+					<a th:href="@{/usuario/{cpf}(cpf=${cpf})}"><input type="button" value="Geral" class="button" /></a>
 					<a href=""><input type="button" value="Preferencias" class="button" /></a>
 					<a href=""><input type="button" value="Privacidade" class="button" /></a>
 					<a href=""><input type="button" value="Segurança" class="button" /></a>
@@ -111,9 +111,9 @@
 					</div>
 					<!-- Botão de Cadastrar -->
 					<div>
-						<form th:action="@{/usuario/{cpf}/produto/cadastrar(cpf=${cpf})}" method="get">
-							<label for="#">Cadastrar jogo: </label><br />
-							<a href=""><button >Cadastrar</button></a>
+						<form th:action="@{/usuario/{cpf}/biblioteca/adicionar(cpf=${cpf})}" method="get">
+							<label for="#">Adicionar jogo: </label><br />
+							<a href=""><button >Adicionar</button></a>
 						</form>
 					</div>
 				</section>

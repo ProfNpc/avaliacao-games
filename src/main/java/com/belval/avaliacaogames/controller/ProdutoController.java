@@ -61,6 +61,14 @@ public class ProdutoController {
 		return "produto/biblioteca-produto";
 	}
 	
+	// Adicionar produto a biblioteca
+	@GetMapping("usuario/{cpf}/biblioteca/adicionar")
+	public String adicionarProduto(@PathVariable("cpf") Long cpf, Model model) {
+		model.addAttribute(cpf);
+		
+		return "produto/adicionar-produto";
+	}
+	
 	// Cadastar produto
 	@GetMapping("usuario/{cpf}/produto/cadastrar")
 	public String cadastrarProduto(@PathVariable("cpf") Long cpf, Model model) {
