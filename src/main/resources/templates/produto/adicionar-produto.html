@@ -66,7 +66,7 @@
 
 			<!-- Pesquisar -->
 			<div class="pesquisar">
-				<form th:action="@{usuario/{cpf}/biblioteca/adicionar(path=${cpf})}" method="post">
+				<form th:action="@{usuario/{cpf}/biblioteca/adicionar (path=${cpf})}" method="post">
 					<input type="text" placeholder="Pesquisar" name="nomeProd" th:value="${nomeProd}" />
 					<input type="button" value="Pesquisar" />
 				</form>
