@@ -66,11 +66,14 @@
 
 			<!-- Pesquisar -->
 			<div class="pesquisar">
-				<input type="text" placeholder="Pesquisar" />
+				<form th:action="@{usuario/{cpf}/biblioteca/adicionar(path=${cpf})}" method="post">
+					<input type="text" placeholder="Pesquisar" name="nomeProd" th:value="${nomeProd}" />
+					<input type="button" value="Pesquisar" />
+				</form>
 			</div>
 		</section>
 		<!-- Section de produtos -->
-		<section>
+		<section th:each="produto, iStat : ${produtos}">
 			<!-- Titulo do Produto -->
 			<div class="tituloProduto">Sua Pesquisa:</div>
 
@@ -80,58 +83,8 @@
 					<div class="card h-100">
 						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
 						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">Descrição</p>
-						</div>
-					</div>
-				</div>
-				<!-- Produto 1 -->
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/BATTLE V.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">Descrição</p>
-						</div>
-					</div>
-				</div>
-				<!-- Produto 2 -->
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/CALL BO.jpg" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">Descrição</p>
-						</div>
-					</div>
-				</div>
-				<!-- Produto 3 -->
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/CALL WAR.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">Descrição</p>
-						</div>
-					</div>
-				</div>
-				<!-- Produto 4 -->
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/FIFA.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">Descrição</p>
-						</div>
-					</div>
-				</div>
-				<!-- Produto 5 -->
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/CALL WAR.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">Descrição</p>
+							<h5 class="card-title"><span th:text="${produto.nomeProd}"></span></h5>
+							<p class="card-text"><span th:text="${produto.valorProd}"></span></p>
 						</div>
 					</div>
 				</div>

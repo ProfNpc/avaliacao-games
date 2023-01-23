@@ -52,8 +52,8 @@
 			<div class="card" style="width: 55rem">
 				<img src="/imagens/BannerDoom.png" class="card-img-top" alt="..." />
 				<div class="card-body">
-					<h5 class="card-title text-center"><span th:text="${produto.nome_prod}"></span></h5>
-					<p class="card-text text-center">R$<span th:text="${produto.valor_prod}"></span></p>
+					<h5 class="card-title text-center"><span th:text="${produto.nomeProd}"></span></h5>
+					<p class="card-text text-center">R$<span th:text="${produto.valorProd}"></span></p>
 					<div class="d-grid gap-2 col-6 mx-auto">
 						<button class="btn btn-primary" type="button">Comprar</button>
 						<button class="btn btn-primary" type="button">
@@ -92,8 +92,8 @@
 			<div class="card">
 				<div class="card-header">Descrição</div>
 				<div class="card-body">
-					<h5 class="card-title"><span th:text="${produto.nome_prod}"></span></h5>
-					<p class="card-text"><span th:text="${produto.desc_prod}"></span></p>
+					<h5 class="card-title"><span th:text="${produto.nomeProd}"></span></h5>
+					<p class="card-text"><span th:text="${produto.descProd}"></span></p>
 					<a href="#" class="btn btn-primary">Mais sobre</a>
 				</div>
 			</div>

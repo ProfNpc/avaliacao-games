@@ -22,7 +22,7 @@ public class TestConfig implements CommandLineRunner {
 	private UsuarioRepository userRepository;
 
 	@Autowired
-	private ProdutoRepository productRepository;
+	private ProdutoRepository produtoRepository;
 
 	@Autowired
 	private EnderecoRepository enderecoRepository;
@@ -39,15 +39,13 @@ public class TestConfig implements CommandLineRunner {
 		Endereco e1 = new Endereco(1L, "06634080", 222, "Avenida Comandante", "Km 18", "Osasco", "São Paulo", "Brasil", u2);
 		Endereco e2 = new Endereco(2L, "06192080", 198, "Rua Yang", "Rochdale", "Osasco", "São Paulo", "Brasil", u1);
 
+		Produto p1 = new Produto(1L, "GTA V", 50, "Grand Theft Auto V é um jogo eletrônico de ação-aventura desenvolvido pela Rockstar North e publicado pela Rockstar Games.");
+		Produto p2 = new Produto(2L, "CS:GO", 20, "Counter-Strike: Global Offensive é um jogo online desenvolvido pela Valve Corporation e pela Hidden Path Entertainment, sendo uma sequência de Counter-Strike: Source. É o quarto título principal da franquia.");
+		Produto p3 = new Produto(3L, "Outlast", 70, "O inferno é um experimento do qual não há escapatória em Outlast, um jogo de terror de sobrevivência em primeira pessoa da Red Barrels. Como o jornalista investigativo Miles Upshur, explore o Mount Massive Asylum e tente sobreviver tempo o bastante para");
+
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
-		
-		Produto p1 = new Produto(null, "GTA V", 50, "Grand Theft Auto V é um jogo eletrônico de ação-aventura desenvolvido pela Rockstar North e publicado pela Rockstar Games.");
-		Produto p2 = new Produto(null, "CS:GO", 20, "Counter-Strike: Global Offensive é um jogo online desenvolvido pela Valve Corporation e pela Hidden Path Entertainment, sendo uma sequência de Counter-Strike: Source. É o quarto título principal da franquia.");
-		Produto p3 = new Produto(null, "Outlast", 70, "O inferno é um experimento do qual não há escapatória em Outlast, um jogo de terror de sobrevivência em primeira pessoa da Red Barrels. Como o jornalista investigativo Miles Upshur, explore o Mount Massive Asylum e tente sobreviver tempo o bastante para");
-
-
-		productRepository.saveAll(Arrays.asList(p1, p2, p3));
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
 		Cad_Produto cp1 = new Cad_Produto(1L, p2, 5L, u1, true);
 		Cad_Produto cp2 = new Cad_Produto(2L, p1, 2L, u1, true);

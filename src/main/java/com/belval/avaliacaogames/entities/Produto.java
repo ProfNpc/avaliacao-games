@@ -19,9 +19,9 @@ public class Produto implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cod_prod;
-	private String nome_prod;
-	private Integer valor_prod;
-	private String desc_prod;
+	private String nomeProd;
+	private Integer valorProd;
+	private String descProd;
 
 	// Ligação com a tabela cad_produto
 	@JsonIgnore
@@ -33,11 +33,11 @@ public class Produto implements Serializable {
 
 	}
 
-	public Produto(Long cod_prod, String nome_prod, Integer valor_prod, String desc_prod) {
+	public Produto(Long cod_prod, String nomeProd, Integer valorProd, String descProd) {
 		this.cod_prod = cod_prod;
-		this.nome_prod = nome_prod;
-		this.valor_prod = valor_prod;
-		this.desc_prod = desc_prod;
+		this.nomeProd = nomeProd;
+		this.valorProd = valorProd;
+		this.descProd = descProd;
 	}
 	
 	// Cad_Produto
@@ -50,32 +50,32 @@ public class Produto implements Serializable {
 	}
 
 	// Getters and Setters
-	public String getNome_prod() {
-		return nome_prod;
+	public String getnomeProd() {
+		return nomeProd;
 	}
 
 	public Long getCod_prod() {
 		return cod_prod;
 	}
 
-	public void setNome_prod(String nome_prod) {
-		this.nome_prod = nome_prod;
+	public void setnomeProd(String nomeProd) {
+		this.nomeProd = nomeProd;
 	}
 
-	public Integer getValor_prod() {
-		return valor_prod;
+	public Integer getvalorProd() {
+		return valorProd;
 	}
 
-	public void setValor_prod(Integer valor_prod) {
-		this.valor_prod = valor_prod;
+	public void setvalorProd(Integer valorProd) {
+		this.valorProd = valorProd;
 	}
 
-	public String getDesc_prod() {
-		return desc_prod;
+	public String getdescProd() {
+		return descProd;
 	}
 
-	public void setDesc_prod(String desc_prod) {
-		this.desc_prod = desc_prod;
+	public void setdescProd(String descProd) {
+		this.descProd = descProd;
 	}
 
 	@Override
