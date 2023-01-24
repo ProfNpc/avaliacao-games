@@ -2,12 +2,14 @@ package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cad_Produto implements Serializable{
@@ -16,20 +18,23 @@ public class Cad_Produto implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cod_cad_prod;
+	private Long quantidade;
+	private Boolean status;
 	
 	// Ligação com a tabela produto
 	@ManyToOne
 	@JoinColumn(name = "cod_produto")
 	private Produto produto;
 	
-	private Long quantidade;
-	
 	// Ligação com a tabela usuario
 	@ManyToOne
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;
 	
-	private Boolean status;
+	// Ligação com a tabela Anucio
+	@OneToOne(mappedBy = "cad_produto", cascade = CascadeType.ALL)
+	private Anuncio anuncio;
+	
 	
 	// Constructor
 	public Cad_Produto() {
@@ -54,7 +59,6 @@ public class Cad_Produto implements Serializable{
 		return produto;
 	}
 
-
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
@@ -65,9 +69,18 @@ public class Cad_Produto implements Serializable{
 		return usuario;
 	}
 
-
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	
+	// Anucio
+	public Anuncio getAnuncio() {
+		return anuncio;
+	}
+
+	public void setAnuncio(Anuncio anuncio) {
+		this.anuncio = anuncio;
 	}
 
 
