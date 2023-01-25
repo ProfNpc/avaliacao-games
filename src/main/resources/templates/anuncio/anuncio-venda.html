@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
+
+	<link rel="stylesheet" href="/CSS/Tela_Anunciar.css" />
+	<link rel="stylesheet" href="/CSS/NavBar.css" />
+	<title>Pacifer</title>
+</head>
+
+<body>
+	<header>
+		<nav class="nav-bar">
+			<div class="logo">
+				<a href=""><img src="/imagens/Controle.png" alt="" /></a>
+			</div>
+			<div class="nav-list">
+				<ul>
+					<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+					<li class="nav-item">
+						<a href="#" class="nav-link">COMUNIDADE</a>
+					</li>
+					<li class="nav-item"><a href="#" class="nav-link">CONTATO</a></li>
+				</ul>
+			</div>
+			<div class="login-button">
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<img src="../imagens/foto_perfil.png" alt="" />
+					</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="#">Perfil</a></li>
+						<li><a class="dropdown-item" href="#">Sua biblioteca</a></li>
+						<li><a class="dropdown-item" href="#">Anunciar</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="mobile-menu-icon">
+				<button onclick="menuShow()">
+					<img class="icon" src="/imagens/menu_white.svg" alt="" />
+				</button>
+			</div>
+		</nav>
+		<div class="mobile-menu">
+			<ul>
+				<li class="nav-item"><a href="#" class="nav-link">Perfil</a></li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">Sua Biblioteca</a>
+				</li>
+				<li class="nav-item"><a href="#" class="nav-link">Anunciar</a></li>
+			</ul>
+		</div>
+	</header>
+	<main>
+		<section>
+			<!-- Inicio do form -->
+			<form action="" method="">
+				<div class="card container anuncio" style="width: 55rem">
+					<!-- Titulo -->
+					<h5 class="card-title titulo">Criar anuncio</h5>
+					<!-- Add Imagem -->
+					<label for="">Adicionar imagem:</label>
+					<div class="centralizar">
+						<div class="width">
+							<div class="container">
+								<img src="/imagens/image-gallery.png" alt="selecione uma imagem" id="photo" />
+							</div>
+						</div>
+						<div>
+							<input type="file" id="flImage" name="imagemAnuncio" accept="/image" />
+						</div>
+					</div>
+					<!-- Inputs -->
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item inputs">
+							<!-- nome -->
+							<label for="">Nome do anuncio:</label>
+							<input type="text" name="nomeAnuncio" placeholder="Nome" />
+							<!-- valor -->
+							<label for="">Valor:</label>
+							<input type="search" name="valorAnuncio" placeholder="R$" />
+							<!-- Quantidade -->
+							<label for="">Quantidade:</label>
+							<input type="number" name="quantAnuncio" placeholder="Quant" />
+						</li>
+						<li class="list-group-item inputs">
+							<!-- add imagens -->
+							<div class="input-group mb-3">
+								<select class="form-select" id="inputGroupSelect01">
+									<option selected>Genêro</option>
+									<option value="1">Ação</option>
+									<option value="2">Aventura</option>
+									<option value="3">Terror</option>
+								</select>
+							</div>
+						</li>
+						<!-- Descrição -->
+						<li class="list-group-item">
+							<label for="">Descrição do anuncio:</label>
+							<div class="input-group">
+								<textarea class="form-control" aria-label="With textarea" name="descAnuncio"
+									placeholder="Descrição"></textarea>
+							</div>
+						</li>
+						<!-- botao de criar anuncio -->
+						<div class="d-grid gap-2 col-6 mx-auto">
+							<button class="btn btn-primary botao" type="submit">
+								Criar anuncio
+							</button>
+						</div>
+					</ul>
+				</div>
+			</form>
+			<!-- fim do form -->
+		</section>
+		<!-- Terminou container -->
+	</main>
+	<footer></footer>
+	<script src="/JS/Tela_CadJogo.js"></script>
+	<script src="/JS/NavBar.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

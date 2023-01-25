@@ -34,9 +34,9 @@
 							<img src="../imagens/foto_perfil.png" alt="">
 						</button>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" th:href="@{/usuario/{path}(path=${cpf})}">Perfil</a></li>
-							<li><a class="dropdown-item" th:href="@{/usuario/{path}/biblioteca(path=${cpf})}">Sua biblioteca</a></li>
-							<li><a class="dropdown-item" href="#">Anunciar</a></li>
+							<li><a class="dropdown-item" th:href="@{/usuario/{cpf}(cpf=${cpf})}" >Perfil</a></li>
+							<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}">Sua biblioteca</a></li>
+							<li><a class="dropdown-item" th:href="@{usuario/{cpf}/anunciar(cpf=${cpf})}">Anunciar</a></li>
 						</ul>
 					</div>
 				</div>
