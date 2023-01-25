@@ -63,23 +63,23 @@
 			<div class="tituloPesquisar">
 				<label for="">Pesquise os produtos que deseja adicionar:</label>
 			</div>
-
+			
 			<!-- Pesquisar -->
 			<div class="pesquisar">
-				<form th:action="@{usuario/{cpf}/biblioteca/adicionar (path=${cpf})}" method="post">
+				<form th:action="@{/usuario/{cpf}/biblioteca/adicionar (cpf=${cpf})}" method="post">
 					<input type="text" placeholder="Pesquisar" name="nomeProd" th:value="${nomeProd}" />
-					<input type="button" value="Pesquisar" />
+					<input type="submit" value="Pesquisar" />
 				</form>
 			</div>
 		</section>
 		<!-- Section de produtos -->
-		<section th:each="produto, iStat : ${produtos}">
+		<section>
 			<!-- Titulo do Produto -->
 			<div class="tituloProduto">Sua Pesquisa:</div>
 
 			<!-- Produtos -->
-			<div class="row row-cols-2 row-cols-md-6 g-4 produto">
-				<div class="col">
+			<div class="row row-cols-2 row-cols-md-6 g-4 produto" th:each="produto: ${produtos}">
+				<div class="col" >
 					<div class="card h-100">
 						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
 						<div class="card-body">

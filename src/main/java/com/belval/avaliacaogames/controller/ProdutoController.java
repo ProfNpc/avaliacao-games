@@ -65,28 +65,20 @@ public class ProdutoController {
 	@GetMapping("/usuario/{cpf}/biblioteca/adicionar")
 	public String adicionarProduto(@PathVariable("cpf") Long cpf, Model model) {
 		model.addAttribute(cpf);
+		model.addAttribute("produtos", new ArrayList<Produto>());
 		
 		return "produto/adicionar-produto";
 	}
 	
 	// Pesquisar
 	@PostMapping("/usuario/{cpf}/biblioteca/adicionar")
-	public ModelAndView adicionarProduto(@PathVariable("cpf") Long cpf, Model model, Produto produto) {
-		model.addAttribute(cpf);
+	public ModelAndView adicionarProduto(@PathVariable("cpf") Long cpf, String nomeProd, Model model) {
 		
-		List<Produto> produtos = new ArrayList<Produto>();
+		ModelAndView mv = new ModelAndView("produto/adicionar-produto");
 		
-		for (Produto pd : produtos) {
-			String nomeProd = pd.getNomeProd();
-			produto.equals(produtoService.findByNomeProd(nomeProd));
-
-			produtos.add(produto);
-		}
+		List<Produto> produtos = produtoRepository.findByNomeProdContainingIgnoreCase(nomeProd);
+		mv.addObject("produtos", produtos);
 		
-		model.addAttribute("produtos", produtos);
-		
-		ModelAndView mv = new ModelAndView("redirect:usuario/{cpf}/biblioteca/adicionar");
-		//return "produto/adicionar-produto";
 		return mv;
 	}
 	

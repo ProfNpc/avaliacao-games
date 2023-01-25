@@ -1,5 +1,6 @@
 package com.belval.avaliacaogames.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,6 @@ import com.belval.avaliacaogames.entities.Produto;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
 	Optional<Produto> findByNomeProd(String nomeProd);
+	
+	List<Produto> findByNomeProdContainingIgnoreCase(String nomeProd);
 }
