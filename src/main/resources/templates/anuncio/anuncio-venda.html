@@ -73,7 +73,7 @@
 							</div>
 						</div>
 						<div>
-							<input type="file" id="flImage" name="imagemAnuncio" accept="/image" />
+							<input type="file" id="flImage" name="imagemAnuncio" accept="/image" required />
 						</div>
 					</div>
 					<!-- Inputs -->
@@ -81,13 +81,13 @@
 						<li class="list-group-item inputs">
 							<!-- nome -->
 							<label for="">Nome do anuncio:</label>
-							<input type="text" name="nomeAnuncio" placeholder="Nome" />
+							<input type="text" name="nomeAnuncio" placeholder="Nome" required />
 							<!-- valor -->
 							<label for="">Valor:</label>
-							<input type="search" name="valorAnuncio" placeholder="R$" />
+							<input type="search" name="valorAnuncio" placeholder="R$" required />
 							<!-- Quantidade -->
 							<label for="">Quantidade:</label>
-							<input type="number" name="quantAnuncio" placeholder="Quant" />
+							<input type="number" name="quantAnuncio" placeholder="Quant" required />
 						</li>
 						<li class="list-group-item inputs">
 							<!-- add imagens -->
@@ -105,7 +105,7 @@
 							<label for="">Descrição do anuncio:</label>
 							<div class="input-group">
 								<textarea class="form-control" aria-label="With textarea" name="descAnuncio"
-									placeholder="Descrição"></textarea>
+									placeholder="Descrição" required ></textarea>
 							</div>
 						</li>
 						<!-- botao de criar anuncio -->

@@ -2,7 +2,6 @@ package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,7 +31,7 @@ public class Cad_Produto implements Serializable{
 	private Usuario usuario;
 	
 	// Ligação com a tabela Anucio
-	@OneToOne(mappedBy = "cad_produto", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "cad_produto")
 	private Anuncio anuncio;
 	
 	

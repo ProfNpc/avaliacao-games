@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/CSS/Tela_Biblioteca.css" />
 	<link rel="stylesheet" href="/CSS/NavBar.css" />
-
 	<title>Pacifier</title>
 </head>
 
@@ -21,7 +20,9 @@
 			<div class="nav-list">
 				<ul>
 					<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">COMUNIDADE</a></li>
+					<li class="nav-item">
+						<a href="#" class="nav-link">COMUNIDADE</a>
+					</li>
 					<li class="nav-item"><a href="#" class="nav-link">CONTATO</a></li>
 				</ul>
 			</div>
@@ -29,11 +30,13 @@
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
 						aria-expanded="false">
-						<img src="/imagens/foto_perfil.png" alt="">
+						<img src="/imagens/foto_perfil.png" alt="" />
 					</button>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" th:href="@{/usuario/{path}/biblioteca(path=${cpf})}">Sua
-								biblioteca</a></li>
+						<li>
+							<a class="dropdown-item" th:href="@{/usuario/{path}/biblioteca(path=${cpf})}">Sua
+								biblioteca</a>
+						</li>
 						<li><a class="dropdown-item" href="#">Anunciar</a></li>
 					</ul>
 				</div>
@@ -82,21 +85,24 @@
 				<div class="container-color">
 					<!-- Jogos que aparecerão na biblioteca -->
 					<section class="container-produto">
-						<div class="row row-cols-1 row-cols-md-3 g-4">
-							<div th:each="produto, iStat : ${produtos}" class="col">
+						<div class="row row-cols-1 row-cols-md-2 g-4">
+							<div th:each="anuncio, iStat : ${anuncio}" class="col">
 								<div class="card h-100">
-									<img src="/imagens/BannerDoom.png" class="card-img-top"
+									<img src="/src/main/resources/static/imagens/BannerDoom.png" class="card-img-top"
 										alt="..." />
 									<div class="card-body">
 										<h5 class="card-title">
-											<span th:text="${produto.nomeProd}"></span>
+											<span th:text="${anuncio.nomeAnuncio}"></span>
 										</h5>
 										<p class="card-text">
-											Quant:
-											<span th:text="${cad_produtos[iStat.index].quantidade}"></span>
+											Quantidade:
+											<span th:text="${anuncio.quantAnuncio}"></span>
 										</p>
 										<p class="card-text">
-											Valor: R$<span th:text="${produto.valorProd}"></span>
+											Valor: R$<span th:text="${anuncio.valorAnuncio}"></span>
+										</p>
+										<p class="card-text">
+											Status: <span th:text="${anuncio.statusAnuncio}"></span>
 										</p>
 										<a href="#" class="btn btn-primary">Excluir</a>
 									</div>
@@ -109,13 +115,13 @@
 				<section class="container-button">
 					<!-- Botão de Excluir -->
 					<div>
-						<label for="#">Excluir jogo: </label><br />
+						<label for="#">Excluir anuncio: </label><br />
 						<a href=""><button>Excluir</button></a>
 					</div>
 					<!-- Botão de Cadastrar -->
 					<div>
-						<form th:action="@{/usuario/{cpf}/biblioteca/adicionar(cpf=${cpf})}" method="get">
-							<label for="#">Adicionar jogo: </label><br />
+						<form th:action="@{/usuario/{cpf}/anunciar(cpf=${cpf})}" method="get">
+							<label for="#">Adicionar anuncio: </label><br />
 							<a href=""><button>Adicionar</button></a>
 						</form>
 					</div>

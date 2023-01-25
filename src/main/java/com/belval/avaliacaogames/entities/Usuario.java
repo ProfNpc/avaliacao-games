@@ -33,6 +33,11 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
+	// Ligação com tabela anuncio
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario")
+	private List<Anuncio> anuncios = new ArrayList<>();
+	
 	//@ManyToMany
 	//@JoinTable(name = "usuario_endereco", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "id_end"))
 	//private Set<Endereco> enderecos = new HashSet<>();

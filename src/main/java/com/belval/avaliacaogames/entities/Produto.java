@@ -50,7 +50,7 @@ public class Produto implements Serializable {
 	}
 
 	// Getters and Setters
-	public String getnomeProd() {
+	public String getNomeProd() {
 		return nomeProd;
 	}
 
@@ -58,23 +58,23 @@ public class Produto implements Serializable {
 		return cod_prod;
 	}
 
-	public void setnomeProd(String nomeProd) {
+	public void setNomeProd(String nomeProd) {
 		this.nomeProd = nomeProd;
 	}
 
-	public Integer getvalorProd() {
+	public Integer getValorProd() {
 		return valorProd;
 	}
 
-	public void setvalorProd(Integer valorProd) {
+	public void setValorProd(Integer valorProd) {
 		this.valorProd = valorProd;
 	}
 
-	public String getdescProd() {
+	public String getDescProd() {
 		return descProd;
 	}
 
-	public void setdescProd(String descProd) {
+	public void setDescProd(String descProd) {
 		this.descProd = descProd;
 	}
 

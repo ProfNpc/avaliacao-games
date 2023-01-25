@@ -54,7 +54,7 @@
 					<a th:href="@{/usuario/{cpf}(cpf=${cpf})}"><input type="button" value="Geral" class="button" /></a>
 					<a href=""><input type="button" value="Preferencias" class="button" /></a>
 					<a href=""><input type="button" value="Privacidade" class="button" /></a>
-					<a href=""><input type="button" value="Segurança" class="button" /></a>
+					<a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}"><input type="button" value="Meus Anúncios" class="button" /></a>
 					<a th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}"><input type="button" value="Biblioteca" class="button" /></a>
 				</div>
 			</div>

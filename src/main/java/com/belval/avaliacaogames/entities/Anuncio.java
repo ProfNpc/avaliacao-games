@@ -6,8 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Anuncio implements Serializable {
@@ -20,29 +24,36 @@ public class Anuncio implements Serializable {
 	private String nomeAnuncio;
 	private String descAnuncio;
 	private Double valorAnuncio;
-	private Integer quantAnucio;
+	private Integer quantAnuncio;
 	private String tipoAnuncio;
 	private Boolean statusAnuncio;
 
 	// Atributos de ligação com Cad_Produto
+	@JsonIgnore
 	@OneToOne
 	@MapsId
 	private Cad_Produto cad_produto;
 
+	@ManyToOne
+	@JoinColumn(name = "cpf_usuario")
+	private Usuario usuario;
+	
+	
 	// Constructors
 	public Anuncio() {
 	}
 
-	public Anuncio(Long codAnuncio, String nomeAnuncio, String descAnuncio, Double valorAnuncio, Integer quantAnucio,
-			String tipoAnuncio, Boolean statusAnuncio, Cad_Produto cad_produto) {
+	public Anuncio(Long codAnuncio, String nomeAnuncio, String descAnuncio, Double valorAnuncio, Integer quantAnuncio,
+			String tipoAnuncio, Boolean statusAnuncio, Cad_Produto cad_produto, Usuario usuario) {
 		this.codAnuncio = codAnuncio;
 		this.nomeAnuncio = nomeAnuncio;
 		this.descAnuncio = descAnuncio;
 		this.valorAnuncio = valorAnuncio;
-		this.quantAnucio = quantAnucio;
+		this.quantAnuncio = quantAnuncio;
 		this.tipoAnuncio = tipoAnuncio;
 		this.statusAnuncio = statusAnuncio;
 		this.cad_produto = cad_produto;
+		this.usuario = usuario;
 	}
 
 	// Getters and Setters Cad_Produto
@@ -52,6 +63,15 @@ public class Anuncio implements Serializable {
 
 	public void setCad_produto(Cad_Produto cad_produto) {
 		this.cad_produto = cad_produto;
+	}
+
+	// Getters and Setters Usuario
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	// Getters and Setters
@@ -87,12 +107,12 @@ public class Anuncio implements Serializable {
 		this.valorAnuncio = valorAnuncio;
 	}
 
-	public Integer getQuantAnucio() {
-		return quantAnucio;
+	public Integer getQuantAnuncio() {
+		return quantAnuncio;
 	}
 
-	public void setQuantAnucio(Integer quantAnucio) {
-		this.quantAnucio = quantAnucio;
+	public void setQuantAnuncio(Integer quantAnuncio) {
+		this.quantAnuncio = quantAnuncio;
 	}
 
 	public String getTipoAnuncio() {

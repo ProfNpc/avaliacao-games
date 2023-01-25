@@ -62,7 +62,7 @@ public class ProdutoController {
 	}
 	
 	// Adicionar produto a biblioteca
-	@GetMapping("usuario/{cpf}/biblioteca/adicionar")
+	@GetMapping("/usuario/{cpf}/biblioteca/adicionar")
 	public String adicionarProduto(@PathVariable("cpf") Long cpf, Model model) {
 		model.addAttribute(cpf);
 		
@@ -70,14 +70,14 @@ public class ProdutoController {
 	}
 	
 	// Pesquisar
-	@PostMapping("usuario/{cpf}/biblioteca/adicionar")
+	@PostMapping("/usuario/{cpf}/biblioteca/adicionar")
 	public ModelAndView adicionarProduto(@PathVariable("cpf") Long cpf, Model model, Produto produto) {
 		model.addAttribute(cpf);
 		
 		List<Produto> produtos = new ArrayList<Produto>();
 		
 		for (Produto pd : produtos) {
-			String nomeProd = pd.getnomeProd();
+			String nomeProd = pd.getNomeProd();
 			produto.equals(produtoService.findByNomeProd(nomeProd));
 
 			produtos.add(produto);
@@ -91,14 +91,14 @@ public class ProdutoController {
 	}
 	
 	// Cadastar produto
-	@GetMapping("usuario/{cpf}/produto/cadastrar")
+	@GetMapping("/usuario/{cpf}/produto/cadastrar")
 	public String cadastrarProduto(@PathVariable("cpf") Long cpf, Model model) {
 		model.addAttribute(cpf);
 		
 		return "produto/cadastro-produto";
 	}
 	
-	@PostMapping("usuario/{cpf}/produto/cadastrar")
+	@PostMapping("/usuario/{cpf}/produto/cadastrar")
 	public ModelAndView cadastrarProduto(Cad_Produto cad_produto, Produto produto,
 										@PathVariable("cpf") Long cpf) {
 		
