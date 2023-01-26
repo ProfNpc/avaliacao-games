@@ -122,7 +122,7 @@ public class ProdutoController {
 		cad_produto.setProduto(produto);
 		cad_produtoRepository.save(cad_produto);
 
-		ModelAndView model = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
+		ModelAndView model = new ModelAndView("produto/biblioteca-produto");
 		return model;
 	}
 
@@ -132,7 +132,7 @@ public class ProdutoController {
 		
 		cad_produtoRepository.deleteById(cod_cad_prod);
 		
-		ModelAndView mv = new ModelAndView("/usuario/{cpf}/biblioteca");
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
 		return mv;
 	}
 	

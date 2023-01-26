@@ -85,8 +85,7 @@
 						<div class="row row-cols-1 row-cols-md-3 g-4">
 							<div th:each="produto, iStat : ${produtos}" class="col">
 								<div class="card h-100">
-									<img src="/imagens/BannerDoom.png" class="card-img-top"
-										alt="..." />
+									<img src="/imagens/BannerDoom.png" class="card-img-top" alt="..." />
 									<div class="card-body">
 										<h5 class="card-title">
 											<span th:text="${produto.nomeProd}"></span>
@@ -98,8 +97,9 @@
 										<p class="card-text">
 											Valor: R$<span th:text="${produto.valorProd}"></span>
 										</p>
-										<form action="@{/usuario/{cpf}/biblioteca/deletar (cpf=${cpf})}">
-										<a href="#" class="btn btn-primary">Excluir</a>
+										<form th:action="@{/usuario/{cpf}/biblioteca/deletar (cpf=${cpf})}"
+											method="post">
+											<input class="btn btn-primary" type="submit" value="Excluir">
 										</form>
 									</div>
 								</div>
