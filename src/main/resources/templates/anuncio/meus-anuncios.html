@@ -15,7 +15,7 @@
 	<header>
 		<nav class="nav-bar">
 			<div class="logo">
-				<a href=""><img src="/imagens/Controle.png" alt="" /></a>
+				<a th:href="@{/home/{cpf}(cpf=${cpf})}"><img src="/imagens/Controle.png" alt="" /></a>
 			</div>
 			<div class="nav-list">
 				<ul>
@@ -86,7 +86,7 @@
 					<!-- Jogos que aparecerão na biblioteca -->
 					<section class="container-produto">
 						<div class="row row-cols-1 row-cols-md-2 g-4">
-							<div th:each="anuncio, iStat : ${anuncio}" class="col">
+							<div th:each="anuncio: ${anuncio}" class="col">
 								<div class="card h-100">
 									<img src="/src/main/resources/static/imagens/BannerDoom.png" class="card-img-top"
 										alt="..." />

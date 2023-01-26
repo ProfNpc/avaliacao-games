@@ -16,7 +16,7 @@
 	<header>
 		<nav class="nav-bar">
 			<div class="logo">
-				<a href=""><img src="/imagens/Controle.png" alt="" /></a>
+				<a th:href="@{/home/{cpf}(cpf=${cpf})}"><img src="/imagens/Controle.png" alt="" /></a>
 			</div>
 			<div class="nav-list">
 				<ul>
@@ -31,12 +31,12 @@
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
 						aria-expanded="false">
-						<img src="../imagens/foto_perfil.png" alt="" />
+						<img src="/imagens/foto_perfil.png" alt="" />
 					</button>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">Perfil</a></li>
-						<li><a class="dropdown-item" href="#">Sua biblioteca</a></li>
-						<li><a class="dropdown-item" href="#">Anunciar</a></li>
+						<li><a class="dropdown-item" th:href="@{/usuario/{cpf} (cpf=${cpf})}">Perfil</a></li>
+						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca (cpf=${cpf})}">Sua biblioteca</a></li>
+						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/anunciar (cpf=${cpf})}">Anunciar</a></li>
 					</ul>
 				</div>
 			</div>

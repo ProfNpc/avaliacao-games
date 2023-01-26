@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Cad_Produto;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Usuario;
+import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.services.Cad_ProdutoService;
@@ -37,6 +39,22 @@ public class ProdutoController {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private AnuncioRepository anuncioRepository;
+	
+	// Pesquisar produto na tela inicial
+	@PostMapping("/usuario/{cpf}/pesquisar")
+	public ModelAndView pesquisar(@PathVariable("cpf") Long cpf, String nomeAnuncio) {
+		
+		ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
+		
+		List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
+		mv.addObject("anuncios", anuncios);
+		
+		return mv;
+	}
+	
 	
 	// Biblioteca
 	@GetMapping("/usuario/{cpf}/biblioteca")
@@ -64,7 +82,7 @@ public class ProdutoController {
 	// Adicionar produto a biblioteca
 	@GetMapping("/usuario/{cpf}/biblioteca/adicionar")
 	public String adicionarProduto(@PathVariable("cpf") Long cpf, Model model) {
-		model.addAttribute(cpf);
+		//model.addAttribute(cpf);
 		model.addAttribute("produtos", new ArrayList<Produto>());
 		
 		return "produto/adicionar-produto";
@@ -90,6 +108,7 @@ public class ProdutoController {
 		return "produto/cadastro-produto";
 	}
 	
+	// Cadastrando produto
 	@PostMapping("/usuario/{cpf}/produto/cadastrar")
 	public ModelAndView cadastrarProduto(Cad_Produto cad_produto, Produto produto,
 										@PathVariable("cpf") Long cpf) {

@@ -81,7 +81,7 @@ public class TestConfig implements CommandLineRunner {
 		Anuncio an3 = new Anuncio(3L, "Elder Ring", "Jogo novo, quase sem utilização", 50.00, 5, "Venda", true, cp1, u1);
 		Anuncio an4 = new Anuncio(4L, "God of War", "Jogo novo, quase sem utilização", 55.50, 5, "Venda", true, cp7, u3);
 		Anuncio an5 = new Anuncio(5L, "Cuphead", "Jogo novo, quase sem utilização", 100.50, 5, "Venda", true, cp8, u2);
-		Anuncio an6 = new Anuncio(6L, "Red Dead Redeptio 2", "Jogo novo, quase sem utilização", 150.50, 5, "Venda", true, cp4, u3);
+		Anuncio an6 = new Anuncio(6L, "Red Dead Redeptiom 2", "Jogo novo, quase sem utilização", 150.50, 5, "Venda", true, cp4, u3);
 		Anuncio an7 = new Anuncio(7L, "StarCraft", "Jogo novo, quase sem utilização", 60.50, 5, "Venda", true, cp6, u1);
 		Anuncio an8 = new Anuncio(8L, "GTA V", "Jogo novo, quase sem utilização", 78.50, 5, "Venda", true, cp5, u4);
 

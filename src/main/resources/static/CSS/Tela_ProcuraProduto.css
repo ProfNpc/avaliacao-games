@@ -34,9 +34,18 @@ header {
   justify-content: center;
 }
 
-.pesquisar input {
+/* Configuração do input de texto */
+.pesquisar input[type="text"] {
   padding: 0.8em;
-  width: 50em;
+  width: 35em;
+  margin-bottom: 5em;
+  border-radius: 2em;
+}
+
+/* Configuração do input de submit */
+.pesquisar input[type="submit"] {
+  padding: 0.8em;
+  width: 8em;
   margin-bottom: 5em;
   border-radius: 2em;
 }

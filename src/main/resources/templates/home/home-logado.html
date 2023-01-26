@@ -34,9 +34,11 @@
 							<img src="../imagens/foto_perfil.png" alt="">
 						</button>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" th:href="@{/usuario/{cpf}(cpf=${cpf})}" >Perfil</a></li>
-							<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}">Sua biblioteca</a></li>
-							<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/anunciar(cpf=${cpf})}">Anunciar</a></li>
+							<li><a class="dropdown-item" th:href="@{/usuario/{cpf}(cpf=${cpf})}">Perfil</a></li>
+							<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}">Sua
+									biblioteca</a></li>
+							<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/anunciar(cpf=${cpf})}">Anunciar</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -75,8 +77,9 @@
 				</p>
 			</div>
 			<div class="search">
-				<form action="#">
-					<input type="text" name="search" id="search" placeholder="O que procura?" />
+				<form th:action="@{/usuario/{cpf}/pesquisar (cpf=${cpf})}" method="post">
+					<input type="text" placeholder="O que procura?" />
+					<input type="submit" value="Pesquisar" />
 				</form>
 			</div>
 			</div>
