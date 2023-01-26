@@ -78,7 +78,7 @@
 			</div>
 			<div class="search">
 				<form th:action="@{/usuario/{cpf}/pesquisar (cpf=${cpf})}" method="post">
-					<input type="text" placeholder="O que procura?" />
+					<input type="text" name="nomeProd" placeholder="O que procura?" />
 					<input type="submit" value="Pesquisar" />
 				</form>
 			</div>

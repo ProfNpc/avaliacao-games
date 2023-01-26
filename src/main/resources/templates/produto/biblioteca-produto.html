@@ -98,7 +98,9 @@
 										<p class="card-text">
 											Valor: R$<span th:text="${produto.valorProd}"></span>
 										</p>
+										<form action="@{/usuario/{cpf}/biblioteca/deletar (cpf=${cpf})}">
 										<a href="#" class="btn btn-primary">Excluir</a>
+										</form>
 									</div>
 								</div>
 							</div>

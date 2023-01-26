@@ -33,8 +33,9 @@
 						<img src="/imagens/foto_perfil.png" alt="" />
 					</button>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" th:href="@{/usuario/{cpf} (cpf=${cpf})}" >Perfil</a></li>
-						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca (cpf=${cpf})}">Sua biblioteca</a></li>
+						<li><a class="dropdown-item" th:href="@{/usuario/{cpf} (cpf=${cpf})}">Perfil</a></li>
+						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca (cpf=${cpf})}">Sua
+								biblioteca</a></li>
 						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/anunciar (cpf=${cpf})}">Anunciar</a></li>
 					</ul>
 				</div>
@@ -63,11 +64,11 @@
 			<div class="tituloPesquisar">
 				<label for="">Pesquise os produtos que deseja adicionar:</label>
 			</div>
-			
+
 			<!-- Pesquisar -->
 			<div class="pesquisar">
 				<form th:action="@{/usuario/{cpf}/biblioteca/adicionar (cpf=${cpf})}" method="post">
-					<input type="text" placeholder="Pesquisar" name="nomeProd" th:value="${nomeProd}" />
+					<input type="text" placeholder="Pesquisar" name="nomeProd" />
 					<input type="submit" value="Pesquisar" />
 				</form>
 			</div>
@@ -77,9 +78,11 @@
 			<!-- Titulo do Produto -->
 			<div class="tituloProduto">Sua Pesquisa:</div>
 
+
 			<!-- Produtos -->
 			<div class="row row-cols-2 row-cols-md-5 g-4 produto">
-				<div class="col" th:each="produto: ${produtos}" >
+				<div class="col" th:each="produto: ${produtos}">
+
 					<div class="card h-100">
 						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
 						<div class="card-body">
@@ -87,6 +90,16 @@
 							<p class="card-text">Valor médio: R$<span th:text="${produto.valorProd}"></span></p>
 						</div>
 					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Section de não encontrou produtos -->
+		<section class="naoEncontrou" th:if="${nulo == 'null'}">
+			<div class="card text-center mb-3" style="width: 18rem">
+				<div class="card-body">
+					<h5 class="card-title">Não encontrou?</h5>
+					<p class="card-text">Cadastre seu produto:</p>
+					<a th:href="@{/usuario/{cpf}/biblioteca/cadastrar (cpf=${cpf})}" class="btn btn-primary">Cadastrar</a>
 				</div>
 			</div>
 		</section>

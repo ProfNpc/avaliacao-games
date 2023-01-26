@@ -27,110 +27,122 @@ public class ProdutoController {
 
 	@Autowired
 	private Cad_ProdutoService cad_produtoService;
-	
+
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@Autowired
 	private ProdutoService produtoService;
-	
+
 	@Autowired
 	private Cad_ProdutoRepository cad_produtoRepository;
-	
+
 	@Autowired
 	private ProdutoRepository produtoRepository;
-	
+
 	@Autowired
 	private AnuncioRepository anuncioRepository;
-	
+
 	// Pesquisar produto na tela inicial
 	@PostMapping("/usuario/{cpf}/pesquisar")
 	public ModelAndView pesquisar(@PathVariable("cpf") Long cpf, String nomeAnuncio) {
-		
+
 		ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
-		
+
 		List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
 		mv.addObject("anuncios", anuncios);
-		
+
 		return mv;
 	}
-	
-	
+
 	// Biblioteca
 	@GetMapping("/usuario/{cpf}/biblioteca")
 	public String biblioteca(@PathVariable("cpf") Long cpf, Model model, Cad_Produto cad_prod, Usuario usu) {
-		
+
 		Usuario usuario = usuarioService.findById(cpf);
-		
+
 		List<Cad_Produto> cad_produtos = cad_produtoService.findByUsuario(usuario);
 		List<Long> id_prods = new ArrayList<Long>();
 		List<Produto> produtos = new ArrayList<Produto>();
-		
+
 		for (Cad_Produto cp : cad_produtos) {
 			Long id = cp.getProdutoID();
 			Produto prod = produtoService.findById(id);
 			id_prods.add(id);
 			produtos.add(prod);
 		}
-		
+
 		model.addAttribute("cad_produtos", cad_produtos);
 		model.addAttribute("produtos", produtos);
-		
+
 		return "produto/biblioteca-produto";
 	}
-	
+
 	// Adicionar produto a biblioteca
 	@GetMapping("/usuario/{cpf}/biblioteca/adicionar")
 	public String adicionarProduto(@PathVariable("cpf") Long cpf, Model model) {
-		//model.addAttribute(cpf);
-		model.addAttribute("produtos", new ArrayList<Produto>());
-		
+		// model.addAttribute(cpf);
+		// model.addAttribute("produtos", new ArrayList<Produto>());
+
 		return "produto/adicionar-produto";
 	}
-	
-	// Pesquisar
+
+	// Pesquisar - Adicionar a biblioteca
 	@PostMapping("/usuario/{cpf}/biblioteca/adicionar")
 	public ModelAndView adicionarProduto(@PathVariable("cpf") Long cpf, String nomeProd, Model model) {
-		
+
 		ModelAndView mv = new ModelAndView("produto/adicionar-produto");
-		
+
 		List<Produto> produtos = produtoRepository.findByNomeProdContainingIgnoreCase(nomeProd);
+
+		if (produtos.isEmpty()) {
+			String nulo = "null";
+			model.addAttribute("nulo", nulo);
+		}
+
 		mv.addObject("produtos", produtos);
-		
+
 		return mv;
 	}
-	
-	// Cadastar produto
-	@GetMapping("/usuario/{cpf}/produto/cadastrar")
+
+	// Cadastar produto na biblioteca
+	@GetMapping("/usuario/{cpf}/biblioteca/cadastrar")
 	public String cadastrarProduto(@PathVariable("cpf") Long cpf, Model model) {
 		model.addAttribute(cpf);
-		
+
 		return "produto/cadastro-produto";
 	}
-	
-	// Cadastrando produto
-	@PostMapping("/usuario/{cpf}/produto/cadastrar")
-	public ModelAndView cadastrarProduto(Cad_Produto cad_produto, Produto produto,
-										@PathVariable("cpf") Long cpf) {
-		
+
+	@PostMapping("/usuario/{cpf}/biblioteca/cadastrar")
+	public ModelAndView cadastrarProduto(Cad_Produto cad_produto, Produto produto, @PathVariable("cpf") Long cpf) {
+
 		produtoRepository.save(produto);
-		
+
 		cad_produto.setUsuario(usuarioService.findById(cpf));
 		cad_produto.setProduto(produto);
 		cad_produtoRepository.save(cad_produto);
-		
+
 		ModelAndView model = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
 		return model;
 	}
-	
+
+	// Deletar produto na biblioteca
+	@PostMapping("/usuario/{cpf}/biblioteca/deletar")
+	public ModelAndView deletarProduto(@PathVariable("cpf") Long cpf, Long cod_cad_prod) {
+		
+		cad_produtoRepository.deleteById(cod_cad_prod);
+		
+		ModelAndView mv = new ModelAndView("/usuario/{cpf}/biblioteca");
+		return mv;
+	}
 	
 	// Produto
 	@GetMapping("/usuario/produto/{cod_prod}")
 	public String printProduto(@PathVariable("cod_prod") Long cod_prod, Model model) {
 		Produto produto = produtoService.findById(cod_prod);
-		
+
 		model.addAttribute("produto", produto);
 		return "produto/produto";
 	}
-	
+
 }
