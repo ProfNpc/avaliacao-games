@@ -61,8 +61,8 @@
 				</p>
 			</div>
 			<div class="search">
-				<form th:action="@{/usuario/pesquisar (cpf=${cpf})}" method="post">
-					<input type="text" placeholder="O que procura?" />
+				<form action="/pesquisar" method="post">
+					<input type="text" name="nomeAnuncio" placeholder="O que procura?" />
 					<input type="submit" value="Pesquisar" />
 				</form>
 			</div>

@@ -49,11 +49,27 @@ public class ProdutoController {
 
 		ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
 
+		System.out.println(nomeAnuncio);
 		List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
+		
 		mv.addObject("anuncios", anuncios);
 
 		return mv;
 	}
+	
+	/*Pesquisar produto na tela inicial
+		@PostMapping("/pesquisar")
+		public ModelAndView pesquisar(String nomeAnuncio) {
+
+			ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
+
+			System.out.println(nomeAnuncio);
+			List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
+			
+			mv.addObject("anuncios", anuncios);
+
+			return mv;
+		}*/
 
 	// Biblioteca
 	@GetMapping("/usuario/{cpf}/biblioteca")
@@ -128,9 +144,12 @@ public class ProdutoController {
 
 	// Deletar produto na biblioteca
 	@PostMapping("/usuario/{cpf}/biblioteca/deletar")
-	public ModelAndView deletarProduto(@PathVariable("cpf") Long cpf, Long cod_cad_prod) {
+	public ModelAndView deletarProduto(@PathVariable("cpf") Long cpf, String nomeProd) {
 		
-		cad_produtoRepository.deleteById(cod_cad_prod);
+		Usuario usuario = usuarioService.findById(cpf);
+		
+		List<Cad_Produto> cad_produtos = cad_produtoService.findByUsuario(usuario);
+		
 		
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
 		return mv;

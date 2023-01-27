@@ -18,7 +18,7 @@
 			<!-- Menu do site -->
 			<nav class="nav-bar">
 				<div class="logo">
-					<a href="Tela_Inicial.html"><img src="/imagens/Controle.png" alt=""></a>
+					<a th:href="@{/home/{cpf} (cpf=${cpf})}"><img src="/imagens/Controle.png" alt=""></a>
 				</div>
 				<div class="nav-list">
 					<ul>
@@ -78,7 +78,7 @@
 			</div>
 			<div class="search">
 				<form th:action="@{/usuario/{cpf}/pesquisar (cpf=${cpf})}" method="post">
-					<input type="text" name="nomeProd" placeholder="O que procura?" />
+					<input type="text" name="nomeAnuncio" placeholder="O que procura?" />
 					<input type="submit" value="Pesquisar" />
 				</form>
 			</div>
