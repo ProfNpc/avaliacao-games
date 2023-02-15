@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/CSS/Tela_Carrinho.css" />
+	<link rel="stylesheet" href="/CSS/NavBar.css" />
+	<title>Pacifier</title>
+</head>
+
+<body>
+	<header>
+		<nav class="nav-bar">
+			<div class="logo">
+				<a href=""><img src="/imagens/Controle.png" alt="" /></a>
+			</div>
+			<div class="nav-list">
+				<ul>
+					<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+					<li class="nav-item">
+						<a href="#" class="nav-link">COMUNIDADE</a>
+					</li>
+					<li class="nav-item"><a href="#" class="nav-link"> CONTATO</a></li>
+				</ul>
+			</div>
+			<div class="login-button">
+				<button><a href="#">Entrar</a></button>
+			</div>
+
+			<div class="mobile-menu-icon">
+				<button onclick="menuShow()">
+					<img class="icon" src="/imagens/menu_white.svg" alt="" />
+				</button>
+			</div>
+		</nav>
+		<div class="mobile-menu">
+			<ul>
+				<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">COMUNIDADE</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">CONTATO</a></li>
+			</ul>
+
+			<div class="login-button">
+				<button><a href="#">Entrar</a></button>
+			</div>
+		</div>
+	</header>
+	<main>
+		<!-- Container do Carrinho -->
+		<div class="card text-center carrinho">
+			<div class="card-header">Carrinho</div>
+
+			<!-- Produto 1 -->
+			<div class="card mb-3 produto" style="max-width: 440px">
+				<div class="row g-0">
+					<div class="col-md-4">
+						<img src="/imagens/ALIEN.png" class="img-fluid rounded-start" alt="..." />
+					</div>
+					<div class="col-md-7">
+						<div class="card-body">
+							<h5 class="card-title">Alien Isolation</h5>
+							<p class="card-text">R$ 20,00</p>
+							<p class="card-text">
+								<small class="text-muted">Frete: </small>
+							</p>
+							<input type="number" placeholder="Quantidade" />
+							<a href="#" class="stretched-link">Excluir</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Produto 2 -->
+			<div class="card mb-3 produto" style="max-width: 440px">
+				<div class="row g-0">
+					<div class="col-md-4">
+						<img src="/imagens/ALIEN.png" class="img-fluid rounded-start" alt="..." />
+					</div>
+					<div class="col-md-7">
+						<div class="card-body">
+							<h5 class="card-title">Alien Isolation</h5>
+							<p class="card-text">R$ 20,00</p>
+							<p class="card-text">
+								<small class="text-muted">Frete: </small>
+							</p>
+							<input type="number" placeholder="Quantidade" />
+							<a href="#" class="stretched-link">Excluir</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Container do Carrinho, continuar compra -->
+			<div class="card-footer text-muted">Frete: R$</div>
+			<div class="card-footer text-muted">Total com Frete: R$</div>
+			<div class="card-footer text-muted">
+				<a href="#" class="btn btn-primary">Continuar a compra</a>
+			</div>
+		</div>
+		<!-- Terminou Container Carrinho -->
+	</main>
+	<footer></footer>
+	<script src="/JS/NavBar.js"></script>
+</body>
+
+</html>
