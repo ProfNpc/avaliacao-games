@@ -18,6 +18,7 @@ import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
+import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.Cad_ProdutoService;
 import com.belval.avaliacaogames.services.ProdutoService;
 import com.belval.avaliacaogames.services.UsuarioService;
@@ -51,25 +52,38 @@ public class ProdutoController {
 
 		System.out.println(nomeAnuncio);
 		List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
-		
+
 		mv.addObject("anuncios", anuncios);
 
 		return mv;
 	}
-	
-	/*Pesquisar produto na tela inicial
-		@PostMapping("/pesquisar")
-		public ModelAndView pesquisar(String nomeAnuncio) {
 
-			ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
+	/*
+	 * Pesquisar produto na tela inicial
+	 * 
+	 * @PostMapping("/pesquisar") public ModelAndView pesquisar(String nomeAnuncio)
+	 * {
+	 * 
+	 * ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
+	 * 
+	 * System.out.println(nomeAnuncio); List<Anuncio> anuncios =
+	 * anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
+	 * 
+	 * mv.addObject("anuncios", anuncios);
+	 * 
+	 * return mv; }
+	 */
 
-			System.out.println(nomeAnuncio);
-			List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
-			
-			mv.addObject("anuncios", anuncios);
+	// Produto
+	@GetMapping("/usuario/produto/{cod_prod}")
+	public String printProduto(@PathVariable("codAnuncio") Long codAnuncio, Model model) {
+		//Produto produto = produtoService.findById(cod_prod);
+		
+		//Anuncio anuncio = AnuncioService.
 
-			return mv;
-		}*/
+		//model.addAttribute("anuncio", anuncio);
+		return "produto/produto";
+	}
 
 	// Biblioteca
 	@GetMapping("/usuario/{cpf}/biblioteca")
@@ -145,23 +159,13 @@ public class ProdutoController {
 	// Deletar produto na biblioteca
 	@PostMapping("/usuario/{cpf}/biblioteca/deletar")
 	public ModelAndView deletarProduto(@PathVariable("cpf") Long cpf, String nomeProd) {
-		
+
 		Usuario usuario = usuarioService.findById(cpf);
-		
+
 		List<Cad_Produto> cad_produtos = cad_produtoService.findByUsuario(usuario);
-		
-		
+
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
 		return mv;
-	}
-	
-	// Produto
-	@GetMapping("/usuario/produto/{cod_prod}")
-	public String printProduto(@PathVariable("cod_prod") Long cod_prod, Model model) {
-		Produto produto = produtoService.findById(cod_prod);
-
-		model.addAttribute("produto", produto);
-		return "produto/produto";
 	}
 
 }

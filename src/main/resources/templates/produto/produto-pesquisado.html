@@ -80,20 +80,22 @@
 			<!-- Produtos -->
 			<div class="row row-cols-2 row-cols-md-5 g-4 produto">
 				<div class="col" th:each="anuncio: ${anuncios}">
-					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">
-								<span th:text="${anuncio.nomeAnuncio}"></span>
-							</h5>
-							<p class="card-text">
-								<span th:text="${anuncio.valorAnuncio}"></span>
-							</p>
-							<p class="card-text">
-								<span th:text="${anuncio.descAnuncio}"></span>
-							</p>
+					<a th:href="@{usuario/produto/{codAnuncio} (codAnuncio=${codAnuncio})}">
+						<div class="card h-100">
+							<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<h5 class="card-title">
+									<span th:text="${anuncio.nomeAnuncio}"></span>
+								</h5>
+								<p class="card-text">
+									<span th:text="${anuncio.valorAnuncio}"></span>
+								</p>
+								<p class="card-text">
+									<span th:text="${anuncio.descAnuncio}"></span>
+								</p>
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 		</section>
