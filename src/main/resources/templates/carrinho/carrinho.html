@@ -14,9 +14,12 @@
 <body>
 	<header>
 		<nav class="nav-bar">
+			<!-- Logo -->
 			<div class="logo">
-				<a href=""><img src="/imagens/Controle.png" alt="" /></a>
+				<a th:href="@{/home/{cpf} (cpf=${cpf})}"><img src="/imagens/Controle.png" alt=""></a>
 			</div>
+
+			<!-- Lista de opções -->
 			<div class="nav-list">
 				<ul>
 					<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
@@ -26,10 +29,39 @@
 					<li class="nav-item"><a href="#" class="nav-link"> CONTATO</a></li>
 				</ul>
 			</div>
-			<div class="login-button">
-				<button><a href="#">Entrar</a></button>
+
+			<!-- Carrinho -->
+			<div class="nav-list">
+				<ul>
+					<li class="car nav-item">
+						<a href=""><img src="/imagens/carrinho-de-compras (1).png" alt="" /></a>
+					</li>
+				</ul>
 			</div>
 
+			<!-- Botao de login -->
+			<div class="login-button">
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<img src="/imagens/foto_perfil.png" alt="" />
+					</button>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="dropdown-item" th:href="@{/usuario/{cpf}(cpf=${cpf})}">Perfil</a>
+						</li>
+						<li>
+							<a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}">Sua
+								biblioteca</a>
+						</li>
+						<li>
+							<a class="dropdown-item" th:href="@{/usuario/{cpf}/anunciar(cpf=${cpf})}">Anunciar</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- NavBar para mobile -->
 			<div class="mobile-menu-icon">
 				<button onclick="menuShow()">
 					<img class="icon" src="/imagens/menu_white.svg" alt="" />
@@ -67,7 +99,7 @@
 								<small class="text-muted">Frete: </small>
 							</p>
 							<input type="number" placeholder="Quantidade" />
-							<a href="#" class="stretched-link">Excluir</a>
+							<button class="btn btn-primary" type="submit">Excluir</button>
 						</div>
 					</div>
 				</div>
@@ -87,7 +119,7 @@
 								<small class="text-muted">Frete: </small>
 							</p>
 							<input type="number" placeholder="Quantidade" />
-							<a href="#" class="stretched-link">Excluir</a>
+							<button class="btn btn-primary" type="submit">Excluir</button>
 						</div>
 					</div>
 				</div>
@@ -104,6 +136,7 @@
 	</main>
 	<footer></footer>
 	<script src="/JS/NavBar.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
