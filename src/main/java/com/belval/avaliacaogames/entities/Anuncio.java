@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,7 +30,7 @@ public class Anuncio implements Serializable {
 	// Atributos de ligação com Cad_Produto
 	@JsonIgnore
 	@OneToOne
-	@MapsId
+	@JoinColumn(name = "cod_cad_produto")
 	private Cad_Produto cad_produto;
 
 	@ManyToOne
