@@ -75,8 +75,8 @@ public class ProdutoController {
 	 */
 
 	// Produto
-	@GetMapping("/usuario/produto/{cod_prod}")
-	public String printProduto(@PathVariable("codAnuncio") Long codAnuncio, Model model) {
+	@GetMapping("/usuario/{cpf}/produto/")
+	public String printProduto(@PathVariable("codAnuncio") Long codAnuncio,@PathVariable("cpf") Long cpf, Model model) {
 		//Produto produto = produtoService.findById(cod_prod);
 		
 		//Anuncio anuncio = AnuncioService.
