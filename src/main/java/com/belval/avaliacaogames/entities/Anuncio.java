@@ -68,6 +68,10 @@ public class Anuncio implements Serializable {
 	public Usuario getUsuario() {
 		return usuario;
 	}
+	
+	public Long getCpfUsuario() {
+		return usuario.getCpf();
+	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;

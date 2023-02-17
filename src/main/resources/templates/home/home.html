@@ -103,7 +103,7 @@
 		<div class="title" id="oferta">Ofertas</div>
 		<!-- Jogos em ofertas -->
 		<div class="row row-cols-2 row-cols-md-5 g-4 margin-ofertas">
-			<div class="col">
+			<div class="col" th:each="anuncios: ${anuncios}">
 				<div class="card h-100">
 					<img src="/imagens/BATTLE V.png" class="card-img-top" alt="...">
 					<div class="card-body">
@@ -112,42 +112,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col">
-				<div class="card h-100">
-					<img src="/imagens/CALL BO.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Call of Duty Black Ops</h5>
-						<p class="card-text">R$60,00</p>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100">
-					<img src="/imagens/CALL WAR.png" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Call of Duty</h5>
-						<p class="card-text">R$52,00</p>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100">
-					<img src="/imagens/FIFA.png" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">FIFA</h5>
-						<p class="card-text">R$30,00</p>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100">
-					<img src="/imagens/OUTLAST.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Outlast</h5>
-						<p class="card-text">R$100,00</p>
-					</div>
-				</div>
-			</div>
+
 		</div>
 
 		<!-- Titulo lista de jogos -->

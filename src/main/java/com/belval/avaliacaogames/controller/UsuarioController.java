@@ -1,5 +1,7 @@
 package com.belval.avaliacaogames.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,18 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
+import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.EnderecoService;
 import com.belval.avaliacaogames.services.UsuarioService;
 
 @Controller
 public class UsuarioController {
-
-	@Autowired
-	private UsuarioRepository repository;
 
 	@Autowired
 	private UsuarioService service;
@@ -28,11 +29,21 @@ public class UsuarioController {
 	private EnderecoService enderecoService;
 
 	@Autowired
+	private AnuncioService anuncioService;
+
+	@Autowired
 	private EnderecoRepository enderecoRepository;
+
+	@Autowired
+	private UsuarioRepository repository;
 
 	// Home
 	@GetMapping("/")
-	public String indice() {
+	public String indice(Model model) {
+
+		List<Anuncio> anuncios = anuncioService.findAll();
+		model.addAttribute("anuncios", anuncios);
+
 		return "home/home";
 	}
 
@@ -42,6 +53,9 @@ public class UsuarioController {
 
 		Usuario usuario = service.findById(cpf);
 		model.addAttribute(usuario);
+
+		List<Anuncio> anuncios = anuncioService.findAll();
+		model.addAttribute("anuncios", anuncios);
 
 		return "home/home-logado";
 	}

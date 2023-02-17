@@ -36,6 +36,9 @@ public class ProdutoController {
 	private ProdutoService produtoService;
 
 	@Autowired
+	private AnuncioService anuncioService;
+
+	@Autowired
 	private Cad_ProdutoRepository cad_produtoRepository;
 
 	@Autowired
@@ -74,14 +77,20 @@ public class ProdutoController {
 	 * return mv; }
 	 */
 
-	// Produto
-	@GetMapping("/usuario/{cpf}/produto/")
-	public String printProduto(@PathVariable("codAnuncio") Long codAnuncio,@PathVariable("cpf") Long cpf, Model model) {
-		//Produto produto = produtoService.findById(cod_prod);
-		
-		//Anuncio anuncio = AnuncioService.
+	// Tela do produto
+	@GetMapping("/usuario/{cpf}/produto/{codAnuncio}")
+	public String printProduto(@PathVariable("codAnuncio") Long codAnuncio, @PathVariable("cpf") Long cpf,
+			Model model) {
 
-		//model.addAttribute("anuncio", anuncio);
+		List<Anuncio> anuncios = anuncioService.findAll();
+		Anuncio anuncio = anuncioService.findById(codAnuncio);
+		
+		Long newCpf = anuncio.getCpfUsuario();
+		Usuario usuario = usuarioService.findById(newCpf);
+
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("anuncio", anuncio);
+		model.addAttribute("anuncios", anuncios);
 		return "produto/produto";
 	}
 

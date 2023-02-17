@@ -80,7 +80,7 @@
 			<!-- Produtos -->
 			<div class="row row-cols-2 row-cols-md-5 g-4 produto">
 				<div class="col" th:each="anuncio: ${anuncios}">
-					<a th:href="@{usuario/{cpf}/produto/ (cpf=${cpf}) (codAnuncio=${codAnuncio})}">
+					<a th:href="@{/usuario/{cpf}/produto (cpf=${cpf})}">
 						<div class="card h-100">
 							<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
 							<div class="card-body">

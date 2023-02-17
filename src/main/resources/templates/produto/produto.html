@@ -20,13 +20,25 @@
 			</div>
 			<div class="nav-list">
 				<ul>
-					<li class="nav-item"><a href="#" class="nav-link">OFERTAS</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">COMUNIDADE</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+					<li class="nav-item">
+						<a href="#" class="nav-link">COMUNIDADE</a>
+					</li>
 					<li class="nav-item"><a href="#" class="nav-link">CONTATO</a></li>
 				</ul>
 			</div>
 			<div class="login-button">
-				<button><a href="#">Entrar</a></button>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<img src="/imagens/foto_perfil.png" alt="" />
+					</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" th:href="@{/usuario/{cpf} (cpf=${cpf})}">Perfil</a></li>
+						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca (cpf=${cpf})}">Sua biblioteca</a></li>
+						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/anunciar (cpf=${cpf})}">Anunciar</a></li>
+					</ul>
+				</div>
 			</div>
 
 			<div class="mobile-menu-icon">
@@ -37,23 +49,21 @@
 		</nav>
 		<div class="mobile-menu">
 			<ul>
-				<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">COMUNIDADE</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">CONTATO</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">Perfil</a></li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">Sua Biblioteca</a>
+				</li>
+				<li class="nav-item"><a href="#" class="nav-link">Anunciar</a></li>
 			</ul>
-
-			<div class="login-button">
-				<button><a href="#">Entrar</a></button>
-			</div>
 		</div>
 	</header>
 	<main>
 		<section class="containerProduto">
-			<div class="card" style="width: 55rem">
+			<div class="card" style="width: 42.3rem">
 				<img src="/imagens/BannerDoom.png" class="card-img-top" alt="..." />
 				<div class="card-body">
-					<h5 class="card-title text-center"></h5>
-					<p class="card-text text-center">R$</p>
+					<h5 class="card-title text-center"><span th:text="${anuncio.nomeAnuncio}"></span></h5>
+					<p class="card-text text-center">R$ <span th:text="${anuncio.valorAnuncio}"></span></p>
 					<div class="d-grid gap-2 col-6 mx-auto">
 						<button class="btn btn-primary" type="button">Comprar</button>
 						<button class="btn btn-primary" type="button">
@@ -63,9 +73,9 @@
 				</div>
 			</div>
 
-			<div class="card" style="width: 25rem">
+			<div class="card" style="width: 22.5rem">
 				<div class="card-body">
-					<h5 class="card-title text-center">Vendedor</h5>
+					<h5 class="card-title text-center"><span th:text="${usuario.nome}"></span></h5>
 					<p class="card-text text-center">Produtos vendidos</p>
 					<h5 class="card-title text-center">Avaliação do Produto</h5>
 					<br />
@@ -92,8 +102,8 @@
 			<div class="card">
 				<div class="card-header">Descrição</div>
 				<div class="card-body">
-					<h5 class="card-title"></h5>
-					<p class="card-text"></p>
+					<h5 class="card-title"><span th:text="${anuncio.nomeAnuncio}"></span></h5>
+					<p class="card-text"><span th:text="${anuncio.descAnuncio}"></span></p>
 					<a href="#" class="btn btn-primary">Mais sobre</a>
 				</div>
 			</div>
@@ -102,48 +112,12 @@
 		<section class="containerProdutos">
 			<div class="tituloProduto">Similiares</div>
 			<div class="row row-cols-1 row-cols-md-5 g-4">
-				<div class="col">
+				<div class="col" th:each="anuncios: ${anuncios}">
 					<div class="card h-100">
 						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
 						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$ 41,00</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$ 41,00</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$ 41,00</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$ 41,00</p>
+							<h5 class="card-title"><span th:text="${anuncios.nomeAnuncio}"></span></h5>
+							<p class="card-text"><span th:text="${anuncios.valorAnuncio}"></span></p>
 						</div>
 					</div>
 				</div>
@@ -154,48 +128,12 @@
 			<div class="tituloProduto">Mais Vendidos</div>
 
 			<div class="row row-cols-1 row-cols-md-5 g-4">
-				<div class="col">
+				<div class="col" th:each="anuncios: ${anuncios}">
 					<div class="card h-100">
 						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
 						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$ 41,00</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$ 41,00</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$ 41,00</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$ 41,00</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$ 41,00</p>
+							<h5 class="card-title"><span th:text="${anuncios.nomeAnuncio}"></span></h5>
+							<p class="card-text"><span th:text="${anuncios.valorAnuncio}"></span></p>
 						</div>
 					</div>
 				</div>
