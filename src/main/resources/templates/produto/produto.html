@@ -35,7 +35,8 @@
 					</button>
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" th:href="@{/usuario/{cpf} (cpf=${cpf})}">Perfil</a></li>
-						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca (cpf=${cpf})}">Sua biblioteca</a></li>
+						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca (cpf=${cpf})}">Sua
+								biblioteca</a></li>
 						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/anunciar (cpf=${cpf})}">Anunciar</a></li>
 					</ul>
 				</div>
@@ -65,8 +66,11 @@
 					<h5 class="card-title text-center"><span th:text="${anuncio.nomeAnuncio}"></span></h5>
 					<p class="card-text text-center">R$ <span th:text="${anuncio.valorAnuncio}"></span></p>
 					<div class="d-grid gap-2 col-6 mx-auto">
+
 						<button class="btn btn-primary" type="button">Comprar</button>
-						<button class="btn btn-primary" type="button">
+
+						<a th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}">Teste carrinho</a>
+						<button class="btn btn-primary" type="submit">
 							Adicionar ao carrinho
 						</button>
 					</div>
@@ -113,13 +117,16 @@
 			<div class="tituloProduto">Similiares</div>
 			<div class="row row-cols-1 row-cols-md-5 g-4">
 				<div class="col" th:each="anuncios: ${anuncios}">
-					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title"><span th:text="${anuncios.nomeAnuncio}"></span></h5>
-							<p class="card-text"><span th:text="${anuncios.valorAnuncio}"></span></p>
+					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}">
+
+						<div class="card h-100">
+							<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<h5 class="card-title"><span th:text="${anuncios.nomeAnuncio}"></span></h5>
+								<p class="card-text"><span th:text="${anuncios.valorAnuncio}"></span></p>
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 		</section>
@@ -129,13 +136,16 @@
 
 			<div class="row row-cols-1 row-cols-md-5 g-4">
 				<div class="col" th:each="anuncios: ${anuncios}">
-					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
-						<div class="card-body">
-							<h5 class="card-title"><span th:text="${anuncios.nomeAnuncio}"></span></h5>
-							<p class="card-text"><span th:text="${anuncios.valorAnuncio}"></span></p>
+					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}">
+
+						<div class="card h-100">
+							<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<h5 class="card-title"><span th:text="${anuncios.nomeAnuncio}"></span></h5>
+								<p class="card-text"><span th:text="${anuncios.valorAnuncio}"></span></p>
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 		</section>

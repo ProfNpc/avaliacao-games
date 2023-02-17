@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class CarrinhoController {
 
-	@GetMapping("usuario/{cpf}/carrinho")
+	@GetMapping("/usuario/{cpf}/carrinho")
 	public String carrinho(@PathVariable("cpf") Long cpf) {
 		return "carrinho/carrinho";
 	}

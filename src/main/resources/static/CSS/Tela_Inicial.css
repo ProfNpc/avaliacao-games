@@ -157,6 +157,11 @@ header {
   margin-right: 10%;
 }
 
+.col a {
+	text-decoration: none;
+	color: inherit;
+}
+
 /* Jogos em listas */
 .margin {
   margin-left: 20%;
