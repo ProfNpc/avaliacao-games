@@ -120,15 +120,18 @@
 		<!-- Jogos em ofertas -->
 		<div class="row row-cols-2 row-cols-md-5 g-4 margin-ofertas">
 			<div class="col" th:each="anuncios: ${anuncios}">
-				<div class="card h-100">
-					<img src="/imagens/BATTLE V.png" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title"><span th:text="${anuncios.nomeAnuncio}"></span></h5>
-						<p class="card-text">R$ <span th:text="${anuncios.valorAnuncio}"></span></p>
+				<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncios.codAnuncio})}">
+
+					<div class="card h-100">
+						<img src="/imagens/BATTLE V.png" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title"><span th:text="${anuncios.nomeAnuncio}"></span></h5>
+							<p class="card-text">R$ <span th:text="${anuncios.valorAnuncio}"></span></p>
+						</div>
 					</div>
-				</div>
+				</a>
 			</div>
-			
+
 		</div>
 
 		<!-- Titulo lista de jogos -->

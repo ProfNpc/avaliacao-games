@@ -87,7 +87,7 @@ public class ProdutoController {
 		
 		Long newCpf = anuncio.getCpfUsuario();
 		Usuario usuario = usuarioService.findById(newCpf);
-
+		
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("anuncio", anuncio);
 		model.addAttribute("anuncios", anuncios);
@@ -167,11 +167,14 @@ public class ProdutoController {
 
 	// Deletar produto na biblioteca
 	@PostMapping("/usuario/{cpf}/biblioteca/deletar")
-	public ModelAndView deletarProduto(@PathVariable("cpf") Long cpf, String nomeProd) {
+	public ModelAndView deletarProduto(@PathVariable("cpf") Long cpf, Long cod_cad_prod) {
 
 		Usuario usuario = usuarioService.findById(cpf);
 
-		List<Cad_Produto> cad_produtos = cad_produtoService.findByUsuario(usuario);
+		System.out.println(cod_cad_prod);
+		//Cad_Produto cad = null;
+		//Long cod = cad.getCod_cad_prod();
+		//cad_produtoRepository.deleteById(cod);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
 		return mv;

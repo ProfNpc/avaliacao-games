@@ -84,6 +84,15 @@ public class Cad_Produto implements Serializable{
 
 
 	// Getters and Setters
+	public Long getCod_cad_prod() {
+		return cod_cad_prod;
+	}
+
+
+	public void setCod_cad_prod(Long cod_cad_prod) {
+		this.cod_cad_prod = cod_cad_prod;
+	}
+	
 	public Long getQuantidade() {
 		return quantidade;
 	}
