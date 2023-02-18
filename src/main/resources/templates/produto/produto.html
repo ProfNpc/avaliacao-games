@@ -117,7 +117,7 @@
 			<div class="tituloProduto">Similiares</div>
 			<div class="row row-cols-1 row-cols-md-5 g-4">
 				<div class="col" th:each="anuncios: ${anuncios}">
-					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}">
+					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncios.codAnuncio})}">
 
 						<div class="card h-100">
 							<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
@@ -136,7 +136,7 @@
 
 			<div class="row row-cols-1 row-cols-md-5 g-4">
 				<div class="col" th:each="anuncios: ${anuncios}">
-					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}">
+					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncios.codAnuncio})}">
 
 						<div class="card h-100">
 							<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
