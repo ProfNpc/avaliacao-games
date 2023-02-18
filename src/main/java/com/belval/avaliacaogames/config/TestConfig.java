@@ -76,14 +76,14 @@ public class TestConfig implements CommandLineRunner {
 		
 		cad_produtoRepository.saveAll(Arrays.asList(cp1,cp2,cp3, cp4, cp5, cp6, cp7, cp8));
 		
-		Anuncio an1 = new Anuncio(1L, "Outlast", "Jogo novo, quase sem utilização", 72.50, 5, "Venda", true, cp3, u2);
-		Anuncio an2 = new Anuncio(2L, "GTA V", "Jogo novo, quase sem utilização", 60.50, 5, "Venda", true, cp2, u1);
-		Anuncio an3 = new Anuncio(3L, "Elder Ring", "Jogo novo, quase sem utilização", 50.00, 5, "Venda", true, cp1, u1);
-		Anuncio an4 = new Anuncio(4L, "God of War", "Jogo novo, quase sem utilização", 55.50, 5, "Venda", true, cp7, u3);
-		Anuncio an5 = new Anuncio(5L, "Cuphead", "Jogo novo, quase sem utilização", 100.50, 5, "Venda", true, cp8, u2);
-		Anuncio an6 = new Anuncio(6L, "Red Dead Redeptiom 2", "Jogo novo, quase sem utilização", 150.50, 5, "Venda", true, cp4, u3);
-		Anuncio an7 = new Anuncio(7L, "StarCraft", "Jogo novo, quase sem utilização", 60.50, 5, "Venda", true, cp6, u1);
-		Anuncio an8 = new Anuncio(8L, "GTA V", "Jogo novo, quase sem utilização", 78.50, 5, "Venda", true, cp5, u4);
+		Anuncio an1 = new Anuncio(1L, "Outlast", "Jogo novo, quase sem utilização", 72.50, 5, "Venda", true, cp3, u2, "1Assalariado.png");
+		Anuncio an2 = new Anuncio(2L, "GTA V", "Jogo novo, quase sem utilização", 60.50, 5, "Venda", true, cp2, u1, "2Assalariado.png");
+		Anuncio an3 = new Anuncio(3L, "Elder Ring", "Jogo novo, quase sem utilização", 50.00, 5, "Venda", true, cp1, u1, "3Assalariado.png");
+		Anuncio an4 = new Anuncio(4L, "God of War", "Jogo novo, quase sem utilização", 55.50, 5, "Venda", true, cp7, u3, "4Assalariado.png");
+		Anuncio an5 = new Anuncio(5L, "Cuphead", "Jogo novo, quase sem utilização", 100.50, 5, "Venda", true, cp8, u2, "5Assalariado.png");
+		Anuncio an6 = new Anuncio(6L, "Red Dead Redeptiom 2", "Jogo novo, quase sem utilização", 150.50, 5, "Venda", true, cp4, u3, "6Assalariado.png");
+		Anuncio an7 = new Anuncio(7L, "StarCraft", "Jogo novo, quase sem utilização", 60.50, 5, "Venda", true, cp6, u1, "7Assalariado.png");
+		Anuncio an8 = new Anuncio(8L, "GTA V", "Jogo novo, quase sem utilização", 78.50, 5, "Venda", true, cp5, u4, "8Assalariado.png");
 
 		
 		anuncioRepository.saveAll(Arrays.asList(an1, an2, an3, an4, an5, an6, an7, an8));

@@ -88,8 +88,8 @@
 						<div class="row row-cols-1 row-cols-md-2 g-4">
 							<div th:each="anuncio: ${anuncio}" class="col">
 								<div class="card h-100">
-									<img src="/src/main/resources/static/imagens/BannerDoom.png" class="card-img-top"
-										alt="..." />
+									<img th:src="@{/usuario/mostrarImagem/{imagem}(imagem=${anuncio.nomeImagem})}"
+										class="card-img-top" alt="..." />
 									<div class="card-body">
 										<h5 class="card-title">
 											<span th:text="${anuncio.nomeAnuncio}"></span>

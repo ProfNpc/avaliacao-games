@@ -35,7 +35,8 @@
 					</button>
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" th:href="@{/usuario/{cpf} (cpf=${cpf})}">Perfil</a></li>
-						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca (cpf=${cpf})}">Sua biblioteca</a></li>
+						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/biblioteca (cpf=${cpf})}">Sua
+								biblioteca</a></li>
 						<li><a class="dropdown-item" th:href="@{/usuario/{cpf}/anunciar (cpf=${cpf})}">Anunciar</a></li>
 					</ul>
 				</div>
@@ -60,7 +61,7 @@
 	<main>
 		<section>
 			<!-- Inicio do form -->
-			<form action="" method="">
+			<form th:action="@{/usuario/{cpf}/anunciar (cpf=${cpf})}" enctype="multipart/form-data" method="post">
 				<div class="card container anuncio" style="width: 55rem">
 					<!-- Titulo -->
 					<h5 class="card-title titulo">Criar anuncio</h5>
@@ -73,7 +74,7 @@
 							</div>
 						</div>
 						<div>
-							<input type="file" id="flImage" name="imagemAnuncio" accept="/image" required />
+							<input type="file" id="flImage" name="file" accept="/image" required />
 						</div>
 					</div>
 					<!-- Inputs -->
@@ -105,7 +106,7 @@
 							<label for="">Descrição do anuncio:</label>
 							<div class="input-group">
 								<textarea class="form-control" aria-label="With textarea" name="descAnuncio"
-									placeholder="Descrição" required ></textarea>
+									placeholder="Descrição" required></textarea>
 							</div>
 						</li>
 						<!-- botao de criar anuncio -->

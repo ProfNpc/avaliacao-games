@@ -26,6 +26,7 @@ public class Anuncio implements Serializable {
 	private Integer quantAnuncio;
 	private String tipoAnuncio;
 	private Boolean statusAnuncio;
+	private String nomeImagem;
 
 	// Atributos de ligação com Cad_Produto
 	@JsonIgnore
@@ -36,14 +37,13 @@ public class Anuncio implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;
-	
-	
+
 	// Constructors
 	public Anuncio() {
 	}
 
 	public Anuncio(Long codAnuncio, String nomeAnuncio, String descAnuncio, Double valorAnuncio, Integer quantAnuncio,
-			String tipoAnuncio, Boolean statusAnuncio, Cad_Produto cad_produto, Usuario usuario) {
+			String tipoAnuncio, Boolean statusAnuncio, Cad_Produto cad_produto, Usuario usuario, String nomeImagem) {
 		this.codAnuncio = codAnuncio;
 		this.nomeAnuncio = nomeAnuncio;
 		this.descAnuncio = descAnuncio;
@@ -53,6 +53,7 @@ public class Anuncio implements Serializable {
 		this.statusAnuncio = statusAnuncio;
 		this.cad_produto = cad_produto;
 		this.usuario = usuario;
+		this.nomeImagem = nomeImagem;
 	}
 
 	// Getters and Setters Cad_Produto
@@ -68,7 +69,7 @@ public class Anuncio implements Serializable {
 	public Usuario getUsuario() {
 		return usuario;
 	}
-	
+
 	public Long getCpfUsuario() {
 		return usuario.getCpf();
 	}
@@ -132,6 +133,14 @@ public class Anuncio implements Serializable {
 
 	public void setStatusAnuncio(Boolean statusAnuncio) {
 		this.statusAnuncio = statusAnuncio;
+	}
+
+	public String getNomeImagem() {
+		return nomeImagem;
+	}
+
+	public void setNomeImagem(String nomeImagem) {
+		this.nomeImagem = nomeImagem;
 	}
 
 	// Hash Code
