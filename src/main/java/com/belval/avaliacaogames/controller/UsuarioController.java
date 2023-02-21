@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Anuncio;
+import com.belval.avaliacaogames.entities.Cad_Produto;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Usuario;
+import com.belval.avaliacaogames.repositories.AnuncioRepository;
+import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
+import com.belval.avaliacaogames.services.Cad_ProdutoService;
 import com.belval.avaliacaogames.services.EnderecoService;
 import com.belval.avaliacaogames.services.UsuarioService;
 
@@ -32,10 +36,19 @@ public class UsuarioController {
 	private AnuncioService anuncioService;
 
 	@Autowired
+	private Cad_ProdutoService cad_ProdutoService;
+
+	@Autowired
 	private EnderecoRepository enderecoRepository;
 
 	@Autowired
 	private UsuarioRepository repository;
+
+	@Autowired
+	private AnuncioRepository anuncioRepository;
+
+	@Autowired
+	private Cad_ProdutoRepository cad_ProdutoRepository;
 
 	// Home
 	@GetMapping("/")
@@ -196,6 +209,17 @@ public class UsuarioController {
 	// Confirma deletar a conta
 	@PostMapping("/usuario/{cpf}/deletar")
 	public ModelAndView deleteConfirm(@PathVariable("cpf") Long cpf, Model model) {
+
+		Usuario usuario = service.findById(cpf);
+
+		List<Anuncio> anuncios = anuncioService.findByUsuario(usuario);
+		anuncioRepository.deleteAll(anuncios);
+
+		List<Cad_Produto> cad_produtos = cad_ProdutoService.findByUsuario(usuario);
+		cad_ProdutoRepository.deleteAll(cad_produtos);
+
+		Endereco enderecos = enderecoService.findByUsuario(usuario);
+		enderecoRepository.delete(enderecos);
 
 		repository.deleteById(cpf);
 
