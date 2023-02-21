@@ -68,7 +68,7 @@ public class AnuncioController {
 		return "anuncio/anuncio-venda";
 	}
 
-	// Salva o anuncio no banco de dados
+	// Cadastra o anuncio no banco de dados
 	@PostMapping("/usuario/{cpf}/anunciar")
 	public ModelAndView cadastrarAnuncio(@PathVariable("cpf") Long cpf, Model model, Anuncio anuncio,
 			@RequestParam("file") MultipartFile arquivo) {
@@ -99,6 +99,19 @@ public class AnuncioController {
 		return mv;
 	}
 
+	// Deletar anuncio do banco de dados
+	@PostMapping("/usuario/{cpf}/anuncio/{codAnuncio}/deletar")
+	public ModelAndView deletarAnuncio(@PathVariable("cpf") Long cpf, @PathVariable("codAnuncio") Long codAnuncio) {
+
+		anuncioRepository.deleteById(codAnuncio);
+
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/anuncios");
+
+		return mv;
+	}
+
+	// Mostar imagem
+	@SuppressWarnings("null") // Em caso de erro remover o SuppressWarning
 	@GetMapping("/usuario/mostrarImagem/{imagem}")
 	@ResponseBody
 	public byte[] retornarImagem(@PathVariable("imagem") String imagem) throws IOException {

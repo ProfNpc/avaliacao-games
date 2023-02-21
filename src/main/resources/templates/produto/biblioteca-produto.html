@@ -97,7 +97,8 @@
 										<p class="card-text">
 											Valor: R$<span th:text="${produto.valorProd}"></span>
 										</p>
-										<form th:action="@{/usuario/{cpf}/biblioteca/deletar (cpf=${cpf})}"
+										<form
+											th:action="@{/usuario/{cpf}/biblioteca/{codCadProd}/deletar (cpf=${cpf}, codCadProd=${cad_produtos[iStat.index].codCadProd})}"
 											method="post">
 											<input class="btn btn-primary" type="submit" value="Excluir">
 										</form>

@@ -86,39 +86,19 @@
 			<div class="card-header">Carrinho</div>
 
 			<!-- Produto 1 -->
-			<div class="card mb-3 produto" style="max-width: 440px">
+			<div class="card mb-3 produto" style="max-width: 440px" th:each="cartAnuncio: ${cartAnuncio}">
 				<div class="row g-0">
 					<div class="col-md-4">
 						<img src="/imagens/ALIEN.png" class="img-fluid rounded-start" alt="..." />
 					</div>
 					<div class="col-md-7">
 						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$ 20,00</p>
+							<h5 class="card-title"><span th:text="${cartAnuncio.nomeAnuncio}"></span></h5>
+							<p class="card-text"><span th:text="${cartAnuncio.valorAnuncio}"></p>
 							<p class="card-text">
 								<small class="text-muted">Frete: </small>
 							</p>
-							<input type="number" placeholder="Quantidade" />
-							<button class="btn btn-primary" type="submit">Excluir</button>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Produto 2 -->
-			<div class="card mb-3 produto" style="max-width: 440px">
-				<div class="row g-0">
-					<div class="col-md-4">
-						<img src="/imagens/ALIEN.png" class="img-fluid rounded-start" alt="..." />
-					</div>
-					<div class="col-md-7">
-						<div class="card-body">
-							<h5 class="card-title">Alien Isolation</h5>
-							<p class="card-text">R$ 20,00</p>
-							<p class="card-text">
-								<small class="text-muted">Frete: </small>
-							</p>
-							<input type="number" placeholder="Quantidade" />
+							<input type="number" placeholder="Quantidade" th:value="${cartAnuncio.quantAnuncio}" />
 							<button class="btn btn-primary" type="submit">Excluir</button>
 						</div>
 					</div>

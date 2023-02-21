@@ -70,9 +70,13 @@
 						<button class="btn btn-primary" type="button">Comprar</button>
 
 						<a th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}">Teste carrinho</a>
-						<button class="btn btn-primary" type="submit">
-							Adicionar ao carrinho
-						</button>
+						<form
+							th:action="@{/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho(cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
+							method="post">
+							<button class="btn btn-primary" type="submit">
+								Adicionar ao carrinho
+							</button>
+						</form>
 					</div>
 				</div>
 			</div>

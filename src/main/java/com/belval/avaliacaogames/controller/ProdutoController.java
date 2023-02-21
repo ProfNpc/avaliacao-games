@@ -84,10 +84,10 @@ public class ProdutoController {
 
 		List<Anuncio> anuncios = anuncioService.findAll();
 		Anuncio anuncio = anuncioService.findById(codAnuncio);
-		
+
 		Long newCpf = anuncio.getCpfUsuario();
 		Usuario usuario = usuarioService.findById(newCpf);
-		
+
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("anuncio", anuncio);
 		model.addAttribute("anuncios", anuncios);
@@ -152,6 +152,7 @@ public class ProdutoController {
 		return "produto/cadastro-produto";
 	}
 
+	// Cadastar produto na biblioteca
 	@PostMapping("/usuario/{cpf}/biblioteca/cadastrar")
 	public ModelAndView cadastrarProduto(Cad_Produto cad_produto, Produto produto, @PathVariable("cpf") Long cpf) {
 
@@ -166,17 +167,13 @@ public class ProdutoController {
 	}
 
 	// Deletar produto na biblioteca
-	@PostMapping("/usuario/{cpf}/biblioteca/deletar")
-	public ModelAndView deletarProduto(@PathVariable("cpf") Long cpf, Long cod_cad_prod) {
+	@PostMapping("/usuario/{cpf}/biblioteca/{codCadProd}/deletar")
+	public ModelAndView deletarProduto(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd) {
 
-		Usuario usuario = usuarioService.findById(cpf);
-
-		System.out.println(cod_cad_prod);
-		//Cad_Produto cad = null;
-		//Long cod = cad.getCod_cad_prod();
-		//cad_produtoRepository.deleteById(cod);
+		cad_produtoRepository.deleteById(codCadProd);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
+
 		return mv;
 	}
 
