@@ -28,6 +28,7 @@ public class Anuncio implements Serializable {
 	private Double valorAnuncio;
 	private Integer quantAnuncio;
 	private Boolean statusAnuncio;
+	private String generoAnuncio;
 	private String nomeImagem;
 	/*
 	 * // Atributos de ligação com Cad_Produto
@@ -56,7 +57,7 @@ public class Anuncio implements Serializable {
 	}
 
 	public Anuncio(Long codAnuncio, String nomeAnuncio, String descAnuncio, Double valorAnuncio, Integer quantAnuncio,
-			Boolean statusAnuncio, Usuario usuario, String nomeImagem) {
+			Boolean statusAnuncio, Usuario usuario, String nomeImagem, String generoAnuncio) {
 		this.codAnuncio = codAnuncio;
 		this.nomeAnuncio = nomeAnuncio;
 		this.descAnuncio = descAnuncio;
@@ -65,6 +66,7 @@ public class Anuncio implements Serializable {
 		this.statusAnuncio = statusAnuncio;
 		this.usuario = usuario;
 		this.nomeImagem = nomeImagem;
+		this.generoAnuncio = generoAnuncio;
 	}
 
 	/*
@@ -95,6 +97,15 @@ public class Anuncio implements Serializable {
 
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
+	}
+
+	// Getters and Setters
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
 	}
 
 	// Getters and Setters
@@ -152,6 +163,14 @@ public class Anuncio implements Serializable {
 
 	public void setNomeImagem(String nomeImagem) {
 		this.nomeImagem = nomeImagem;
+	}
+
+	public String getGeneroAnuncio() {
+		return generoAnuncio;
+	}
+
+	public void setGeneroAnuncio(String generoAnuncio) {
+		this.generoAnuncio = generoAnuncio;
 	}
 
 	// Hash Code
