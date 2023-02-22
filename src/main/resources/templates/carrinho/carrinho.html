@@ -84,15 +84,15 @@
 			<div class="card-header">Carrinho</div>
 
 			<!-- Produto 1 -->
-			<div class="card mb-3 produto" style="max-width: 440px" th:each="carrinhos: ${carrinhos}">
+			<div class="card mb-3 produto" style="max-width: 440px" th:each="carrinhos, iStat: ${carrinhos}">
 				<div class="row g-0">
 					<div class="col-md-4">
 						<img src="/imagens/ALIEN.png" class="img-fluid rounded-start" alt="..." />
 					</div>
 					<div class="col-md-7">
 						<div class="card-body">
-							<h5 class="card-title"><span th:text="${anuncios.nomeAnuncio}"></span></h5>
-							<p class="card-text"><span th:text="${anuncios.valorAnuncio}"></p>
+							<h5 class="card-title"><span th:text="${anuncios[iStat.index].nomeAnuncio}"></span></h5>
+							<p class="card-text"><span th:text="${anuncios[iStat.index].valorAnuncio}"></p>
 							<p class="card-text">
 								<small class="text-muted">Frete: </small>
 							</p>
