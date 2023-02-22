@@ -111,7 +111,6 @@
 							<br />
 							<input type="password" name="senha" th:value="${usuario.senha}" placeholder="Senha"
 								disabled />
-							<button type="button">Editar</button>
 						</div>
 
 						<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="get">

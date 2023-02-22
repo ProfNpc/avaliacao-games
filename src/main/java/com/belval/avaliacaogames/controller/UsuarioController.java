@@ -159,11 +159,8 @@ public class UsuarioController {
 	public ModelAndView editConfirm(@PathVariable("cpf") Long cpf, Usuario usuario, Endereco endereco) {
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}");
 
-		System.out.println(cpf);
 		Usuario usuarioOld = service.findById(cpf);
 		Endereco enderecoOld = enderecoService.findByUsuario(usuarioOld);
-
-		System.out.println(enderecoOld.getId_end());
 		
 		// Usuario
 		if (usuario.getNome() == null)
@@ -194,6 +191,8 @@ public class UsuarioController {
 			endereco.setNum_end(enderecoOld.getNum_end());
 		if (endereco.getUsuario() == null)
 			endereco.setUsuario(usuario);
+		if (endereco.getId_end() == null)
+			endereco.setId_end(enderecoOld.getId_end());
 
 		repository.save(usuario);
 		enderecoRepository.save(endereco);
