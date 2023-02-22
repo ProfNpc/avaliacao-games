@@ -78,7 +78,7 @@ public class AnuncioController {
 		anuncio.setStatusAnuncio(true);
 
 		anuncioRepository.save(anuncio);
-
+		
 		try {
 			if (!arquivo.isEmpty()) {
 				byte[] bytes = arquivo.getBytes();

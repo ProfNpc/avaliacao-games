@@ -63,7 +63,7 @@ public class Usuario implements Serializable {
 
 	}
 
-	public Usuario(Long cpf, String nome, String sobrenome, String email, String celular, String senha) {
+	public Usuario(Long cpf, String nome, String sobrenome, String email, String celular, String senha, String genero) {
 
 		this.cpf = cpf;
 		this.nome = nome;
@@ -71,6 +71,7 @@ public class Usuario implements Serializable {
 		this.email = email;
 		this.celular = celular;
 		this.senha = senha;
+		this.genero = genero;
 	}
 
 	/*
