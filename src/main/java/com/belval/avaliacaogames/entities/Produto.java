@@ -18,7 +18,7 @@ public class Produto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long cod_prod;
+	private Long codProd;
 	private String nomeProd;
 	private Integer valorProd;
 	private String descProd;
@@ -26,20 +26,20 @@ public class Produto implements Serializable {
 	// Ligação com a tabela cad_produto
 	@JsonIgnore
 	@OneToMany(mappedBy = "produto")
-	private Set<Cad_Produto> cad_produtos = new HashSet<>();	
-	
+	private Set<Cad_Produto> cad_produtos = new HashSet<>();
+
 	// Constructors
 	public Produto() {
 
 	}
 
-	public Produto(Long cod_prod, String nomeProd, Integer valorProd, String descProd) {
-		this.cod_prod = cod_prod;
+	public Produto(Long codProd, String nomeProd, Integer valorProd, String descProd) {
+		this.codProd = codProd;
 		this.nomeProd = nomeProd;
 		this.valorProd = valorProd;
 		this.descProd = descProd;
 	}
-	
+
 	// Cad_Produto
 	public Set<Cad_Produto> getCad_produtos() {
 		return cad_produtos;
@@ -54,8 +54,8 @@ public class Produto implements Serializable {
 		return nomeProd;
 	}
 
-	public Long getCod_prod() {
-		return cod_prod;
+	public Long getCodProd() {
+		return codProd;
 	}
 
 	public void setNomeProd(String nomeProd) {
@@ -82,7 +82,7 @@ public class Produto implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cod_prod == null) ? 0 : cod_prod.hashCode());
+		result = prime * result + ((codProd == null) ? 0 : codProd.hashCode());
 		return result;
 	}
 
@@ -95,13 +95,12 @@ public class Produto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		if (cod_prod == null) {
-			if (other.cod_prod != null)
+		if (codProd == null) {
+			if (other.codProd != null)
 				return false;
-		} else if (!cod_prod.equals(other.cod_prod))
+		} else if (!codProd.equals(other.codProd))
 			return false;
 		return true;
 	}
 
-	
 }

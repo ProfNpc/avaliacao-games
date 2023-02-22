@@ -156,12 +156,15 @@ public class UsuarioController {
 
 	// Confirma as alterações
 	@PostMapping("/usuario/{cpf}/edit")
-	public ModelAndView editConfirm(Usuario usuario, Endereco endereco) {
+	public ModelAndView editConfirm(@PathVariable("cpf") Long cpf, Usuario usuario, Endereco endereco) {
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}");
 
-		Usuario usuarioOld = service.findById(usuario.getCpf());
+		System.out.println(cpf);
+		Usuario usuarioOld = service.findById(cpf);
 		Endereco enderecoOld = enderecoService.findByUsuario(usuarioOld);
 
+		System.out.println(enderecoOld.getId_end());
+		
 		// Usuario
 		if (usuario.getNome() == null)
 			usuario.setNome(usuarioOld.getNome());

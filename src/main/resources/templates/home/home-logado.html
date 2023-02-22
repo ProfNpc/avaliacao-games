@@ -27,11 +27,21 @@
 						<li class="nav-item"><a href="#contato" class="nav-link">CONTATO</a></li>
 					</ul>
 				</div>
+
+				<!-- Carrinho -->
+				<div class="nav-list">
+					<ul>
+						<li class="car nav-item">
+							<a th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}"><img src="/imagens/CarrinhoCompra.png" alt="" /></a>
+						</li>
+					</ul>
+				</div>
+
 				<div class="login-button">
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
 							aria-expanded="false">
-							<img src="../imagens/foto_perfil.png" alt="">
+							<img src="/imagens/foto_perfil.png" alt="">
 						</button>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" th:href="@{/usuario/{cpf}(cpf=${cpf})}">Perfil</a></li>

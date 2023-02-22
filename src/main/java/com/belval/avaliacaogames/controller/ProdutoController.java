@@ -53,7 +53,6 @@ public class ProdutoController {
 
 		ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
 
-		System.out.println(nomeAnuncio);
 		List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
 
 		mv.addObject("anuncios", anuncios);
@@ -141,6 +140,24 @@ public class ProdutoController {
 
 		mv.addObject("produtos", produtos);
 
+		return mv;
+	}
+
+	// Adicionar produto na biblioteca
+	@PostMapping("/usuario/{cpf}/biblioteca/{codProd}/adicionar")
+	public ModelAndView adicionarProduto(@PathVariable("cpf") Long cpf, @PathVariable("codProd") Long codProd,
+			Cad_Produto cad_produto) {
+		
+		Usuario usuario = usuarioService.findById(cpf);
+		Produto produto = produtoService.findById(codProd);
+		
+		cad_produto.setStatus(true);
+		cad_produto.setUsuario(usuario);
+		cad_produto.setProduto(produto);
+		
+		cad_produtoRepository.save(cad_produto);
+		
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
 		return mv;
 	}
 

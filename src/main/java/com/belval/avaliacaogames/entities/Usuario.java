@@ -27,20 +27,26 @@ public class Usuario implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Cad_Produto> cad_produto = new ArrayList<>();
-	
+
 	// Ligação com tabela endereco
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Endereco> enderecos = new ArrayList<>();
-	
+
 	// Ligação com tabela anuncio
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Anuncio> anuncios = new ArrayList<>();
-	
-	//@ManyToMany
-	//@JoinTable(name = "usuario_endereco", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "id_end"))
-	//private Set<Endereco> enderecos = new HashSet<>();
+
+	// Ligação com tabela comentario
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario")
+	private List<Comentario> comentarios = new ArrayList<>();
+
+	// @ManyToMany
+	// @JoinTable(name = "usuario_endereco", joinColumns = @JoinColumn(name =
+	// "usuario_id"), inverseJoinColumns = @JoinColumn(name = "id_end"))
+	// private Set<Endereco> enderecos = new HashSet<>();
 
 	// Constructors
 	public Usuario() {
@@ -48,7 +54,7 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(Long cpf, String nome, String sobrenome, String email, String celular, String senha) {
-	
+
 		this.cpf = cpf;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
@@ -57,16 +63,16 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-	/*public Set<Endereco> getEnderecos() {
-		return enderecos;
-	}*/
+	/*
+	 * public Set<Endereco> getEnderecos() { return enderecos; }
+	 */
 
-	/*public void setEnderecos(Set<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}*/
+	/*
+	 * public void setEnderecos(Set<Endereco> enderecos) { this.enderecos =
+	 * enderecos; }
+	 */
 
 	// Getter and Setters
-
 
 	public Long getCpf() {
 		return cpf;

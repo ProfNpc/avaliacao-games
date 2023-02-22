@@ -76,7 +76,6 @@ public class AnuncioController {
 		Usuario usuario = usuarioService.findById(cpf);
 		anuncio.setUsuario(usuario);
 		anuncio.setStatusAnuncio(true);
-		anuncio.setTipoAnuncio("Venda");
 
 		anuncioRepository.save(anuncio);
 

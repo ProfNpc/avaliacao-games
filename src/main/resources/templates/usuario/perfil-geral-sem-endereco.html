@@ -12,40 +12,68 @@
 
 <body>
 	<header>
-		<nav class="nav-bar">
-			<div class="logo">
-				<a th:href="@{/home/{cpf}(cpf=${cpf})}"><img src="/imagens/Controle.png" alt="" /></a>
-			</div>
-			<div class="nav-list">
-				<ul>
-					<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
-					<li class="nav-item">
-						<a href="#" class="nav-link">COMUNIDADE</a>
-					</li>
-					<li class="nav-item"><a href="#" class="nav-link"> OFERTAS</a></li>
-				</ul>
-			</div>
-			<div class="login-button">
-				<button><a href="#">Entrar</a></button>
-			</div>
-
-			<div class="mobile-menu-icon">
-				<button onclick="menuShow()">
-					<img class="icon" src="/imagens/menu_white.svg" alt="" />
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a class="logo navbar-brand" th:href="@{/home/{cpf} (cpf=${cpf})}"><img src="/imagens/Controle.png"
+						alt="" /></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
 				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="colorFont nav-link" aria-current="page" href="#">Comunidade</a>
+						</li>
+						<li class="nav-item">
+							<a class="colorFont nav-link" href="#">Contato</a>
+						</li>
+						<li class="nav-item">
+							<a class="car nav-link" th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}"><img
+									src="/imagens/CarrinhoCompra.png" alt="" /></a>
+						</li>
+
+						<!-- Botão de login -->
+						<li class="nav-item">
+							<div class="login-button">
+								<div class="dropdown">
+									<button class="btn btn-secondary dropdown-toggle" type="button"
+										data-bs-toggle="dropdown" aria-expanded="false">
+										<img src="/imagens/foto_perfil.png" alt="" />
+									</button>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" th:href="@{/usuario/{cpf}(cpf=${cpf})}">Perfil</a>
+										</li>
+										<li>
+											<a class="dropdown-item"
+												th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}">Sua biblioteca</a>
+										</li>
+										<li>
+											<a class="dropdown-item"
+												th:href="@{/usuario/{cpf}/anunciar(cpf=${cpf})}">Anunciar</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+
+					<!-- Barra de pesquisa -->
+					<form th:action="@{/usuario/{cpf}/pesquisar(cpf=${cpf})}" method="post" class="d-flex"
+						role="search">
+						<input class="form-control me-2" type="search" name="nomeAnuncio"
+							placeholder="Buscar produtos..." aria-label="Search" />
+
+						<!-- Botão de pesquisa -->
+						<button class="btn btn-outline-success" type="submit">
+							Pesquisar
+						</button>
+					</form>
+				</div>
 			</div>
 		</nav>
-		<div class="mobile-menu">
-			<ul>
-				<li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">COMUNIDADE</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">OFERTAS</a></li>
-			</ul>
-
-			<div class="login-button">
-				<button><a href="#">Entrar</a></button>
-			</div>
-		</div>
 	</header>
 	<main>
 		<div class="container">

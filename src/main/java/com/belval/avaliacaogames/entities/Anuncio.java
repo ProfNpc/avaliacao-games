@@ -1,6 +1,8 @@
 package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Anuncio implements Serializable {
@@ -22,46 +26,50 @@ public class Anuncio implements Serializable {
 	private String descAnuncio;
 	private Double valorAnuncio;
 	private Integer quantAnuncio;
-	private String tipoAnuncio;
 	private Boolean statusAnuncio;
 	private String nomeImagem;
-/*
-	// Atributos de ligação com Cad_Produto
-	@JsonIgnore
-	@OneToOne
-	@JoinColumn(name = "cod_cad_produto")
-	private Cad_Produto cad_produto;
-*/
+	/*
+	 * // Atributos de ligação com Cad_Produto
+	 * 
+	 * @JsonIgnore
+	 * 
+	 * @OneToOne
+	 * 
+	 * @JoinColumn(name = "cod_cad_produto") private Cad_Produto cad_produto;
+	 */
 	@ManyToOne
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;
+
+	// Ligação com tabela comentario
+	@JsonIgnore
+	@OneToMany(mappedBy = "anuncio")
+	private List<Comentario> comentarios = new ArrayList<>();
 
 	// Constructors
 	public Anuncio() {
 	}
 
 	public Anuncio(Long codAnuncio, String nomeAnuncio, String descAnuncio, Double valorAnuncio, Integer quantAnuncio,
-			String tipoAnuncio, Boolean statusAnuncio, Usuario usuario, String nomeImagem) {
+			Boolean statusAnuncio, Usuario usuario, String nomeImagem) {
 		this.codAnuncio = codAnuncio;
 		this.nomeAnuncio = nomeAnuncio;
 		this.descAnuncio = descAnuncio;
 		this.valorAnuncio = valorAnuncio;
 		this.quantAnuncio = quantAnuncio;
-		this.tipoAnuncio = tipoAnuncio;
 		this.statusAnuncio = statusAnuncio;
 		this.usuario = usuario;
 		this.nomeImagem = nomeImagem;
 	}
-/*
-	// Getters and Setters Cad_Produto
-	public Cad_Produto getCad_produto() {
-		return cad_produto;
-	}
 
-	public void setCad_produto(Cad_Produto cad_produto) {
-		this.cad_produto = cad_produto;
-	}
-*/
+	/*
+	 * // Getters and Setters Cad_Produto public Cad_Produto getCad_produto() {
+	 * return cad_produto; }
+	 * 
+	 * public void setCad_produto(Cad_Produto cad_produto) { this.cad_produto =
+	 * cad_produto; }
+	 */
+
 	// Getters and Setters Usuario
 	public Usuario getUsuario() {
 		return usuario;
@@ -73,6 +81,15 @@ public class Anuncio implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	// Getters and Setters comentario
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
 	}
 
 	// Getters and Setters
@@ -114,14 +131,6 @@ public class Anuncio implements Serializable {
 
 	public void setQuantAnuncio(Integer quantAnuncio) {
 		this.quantAnuncio = quantAnuncio;
-	}
-
-	public String getTipoAnuncio() {
-		return tipoAnuncio;
-	}
-
-	public void setTipoAnuncio(String tipoAnuncio) {
-		this.tipoAnuncio = tipoAnuncio;
 	}
 
 	public Boolean getStatusAnuncio() {

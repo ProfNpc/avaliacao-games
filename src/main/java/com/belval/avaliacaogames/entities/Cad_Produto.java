@@ -29,10 +29,12 @@ public class Cad_Produto implements Serializable {
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;
 
-	/* Ligação com a tabela Anucio
-	@OneToOne(mappedBy = "cad_produto")
-	private Anuncio anuncio;*/
-	
+	/*
+	 * Ligação com a tabela Anucio
+	 * 
+	 * @OneToOne(mappedBy = "cad_produto") private Anuncio anuncio;
+	 */
+
 	// Constructor
 	public Cad_Produto() {
 	}
@@ -48,7 +50,7 @@ public class Cad_Produto implements Serializable {
 
 	// Produto
 	public Long getProdutoID() {
-		return produto.getCod_prod();
+		return produto.getCodProd();
 	}
 
 	public Produto getProduto() {
@@ -68,14 +70,11 @@ public class Cad_Produto implements Serializable {
 		this.usuario = usuario;
 	}
 
-	/* Anucio
-	public Anuncio getAnuncio() {
-		return anuncio;
-	}
-
-	public void setAnuncio(Anuncio anuncio) {
-		this.anuncio = anuncio;
-	}*/
+	/*
+	 * Anucio public Anuncio getAnuncio() { return anuncio; }
+	 * 
+	 * public void setAnuncio(Anuncio anuncio) { this.anuncio = anuncio; }
+	 */
 
 	// Getters and Setters
 	public Long getCodCadProd() {
