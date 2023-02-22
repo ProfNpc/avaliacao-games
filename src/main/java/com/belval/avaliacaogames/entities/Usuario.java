@@ -48,6 +48,10 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario")
 	public List<Carrinho> carrinhos = new ArrayList<>();
 	
+	// Ligação com tabela Troca
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario")
+	private List<Troca> trocas = new ArrayList<>();
 	
 	// @ManyToMany
 	// @JoinTable(name = "usuario_endereco", joinColumns = @JoinColumn(name =

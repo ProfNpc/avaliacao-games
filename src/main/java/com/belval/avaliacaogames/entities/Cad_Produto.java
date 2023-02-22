@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cad_Produto implements Serializable {
@@ -29,6 +30,9 @@ public class Cad_Produto implements Serializable {
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;
 
+	@OneToOne(mappedBy = "cad_produto")
+	private Troca troca;
+	
 	/*
 	 * Ligação com a tabela Anucio
 	 * 
