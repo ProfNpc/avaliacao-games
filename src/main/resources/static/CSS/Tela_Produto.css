@@ -42,3 +42,19 @@ header {
   font-size: 1.8em;
   color: white;
 }
+
+/* Inuput quantidade */
+.input input[type="number"] {
+  max-width: 10em;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Botão carrinho e compra  */
+.botao {
+  margin-top: 1em;
+}

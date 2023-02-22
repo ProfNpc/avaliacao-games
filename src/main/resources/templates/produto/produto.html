@@ -82,26 +82,36 @@
 			<div class="card" style="width: 42.3rem">
 				<img src="/imagens/BannerDoom.png" class="card-img-top" alt="..." />
 				<div class="card-body">
-					<h5 class="card-title text-center"><span th:text="${anuncio.nomeAnuncio}"></span></h5>
-					<p class="card-text text-center">R$ <span th:text="${anuncio.valorAnuncio}"></span></p>
-					<div class="d-grid gap-2 col-6 mx-auto">
+					<h5 class="card-title text-center">
+						<span th:text="${anuncio.nomeAnuncio}"></span>
+					</h5>
+					<p class="card-text text-center">
+						R$ <span th:text="${anuncio.valorAnuncio}"></span>
+					</p>
+					<form
+						th:action="@{/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho(cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
+						method="post">
 
-						<button class="btn btn-primary" type="button">Comprar</button>
+						<div class="input"><input type="numer" placeholder="Quantidade" /></div>
 
-						<form
-							th:action="@{/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho(cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
-							method="post">
-							<button class="btn btn-primary" type="submit">
+						<div class="d-grid gap-2 col-6 mx-auto">
+							<button class=" botao btn btn-primary" type="button">Comprar</button>
+						</div>
+
+						<div class="d-grid gap-2 col-6 mx-auto">
+							<button class="botao btn btn-primary" type="submit">
 								Adicionar ao carrinho
 							</button>
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
 			</div>
 
 			<div class="card" style="width: 22.5rem">
 				<div class="card-body">
-					<h5 class="card-title text-center"><span th:text="${usuario.nome}"></span></h5>
+					<h5 class="card-title text-center">
+						<span th:text="${usuario.nome}"></span>
+					</h5>
 					<p class="card-text text-center">Produtos vendidos</p>
 					<h5 class="card-title text-center">Avaliação do Produto</h5>
 					<br />
@@ -128,8 +138,12 @@
 			<div class="card">
 				<div class="card-header">Descrição</div>
 				<div class="card-body">
-					<h5 class="card-title"><span th:text="${anuncio.nomeAnuncio}"></span></h5>
-					<p class="card-text"><span th:text="${anuncio.descAnuncio}"></span></p>
+					<h5 class="card-title">
+						<span th:text="${anuncio.nomeAnuncio}"></span>
+					</h5>
+					<p class="card-text">
+						<span th:text="${anuncio.descAnuncio}"></span>
+					</p>
 					<a href="#" class="btn btn-primary">Mais sobre</a>
 				</div>
 			</div>
@@ -140,12 +154,15 @@
 			<div class="row row-cols-1 row-cols-md-5 g-4">
 				<div class="col" th:each="anuncios: ${anuncios}">
 					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncios.codAnuncio})}">
-
 						<div class="card h-100">
 							<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
 							<div class="card-body">
-								<h5 class="card-title"><span th:text="${anuncios.nomeAnuncio}"></span></h5>
-								<p class="card-text"><span th:text="${anuncios.valorAnuncio}"></span></p>
+								<h5 class="card-title">
+									<span th:text="${anuncios.nomeAnuncio}"></span>
+								</h5>
+								<p class="card-text">
+									<span th:text="${anuncios.valorAnuncio}"></span>
+								</p>
 							</div>
 						</div>
 					</a>
@@ -159,12 +176,15 @@
 			<div class="row row-cols-1 row-cols-md-5 g-4">
 				<div class="col" th:each="anuncios: ${anuncios}">
 					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncios.codAnuncio})}">
-
 						<div class="card h-100">
 							<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
 							<div class="card-body">
-								<h5 class="card-title"><span th:text="${anuncios.nomeAnuncio}"></span></h5>
-								<p class="card-text"><span th:text="${anuncios.valorAnuncio}"></span></p>
+								<h5 class="card-title">
+									<span th:text="${anuncios.nomeAnuncio}"></span>
+								</h5>
+								<p class="card-text">
+									<span th:text="${anuncios.valorAnuncio}"></span>
+								</p>
 							</div>
 						</div>
 					</a>
