@@ -13,10 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.Comentario;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
+import com.belval.avaliacaogames.repositories.ComentarioRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.Cad_ProdutoService;
@@ -46,6 +48,9 @@ public class ProdutoController {
 
 	@Autowired
 	private AnuncioRepository anuncioRepository;
+
+	@Autowired
+	private ComentarioRepository comentarioRepository;
 
 	// Pesquisar produto na tela inicial
 	@PostMapping("/usuario/{cpf}/pesquisar")
@@ -84,9 +89,18 @@ public class ProdutoController {
 		List<Anuncio> anuncios = anuncioService.findAll();
 		Anuncio anuncio = anuncioService.findById(codAnuncio);
 
-		Long newCpf = anuncio.getCpfUsuario();
-		Usuario usuario = usuarioService.findById(newCpf);
+		// Long newCpf = anuncio.getCpfUsuario();
+		Usuario usuario = usuarioService.findById(anuncio.getCpfUsuario());
 
+		List<Comentario> comentarios = comentarioRepository.findByAnuncio(anuncio);
+		List<String> nomeComentarios = new ArrayList<>();
+
+		for (Comentario cm : comentarios) {
+			nomeComentarios.add(cm.getNomeUsuario());
+		}
+
+		model.addAttribute("nomeComentarios", nomeComentarios);
+		model.addAttribute("comentarios", comentarios);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("anuncio", anuncio);
 		model.addAttribute("anuncios", anuncios);
@@ -147,16 +161,16 @@ public class ProdutoController {
 	@PostMapping("/usuario/{cpf}/biblioteca/{codProd}/adicionar")
 	public ModelAndView adicionarProduto(@PathVariable("cpf") Long cpf, @PathVariable("codProd") Long codProd,
 			Cad_Produto cad_produto) {
-		
+
 		Usuario usuario = usuarioService.findById(cpf);
 		Produto produto = produtoService.findById(codProd);
-		
+
 		cad_produto.setStatus(true);
 		cad_produto.setUsuario(usuario);
 		cad_produto.setProduto(produto);
-		
+
 		cad_produtoRepository.save(cad_produto);
-		
+
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
 		return mv;
 	}

@@ -115,21 +115,12 @@
 					<p class="card-text text-center">Produtos vendidos</p>
 					<h5 class="card-title text-center">Avaliação do Produto</h5>
 					<br />
-					<div class="usuario">
-						<h6 class="card-title">Usuario1</h6>
-						<p class="card-text">Comentario</p>
+					<div class="usuario" th:each="comentarios, iStat: ${comentarios}">
+						<h6 class="card-title"><span th:text="${nomeComentarios[iStat.index]}"></span></h6>
+						<p class="card-text"><span th:text="${comentarios.comenComentario}"></span></p>
 						<br />
 					</div>
-					<div class="usuario">
-						<h6 class="card-title">Usuario1</h6>
-						<p class="card-text">Comentario</p>
-						<br />
-					</div>
-					<div class="usuario">
-						<h6 class="card-title">Usuario1</h6>
-						<p class="card-text">Comentario</p>
-						<br />
-					</div>
+
 				</div>
 			</div>
 		</section>

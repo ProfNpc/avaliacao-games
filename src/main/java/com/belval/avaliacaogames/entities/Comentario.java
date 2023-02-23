@@ -16,8 +16,8 @@ public class Comentario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codComentario;
-	private String comentario;
-	private Double avaliacao;
+	private String comenComentario;
+	private Double avalComentario;
 
 	// Ligação com tabela usuario
 	@ManyToOne
@@ -25,19 +25,21 @@ public class Comentario implements Serializable {
 	private Usuario usuario;
 
 	@ManyToOne
-	@JoinColumn(name = "anuncio")
+	@JoinColumn(name = "codAnuncio")
 	private Anuncio anuncio;
 
 	public Comentario() {
 		super();
 	}
 
-	public Comentario(Long codComentario, String comentario, Double avaliacao, Usuario usuario) {
+	public Comentario(Long codComentario, String comenComentario, Double avalComentario, Usuario usuario,
+			Anuncio anuncio) {
 		super();
 		this.codComentario = codComentario;
-		this.comentario = comentario;
-		this.avaliacao = avaliacao;
+		this.comenComentario = comenComentario;
+		this.avalComentario = avalComentario;
 		this.usuario = usuario;
+		this.anuncio = anuncio;
 	}
 
 	// Getters and Setters usuario
@@ -47,6 +49,10 @@ public class Comentario implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	public String getNomeUsuario() {
+		return usuario.getNome();
 	}
 
 	// Getters and Setters anuncio
@@ -67,20 +73,20 @@ public class Comentario implements Serializable {
 		this.codComentario = codComentario;
 	}
 
-	public String getComentario() {
-		return comentario;
+	public String getComenComentario() {
+		return comenComentario;
 	}
 
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
+	public void setComenComentario(String comenComentario) {
+		this.comenComentario = comenComentario;
 	}
 
-	public Double getAvaliacao() {
-		return avaliacao;
+	public Double getAvalComentario() {
+		return avalComentario;
 	}
 
-	public void setAvaliacao(Double avaliacao) {
-		this.avaliacao = avaliacao;
+	public void setAvalComentario(Double avalComentario) {
+		this.avalComentario = avalComentario;
 	}
 
 	@Override

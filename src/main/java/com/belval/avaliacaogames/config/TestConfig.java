@@ -8,11 +8,13 @@ import org.springframework.context.annotation.Configuration;
 
 import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.Comentario;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
+import com.belval.avaliacaogames.repositories.ComentarioRepository;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
@@ -35,13 +37,20 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private AnuncioRepository anuncioRepository;
 
+	@Autowired
+	private ComentarioRepository comentarioRepository;
+
 	@Override
 	public void run(String... args) throws Exception {
 
-		Usuario u1 = new Usuario(89854665412L, "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456", "Masculino");
-		Usuario u2 = new Usuario(47898763225L, "Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456", "Masculino");
-		Usuario u3 = new Usuario(12365478932L, "Luiz", "Camargo", "luiz@gmail.com", "11978894456", "123456", "Masculino");
-		Usuario u4 = new Usuario(78965432112L, "Arthur", "Felipe", "arthur@gmail.com", "1194563214", "123456", "Masculino");
+		Usuario u1 = new Usuario(89854665412L, "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456",
+				"Masculino");
+		Usuario u2 = new Usuario(47898763225L, "Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456",
+				"Masculino");
+		Usuario u3 = new Usuario(12365478932L, "Luiz", "Camargo", "luiz@gmail.com", "11978894456", "123456",
+				"Masculino");
+		Usuario u4 = new Usuario(78965432112L, "Arthur", "Felipe", "arthur@gmail.com", "1194563214", "123456",
+				"Masculino");
 
 		Endereco e1 = new Endereco(1L, "06634080", 222, "Avenida Comandante", "Km 18", "Osasco", "São Paulo", "Brasil",
 				u2);
@@ -105,6 +114,19 @@ public class TestConfig implements CommandLineRunner {
 				"8Assalariado.png", "Ação");
 
 		anuncioRepository.saveAll(Arrays.asList(an1, an2, an3, an4, an5, an6, an7, an8));
+
+		Comentario cm1 = new Comentario(1L, "Muito bom esse jogo!", 4.0, u1, an1);
+		Comentario cm2 = new Comentario(2L, "Da para o gasto!", 3.0, u2, an2);
+		Comentario cm3 = new Comentario(3L, "Muito bom!", 5.0, u1, an3);
+		Comentario cm4 = new Comentario(4L, "Não gostei!", 2.0, u4, an4);
+		Comentario cm5 = new Comentario(5L, "Tinha mais expectativas!", 3.5, u3, an5);
+		Comentario cm6 = new Comentario(6L, "Péssimo!", 2.0, u4, an6);
+		Comentario cm7 = new Comentario(7L, "Muito bom, amei!", 5.0, u2, an7);
+		Comentario cm8 = new Comentario(8L, "Horrivel!", 1.0, u4, an2);
+		Comentario cm9 = new Comentario(9L, "Mais ou menos!", 2.5, u3, an3);
+		Comentario cm10 = new Comentario(10L, "Muito top!", 4.0, u2, an3);
+
+		comentarioRepository.saveAll(Arrays.asList(cm1, cm2, cm3, cm4, cm5, cm6, cm7, cm8, cm9, cm10));
 	}
 
 }
