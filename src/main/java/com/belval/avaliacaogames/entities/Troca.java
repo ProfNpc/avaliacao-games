@@ -1,11 +1,15 @@
 package com.belval.avaliacaogames.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,7 +22,6 @@ public class Troca {
 	private Long codTroca;
 	private String nomeTroca;
 	private String descTroca;
-	private Double valorTroca;
 	private Boolean statusTroca;
 	private String nomeImagem;
 
@@ -33,18 +36,21 @@ public class Troca {
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;
 
+	// Ligação com tabela item_troca
+	@JsonIgnore
+	@OneToMany(mappedBy = "troca")
+	private List<Item_Troca> itens_troca = new ArrayList<>();
+
 	// Constructors
 	public Troca() {
 		super();
 	}
 
-	public Troca(Long codTroca, String nomeTroca, String descTroca, Double valorTroca, Boolean statusTroca,
-			String nomeImagem) {
+	public Troca(Long codTroca, String nomeTroca, String descTroca, Boolean statusTroca, String nomeImagem) {
 		super();
 		this.codTroca = codTroca;
 		this.nomeTroca = nomeTroca;
 		this.descTroca = descTroca;
-		this.valorTroca = valorTroca;
 		this.statusTroca = statusTroca;
 		this.nomeImagem = nomeImagem;
 	}
@@ -81,14 +87,6 @@ public class Troca {
 
 	public void setDescTroca(String descTroca) {
 		this.descTroca = descTroca;
-	}
-
-	public Double getValorTroca() {
-		return valorTroca;
-	}
-
-	public void setValorTroca(Double valorTroca) {
-		this.valorTroca = valorTroca;
 	}
 
 	public Boolean getStatusTroca() {
