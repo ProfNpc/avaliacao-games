@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.belval.avaliacaogames.entities.Cad_Produto;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.repositories.TrocaRepository;
 
@@ -23,6 +24,16 @@ public class TrocaService {
 		Optional<Troca> obj = repository.findById(id);
 		return obj.get();
 	}
+	
+	public Troca findByCadProduto(Cad_Produto cadProduto) {
+		Optional<Troca> obj = repository.findByCadProduto(cadProduto);
+		if (obj.isPresent()) {
+			return obj.get();
+		} else {
+			return null;
+		}
+	}
+	
 	/*
 	 * public List<Troca> findByUsuario(Usuario usuario) { return
 	 * repository.findByUsuario(usuario); }

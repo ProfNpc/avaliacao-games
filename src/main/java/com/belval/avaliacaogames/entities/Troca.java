@@ -29,7 +29,7 @@ public class Troca {
 	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "cod_cad_produto")
-	private Cad_Produto cad_produto;
+	private Cad_Produto cadProduto;
 
 	// Ligação com tabela usuario
 	@ManyToOne
@@ -54,17 +54,17 @@ public class Troca {
 		this.descTroca = descTroca;
 		this.statusTroca = statusTroca;
 		this.usuario = usuario;
-		this.cad_produto = cad_produto;
+		this.cadProduto = cad_produto;
 		this.nomeImagem = nomeImagem;
 	}
 
 	// Getters and Setters cad_produto
 	public Cad_Produto getCad_produto() {
-		return cad_produto;
+		return cadProduto;
 	}
 
 	public void setCad_produto(Cad_Produto cad_produto) {
-		this.cad_produto = cad_produto;
+		this.cadProduto = cad_produto;
 	}
 
 	// Getters and Setters usuario

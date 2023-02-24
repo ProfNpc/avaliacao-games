@@ -80,7 +80,7 @@
 	<main>
 		<section>
 			<!-- Inicio do form -->
-			<form th:action="@{/usuario/{cpf}/anunciar (cpf=${cpf})}" enctype="multipart/form-data" method="post">
+			<form th:action="@{/usuario/{cpf}/trocar/{codCadProd}/cadastrar (cpf=${cpf}, codCadProd=${codCadProd})}" enctype="multipart/form-data" method="post">
 				<div class="card container anuncio" style="width: 55rem">
 					<!-- Titulo -->
 					<h5 class="card-title titulo">Trocar</h5>
@@ -101,10 +101,7 @@
 						<li class="list-group-item inputs">
 							<!-- nome -->
 							<label for="">Nome do anuncio:</label>
-							<input type="text" name="nomeAnuncio" placeholder="Nome" required />
-							<!-- valor -->
-							<label for="">Valor:</label>
-							<input type="search" name="valorAnuncio" placeholder="R$" required />
+							<input type="text" name="nomeTroca" placeholder="Nome" required />
 						</li>
 
 
@@ -123,7 +120,7 @@
 						<li class="list-group-item">
 							<label for="">Descrição do anuncio:</label>
 							<div class="input-group">
-								<textarea class="form-control" aria-label="With textarea" name="descAnuncio"
+								<textarea class="form-control" aria-label="With textarea" name="descTroca"
 									placeholder="Descrição" required></textarea>
 							</div>
 						</li>
@@ -133,21 +130,20 @@
 							<div class="card" style="width: 10rem;">
 								<img src="/imagens/ALIEN.png" class="card-img-top" alt="...">
 								<div class="card-body">
-									<p class="card-text">Alien Isolation</p>
+									<p th:text="${cad_produto.produto.nomeProd}"class="card-text">Alien Isolation</p>
 								</div>
 							</div>
 
 						</li>
 						<li class="list-group-item">
-							<label for="">Produto:</label>
+							<label for="">Produto(s):</label>
 
 							<div class="row row-cols-1 row-cols-md-4 g-4">
-								<div class="col">
+								<div th:each="item: ${itens}" class="col">
 									<div class="card h-100" style="width: 10rem;">
 										<img src="/imagens/ALIEN.png" class="card-img-top" alt="...">
 										<div class="card-body">
-											<h5 class="card-title">Alien Isolation</h5>
-											<p class="card-text">Alien Isolation</p>
+											<h5 th:text="${item.produto.nomeProd}" class="card-title">Alien Isolation</h5>
 										</div>
 									</div>
 								</div>

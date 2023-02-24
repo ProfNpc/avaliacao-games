@@ -22,6 +22,7 @@ import com.belval.avaliacaogames.repositories.Item_TrocaRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.repositories.TrocaRepository;
 import com.belval.avaliacaogames.services.Cad_ProdutoService;
+import com.belval.avaliacaogames.services.Item_TrocaService;
 import com.belval.avaliacaogames.services.ProdutoService;
 import com.belval.avaliacaogames.services.TrocaService;
 import com.belval.avaliacaogames.services.UsuarioService;
@@ -40,6 +41,9 @@ public class TrocaController {
 
 	@Autowired
 	private ProdutoService produtoService;
+	
+	@Autowired
+	private Item_TrocaService item_TrocaService;
 
 	@Autowired
 	private Cad_ProdutoRepository cad_ProdutoRepository;
@@ -79,16 +83,18 @@ public class TrocaController {
 	@GetMapping("/usuario/{cpf}/trocar/{codCadProd}/pesquisar")
 	public String pesquisarTroca(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd,
 			Troca troca) {
-
+		
 		Usuario usuario = usuarioService.findById(cpf);
 		Cad_Produto cad_produto = cad_ProdutoService.findById(codCadProd);
-
-		troca.setUsuario(usuario);
-		troca.setCad_produto(cad_produto);
-		trocaRepository.save(troca);
 		
-		trocas = troca;
-
+		if (trocaService.findByCadProduto(cad_produto) == null) {
+			troca.setUsuario(usuario);
+			troca.setCad_produto(cad_produto);
+			trocaRepository.save(troca);
+			
+			trocas = troca;
+		}
+		
 		return "troca/troca-pesquisado";
 	}
 
@@ -112,13 +118,19 @@ public class TrocaController {
 			@PathVariable("codCadProd") Long codCadProd, Item_Troca item_troca) {
 
 		Produto produto = produtoService.findById(codProd);
+		Cad_Produto cadProduto = cad_ProdutoService.findById(codCadProd);
+		Troca troca = trocaService.findByCadProduto(cadProduto);
+		
+		if (item_TrocaService.findByProdutoAndTroca(produto, troca) == null) {
+			item_troca.setTroca(troca);
+			item_troca.setProduto(produto);
+			
+			item_TrocaRepository.save(item_troca);
+		}
 
-		item_troca.setProduto(produto);
-		item_troca.setTroca(trocas);
-
-		itens_troca.add(item_troca);
-
-		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/trocar/{codCadProd}/pesquisar");
+		List<Item_Troca> itens = item_TrocaService.findByTroca(troca);
+		ModelAndView mv = new ModelAndView("troca/troca-pesquisado");
+		mv.addObject("itens", itens);
 
 		return mv;
 	}
@@ -127,8 +139,33 @@ public class TrocaController {
 	@GetMapping("/usuario/{cpf}/trocar/{codCadProd}/cadastrar")
 	public String cadastrarTroca(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd,
 			Model model) {
-		model.addAttribute(cpf);
-
+		
+		Cad_Produto cad_produto = cad_ProdutoService.findById(codCadProd);
+		Troca troca = trocaService.findByCadProduto(cad_produto);
+		List<Item_Troca> itens = item_TrocaService.findByTroca(troca);
+		
+		model.addAttribute("cad_produto", cad_produto);
+		model.addAttribute("itens", itens);
+		
 		return "troca/anuncio-troca";
+	}
+	
+	@PostMapping("/usuario/{cpf}/trocar/{codCadProd}/cadastrar")
+	public ModelAndView cadastroTroca(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd,
+			Troca troca, Model model) {
+		
+		System.out.println("Cadastro");
+		
+		Cad_Produto cad_produto = cad_ProdutoService.findById(codCadProd);
+		
+		Troca novaTroca = trocaService.findByCadProduto(cad_produto);
+		novaTroca.setNomeTroca(troca.getNomeTroca());
+		novaTroca.setDescTroca(troca.getDescTroca());
+		// novaTroca.setNomeImagem(troca.getNomeImagem());
+		
+		trocaRepository.save(novaTroca);
+		
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/trocas");
+		return mv;
 	}
 }

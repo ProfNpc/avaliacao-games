@@ -30,7 +30,7 @@ public class Cad_Produto implements Serializable {
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;
 
-	@OneToOne(mappedBy = "cad_produto")
+	@OneToOne(mappedBy = "cadProduto")
 	private Troca troca;
 	
 	/*
