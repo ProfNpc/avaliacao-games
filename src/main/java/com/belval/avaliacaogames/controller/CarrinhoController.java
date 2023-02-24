@@ -42,7 +42,7 @@ public class CarrinhoController {
 
 	// Tela com todos os produtos no carrinho
 	@GetMapping("/usuario/{cpf}/carrinho")
-	public ModelAndView carrinho(@PathVariable("cpf") Long cpf, Model model) {
+	public ModelAndView carrinho(@PathVariable("cpf") Long cpf, Model model, Integer quantCarrinho) {
 		Usuario usuario = usuarioService.findById(cpf);
 
 		List<Carrinho> carrinhos = carrinhoRepository.findByUsuario(usuario);
@@ -54,6 +54,8 @@ public class CarrinhoController {
 
 			anuncios.add(anuncio);
 		}
+
+		System.out.println(quantCarrinho);
 
 		// model.addAttribute(cartAnuncio);
 
@@ -91,6 +93,20 @@ public class CarrinhoController {
 		Carrinho carrinho = carrinhoService.findById(codCarrinho);
 
 		carrinhoRepository.delete(carrinho);
+
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/carrinho");
+		return mv;
+	}
+
+	// Altera a quantidade do produto pelo carrinho
+	@PostMapping("/usuario/{cpf}/carrinho/{codCarrinho}/quantidade")
+	public ModelAndView alteraQuantidade(@PathVariable("cpf") Long cpf, @PathVariable("codCarrinho") Long codCarrinho,
+			Integer quantCarrinho) {
+
+		Carrinho carrinho = carrinhoService.findById(codCarrinho);
+
+		carrinho.setQuantCarrinho(quantCarrinho);
+		carrinhoRepository.save(carrinho);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/carrinho");
 		return mv;
