@@ -95,7 +95,6 @@ public class TestConfig implements CommandLineRunner {
 		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
 
-		/*
 		Cad_Produto cp1 = new Cad_Produto(1L, p2, 5L, u1, true);
 		Cad_Produto cp2 = new Cad_Produto(2L, p1, 2L, u1, true);
 		Cad_Produto cp3 = new Cad_Produto(3L, p3, 6L, u2, true);
@@ -106,7 +105,6 @@ public class TestConfig implements CommandLineRunner {
 		Cad_Produto cp8 = new Cad_Produto(8L, p8, 2L, u2, true);
 
 		cad_produtoRepository.saveAll(Arrays.asList(cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8));
-		*/
 
 		Anuncio an1 = new Anuncio(1L, "Outlast", "Jogo novo, quase sem utilização", 72.50, 5, true, u2,
 				"1Assalariado.png", "Terror");
@@ -140,7 +138,6 @@ public class TestConfig implements CommandLineRunner {
 
 		comentarioRepository.saveAll(Arrays.asList(cm1, cm2, cm3, cm4, cm5, cm6, cm7, cm8, cm9, cm10));
 
-		/*
 		Troca t1 = new Troca(1L, "GTA V sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u1,
 				cp1, null);
 		Troca t2 = new Troca(4L, "GTA V sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u2,
@@ -170,7 +167,6 @@ public class TestConfig implements CommandLineRunner {
 		Item_Troca it11 = new Item_Troca(11L, t5, p10);
 
 		item_TrocaRepository.saveAll(Arrays.asList(it1, it2, it3, it4, it5, it6, it7, it8, it9, it10, it11));
-		*/
 	}
 
 }
