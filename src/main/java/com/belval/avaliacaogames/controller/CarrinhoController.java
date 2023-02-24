@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Carrinho;
 import com.belval.avaliacaogames.entities.Usuario;
+import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.CarrinhoRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.CarrinhoService;
@@ -34,21 +35,25 @@ public class CarrinhoController {
 	@Autowired
 	private CarrinhoRepository carrinhoRepository;
 
+	@Autowired
+	private AnuncioRepository anuncioRepository;
+
 	// public static List<Anuncio> cartAnuncio = new ArrayList<>();
 
+	// Tela com todos os produtos no carrinho
 	@GetMapping("/usuario/{cpf}/carrinho")
 	public ModelAndView carrinho(@PathVariable("cpf") Long cpf, Model model) {
 		Usuario usuario = usuarioService.findById(cpf);
 
 		List<Carrinho> carrinhos = carrinhoRepository.findByUsuario(usuario);
-		// System.out.println(codAnuncio);
+
 		List<Anuncio> anuncios = new ArrayList<>();
 
 		for (Carrinho car : carrinhos) {
 			Anuncio anuncio = anuncioService.findById(car.getCodAnuncio());
+
 			anuncios.add(anuncio);
 		}
-		// Anuncio anuncios = anuncioService.findById(codAnuncio);
 
 		// model.addAttribute(cartAnuncio);
 
@@ -60,6 +65,7 @@ public class CarrinhoController {
 		return mv;
 	}
 
+	// Adiciona o produto ao carrinho
 	@PostMapping("/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho")
 	public ModelAndView adicionarCarrinho(@PathVariable("cpf") Long cpf, @PathVariable("codAnuncio") Long codAnuncio,
 			Carrinho carrinho, Integer quantCarrinho) {
@@ -77,4 +83,17 @@ public class CarrinhoController {
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/carrinho");
 		return mv;
 	}
+
+	// Deleta o produto do carrinho
+	@PostMapping("/usuario/{cpf}/deletar/produto/{codCarrinho}/carrinho")
+	public ModelAndView deletarCarrinho(@PathVariable("cpf") Long cpf, @PathVariable("codCarrinho") Long codCarrinho) {
+
+		Carrinho carrinho = carrinhoService.findById(codCarrinho);
+
+		carrinhoRepository.delete(carrinho);
+
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/carrinho");
+		return mv;
+	}
+
 }
