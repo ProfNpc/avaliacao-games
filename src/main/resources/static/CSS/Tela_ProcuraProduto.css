@@ -82,3 +82,10 @@ header {
   align-items: center;
   justify-content: center;
 }
+
+/* Container de avançar para proxima etapa */
+.ctn {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-bottom: 2em;
+}

@@ -46,12 +46,15 @@ public class Troca {
 		super();
 	}
 
-	public Troca(Long codTroca, String nomeTroca, String descTroca, Boolean statusTroca, String nomeImagem) {
+	public Troca(Long codTroca, String nomeTroca, String descTroca, Boolean statusTroca, Usuario usuario,
+			Cad_Produto cad_produto, String nomeImagem) {
 		super();
 		this.codTroca = codTroca;
 		this.nomeTroca = nomeTroca;
 		this.descTroca = descTroca;
 		this.statusTroca = statusTroca;
+		this.usuario = usuario;
+		this.cad_produto = cad_produto;
 		this.nomeImagem = nomeImagem;
 	}
 
@@ -62,6 +65,15 @@ public class Troca {
 
 	public void setCad_produto(Cad_Produto cad_produto) {
 		this.cad_produto = cad_produto;
+	}
+
+	// Getters and Setters usuario
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	// Getters and Setters

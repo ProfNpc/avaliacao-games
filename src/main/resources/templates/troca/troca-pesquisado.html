@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="/CSS/Tela_Biblioteca.css" />
+	<link rel="stylesheet" href="/CSS/Tela_ProcuraProduto.css" />
 	<link rel="stylesheet" href="/CSS/NewNavBar.css" />
 	<title>Pacifier</title>
 </head>
@@ -76,71 +76,89 @@
 			</div>
 		</nav>
 	</header>
-
 	<main>
-		<!-- Container da nav-bar lateral -->
-		<div class="nav-lateral">
-			<div class="container-button">
-				<div class="button">
-					<a th:href="@{/usuario/{cpf}(cpf=${cpf})}"><input type="button" value="Geral" class="button" /></a>
-					<a href=""><input type="button" value="Preferencias" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/trocas(cpf=${cpf})}"><input type="button" value="Minhas Trocas" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}"><input type="button" value="Meus Anúncios" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}"><input type="button" value="Biblioteca" class="button" /></a>
+		<!-- Section de pesquisar -->
+		<section>
+			<!-- Titulo do Pesquisar -->
+			<div class="tituloPesquisar">
+				<label for="">Pesquise por qual quer trocar:</label>
+			</div>
+
+			<!-- Pesquisar -->
+			<div class="pesquisar">
+				<form th:action="@{/usuario/{cpf}/trocar/{codCadProd}/pesquisar(cpf=${cpf}, codCadProd=${codCadProd})}"
+					method="post">
+					<input type="text" placeholder="Pesquisar" name="nomeProd" />
+					<input type="submit" value="Pesquisar" />
+				</form>
+			</div>
+		</section>
+
+
+		<!-- Section de produtos -->
+		<section>
+			<!-- Titulo do Produto -->
+			<div class="tituloProduto">Sua Pesquisa:</div>
+
+			<!-- Produtos -->
+			<div class="row row-cols-2 row-cols-md-5 g-4 produto">
+				<div class="col" th:each="produtos: ${produtos}">
+
+					<div class="card h-100">
+						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
+						<div class="card-body">
+							<h5 class="card-title">
+								<span th:text="${produtos.nomeProd}"></span>
+							</h5>
+							<p class="card-text">
+								<span th:text="${produtos.valorProd}"></span>
+							</p>
+							<p class="card-text">
+								<span th:text="${produtos.descProd}"></span>
+							</p>
+							<form
+								th:action="@{/usuario/{cpf}/trocar/{codCadProd}/adicionar/{codProd}(cpf=${cpf}, codProd=${produtos.codProd}, codCadProd=${codCadProd})}"
+								method="post">
+								<button class="btn btn-primary" type="submit">Adicionar</button>
+							</form>
+						</div>
+
+					</div>
+
 				</div>
 			</div>
-		</div>
+		</section>
 
-		<div class="color">
-			<!-- Container da biblioteca -->
-			<div class="container-biblioteca">
-				<br />
-				<!-- Div para add cor ao fundo dos jogos -->
-				<div class="container-color">
-					<!-- Jogos que aparecerão na biblioteca -->
-					<section class="container-produto">
-						<div class="row row-cols-1 row-cols-md-2 g-4">
-							<div th:each="anuncio: ${anuncio}" class="col">
-								<div class="card h-100">
-									<img th:src="@{/usuario/mostrarImagem/{imagem}(imagem=${anuncio.nomeImagem})}"
-										class="card-img-top" alt="..." />
-									<div class="card-body">
-										<h5 class="card-title">
-											<span th:text="${anuncio.nomeAnuncio}"></span>
-										</h5>
-										<p class="card-text">
-											Quantidade:
-											<span th:text="${anuncio.quantAnuncio}"></span>
-										</p>
-										<p class="card-text">
-											Valor: R$<span th:text="${anuncio.valorAnuncio}"></span>
-										</p>
-										<p class="card-text">
-											Status: <span th:text="${anuncio.statusAnuncio}"></span>
-										</p>
-										<form
-											th:action="@{/usuario/{cpf}/anuncio/{codAnuncio}/deletar (cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
-											method="post">
-											<input class="btn btn-primary" type="submit" value="Excluir">
-										</form>
-									</div>
+		<section class="ctn">
+			<div class="card">
+				<div class="card-header">
+					Avançar
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">Após escolher todos os produtos, clique em CONTINUAR para avançar para
+						proxima etapa</h5>
+					<p class="card-text">
+					<div class="row row-cols-1 row-cols-md-3 g-4">
+						<div class="col">
+							<div class="card h-100" style="width: 10rem;">
+								<img src="/imagens/ALIEN.png" class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title">Alien Isolation</h5>
+									<p class="card-text">Alien Isolation</p>
 								</div>
 							</div>
 						</div>
-					</section>
-				</div>
-				<!-- Botões de Excluir e Cadastrar -->
-				<section class="container-button">
-					<!-- Botão de Cadastrar -->
-					<div>
-						<form th:action="@{/usuario/{cpf}/anunciar(cpf=${cpf})}" method="get">
-							<label for="#">Adicionar anuncio: </label><br />
-							<a href=""><button>Adicionar</button></a>
-						</form>
 					</div>
-				</section>
+					</p>
+					<form
+						th:action="@{/usuario/{cpf}/trocar/{codCadProd}/cadastrar (cpf=${cpf}, codCadProd=${codCadProd})}"
+						method="get">
+						<button class="btn btn-primary" type="submit">Continuar</button>
+					</form>
+				</div>
 			</div>
-		</div>
+		</section>
+
 	</main>
 	<footer></footer>
 	<script src="/JS/NavBar.js"></script>

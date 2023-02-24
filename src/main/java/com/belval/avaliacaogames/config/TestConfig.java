@@ -10,13 +10,17 @@ import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Cad_Produto;
 import com.belval.avaliacaogames.entities.Comentario;
 import com.belval.avaliacaogames.entities.Endereco;
+import com.belval.avaliacaogames.entities.Item_Troca;
 import com.belval.avaliacaogames.entities.Produto;
+import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
 import com.belval.avaliacaogames.repositories.ComentarioRepository;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
+import com.belval.avaliacaogames.repositories.Item_TrocaRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
+import com.belval.avaliacaogames.repositories.TrocaRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
 
 @Configuration
@@ -39,6 +43,12 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private ComentarioRepository comentarioRepository;
+
+	@Autowired
+	private TrocaRepository trocaRepository;
+
+	@Autowired
+	private Item_TrocaRepository item_TrocaRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -127,6 +137,36 @@ public class TestConfig implements CommandLineRunner {
 		Comentario cm10 = new Comentario(10L, "Muito top!", 4.0, u2, an3);
 
 		comentarioRepository.saveAll(Arrays.asList(cm1, cm2, cm3, cm4, cm5, cm6, cm7, cm8, cm9, cm10));
+
+		Troca t1 = new Troca(1L, "GTA V sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u1,
+				cp1, null);
+		Troca t2 = new Troca(4L, "GTA V sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u2,
+				cp3, null);
+		Troca t3 = new Troca(5L, "GTA V sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u1,
+				cp2, null);
+		Troca t4 = new Troca(6L, "GTA V sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u4,
+				cp5, null);
+		Troca t5 = new Troca(6L, "GTA V sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u3,
+				cp4, null);
+		Troca t6 = new Troca(6L, "GTA V sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u2,
+				cp8, null);
+
+		trocaRepository.saveAll(Arrays.asList(t1, t2, t3, t4, t5, t6));
+
+		Item_Troca it1 = new Item_Troca(1L, t1, p9);
+		Item_Troca it2 = new Item_Troca(2L, t1, p8);
+		Item_Troca it3 = new Item_Troca(3L, t2, p5);
+		Item_Troca it4 = new Item_Troca(4L, t3, p6);
+		Item_Troca it5 = new Item_Troca(5L, t3, p1);
+		Item_Troca it6 = new Item_Troca(6L, t3, p2);
+		Item_Troca it7 = new Item_Troca(7L, t4, p7);
+		Item_Troca it8 = new Item_Troca(8L, t5, p1);
+		Item_Troca it9 = new Item_Troca(9L, t6, p2);
+		Item_Troca it10 = new Item_Troca(10L, t6, p7);
+		Item_Troca it11 = new Item_Troca(11L, t5, p10);
+
+		item_TrocaRepository.saveAll(Arrays.asList(it1, it2, it3, it4, it5, it6, it7, it8, it9, it10, it11));
+
 	}
 
 }

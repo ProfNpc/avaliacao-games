@@ -85,9 +85,9 @@
 				<div class="button">
 					<a th:href="@{/usuario/{cpf}(cpf=${cpf})}"><input type="button" value="Geral" class="button" /></a>
 					<a href=""><input type="button" value="Preferencias" class="button" /></a>
-					<a href=""><input type="button" value="Privacidade" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}"><input type="button" value="Meus Anúncios"
-							class="button" /></a>
+					<a th:href="@{/usuario/{cpf}/trocas(cpf=${cpf})}"><input type="button" value="Minhas Trocas"
+							class="button" /></a> <a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}"><input
+							type="button" value="Meus Anúncios" class="button" /></a>
 					<a th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}"><input type="button" value="Biblioteca"
 							class="button" /></a>
 				</div>
@@ -117,6 +117,11 @@
 										<p class="card-text">
 											Valor: R$<span th:text="${produto.valorProd}"></span>
 										</p>
+										<form
+											th:action="@{/usuario/{cpf}/trocar/{codCadProd}/pesquisar (cpf=${cpf}, codCadProd=${cad_produtos[iStat.index].codCadProd})}"
+											method="get">
+											<input class="btn btn-primary" type="submit" value="Trocar">
+										</form>
 										<form
 											th:action="@{/usuario/{cpf}/biblioteca/{codCadProd}/deletar (cpf=${cpf}, codCadProd=${cad_produtos[iStat.index].codCadProd})}"
 											method="post">

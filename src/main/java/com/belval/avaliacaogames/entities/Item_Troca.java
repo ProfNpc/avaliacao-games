@@ -37,6 +37,24 @@ public class Item_Troca {
 
 	}
 
+	// Getters and Setters troca
+	public Troca getTroca() {
+		return troca;
+	}
+
+	public void setTroca(Troca troca) {
+		this.troca = troca;
+	}
+
+	// Getters and Setters produto
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
 	// Getters and Setters
 	public Long getCodItemTroca() {
 		return codItemTroca;
