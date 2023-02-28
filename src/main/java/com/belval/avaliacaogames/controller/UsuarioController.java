@@ -161,7 +161,7 @@ public class UsuarioController {
 
 		Usuario usuarioOld = service.findById(cpf);
 		Endereco enderecoOld = enderecoService.findByUsuario(usuarioOld);
-		
+
 		// Usuario
 		if (usuario.getNome() == null)
 			usuario.setNome(usuarioOld.getNome());

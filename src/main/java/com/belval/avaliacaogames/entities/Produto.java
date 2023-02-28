@@ -34,7 +34,7 @@ public class Produto implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "produto")
 	private List<Item_Troca> itens_troca = new ArrayList<>();
-	
+
 	// Constructors
 	public Produto() {
 

@@ -51,7 +51,7 @@ public class Anuncio implements Serializable {
 	// Ligação com tabela carrinho
 	@OneToOne(mappedBy = "anuncio")
 	private Carrinho carrinho;
-	
+
 	// Constructors
 	public Anuncio() {
 	}

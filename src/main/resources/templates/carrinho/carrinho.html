@@ -101,7 +101,8 @@
 							<form
 								th:action="@{/usuario/{cpf}/carrinho/{codCarrinho}/quantidade (cpf=${cpf}, codCarrinho=${carrinhos.codCarrinho})}"
 								method="post">
-							<input type="number" placeholder="Quantidade" name="quantCarrinho" th:value="${carrinhos.quantCarrinho}" />
+								<input type="number" placeholder="Quantidade" name="quantCarrinho"
+									th:value="${carrinhos.quantCarrinho}" />
 							</form>
 							<form
 								th:action="@{/usuario/{cpf}/deletar/produto/{codCarrinho}/carrinho (cpf=${cpf}, codCarrinho=${carrinhos.codCarrinho})}"

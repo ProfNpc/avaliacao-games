@@ -50,7 +50,7 @@ public class Comentario implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public String getNomeUsuario() {
 		return usuario.getNome();
 	}

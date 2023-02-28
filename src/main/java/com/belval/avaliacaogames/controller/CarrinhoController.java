@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Carrinho;
 import com.belval.avaliacaogames.entities.Usuario;
-import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.CarrinhoRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.CarrinhoService;
@@ -34,9 +33,6 @@ public class CarrinhoController {
 
 	@Autowired
 	private CarrinhoRepository carrinhoRepository;
-
-	@Autowired
-	private AnuncioRepository anuncioRepository;
 
 	// public static List<Anuncio> cartAnuncio = new ArrayList<>();
 

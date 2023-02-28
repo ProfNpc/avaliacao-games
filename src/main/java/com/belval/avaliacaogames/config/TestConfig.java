@@ -150,7 +150,6 @@ public class TestConfig implements CommandLineRunner {
 				cp4, null);
 		Troca t6 = new Troca(6L, "GTA V sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u2,
 				cp8, null);
-		
 
 		trocaRepository.saveAll(Arrays.asList(t1, t2, t3, t4, t5, t6));
 

@@ -80,7 +80,8 @@
 	<main>
 		<section>
 			<!-- Inicio do form -->
-			<form th:action="@{/usuario/{cpf}/trocar/{codCadProd}/cadastrar (cpf=${cpf}, codCadProd=${codCadProd})}" enctype="multipart/form-data" method="post">
+			<form th:action="@{/usuario/{cpf}/trocar/{codCadProd}/cadastrar (cpf=${cpf}, codCadProd=${codCadProd})}"
+				enctype="multipart/form-data" method="post">
 				<div class="card container anuncio" style="width: 55rem">
 					<!-- Titulo -->
 					<h5 class="card-title titulo">Trocar</h5>
@@ -130,7 +131,7 @@
 							<div class="card" style="width: 10rem;">
 								<img src="/imagens/ALIEN.png" class="card-img-top" alt="...">
 								<div class="card-body">
-									<p th:text="${cad_produto.produto.nomeProd}"class="card-text">Alien Isolation</p>
+									<p th:text="${cad_produto.produto.nomeProd}" class="card-text">Alien Isolation</p>
 								</div>
 							</div>
 
@@ -143,7 +144,8 @@
 									<div class="card h-100" style="width: 10rem;">
 										<img src="/imagens/ALIEN.png" class="card-img-top" alt="...">
 										<div class="card-body">
-											<h5 th:text="${item.produto.nomeProd}" class="card-title">Alien Isolation</h5>
+											<h5 th:text="${item.produto.nomeProd}" class="card-title">Alien Isolation
+											</h5>
 										</div>
 									</div>
 								</div>

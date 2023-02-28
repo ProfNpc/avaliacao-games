@@ -30,9 +30,9 @@ public class EnderecoController {
 	@GetMapping("/usuario/{cpf}/cadastrar/endereco")
 	public String formEndereco(@PathVariable("cpf") Long cpf, Model model) {
 
-		//Usuario usuario = usuarioService.findById(cpf);
-		//model.addAttribute(usuario);
-		
+		// Usuario usuario = usuarioService.findById(cpf);
+		// model.addAttribute(usuario);
+
 		model.addAttribute("endereco", new Endereco());
 
 		return "usuario/cadastro-endereco";
@@ -40,13 +40,13 @@ public class EnderecoController {
 
 	// Salvar o usuario
 	@PostMapping("/usuario/{cpf}/cadastrar/endereco")
-	public ModelAndView formEndereco(@PathVariable("cpf") Long cpf, Model mod , Endereco endereco) {
+	public ModelAndView formEndereco(@PathVariable("cpf") Long cpf, Model mod, Endereco endereco) {
 		// usuario.getCpf();
 		ModelAndView model = new ModelAndView("redirect:/");
 
 		Usuario usuario = usuarioService.findById(cpf);
 		endereco.setUsuario(usuario);
-		
+
 		enderecoRepository.save(endereco);
 
 		System.out.println(endereco.getCep_end());

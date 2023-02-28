@@ -50,7 +50,7 @@ public class Carrinho {
 	public void setAnuncio(Anuncio anuncio) {
 		this.anuncio = anuncio;
 	}
-	
+
 	public Long getCodAnuncio() {
 		return anuncio.getCodAnuncio();
 	}

@@ -27,9 +27,9 @@ public class Endereco implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;
-	
-	//@ManyToMany(mappedBy = "enderecos")
-	//private Set<Usuario> usuarios = new HashSet<>();
+
+	// @ManyToMany(mappedBy = "enderecos")
+	// private Set<Usuario> usuarios = new HashSet<>();
 
 	// Constructors
 	public Endereco() {
