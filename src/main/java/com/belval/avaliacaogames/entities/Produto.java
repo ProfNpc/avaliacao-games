@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,12 +28,12 @@ public class Produto implements Serializable {
 
 	// Ligação com a tabela cad_produto
 	@JsonIgnore
-	@OneToMany(mappedBy = "produto")
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
 	private Set<Cad_Produto> cad_produtos = new HashSet<>();
 
 	// Ligação com a tabela Item_Troca
 	@JsonIgnore
-	@OneToMany(mappedBy = "produto")
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
 	private List<Item_Troca> itens_troca = new ArrayList<>();
 
 	// Constructors

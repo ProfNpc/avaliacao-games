@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,11 +46,11 @@ public class Anuncio implements Serializable {
 
 	// Ligação com tabela comentario
 	@JsonIgnore
-	@OneToMany(mappedBy = "anuncio")
+	@OneToMany(mappedBy = "anuncio", cascade = CascadeType.ALL)
 	private List<Comentario> comentarios = new ArrayList<>();
 
 	// Ligação com tabela carrinho
-	@OneToOne(mappedBy = "anuncio")
+	@OneToOne(mappedBy = "anuncio", cascade = CascadeType.ALL)
 	private Carrinho carrinho;
 
 	// Constructors

@@ -3,6 +3,7 @@ package com.belval.avaliacaogames.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,7 +39,7 @@ public class Troca {
 
 	// Ligação com tabela item_troca
 	@JsonIgnore
-	@OneToMany(mappedBy = "troca")
+	@OneToMany(mappedBy = "troca", cascade = CascadeType.ALL)
 	private List<Item_Troca> itens_troca = new ArrayList<>();
 
 	// Constructors
