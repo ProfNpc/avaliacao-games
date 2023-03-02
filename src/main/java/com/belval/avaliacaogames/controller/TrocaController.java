@@ -57,6 +57,7 @@ public class TrocaController {
 
 	public Troca trocas;
 
+	// Tela de minhas trocas
 	@GetMapping("/usuario/{cpf}/trocas")
 	public ModelAndView minhasTrocas(@PathVariable("cpf") Long cpf, Model model) {
 
@@ -69,6 +70,21 @@ public class TrocaController {
 		mv.addObject("trocas", trocas);
 
 		return mv;
+	}
+
+	@GetMapping("/usuario/{cpf}/troca/{codTroca}")
+	public String printTroca(@PathVariable("cpf") Long cpf, @PathVariable("codTroca") Long codTroca, Model model) {
+
+		List<Troca> trocas = trocaService.findAll();
+		Troca troca = trocaService.findById(codTroca);
+
+		Usuario usuario = usuarioService.findById(troca.getCodUsuario());
+
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("troca", troca);
+		model.addAttribute("trocas", trocas);
+
+		return "troca/troca";
 	}
 
 	// Abre a tela de pesquisar produto para troca
@@ -90,7 +106,7 @@ public class TrocaController {
 		return "troca/troca-pesquisado";
 	}
 
-	// Pesquisar produtos
+	// Pesquisar produtos de troca
 	@PostMapping("/usuario/{cpf}/trocar/{codCadProd}/pesquisar")
 	public ModelAndView pesquisarTroca(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd,
 			String nomeProd) {
@@ -104,7 +120,7 @@ public class TrocaController {
 		return mv;
 	}
 
-	// Adicionar produto
+	// Adicionar produto para troca
 	@PostMapping("/usuario/{cpf}/trocar/{codCadProd}/adicionar/{codProd}")
 	public ModelAndView adicionarItem_Troca(@PathVariable("cpf") Long cpf, @PathVariable("codProd") Long codProd,
 			@PathVariable("codCadProd") Long codCadProd, Item_Troca item_troca) {
@@ -127,7 +143,7 @@ public class TrocaController {
 		return mv;
 	}
 
-	// Abre a tela para cadastrar um anuncio
+	// Abre a tela para cadastrar uma troca
 	@GetMapping("/usuario/{cpf}/trocar/{codCadProd}/cadastrar")
 	public String cadastrarTroca(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd,
 			Model model) {

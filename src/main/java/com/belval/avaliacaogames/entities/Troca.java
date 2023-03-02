@@ -69,6 +69,11 @@ public class Troca {
 	}
 
 	// Getters and Setters usuario
+
+	public Long getCodUsuario() {
+		return usuario.getCpf();
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
