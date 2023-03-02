@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Cad_Produto;
 import com.belval.avaliacaogames.entities.Endereco;
+import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
@@ -21,6 +22,7 @@ import com.belval.avaliacaogames.repositories.UsuarioRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.Cad_ProdutoService;
 import com.belval.avaliacaogames.services.EnderecoService;
+import com.belval.avaliacaogames.services.TrocaService;
 import com.belval.avaliacaogames.services.UsuarioService;
 
 @Controller
@@ -37,6 +39,9 @@ public class UsuarioController {
 
 	@Autowired
 	private Cad_ProdutoService cad_ProdutoService;
+	
+	@Autowired
+	private TrocaService trocaService;
 
 	@Autowired
 	private EnderecoRepository enderecoRepository;
@@ -56,6 +61,9 @@ public class UsuarioController {
 
 		List<Anuncio> anuncios = anuncioService.findAll();
 		model.addAttribute("anuncios", anuncios);
+		
+		List<Troca> trocas = trocaService.findAll();
+		model.addAttribute("trocas", trocas);
 
 		return "home/home";
 	}
@@ -69,6 +77,9 @@ public class UsuarioController {
 
 		List<Anuncio> anuncios = anuncioService.findAll();
 		model.addAttribute("anuncios", anuncios);
+		
+		List<Troca> trocas = trocaService.findAll();
+		model.addAttribute("trocas", trocas);
 
 		return "home/home-logado";
 	}
