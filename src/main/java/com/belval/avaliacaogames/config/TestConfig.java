@@ -138,18 +138,14 @@ public class TestConfig implements CommandLineRunner {
 
 		comentarioRepository.saveAll(Arrays.asList(cm1, cm2, cm3, cm4, cm5, cm6, cm7, cm8, cm9, cm10));
 
-		Troca t1 = new Troca(1L, "CS:GO 1.6 modificado", "Com 9 meses de uso", true, u1,
-				cp1, null);
-		Troca t2 = new Troca(4L, "Outlast sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u2,
+		Troca t1 = new Troca(1L, "CS:GO 1.6 modificado", "Com 9 meses de uso", true, u1, cp1, null);
+		Troca t2 = new Troca(2L, "Outlast sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u2,
 				cp3, null);
-		Troca t3 = new Troca(5L, "GTA V Xbox 360", "Novinho, com 5 meses de uso", true, u1,
-				cp2, null);
-		Troca t4 = new Troca(6L, "Red Dead Redemption 2 novo", "Troco meu Red Dead de 6 meses de uso", true, u4,
-				cp5, null);
-		Troca t5 = new Troca(6L, "Elder Ring PS3", "Apenas 1 meses de uso", true, u3,
-				cp4, null);
-		Troca t6 = new Troca(6L, "Hitman 3 original", "Tem 2 anos de uso", true, u2,
-				cp8, null);
+		Troca t3 = new Troca(3L, "GTA V Xbox 360", "Novinho, com 5 meses de uso", true, u1, cp2, null);
+		Troca t4 = new Troca(4L, "Red Dead Redemption 2 novo", "Troco meu Red Dead de 6 meses de uso", true, u4, cp5,
+				null);
+		Troca t5 = new Troca(5L, "Elder Ring PS3", "Apenas 1 meses de uso", true, u3, cp4, null);
+		Troca t6 = new Troca(6L, "Hitman 3 original", "Tem 2 anos de uso", true, u2, cp8, null);
 
 		trocaRepository.saveAll(Arrays.asList(t1, t2, t3, t4, t5, t6));
 

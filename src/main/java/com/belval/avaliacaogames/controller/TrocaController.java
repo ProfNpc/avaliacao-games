@@ -72,14 +72,23 @@ public class TrocaController {
 		return mv;
 	}
 
+	// Tela de troca
 	@GetMapping("/usuario/{cpf}/troca/{codTroca}")
 	public String printTroca(@PathVariable("cpf") Long cpf, @PathVariable("codTroca") Long codTroca, Model model) {
 
+		// Pega todas as trocas
 		List<Troca> trocas = trocaService.findAll();
+		
+		// Encontra a troca clicada
 		Troca troca = trocaService.findById(codTroca);
 
+		// Encontra o vendedor da troca
 		Usuario usuario = usuarioService.findById(troca.getCodUsuario());
 
+		// Encontra os produtos para troca
+		List<Item_Troca> itens_troca = item_TrocaService.findByTroca(troca);
+		
+		model.addAttribute("itens_troca", itens_troca);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("troca", troca);
 		model.addAttribute("trocas", trocas);

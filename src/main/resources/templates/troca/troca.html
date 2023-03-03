@@ -79,31 +79,38 @@
 	</header>
 	<main>
 		<section class="containerProduto">
-			<div class="card" style="width: 42.3rem">
+			<div class="card" style="width: 40rem">
 				<img src="/imagens/BannerDoom.png" class="card-img-top" alt="..." />
 				<div class="card-body">
 					<h5 class="card-title text-center">
 						<span th:text="${troca.nomeTroca}"></span>
 					</h5>
 					<div class="d-grid gap-2 col-6 mx-auto">
-						<button class=" botao btn btn-primary" type="button">Trocar</button>
+						<button class="botao btn btn-primary" type="button">
+							Trocar
+						</button>
 					</div>
 				</div>
 			</div>
-			<div class="card" style="width: 22.5rem">
+			<div class="card" style="max-width: 50rem">
 				<div class="card-body">
 					<h5 class="card-title text-center">
 						<span th:text="${usuario.nome}"></span>
 					</h5>
 					<p class="card-text text-center">Produtos vendidos</p>
-					<h5 class="card-title text-center">Avaliação do Produto</h5>
+					<h5 class="card-title text-center">Produto para troca:</h5>
 					<br />
-					<div class="usuario" >
-						<h6 class="card-title">Boa </h6>
-						<p class="card-text">Boa </p>
-						<br />
+					<div class="row row-cols-1 row-cols-md-3 g-4">
+						<div class="col" style="width: 8rem" th:each="itens_troca: ${itens_troca}">
+							<div class="card h-100">
+								<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
+								<div class="card-body">
+									<h5 class="card-title"><span th:text="${itens_troca.produto.nomeProd}"></span></h5>
+									<p class="card-text">Você tem</p>
+								</div>
+							</div>
+						</div>
 					</div>
-
 				</div>
 			</div>
 		</section>
@@ -134,9 +141,7 @@
 								<h5 class="card-title">
 									<span th:text="${trocas.nomeTroca}"></span>
 								</h5>
-								<p class="card-text">
-									sei
-								</p>
+								<p class="card-text">sei</p>
 							</div>
 						</div>
 					</a>
