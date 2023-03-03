@@ -47,6 +47,10 @@ public class Item_Troca {
 	}
 
 	// Getters and Setters produto
+	public Long getCodProduto() {
+		return produto.getCodProd();
+	}
+
 	public Produto getProduto() {
 		return produto;
 	}

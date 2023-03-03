@@ -78,7 +78,7 @@ public class TrocaController {
 
 		// Pega todas as trocas
 		List<Troca> trocas = trocaService.findAll();
-		
+
 		// Encontra a troca clicada
 		Troca troca = trocaService.findById(codTroca);
 
@@ -87,7 +87,7 @@ public class TrocaController {
 
 		// Encontra os produtos para troca
 		List<Item_Troca> itens_troca = item_TrocaService.findByTroca(troca);
-		
+
 		model.addAttribute("itens_troca", itens_troca);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("troca", troca);
