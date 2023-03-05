@@ -113,9 +113,11 @@
 										<p class="card-text">
 											Status: <span th:text="${trocas.statusTroca}"></span>
 										</p>
-
-										<input class="btn btn-primary" type="submit" value="Excluir">
-
+										<form
+											th:action="@{/usuario/{cpf}/trocar/{codTroca}/deletar (cpf=${cpf}, codTroca=${trocas.codTroca})}"
+											method="post">
+											<input class="btn btn-primary" type="submit" value="Excluir">
+										</form>
 									</div>
 								</div>
 							</div>

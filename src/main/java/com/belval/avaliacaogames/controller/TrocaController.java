@@ -204,4 +204,15 @@ public class TrocaController {
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/trocas");
 		return mv;
 	}
+
+	// Deleta troca
+	@PostMapping("/usuario/{cpf}/trocar/{codTroca}/deletar")
+	public ModelAndView deletarTroca(@PathVariable("cpf") Long cpf, @PathVariable("codTroca") Long codTroca) {
+
+		trocaRepository.deleteById(codTroca);
+
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/trocas");
+
+		return mv;
+	}
 }
