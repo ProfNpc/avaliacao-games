@@ -24,7 +24,6 @@ public class Troca {
 	private String nomeTroca;
 	private String descTroca;
 	private Boolean statusTroca;
-	private String nomeImagem;
 
 	// Ligação com tabela Cad_Produto
 	@JsonIgnore
@@ -44,7 +43,7 @@ public class Troca {
 
 	// ligação com tabela imagem
 	@JsonIgnore
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "codImagem")
 	private Imagem imagem;
 
@@ -137,14 +136,6 @@ public class Troca {
 
 	public void setStatusTroca(Boolean statusTroca) {
 		this.statusTroca = statusTroca;
-	}
-
-	public String getNomeImagem() {
-		return nomeImagem;
-	}
-
-	public void setNomeImagem(String nomeImagem) {
-		this.nomeImagem = nomeImagem;
 	}
 
 	// HashCod

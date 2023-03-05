@@ -55,7 +55,7 @@ public class Anuncio implements Serializable {
 
 	// ligação com tabela imagem
 	@JsonIgnore
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "codImagem")
 	private Imagem imagem;
 

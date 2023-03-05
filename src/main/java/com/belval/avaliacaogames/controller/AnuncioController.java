@@ -1,8 +1,6 @@
 package com.belval.avaliacaogames.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,8 +37,6 @@ public class AnuncioController {
 	@Autowired
 	private AnuncioRepository anuncioRepository;
 
-	private static String caminhoImagens = "D:/TCC-INFORMATICA/imagens/";
-
 	// Tela com anuncios do usuario
 	@GetMapping("/usuario/{cpf}/anuncios")
 	public String meusAnuncios(@PathVariable("cpf") Long cpf, Model model) {
@@ -55,13 +50,12 @@ public class AnuncioController {
 		for (Anuncio an : anuncios) {
 			Long id = an.getCodAnuncio();
 			Anuncio anun = anuncioService.findById(id);
-			//Imagem m = imagemService.getImagem(anun.getCodImagem());
+			// Imagem m = imagemService.getImagem(anun.getCodImagem());
 			anuncio.add(anun);
 		}
-		//Imagem img = imagemService.findById(1L);
-		
-		
-		//model.addAttribute("imagem", m.getUrl());
+		// Imagem img = imagemService.findById(1L);
+
+		// model.addAttribute("imagem", m.getUrl());
 		model.addAttribute("anuncio", anuncio);
 
 		return "anuncio/meus-anuncios";
@@ -109,18 +103,6 @@ public class AnuncioController {
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/anuncios");
 
 		return mv;
-	}
-
-	// Mostar imagem
-	@SuppressWarnings("null") // Em caso de erro remover o SuppressWarning
-	@GetMapping("/usuario/mostrarImagem/{imagem}")
-	@ResponseBody
-	public byte[] retornarImagem(@PathVariable("imagem") String imagem) throws IOException {
-		File imagemArquivo = new File(caminhoImagens + imagem);
-		if (imagem != null || imagem.trim().length() > 0) {
-			return Files.readAllBytes(imagemArquivo.toPath());
-		}
-		return null;
 	}
 
 }
