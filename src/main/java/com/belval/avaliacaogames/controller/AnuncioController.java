@@ -3,8 +3,6 @@ package com.belval.avaliacaogames.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Anuncio;
+import com.belval.avaliacaogames.entities.Imagem;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
+import com.belval.avaliacaogames.services.ImagemService;
 import com.belval.avaliacaogames.services.UsuarioService;
 
 @Controller
@@ -30,6 +30,9 @@ public class AnuncioController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+
+	@Autowired
+	private ImagemService imagemService;
 
 	@Autowired
 	private AnuncioService anuncioService;
@@ -52,9 +55,13 @@ public class AnuncioController {
 		for (Anuncio an : anuncios) {
 			Long id = an.getCodAnuncio();
 			Anuncio anun = anuncioService.findById(id);
+			//Imagem m = imagemService.getImagem(anun.getCodImagem());
 			anuncio.add(anun);
 		}
-
+		//Imagem img = imagemService.findById(1L);
+		
+		
+		//model.addAttribute("imagem", m.getUrl());
 		model.addAttribute("anuncio", anuncio);
 
 		return "anuncio/meus-anuncios";
@@ -71,28 +78,23 @@ public class AnuncioController {
 	// Cadastra o anuncio no banco de dados
 	@PostMapping("/usuario/{cpf}/anunciar")
 	public ModelAndView cadastrarAnuncio(@PathVariable("cpf") Long cpf, Model model, Anuncio anuncio,
-			@RequestParam("file") MultipartFile arquivo) {
+			@RequestParam("file") MultipartFile file) {
 
 		Usuario usuario = usuarioService.findById(cpf);
 		anuncio.setUsuario(usuario);
 		anuncio.setStatusAnuncio(true);
 
-		anuncioRepository.save(anuncio);
+		Imagem imagem = null;
 
 		try {
-			if (!arquivo.isEmpty()) {
-				byte[] bytes = arquivo.getBytes();
-				Path caminho = Paths
-						.get(caminhoImagens + String.valueOf(anuncio.getCodAnuncio()) + arquivo.getOriginalFilename());
-				Files.write(caminho, bytes);
-
-				anuncio.setNomeImagem(String.valueOf(anuncio.getCodAnuncio()) + arquivo.getOriginalFilename());
-				anuncioRepository.save(anuncio);
-			}
+			imagem = imagemService.upload(file);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+		anuncio.setImagem(imagem);
+
+		anuncioRepository.save(anuncio);
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/anuncios");
 
 		return mv;

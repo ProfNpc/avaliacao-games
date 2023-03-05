@@ -53,12 +53,18 @@ public class Anuncio implements Serializable {
 	@OneToOne(mappedBy = "anuncio", cascade = CascadeType.ALL)
 	private Carrinho carrinho;
 
+	// ligação com tabela imagem
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name = "codImagem")
+	private Imagem imagem;
+
 	// Constructors
 	public Anuncio() {
 	}
 
 	public Anuncio(Long codAnuncio, String nomeAnuncio, String descAnuncio, Double valorAnuncio, Integer quantAnuncio,
-			Boolean statusAnuncio, Usuario usuario, String nomeImagem, String generoAnuncio) {
+			Boolean statusAnuncio, Usuario usuario, Imagem imagem, String generoAnuncio) {
 		this.codAnuncio = codAnuncio;
 		this.nomeAnuncio = nomeAnuncio;
 		this.descAnuncio = descAnuncio;
@@ -66,7 +72,7 @@ public class Anuncio implements Serializable {
 		this.quantAnuncio = quantAnuncio;
 		this.statusAnuncio = statusAnuncio;
 		this.usuario = usuario;
-		this.nomeImagem = nomeImagem;
+		this.imagem = imagem;
 		this.generoAnuncio = generoAnuncio;
 	}
 
@@ -77,6 +83,19 @@ public class Anuncio implements Serializable {
 	 * public void setCad_produto(Cad_Produto cad_produto) { this.cad_produto =
 	 * cad_produto; }
 	 */
+
+	// Getters and Setters Imagem
+	public Long getCodImagem() {
+		return imagem.getCodImagem();
+	}
+
+	public Imagem getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(Imagem imagem) {
+		this.imagem = imagem;
+	}
 
 	// Getters and Setters Usuario
 	public Usuario getUsuario() {
