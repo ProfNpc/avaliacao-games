@@ -1,5 +1,6 @@
 package com.belval.avaliacaogames.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Cad_Produto;
 import com.belval.avaliacaogames.entities.Comentario;
+import com.belval.avaliacaogames.entities.Imagem;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
@@ -22,6 +26,7 @@ import com.belval.avaliacaogames.repositories.ComentarioRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.Cad_ProdutoService;
+import com.belval.avaliacaogames.services.ImagemService;
 import com.belval.avaliacaogames.services.ProdutoService;
 import com.belval.avaliacaogames.services.UsuarioService;
 
@@ -39,6 +44,9 @@ public class ProdutoController {
 
 	@Autowired
 	private AnuncioService anuncioService;
+
+	@Autowired
+	private ImagemService imagemService;
 
 	@Autowired
 	private Cad_ProdutoRepository cad_produtoRepository;
@@ -185,7 +193,18 @@ public class ProdutoController {
 
 	// Cadastar produto na biblioteca
 	@PostMapping("/usuario/{cpf}/biblioteca/cadastrar")
-	public ModelAndView cadastrarProduto(Cad_Produto cad_produto, Produto produto, @PathVariable("cpf") Long cpf) {
+	public ModelAndView cadastrarProduto(Cad_Produto cad_produto, Produto produto, @PathVariable("cpf") Long cpf,
+			@RequestParam("file") MultipartFile file) {
+
+		Imagem imagem = null;
+
+		try {
+			imagem = imagemService.upload(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		produto.setImagem(imagem);
 
 		produtoRepository.save(produto);
 
@@ -193,8 +212,8 @@ public class ProdutoController {
 		cad_produto.setProduto(produto);
 		cad_produtoRepository.save(cad_produto);
 
-		ModelAndView model = new ModelAndView("produto/biblioteca-produto");
-		return model;
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
+		return mv;
 	}
 
 	// Deletar produto na biblioteca

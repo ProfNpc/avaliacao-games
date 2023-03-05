@@ -129,7 +129,7 @@
 						<li class="list-group-item inputs">
 							<label for="">Produto que será trocado: </label>
 							<div class="card" style="width: 10rem;">
-								<img src="/imagens/ALIEN.png" class="card-img-top" alt="...">
+								<img th:src="${cad_produto.produto.imagem.url}" class="card-img-top" alt="...">
 								<div class="card-body">
 									<p th:text="${cad_produto.produto.nomeProd}" class="card-text">Alien Isolation</p>
 								</div>
@@ -142,7 +142,7 @@
 							<div class="row row-cols-1 row-cols-md-4 g-4">
 								<div th:each="item: ${itens}" class="col">
 									<div class="card h-100" style="width: 10rem;">
-										<img src="/imagens/ALIEN.png" class="card-img-top" alt="...">
+										<img th:src="${item.produto.imagem.url}" class="card-img-top" alt="...">
 										<div class="card-body">
 											<h5 th:text="${item.produto.nomeProd}" class="card-title">Alien Isolation
 											</h5>

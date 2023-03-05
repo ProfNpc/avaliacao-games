@@ -128,7 +128,7 @@
 			<div class="col" th:each="anuncios: ${anuncios}">
 				<a href="">
 					<div class="card h-100">
-						<img src="/imagens/BATTLE V.png" class="card-img-top" alt="...">
+						<img th:src="${anuncios.imagem.url}" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title">Battlefield V</h5>
 							<p class="card-text">R$70,00</p>
@@ -146,7 +146,7 @@
 			<div class="col" th:each="trocas: ${trocas}">
 				<a th:href="@{/usuario/{cpf}/produto/{codTroca} (cpf=${cpf}, codTroca=${trocas.codTroca})}">
 					<div class="card h-100">
-						<img src="/imagens/BannerDragon.png" class="card-img-top" alt="...">
+						<img th:src="${trocas.cad_produto.produto.imagem.url}" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title"><span th:text="${trocas.nomeTroca}"></span></h5>
 							<p class="card-text"><span th:text="${trocas.descTroca}"></p>

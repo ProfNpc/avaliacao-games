@@ -101,7 +101,7 @@
 			<div class="row row-cols-2 row-cols-md-5 g-4 produto">
 				<div class="col" th:each="produto: ${produtos}">
 					<div class="card h-100">
-						<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
+						<img th:src="${produto.imagem.url}" class="card-img-top" alt="..." />
 						<div class="card-body">
 							<h5 class="card-title">
 								<span th:text="${produto.nomeProd}"></span>

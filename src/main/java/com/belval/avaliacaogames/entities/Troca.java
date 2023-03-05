@@ -42,13 +42,19 @@ public class Troca {
 	@OneToMany(mappedBy = "troca", cascade = CascadeType.ALL)
 	private List<Item_Troca> itens_troca = new ArrayList<>();
 
+	// ligação com tabela imagem
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name = "codImagem")
+	private Imagem imagem;
+
 	// Constructors
 	public Troca() {
 		super();
 	}
 
 	public Troca(Long codTroca, String nomeTroca, String descTroca, Boolean statusTroca, Usuario usuario,
-			Cad_Produto cad_produto, String nomeImagem) {
+			Cad_Produto cad_produto, Imagem imagem) {
 		super();
 		this.codTroca = codTroca;
 		this.nomeTroca = nomeTroca;
@@ -56,7 +62,25 @@ public class Troca {
 		this.statusTroca = statusTroca;
 		this.usuario = usuario;
 		this.cadProduto = cad_produto;
-		this.nomeImagem = nomeImagem;
+		this.imagem = imagem;
+	}
+
+	// Getters and Setters itens_troca
+	public List<Item_Troca> getItens_troca() {
+		return itens_troca;
+	}
+
+	public void setItens_troca(List<Item_Troca> itens_troca) {
+		this.itens_troca = itens_troca;
+	}
+
+	// Getters and Setters imagem
+	public Imagem getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(Imagem imagem) {
+		this.imagem = imagem;
 	}
 
 	// Getters and Setters cad_produto

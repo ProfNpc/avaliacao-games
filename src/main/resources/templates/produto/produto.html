@@ -80,7 +80,7 @@
 	<main>
 		<section class="containerProduto">
 			<div class="card" style="width: 42.3rem">
-				<img src="/imagens/BannerDoom.png" class="card-img-top" alt="..." />
+				<img th:src="${anuncio.imagem.url}" class="card-img-top" alt="..." />
 				<div class="card-body">
 					<h5 class="card-title text-center">
 						<span th:text="${anuncio.nomeAnuncio}"></span>
@@ -146,7 +146,7 @@
 				<div class="col" th:each="anuncios: ${anuncios}">
 					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncios.codAnuncio})}">
 						<div class="card h-100">
-							<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
+							<img th:src="${anuncios.imagem.url}" class="card-img-top" alt="..." />
 							<div class="card-body">
 								<h5 class="card-title">
 									<span th:text="${anuncios.nomeAnuncio}"></span>

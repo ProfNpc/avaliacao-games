@@ -80,7 +80,7 @@
 	<main>
 		<section class="containerProduto">
 			<div class="card" style="width: 40rem">
-				<img src="/imagens/BannerDoom.png" class="card-img-top" alt="..." />
+				<img th:src="${troca.cad_produto.produto.imagem.url}" class="card-img-top" alt="..." />
 				<div class="card-body">
 					<h5 class="card-title text-center">
 						<span th:text="${troca.nomeTroca}"></span>
@@ -103,7 +103,7 @@
 					<div class="row row-cols-1 row-cols-md-3 g-4">
 						<div class="col" style="width: 8rem" th:each="itens_troca, iStat: ${itens_troca}">
 							<div class="card h-100">
-								<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
+								<img th:src="${itens_troca.produto.imagem.url}" class="card-img-top" alt="..." />
 								<div class="card-body">
 									<h5 class="card-title"><span th:text="${itens_troca.produto.nomeProd}"></span></h5>
 									<p class="card-text">Você tem!</span></p>
@@ -136,7 +136,7 @@
 				<div class="col" th:each="trocas: ${trocas}">
 					<a th:href="@{/usuario/{cpf}/troca/{codTroca} (cpf=${cpf}, codTroca=${trocas.codTroca})}">
 						<div class="card h-100">
-							<img src="/imagens/ALIEN.png" class="card-img-top" alt="..." />
+							<img th:src="${trocas.cad_produto.produto.imagem.url}" class="card-img-top" alt="..." />
 							<div class="card-body">
 								<h5 class="card-title">
 									<span th:text="${trocas.nomeTroca}"></span>

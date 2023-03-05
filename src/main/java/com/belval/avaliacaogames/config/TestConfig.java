@@ -75,42 +75,6 @@ public class TestConfig implements CommandLineRunner {
 		Endereco e4 = new Endereco(4L, "06563080", 100, "Rua Xang", "Vila do Conde", "Barueri", "São Paulo", "Brasil",
 				u4);
 
-		Produto p1 = new Produto(1L, "GTA V", 50,
-				"Grand Theft Auto V é um jogo eletrônico de ação-aventura desenvolvido pela Rockstar North e publicado pela Rockstar Games.");
-		Produto p2 = new Produto(2L, "CS:GO", 20,
-				"Counter-Strike: Global Offensive é um jogo online desenvolvido pela Valve Corporation e pela Hidden Path Entertainment, sendo uma sequência de Counter-Strike: Source. É o quarto título principal da franquia.");
-		Produto p3 = new Produto(3L, "Outlast", 70,
-				"O inferno é um experimento do qual não há escapatória em Outlast, um jogo de terror de sobrevivência em primeira pessoa da Red Barrels. Como o jornalista investigativo Miles Upshur, explore o Mount Massive Asylum e tente sobreviver tempo o bastante para");
-		Produto p4 = new Produto(4L, "Red Dead Redemption 2", 120,
-				"Red Dead é uma série de jogos de vídeo game de ação e aventura no velho oeste americano aclamados pela crítica. ");
-		Produto p5 = new Produto(5L, "Elder Ring", 100,
-				"Elden Ring é um jogo eletrônico de RPG de ação em terceira pessoa, desenvolvido pela FromSoftware e publicado pela Bandai Namco Entertainment.");
-		Produto p6 = new Produto(6L, "God of War", 230,
-				"God of War é um jogo eletrônico de ação-aventura desenvolvido pela Santa Monica Studio e publicado pela Sony Interactive Entertainment.");
-		Produto p7 = new Produto(7L, "Tony Hawk's", 40,
-				"Tony Hawk's é uma série de jogos digitais com foco em Skate tendo o skatista profissional Tony Hawk como principal personalidade.");
-		Produto p8 = new Produto(8L, "Hitman 3", 60,
-				"Hitman 3 é um jogo eletrônico de furtividade desenvolvido e publicado pela IO Interactive. É o oitavo título principal da série Hitman.");
-		Produto p9 = new Produto(9L, "StarCraft", 95,
-				"StarCraft é uma franquia de ficção científica militar criada por Chris Metzen e James Phinney, e de propriedade da Blizzard Entertainment.");
-		Produto p10 = new Produto(10L, "Cuphead", 78,
-				"Cuphead é um jogo eletrônico de run and gun e plataforma criado pelos irmãos canadenses Chad e Jared Moldenhauer através da Studio MDHR.");
-
-		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
-
-		Cad_Produto cp1 = new Cad_Produto(1L, p2, 5L, u1, true);
-		Cad_Produto cp2 = new Cad_Produto(2L, p1, 2L, u1, true);
-		Cad_Produto cp3 = new Cad_Produto(3L, p3, 6L, u2, true);
-		Cad_Produto cp4 = new Cad_Produto(4L, p5, 1L, u3, true);
-		Cad_Produto cp5 = new Cad_Produto(5L, p4, 9L, u4, true);
-		Cad_Produto cp6 = new Cad_Produto(6L, p7, 8L, u1, true);
-		Cad_Produto cp7 = new Cad_Produto(7L, p8, 2L, u3, true);
-		Cad_Produto cp8 = new Cad_Produto(8L, p8, 2L, u2, true);
-
-		cad_produtoRepository.saveAll(Arrays.asList(cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8));
-
 		Imagem img1 = new Imagem(1l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
 				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
 		Imagem img2 = new Imagem(2l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
@@ -127,8 +91,87 @@ public class TestConfig implements CommandLineRunner {
 				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
 		Imagem img8 = new Imagem(8l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
 				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img9 = new Imagem(9l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img10 = new Imagem(10l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img11 = new Imagem(11l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img12 = new Imagem(12l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img13 = new Imagem(13l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img14 = new Imagem(14l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img15 = new Imagem(15l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img16 = new Imagem(16l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img17 = new Imagem(17l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img18 = new Imagem(18l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img19 = new Imagem(19l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img20 = new Imagem(20l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img21 = new Imagem(21l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img22 = new Imagem(22l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img23 = new Imagem(23l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img24 = new Imagem(24l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
 
-		imagemRepository.saveAll(Arrays.asList(img1, img2, img3, img4, img5, img6, img7, img8));
+		imagemRepository.saveAll(Arrays.asList(img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11,
+				img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22, img23, img24));
+
+		Produto p1 = new Produto(1L, "GTA V", 50,
+				"Grand Theft Auto V é um jogo eletrônico de ação-aventura desenvolvido pela Rockstar North e publicado pela Rockstar Games.",
+				img9);
+		Produto p2 = new Produto(2L, "CS:GO", 20,
+				"Counter-Strike: Global Offensive é um jogo online desenvolvido pela Valve Corporation e pela Hidden Path Entertainment, sendo uma sequência de Counter-Strike: Source. É o quarto título principal da franquia.",
+				img10);
+		Produto p3 = new Produto(3L, "Outlast", 70,
+				"O inferno é um experimento do qual não há escapatória em Outlast, um jogo de terror de sobrevivência em primeira pessoa da Red Barrels. Como o jornalista investigativo Miles Upshur, explore o Mount Massive Asylum e tente sobreviver tempo o bastante para",
+				img11);
+		Produto p4 = new Produto(4L, "Red Dead Redemption 2", 120,
+				"Red Dead é uma série de jogos de vídeo game de ação e aventura no velho oeste americano aclamados pela crítica. ",
+				img12);
+		Produto p5 = new Produto(5L, "Elder Ring", 100,
+				"Elden Ring é um jogo eletrônico de RPG de ação em terceira pessoa, desenvolvido pela FromSoftware e publicado pela Bandai Namco Entertainment.",
+				img13);
+		Produto p6 = new Produto(6L, "God of War", 230,
+				"God of War é um jogo eletrônico de ação-aventura desenvolvido pela Santa Monica Studio e publicado pela Sony Interactive Entertainment.",
+				img14);
+		Produto p7 = new Produto(7L, "Tony Hawk's", 40,
+				"Tony Hawk's é uma série de jogos digitais com foco em Skate tendo o skatista profissional Tony Hawk como principal personalidade.",
+				img15);
+		Produto p8 = new Produto(8L, "Hitman 3", 60,
+				"Hitman 3 é um jogo eletrônico de furtividade desenvolvido e publicado pela IO Interactive. É o oitavo título principal da série Hitman.",
+				img16);
+		Produto p9 = new Produto(9L, "StarCraft", 95,
+				"StarCraft é uma franquia de ficção científica militar criada por Chris Metzen e James Phinney, e de propriedade da Blizzard Entertainment.",
+				img17);
+		Produto p10 = new Produto(10L, "Cuphead", 78,
+				"Cuphead é um jogo eletrônico de run and gun e plataforma criado pelos irmãos canadenses Chad e Jared Moldenhauer através da Studio MDHR.",
+				img18);
+
+		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+
+		Cad_Produto cp1 = new Cad_Produto(1L, p2, 5L, u1, true);
+		Cad_Produto cp2 = new Cad_Produto(2L, p1, 2L, u1, true);
+		Cad_Produto cp3 = new Cad_Produto(3L, p3, 6L, u2, true);
+		Cad_Produto cp4 = new Cad_Produto(4L, p5, 1L, u3, true);
+		Cad_Produto cp5 = new Cad_Produto(5L, p4, 9L, u4, true);
+		Cad_Produto cp6 = new Cad_Produto(6L, p7, 8L, u1, true);
+		Cad_Produto cp7 = new Cad_Produto(7L, p8, 2L, u3, true);
+		Cad_Produto cp8 = new Cad_Produto(8L, p8, 2L, u2, true);
+
+		cad_produtoRepository.saveAll(Arrays.asList(cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8));
 
 		Anuncio an1 = new Anuncio(1L, "Outlast", "Jogo novo, quase sem utilização", 72.50, 5, true, u2, img1, "Terror");
 		Anuncio an2 = new Anuncio(2L, "GTA V", "Jogo novo, quase sem utilização", 60.50, 5, true, u1, img2, "Ação");
@@ -159,14 +202,14 @@ public class TestConfig implements CommandLineRunner {
 
 		comentarioRepository.saveAll(Arrays.asList(cm1, cm2, cm3, cm4, cm5, cm6, cm7, cm8, cm9, cm10));
 
-		Troca t1 = new Troca(1L, "CS:GO 1.6 modificado", "Com 9 meses de uso", true, u1, cp1, null);
+		Troca t1 = new Troca(1L, "CS:GO 1.6 modificado", "Com 9 meses de uso", true, u1, cp1, img19);
 		Troca t2 = new Troca(2L, "Outlast sem risco, original", "Esta em perfeito estado, com 3 meses de uso", true, u2,
-				cp3, null);
-		Troca t3 = new Troca(3L, "GTA V Xbox 360", "Novinho, com 5 meses de uso", true, u1, cp2, null);
+				cp3, img20);
+		Troca t3 = new Troca(3L, "GTA V Xbox 360", "Novinho, com 5 meses de uso", true, u1, cp2, img21);
 		Troca t4 = new Troca(4L, "Red Dead Redemption 2 novo", "Troco meu Red Dead de 6 meses de uso", true, u4, cp5,
-				null);
-		Troca t5 = new Troca(5L, "Elder Ring PS3", "Apenas 1 meses de uso", true, u3, cp4, null);
-		Troca t6 = new Troca(6L, "Hitman 3 original", "Tem 2 anos de uso", true, u2, cp8, null);
+				img22);
+		Troca t5 = new Troca(5L, "Elder Ring PS3", "Apenas 1 meses de uso", true, u3, cp4, img23);
+		Troca t6 = new Troca(6L, "Hitman 3 original", "Tem 2 anos de uso", true, u2, cp8, img24);
 
 		trocaRepository.saveAll(Arrays.asList(t1, t2, t3, t4, t5, t6));
 

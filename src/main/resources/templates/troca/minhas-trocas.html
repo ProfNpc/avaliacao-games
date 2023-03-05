@@ -105,7 +105,7 @@
 						<div class="row row-cols-1 row-cols-md-2 g-4">
 							<div th:each="trocas: ${trocas}" class="col">
 								<div class="card h-100">
-									<img class="card-img-top" alt="..." />
+									<img th:src="${trocas.imagem.url}" class="card-img-top" alt="..." />
 									<div class="card-body">
 										<h5 class="card-title">
 											<span th:text="${trocas.nomeTroca}"></span>
@@ -122,16 +122,6 @@
 						</div>
 					</section>
 				</div>
-				<!-- Botões de Excluir e Cadastrar -->
-				<section class="container-button">
-					<!-- Botão de Cadastrar -->
-					<div>
-						<form th:action="@{/usuario/{cpf}/anunciar(cpf=${cpf})}" method="get">
-							<label for="#">Adicionar anuncio: </label><br />
-							<a href=""><button>Adicionar</button></a>
-						</form>
-					</div>
-				</section>
 			</div>
 		</div>
 	</main>

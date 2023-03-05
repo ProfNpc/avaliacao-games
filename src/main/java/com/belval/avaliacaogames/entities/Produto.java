@@ -11,7 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -36,16 +38,41 @@ public class Produto implements Serializable {
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
 	private List<Item_Troca> itens_troca = new ArrayList<>();
 
+	// ligação com tabela imagem
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name = "codImagem")
+	private Imagem imagem;
+
 	// Constructors
 	public Produto() {
 
 	}
 
-	public Produto(Long codProd, String nomeProd, Integer valorProd, String descProd) {
+	public Produto(Long codProd, String nomeProd, Integer valorProd, String descProd, Imagem imagem) {
 		this.codProd = codProd;
 		this.nomeProd = nomeProd;
 		this.valorProd = valorProd;
 		this.descProd = descProd;
+		this.imagem = imagem;
+	}
+
+	// Getters and Setters itens_troca
+	public List<Item_Troca> getItens_troca() {
+		return itens_troca;
+	}
+
+	public void setItens_troca(List<Item_Troca> itens_troca) {
+		this.itens_troca = itens_troca;
+	}
+
+	// Getters and Setters imagem
+	public Imagem getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(Imagem imagem) {
+		this.imagem = imagem;
 	}
 
 	// Cad_Produto

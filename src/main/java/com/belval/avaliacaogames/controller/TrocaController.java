@@ -1,5 +1,6 @@
 package com.belval.avaliacaogames.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.Imagem;
 import com.belval.avaliacaogames.entities.Item_Troca;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Troca;
@@ -20,6 +24,7 @@ import com.belval.avaliacaogames.repositories.Item_TrocaRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.repositories.TrocaRepository;
 import com.belval.avaliacaogames.services.Cad_ProdutoService;
+import com.belval.avaliacaogames.services.ImagemService;
 import com.belval.avaliacaogames.services.Item_TrocaService;
 import com.belval.avaliacaogames.services.ProdutoService;
 import com.belval.avaliacaogames.services.TrocaService;
@@ -42,6 +47,9 @@ public class TrocaController {
 
 	@Autowired
 	private Item_TrocaService item_TrocaService;
+
+	@Autowired
+	private ImagemService imagemService;
 
 	@Autowired
 	private TrocaRepository trocaRepository;
@@ -167,9 +175,10 @@ public class TrocaController {
 		return "troca/anuncio-troca";
 	}
 
+	// Cadastra a troca
 	@PostMapping("/usuario/{cpf}/trocar/{codCadProd}/cadastrar")
 	public ModelAndView cadastroTroca(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd,
-			Troca troca, Model model) {
+			Troca troca, Model model, @RequestParam("file") MultipartFile file) {
 
 		System.out.println("Cadastro");
 
@@ -179,6 +188,16 @@ public class TrocaController {
 		novaTroca.setNomeTroca(troca.getNomeTroca());
 		novaTroca.setDescTroca(troca.getDescTroca());
 		// novaTroca.setNomeImagem(troca.getNomeImagem());
+
+		Imagem imagem = null;
+
+		try {
+			imagem = imagemService.upload(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		novaTroca.setImagem(imagem);
 
 		trocaRepository.save(novaTroca);
 

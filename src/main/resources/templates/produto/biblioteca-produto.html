@@ -105,7 +105,7 @@
 						<div class="row row-cols-1 row-cols-md-3 g-4">
 							<div th:each="produto, iStat : ${produtos}" class="col">
 								<div class="card h-100">
-									<img src="/imagens/BannerDoom.png" class="card-img-top" alt="..." />
+									<img th:src="${produto.imagem.url}" class="card-img-top" alt="..." />
 									<div class="card-body">
 										<h5 class="card-title">
 											<span th:text="${produto.nomeProd}"></span>
@@ -135,11 +135,6 @@
 				</div>
 				<!-- Botões de Excluir e Cadastrar -->
 				<section class="container-button">
-					<!-- Botão de Excluir -->
-					<div>
-						<label for="#">Excluir jogo: </label><br />
-						<a href=""><button>Excluir</button></a>
-					</div>
 					<!-- Botão de Cadastrar -->
 					<div>
 						<form th:action="@{/usuario/{cpf}/biblioteca/adicionar(cpf=${cpf})}" method="get">

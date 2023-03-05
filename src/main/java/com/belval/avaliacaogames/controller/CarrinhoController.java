@@ -1,6 +1,5 @@
 package com.belval.avaliacaogames.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,21 +42,17 @@ public class CarrinhoController {
 
 		List<Carrinho> carrinhos = carrinhoRepository.findByUsuario(usuario);
 
-		List<Anuncio> anuncios = new ArrayList<>();
-
-		for (Carrinho car : carrinhos) {
-			Anuncio anuncio = anuncioService.findById(car.getCodAnuncio());
-
-			anuncios.add(anuncio);
-		}
-
-		System.out.println(quantCarrinho);
-
-		// model.addAttribute(cartAnuncio);
-
+		/*
+		 * List<Anuncio> anuncios = new ArrayList<>();
+		 * 
+		 * for (Carrinho car : carrinhos) { Anuncio anuncio =
+		 * anuncioService.findById(car.getCodAnuncio());
+		 * 
+		 * anuncios.add(anuncio); }
+		 */
 		ModelAndView mv = new ModelAndView("carrinho/carrinho");
 
-		mv.addObject("anuncios", anuncios);
+		// mv.addObject("anuncios", anuncios);
 		mv.addObject("carrinhos", carrinhos);
 
 		return mv;

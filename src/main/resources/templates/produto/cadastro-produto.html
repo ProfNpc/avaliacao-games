@@ -80,7 +80,8 @@
 	<main>
 		<section>
 			<!-- Inicio do form -->
-			<form th:action="@{/usuario/{cpf}/biblioteca/cadastrar (cpf=${cpf})}" method="post">
+			<form th:action="@{/usuario/{cpf}/biblioteca/cadastrar (cpf=${cpf})}" enctype="multipart/form-data"
+				method="post">
 				<div class="card container anuncio" style="width: 55rem">
 					<!-- Titulo -->
 					<h5 class="card-title titulo">Cadastrar produto</h5>
@@ -93,7 +94,7 @@
 							</div>
 						</div>
 						<div>
-							<input type="file" id="flImage" name="imagemAnuncio" accept="/image" required />
+							<input type="file" id="flImage" name="file" accept="/image" required />
 						</div>
 					</div>
 					<!-- Inputs -->
@@ -131,7 +132,7 @@
 						<!-- botao de criar anuncio -->
 						<div class="d-grid gap-2 col-6 mx-auto">
 							<button class="btn btn-primary botao" type="submit">
-								Criar anuncio
+								Adicionar produto
 							</button>
 						</div>
 					</ul>
