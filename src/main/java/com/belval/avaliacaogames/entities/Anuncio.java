@@ -30,7 +30,6 @@ public class Anuncio implements Serializable {
 	private Integer quantAnuncio;
 	private Boolean statusAnuncio;
 	private String generoAnuncio;
-	private String nomeImagem;
 	/*
 	 * // Atributos de ligação com Cad_Produto
 	 * 
@@ -175,14 +174,6 @@ public class Anuncio implements Serializable {
 
 	public void setStatusAnuncio(Boolean statusAnuncio) {
 		this.statusAnuncio = statusAnuncio;
-	}
-
-	public String getNomeImagem() {
-		return nomeImagem;
-	}
-
-	public void setNomeImagem(String nomeImagem) {
-		this.nomeImagem = nomeImagem;
 	}
 
 	public String getGeneroAnuncio() {
