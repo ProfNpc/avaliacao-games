@@ -1,8 +1,9 @@
 package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Pedido implements Serializable {
@@ -18,23 +20,32 @@ public class Pedido implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codPedido;
-	private Instant dataPedido;
+	private String dataPedido;
 	private String statusPedido;
 
 	@ManyToOne
 	@JoinColumn(name = "codUsuario")
 	private Usuario usuario;
 
+	@OneToMany(mappedBy = "id.pedido")
+	private Set<ItemPedido> itens = new HashSet<>();
+
 	public Pedido() {
 		super();
 	}
 
-	public Pedido(Long codPedido, Instant dataPedido, String statusPedido, Usuario usuario) {
+	public Pedido(Long codPedido, String dataPedido, String statusPedido, Usuario usuario) {
 		super();
 		this.codPedido = codPedido;
 		this.dataPedido = dataPedido;
 		this.statusPedido = statusPedido;
 		this.usuario = usuario;
+	}
+
+	// Getters itemPedido
+	@SuppressWarnings("unused") // Caso der erro tirar
+	private Set<ItemPedido> getItens() {
+		return itens;
 	}
 
 	// Getters and Setters Usuario
@@ -55,11 +66,11 @@ public class Pedido implements Serializable {
 		this.codPedido = codPedido;
 	}
 
-	public Instant getDataPedido() {
+	public String getDataPedido() {
 		return dataPedido;
 	}
 
-	public void setDataPedido(Instant dataPedido) {
+	public void setDataPedido(String dataPedido) {
 		this.dataPedido = dataPedido;
 	}
 

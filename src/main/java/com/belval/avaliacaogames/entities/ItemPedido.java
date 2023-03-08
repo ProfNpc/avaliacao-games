@@ -7,13 +7,14 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 import com.belval.avaliacaogames.entities.pk.ItemPedidoPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ItemPedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private ItemPedidoPK codItemPedido;
+	private ItemPedidoPK id = new ItemPedidoPK();
 
 	private Integer quantidade;
 	private Double preco;
@@ -24,28 +25,29 @@ public class ItemPedido implements Serializable {
 
 	public ItemPedido(Pedido pedido, Anuncio anuncio, Integer quantidade, Double preco) {
 		super();
-		codItemPedido.setPedido(pedido);
-		codItemPedido.setAnuncio(anuncio);
+		id.setPedido(pedido);
+		id.setAnuncio(anuncio);
 		this.quantidade = quantidade;
 		this.preco = preco;
 	}
 
 	// Getters and Setters pedido
+	@JsonIgnore
 	public Pedido getPedido() {
-		return codItemPedido.getPedido();
+		return id.getPedido();
 	}
 
 	public void setPedido(Pedido pedido) {
-		codItemPedido.setPedido(pedido);
+		id.setPedido(pedido);
 	}
 
 	// Getters and Setters anuncio
 	public Anuncio getAnuncio() {
-		return codItemPedido.getAnuncio();
+		return id.getAnuncio();
 	}
 
 	public void setAnuncio(Anuncio anuncio) {
-		codItemPedido.setAnuncio(anuncio);
+		id.setAnuncio(anuncio);
 	}
 
 	// Getters and Setters
@@ -67,7 +69,7 @@ public class ItemPedido implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codItemPedido);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -79,6 +81,6 @@ public class ItemPedido implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ItemPedido other = (ItemPedido) obj;
-		return Objects.equals(codItemPedido, other.codItemPedido);
+		return Objects.equals(id, other.id);
 	}
 }

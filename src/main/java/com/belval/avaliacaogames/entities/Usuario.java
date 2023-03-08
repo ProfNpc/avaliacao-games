@@ -54,6 +54,7 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Troca> trocas = new ArrayList<>();
 
+	// Ligação com tabela pedido
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Pedido> pedido = new ArrayList<>();

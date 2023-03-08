@@ -18,6 +18,7 @@ public class CloudinaryService {
 		this.cloudinary = cloudinary;
 	}
 
+	// @SuppressWarnings("rawtypes")
 	public String upload(MultipartFile file) throws IOException {
 		Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
 		return (String) uploadResult.get("url");

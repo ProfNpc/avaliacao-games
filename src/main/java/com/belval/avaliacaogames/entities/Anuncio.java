@@ -2,7 +2,9 @@ package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -30,15 +32,7 @@ public class Anuncio implements Serializable {
 	private Integer quantAnuncio;
 	private Boolean statusAnuncio;
 	private String generoAnuncio;
-	/*
-	 * // Atributos de ligação com Cad_Produto
-	 * 
-	 * @JsonIgnore
-	 * 
-	 * @OneToOne
-	 * 
-	 * @JoinColumn(name = "cod_cad_produto") private Cad_Produto cad_produto;
-	 */
+
 	@ManyToOne
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;
@@ -58,6 +52,9 @@ public class Anuncio implements Serializable {
 	@JoinColumn(name = "codImagem")
 	private Imagem imagem;
 
+	@OneToMany(mappedBy = "id.anuncio")
+	private Set<ItemPedido> itens = new HashSet<>();
+
 	// Constructors
 	public Anuncio() {
 	}
@@ -75,13 +72,16 @@ public class Anuncio implements Serializable {
 		this.generoAnuncio = generoAnuncio;
 	}
 
-	/*
-	 * // Getters and Setters Cad_Produto public Cad_Produto getCad_produto() {
-	 * return cad_produto; }
-	 * 
-	 * public void setCad_produto(Cad_Produto cad_produto) { this.cad_produto =
-	 * cad_produto; }
-	 */
+	// Gettes anuncio
+	// @SuppressWarnings("unused")
+	@JsonIgnore
+	private Set<Pedido> getPedidos() {
+		Set<Pedido> set = new HashSet<>();
+		for (ItemPedido x : itens) {
+			set.add(x.getPedido());
+		}
+		return set;
+	}
 
 	// Getters and Setters Imagem
 	public Long getCodImagem() {

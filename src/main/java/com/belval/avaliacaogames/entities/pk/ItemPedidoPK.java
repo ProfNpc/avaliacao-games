@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Pedido;
@@ -14,11 +14,11 @@ import com.belval.avaliacaogames.entities.Pedido;
 public class ItemPedidoPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name = "codPedido")
 	private Pedido pedido;
 
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name = "codAnuncio")
 	private Anuncio anuncio;
 
