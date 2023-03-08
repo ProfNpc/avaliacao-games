@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/CSS/Tela_Compra.css" />
+	<link rel="stylesheet" href="/CSS/NavBar.css" />
+	<title>Pacifier</title>
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a class="logo navbar-brand" th:href="@{/home/{cpf} (cpf=${cpf})}"><img src="/imagens/Controle.png"
+						alt="" /></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="colorFont nav-link" aria-current="page" href="#">Comunidade</a>
+						</li>
+						<li class="nav-item">
+							<a class="colorFont nav-link" href="#">Contato</a>
+						</li>
+						<li class="nav-item">
+							<a class="car nav-link" th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}"><img
+									src="/imagens/CarrinhoCompra.png" alt="" /></a>
+						</li>
+
+						<!-- Botão de login -->
+						<li class="nav-item">
+							<div class="login-button">
+								<div class="dropdown">
+									<button class="btn btn-secondary dropdown-toggle" type="button"
+										data-bs-toggle="dropdown" aria-expanded="false">
+										<img src="/imagens/foto_perfil.png" alt="" />
+									</button>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" th:href="@{/usuario/{cpf}(cpf=${cpf})}">Perfil</a>
+										</li>
+										<li>
+											<a class="dropdown-item"
+												th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}">Sua biblioteca</a>
+										</li>
+										<li>
+											<a class="dropdown-item"
+												th:href="@{/usuario/{cpf}/anunciar(cpf=${cpf})}">Anunciar</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+
+					<!-- Barra de pesquisa -->
+					<form th:action="@{/usuario/{cpf}/pesquisar(cpf=${cpf})}" method="post" class="d-flex"
+						role="search">
+						<input class="form-control me-2" type="search" name="nomeAnuncio"
+							placeholder="Buscar produtos..." aria-label="Search" />
+
+						<!-- Botão de pesquisa -->
+						<button class="btn btn-outline-success" type="submit">
+							Pesquisar
+						</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<div class="card text-center container">
+			<div class="card-header">Featured</div>
+			<div class="row">
+				<!-- Endereço do usuario -->
+				<div class="col-sm-6 mb-3 mb-sm-0 container">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Endereço:</h5>
+							<p class="card-text">Rua, numero e bairro</p>
+							<p class="card-text">Cidade, estado e país</p>
+							<p class="card-text">CEP:</p>
+						</div>
+					</div>
+				</div>
+				<!-- Resumo da compra -->
+				<div class="col-sm-6 container">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Resumo da compra:</h5>
+							<p class="card-text">Quantidade:</p>
+							<p class="card-text">Frete:</p>
+							<p class="card-text">Total:</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card text-center">
+				<div class="card-header">
+					<ul class="nav nav-tabs card-header-tabs">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="true" href="#">Cartão de credito</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" aria-current="true" href="#">Boleto</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" aria-current="true" href="#">PIX</a>
+						</li>
+					</ul>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">Cartão de Credito</h5>
+					<p class="card-text">
+						Número do cartão:
+						<input type="text" />
+					</p>
+					<p class="card-text">
+						Nome completo:
+						<input type="text" />
+					</p>
+					<p class="card-text">
+						Validade:
+						<input type="text" />
+					</p>
+					<p class="card-text">
+						Código de Segurança:
+						<input type="text" />
+					</p>
+					<p class="card-text">
+						Número de parcelas:
+					<div class="input-group mb-3">
+						<select class="form-select" id="inputGroupSelect01">
+							<option selected>Selecione...</option>
+							<option value="1">Uma</option>
+							<option value="2">Duas</option>
+							<option value="3">Três</option>
+						</select>
+					</div>
+					</p>
+					<a href="#" class="btn btn-primary">Continuar</a>
+				</div>
+			</div>
+			<div class="card-footer text-muted">
+				<div class="d-grid gap-2 col-6 mx-auto">
+					<button class="btn btn-primary" type="button">
+						Terminar compra
+					</button>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer></footer>
+	<script src="/JS/NavBar.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
