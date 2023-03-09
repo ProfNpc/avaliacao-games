@@ -39,7 +39,7 @@ public class UsuarioController {
 
 	@Autowired
 	private Cad_ProdutoService cad_ProdutoService;
-	
+
 	@Autowired
 	private TrocaService trocaService;
 
@@ -61,7 +61,7 @@ public class UsuarioController {
 
 		List<Anuncio> anuncios = anuncioService.findAll();
 		model.addAttribute("anuncios", anuncios);
-		
+
 		List<Troca> trocas = trocaService.findAll();
 		model.addAttribute("trocas", trocas);
 
@@ -77,7 +77,7 @@ public class UsuarioController {
 
 		List<Anuncio> anuncios = anuncioService.findAll();
 		model.addAttribute("anuncios", anuncios);
-		
+
 		List<Troca> trocas = trocaService.findAll();
 		model.addAttribute("trocas", trocas);
 
@@ -186,24 +186,24 @@ public class UsuarioController {
 			usuario.setSenha(usuarioOld.getSenha());
 
 		// Endereco
-		if (endereco.getCep_end() == null)
-			endereco.setCep_end(enderecoOld.getCep_end());
-		if (endereco.getPais_end() == null)
-			endereco.setPais_end(enderecoOld.getPais_end());
-		if (endereco.getEstado_end() == null)
-			endereco.setEstado_end(enderecoOld.getEstado_end());
-		if (endereco.getCidade_end() == null)
-			endereco.setCidade_end(enderecoOld.getCidade_end());
-		if (endereco.getBairro_end() == null)
-			endereco.setBairro_end(enderecoOld.getBairro_end());
-		if (endereco.getRua_end() == null)
-			endereco.setRua_end(enderecoOld.getRua_end());
-		if (endereco.getNum_end() == null)
-			endereco.setNum_end(enderecoOld.getNum_end());
+		if (endereco.getCepEnd() == null)
+			endereco.setCepEnd(enderecoOld.getCepEnd());
+		if (endereco.getPaisEnd() == null)
+			endereco.setPaisEnd(enderecoOld.getPaisEnd());
+		if (endereco.getEstadoEnd() == null)
+			endereco.setEstadoEnd(enderecoOld.getEstadoEnd());
+		if (endereco.getCidadeEnd() == null)
+			endereco.setCidadeEnd(enderecoOld.getCidadeEnd());
+		if (endereco.getBairroEnd() == null)
+			endereco.setBairroEnd(enderecoOld.getBairroEnd());
+		if (endereco.getRuaEnd() == null)
+			endereco.setRuaEnd(enderecoOld.getRuaEnd());
+		if (endereco.getNumEnd() == null)
+			endereco.setNumEnd(enderecoOld.getNumEnd());
 		if (endereco.getUsuario() == null)
 			endereco.setUsuario(usuario);
-		if (endereco.getId_end() == null)
-			endereco.setId_end(enderecoOld.getId_end());
+		if (endereco.getCodEnd() == null)
+			endereco.setCodEnd(enderecoOld.getCodEnd());
 
 		repository.save(usuario);
 		enderecoRepository.save(endereco);

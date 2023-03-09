@@ -66,6 +66,8 @@ public class TestConfig implements CommandLineRunner {
 				"Masculino");
 		Usuario u4 = new Usuario(78965432112L, "Arthur", "Felipe", "arthur@gmail.com", "1194563214", "123456",
 				"Masculino");
+		Usuario u5 = new Usuario(123L, "Testador", "adm", "adm@gmail.com", "1194563123", "123456",
+				"Masculino");
 
 		Endereco e1 = new Endereco(1L, "06634080", 222, "Avenida Comandante", "Km 18", "Osasco", "São Paulo", "Brasil",
 				u2);
@@ -158,7 +160,7 @@ public class TestConfig implements CommandLineRunner {
 				"Cuphead é um jogo eletrônico de run and gun e plataforma criado pelos irmãos canadenses Chad e Jared Moldenhauer através da Studio MDHR.",
 				img18);
 
-		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4));
+		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
 

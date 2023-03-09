@@ -78,16 +78,20 @@
 	</header>
 	<main>
 		<div class="card text-center container">
-			<div class="card-header">Featured</div>
+			<div class="card-header">FINALIZAR COMPRA</div>
 			<div class="row">
 				<!-- Endereço do usuario -->
 				<div class="col-sm-6 mb-3 mb-sm-0 container">
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">Endereço:</h5>
-							<p class="card-text">Rua, numero e bairro</p>
-							<p class="card-text">Cidade, estado e país</p>
-							<p class="card-text">CEP:</p>
+							<p class="card-text"><span th:text="${endereco.ruaEnd}"></span>, <span
+									th:text="${endereco.bairroEnd}"></span>, Nº<span
+									th:text="${endereco.numEnd}"></span></p>
+							<p class="card-text"><span th:text="${endereco.cidadeEnd}"></span>, <span
+									th:text="${endereco.estadoEnd}"></span>, Nº<span
+									th:text="${endereco.paisEnd}"></span></p>
+							<p class="card-text">CEP: <span th:text="${endereco.cepEnd}"></span></p>
 						</div>
 					</div>
 				</div>
