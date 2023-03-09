@@ -70,12 +70,11 @@ public class PedidoController {
 		List<ItemCarrinho> itensCarrinho = itemCarrinhoRepository.findByCarrinho(carrinho);
 		
 		int quant = itensCarrinho.size();
-		
-		System.out.println(quant);
 
 		ModelAndView mv = new ModelAndView("compra/finalizar-compra");
 
 		mv.addObject("endereco", endereco);
+		mv.addObject("quant", quant);
 
 		return mv;
 	}

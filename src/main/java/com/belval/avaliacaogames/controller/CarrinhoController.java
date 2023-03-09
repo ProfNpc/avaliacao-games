@@ -63,10 +63,14 @@ public class CarrinhoController {
 
 		Usuario usuario = usuarioService.findById(cpf);
 		Anuncio anuncio = anuncioService.findById(codAnuncio);
-
-		carrinho.setUsuario(usuario);
-
-		carrinhoRepository.save(carrinho);
+		
+		
+		if (carrinhoRepository.findByUsuario(usuario) == null) {
+			carrinho.setUsuario(usuario);
+			carrinhoRepository.save(carrinho);
+		} else {
+			carrinho = carrinhoRepository.findByUsuario(usuario);
+		}
 
 		itemCarrinho.setAnuncio(anuncio);
 		itemCarrinho.setQuantItemCar(quantItemCar);
