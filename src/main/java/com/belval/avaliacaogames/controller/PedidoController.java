@@ -65,6 +65,13 @@ public class PedidoController {
 			ModelAndView mve = new ModelAndView("redirect:/usuario/{cpf}/cadastrar/endereco");
 			return mve;
 		}
+		
+		Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
+		List<ItemCarrinho> itensCarrinho = itemCarrinhoRepository.findByCarrinho(carrinho);
+		
+		int quant = itensCarrinho.size();
+		
+		System.out.println(quant);
 
 		ModelAndView mv = new ModelAndView("compra/finalizar-compra");
 
