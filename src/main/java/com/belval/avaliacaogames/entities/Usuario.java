@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -45,9 +46,8 @@ public class Usuario implements Serializable {
 	private List<Comentario> comentarios = new ArrayList<>();
 
 	// Ligação com tabela Carrinho
-	@JsonIgnore
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	public List<Carrinho> carrinhos = new ArrayList<>();
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private Carrinho carrinho;
 
 	// Ligação com tabela Troca
 	@JsonIgnore

@@ -42,9 +42,9 @@ public class Anuncio implements Serializable {
 	@OneToMany(mappedBy = "anuncio", cascade = CascadeType.ALL)
 	private List<Comentario> comentarios = new ArrayList<>();
 
-	// Ligação com tabela carrinho
-	@OneToOne(mappedBy = "anuncio", cascade = CascadeType.ALL)
-	private Carrinho carrinho;
+	// Ligação com tabela ItemCarrinho
+	@OneToMany(mappedBy = "anuncio")
+	private Set<ItemCarrinho> itens_carrinho = new HashSet<>();
 
 	// ligação com tabela imagem
 	@JsonIgnore
@@ -52,6 +52,7 @@ public class Anuncio implements Serializable {
 	@JoinColumn(name = "codImagem")
 	private Imagem imagem;
 
+	// Ligacao com tabela itemPedido
 	@OneToMany(mappedBy = "id.anuncio")
 	private Set<ItemPedido> itens = new HashSet<>();
 
@@ -71,6 +72,8 @@ public class Anuncio implements Serializable {
 		this.imagem = imagem;
 		this.generoAnuncio = generoAnuncio;
 	}
+
+	// Gettes carrinho
 
 	// Gettes anuncio
 	// @SuppressWarnings("unused")
@@ -116,15 +119,6 @@ public class Anuncio implements Serializable {
 
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
-	}
-
-	// Getters and Setters
-	public Carrinho getCarrinho() {
-		return carrinho;
-	}
-
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
 	}
 
 	// Getters and Setters

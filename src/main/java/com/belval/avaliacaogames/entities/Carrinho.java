@@ -1,11 +1,15 @@
 package com.belval.avaliacaogames.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,43 +20,25 @@ public class Carrinho {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long codCarrinho;
-	public Integer quantCarrinho;
-
-	// Ligação com tabela anuncio
-	@JsonIgnore
-	@OneToOne
-	@JoinColumn(name = "codAnuncio")
-	public Anuncio anuncio;
 
 	// Ligação com tabela usuario
-	@ManyToOne
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cpfUsuario")
-	public Usuario usuario;
+	private Usuario usuario;
+
+	@OneToMany(mappedBy = "carrinho", cascade = CascadeType.ALL)
+	private Set<ItemCarrinho> itens = new HashSet<>();
 
 	// Constructors
 	public Carrinho() {
 		super();
 	}
 
-	public Carrinho(Long codCarrinho, Integer quantCarrinho, Anuncio anuncio, Usuario usuario) {
+	public Carrinho(Long codCarrinho, Usuario usuario) {
 		super();
 		this.codCarrinho = codCarrinho;
-		this.quantCarrinho = quantCarrinho;
-		this.anuncio = anuncio;
 		this.usuario = usuario;
-	}
-
-	// Getters and Setters anuncios
-	public Anuncio getAnuncio() {
-		return anuncio;
-	}
-
-	public void setAnuncio(Anuncio anuncio) {
-		this.anuncio = anuncio;
-	}
-
-	public Long getCodAnuncio() {
-		return anuncio.getCodAnuncio();
 	}
 
 	// Getters and Setters usuario
@@ -71,14 +57,6 @@ public class Carrinho {
 
 	public void setCodCarrinho(Long codCarrinho) {
 		this.codCarrinho = codCarrinho;
-	}
-
-	public Integer getQuantCarrinho() {
-		return quantCarrinho;
-	}
-
-	public void setQuantCarrinho(Integer quantCarrinho) {
-		this.quantCarrinho = quantCarrinho;
 	}
 
 	@Override

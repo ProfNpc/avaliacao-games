@@ -12,10 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Carrinho;
+import com.belval.avaliacaogames.entities.ItemCarrinho;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.CarrinhoRepository;
+import com.belval.avaliacaogames.repositories.ItemCarrinhoRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
-import com.belval.avaliacaogames.services.CarrinhoService;
+import com.belval.avaliacaogames.services.ItemCarrinhoService;
 import com.belval.avaliacaogames.services.UsuarioService;
 
 @Controller
@@ -28,10 +30,13 @@ public class CarrinhoController {
 	private UsuarioService usuarioService;
 
 	@Autowired
-	private CarrinhoService carrinhoService;
+	private ItemCarrinhoService itemCarrinhoService;
 
 	@Autowired
 	private CarrinhoRepository carrinhoRepository;
+
+	@Autowired
+	private ItemCarrinhoRepository itemCarrinhoRepository;
 
 	// public static List<Anuncio> cartAnuncio = new ArrayList<>();
 
@@ -40,20 +45,13 @@ public class CarrinhoController {
 	public ModelAndView carrinho(@PathVariable("cpf") Long cpf, Model model, Integer quantCarrinho) {
 		Usuario usuario = usuarioService.findById(cpf);
 
-		List<Carrinho> carrinhos = carrinhoRepository.findByUsuario(usuario);
+		Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
 
-		/*
-		 * List<Anuncio> anuncios = new ArrayList<>();
-		 * 
-		 * for (Carrinho car : carrinhos) { Anuncio anuncio =
-		 * anuncioService.findById(car.getCodAnuncio());
-		 * 
-		 * anuncios.add(anuncio); }
-		 */
+		List<ItemCarrinho> itens = itemCarrinhoRepository.findByCarrinho(carrinho);
+
 		ModelAndView mv = new ModelAndView("carrinho/carrinho");
 
-		// mv.addObject("anuncios", anuncios);
-		mv.addObject("carrinhos", carrinhos);
+		mv.addObject("itens", itens);
 
 		return mv;
 	}
@@ -61,43 +59,44 @@ public class CarrinhoController {
 	// Adiciona o produto ao carrinho
 	@PostMapping("/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho")
 	public ModelAndView adicionarCarrinho(@PathVariable("cpf") Long cpf, @PathVariable("codAnuncio") Long codAnuncio,
-			Carrinho carrinho, Integer quantCarrinho) {
+			Carrinho carrinho, ItemCarrinho itemCarrinho, Integer quantItemCar) {
 
-		Anuncio anuncio = anuncioService.findById(codAnuncio);
 		Usuario usuario = usuarioService.findById(cpf);
+		Anuncio anuncio = anuncioService.findById(codAnuncio);
 
-		carrinho.setAnuncio(anuncio);
 		carrinho.setUsuario(usuario);
-		carrinho.setQuantCarrinho(quantCarrinho);
 
 		carrinhoRepository.save(carrinho);
-		// cartAnuncio.add(anuncio);
+
+		itemCarrinho.setAnuncio(anuncio);
+		itemCarrinho.setQuantItemCar(quantItemCar);
+		itemCarrinho.setCarrinho(carrinho);
+		itemCarrinhoRepository.save(itemCarrinho);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/carrinho");
 		return mv;
 	}
 
 	// Deleta o produto do carrinho
-	@PostMapping("/usuario/{cpf}/deletar/produto/{codCarrinho}/carrinho")
-	public ModelAndView deletarCarrinho(@PathVariable("cpf") Long cpf, @PathVariable("codCarrinho") Long codCarrinho) {
+	@PostMapping("/usuario/{cpf}/deletar/produto/{codItemCar}/carrinho")
+	public ModelAndView deletarCarrinho(@PathVariable("cpf") Long cpf, @PathVariable("codItemCar") Long codItemCar) {
 
-		Carrinho carrinho = carrinhoService.findById(codCarrinho);
+		ItemCarrinho itemCarrinho = itemCarrinhoService.findById(codItemCar);
 
-		carrinhoRepository.delete(carrinho);
+		itemCarrinhoRepository.delete(itemCarrinho);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/carrinho");
 		return mv;
 	}
 
 	// Altera a quantidade do produto pelo carrinho
-	@PostMapping("/usuario/{cpf}/carrinho/{codCarrinho}/quantidade")
-	public ModelAndView alteraQuantidade(@PathVariable("cpf") Long cpf, @PathVariable("codCarrinho") Long codCarrinho,
-			Integer quantCarrinho) {
+	@PostMapping("/usuario/{cpf}/carrinho/{codItemCar}/quantidade")
+	public ModelAndView alteraQuantidade(@PathVariable("cpf") Long cpf, @PathVariable("codItemCar") Long codItemCar,
+			Integer quantItemCar) {
 
-		Carrinho carrinho = carrinhoService.findById(codCarrinho);
-
-		carrinho.setQuantCarrinho(quantCarrinho);
-		carrinhoRepository.save(carrinho);
+		ItemCarrinho itemCarrinho = itemCarrinhoService.findById(codItemCar);
+		itemCarrinho.setQuantItemCar(quantItemCar);
+		itemCarrinhoRepository.save(itemCarrinho);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/carrinho");
 		return mv;

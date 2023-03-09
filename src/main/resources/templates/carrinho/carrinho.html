@@ -85,27 +85,27 @@
 
 			<!-- Produto 1 -->
 
-			<div class="card mb-3 produto" style="max-width: 440px" th:each="carrinhos, iStat: ${carrinhos}">
+			<div class="card mb-3 produto" style="max-width: 440px" th:each="itens, iStat: ${itens}">
 
 				<div class="row g-0">
 					<div class="col-md-4">
-						<img th:src="${carrinhos.anuncio.imagem.url}" class="img-fluid rounded-start" alt="..." />
+						<img th:src="${itens.anuncio.imagem.url}" class="img-fluid rounded-start" alt="..." />
 					</div>
 					<div class="col-md-7">
 						<div class="card-body">
-							<h5 class="card-title"><span th:text="${carrinhos.anuncio.nomeAnuncio}"></span></h5>
-							<p class="card-text"><span th:text="${carrinhos.anuncio.valorAnuncio}"></p>
+							<h5 class="card-title"><span th:text="${itens.anuncio.nomeAnuncio}"></span></h5>
+							<p class="card-text"><span th:text="${itens.anuncio.valorAnuncio}"></p>
 							<p class="card-text">
 								<small class="text-muted">Frete: </small>
 							</p>
 							<form
-								th:action="@{/usuario/{cpf}/carrinho/{codCarrinho}/quantidade (cpf=${cpf}, codCarrinho=${carrinhos.codCarrinho})}"
+								th:action="@{/usuario/{cpf}/carrinho/{codItemCar}/quantidade (cpf=${cpf}, codItemCar=${itens.codItemCar})}"
 								method="post">
-								<input type="number" placeholder="Quantidade" name="quantCarrinho"
-									th:value="${carrinhos.quantCarrinho}" />
+								<input type="number" placeholder="Quantidade" name="quantItemCar"
+									th:value="${itens.quantItemCar}" />
 							</form>
 							<form
-								th:action="@{/usuario/{cpf}/deletar/produto/{codCarrinho}/carrinho (cpf=${cpf}, codCarrinho=${carrinhos.codCarrinho})}"
+								th:action="@{/usuario/{cpf}/deletar/produto/{codItemCar}/carrinho (cpf=${cpf}, codItemCar=${itens.codItemCar})}"
 								method="post">
 								<button class="botao btn btn-primary" type="submit">Excluir</button>
 							</form>
