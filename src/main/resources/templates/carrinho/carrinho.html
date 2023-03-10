@@ -115,8 +115,8 @@
 			</div>
 
 			<!-- Container do Carrinho, continuar compra -->
-			<div class="card-footer text-muted">Frete: R$</div>
-			<div class="card-footer text-muted">Total com Frete: R$</div>
+			<div class="card-footer text-muted">Frete: R$ </div>
+			<div class="card-footer text-muted">Total com Frete: R$ <span th:text="${total}"></span></div>
 			<div class="card-footer text-muted">
 				<a th:href="@{/usuario/{cpf}/compra/finalizar (cpf=${cpf})}" class="btn btn-primary">Continuar a compra</a>
 			</div>

@@ -48,10 +48,16 @@ public class CarrinhoController {
 		Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
 
 		List<ItemCarrinho> itens = itemCarrinhoRepository.findByCarrinho(carrinho);
+		
+		double total = 0;
+		for (ItemCarrinho item : itens) {
+			total += item.getAnuncio().getValorAnuncio() * item.getQuantItemCar();
+		}
 
 		ModelAndView mv = new ModelAndView("carrinho/carrinho");
 
 		mv.addObject("itens", itens);
+		mv.addObject("total", total);
 
 		return mv;
 	}
