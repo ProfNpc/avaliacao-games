@@ -48,7 +48,7 @@ public class CarrinhoController {
 		Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
 
 		List<ItemCarrinho> itens = itemCarrinhoRepository.findByCarrinho(carrinho);
-		
+
 		double total = 0;
 		for (ItemCarrinho item : itens) {
 			total += item.getAnuncio().getValorAnuncio() * item.getQuantItemCar();
@@ -69,8 +69,7 @@ public class CarrinhoController {
 
 		Usuario usuario = usuarioService.findById(cpf);
 		Anuncio anuncio = anuncioService.findById(codAnuncio);
-		
-		
+
 		if (carrinhoRepository.findByUsuario(usuario) == null) {
 			carrinho.setUsuario(usuario);
 			carrinhoRepository.save(carrinho);

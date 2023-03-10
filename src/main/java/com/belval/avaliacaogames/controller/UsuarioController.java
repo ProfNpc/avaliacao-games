@@ -155,9 +155,9 @@ public class UsuarioController {
 
 		Endereco endereco = enderecoService.findByUsuario(usuario);
 
-		if (usuario == null) {
-			return "usuario/usuario-nao-existe";
-		}
+		/*
+		 * if (usuario == null) { return "usuario/usuario-nao-existe"; }
+		 */
 
 		model.addAttribute("endereco", endereco);
 		model.addAttribute("usuario", usuario);
@@ -240,12 +240,4 @@ public class UsuarioController {
 
 		return mv;
 	}
-
-	// Ver lista de usuários
-	@GetMapping("/usuario/list")
-	public String list(Model model) {
-		model.addAttribute("usuarios", repository.findAll());
-		return "usuario/lista-usuario";
-	}
-
 }

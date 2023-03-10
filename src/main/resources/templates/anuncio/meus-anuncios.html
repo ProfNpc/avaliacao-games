@@ -83,10 +83,14 @@
 			<div class="container-button">
 				<div class="button">
 					<a th:href="@{/usuario/{cpf}(cpf=${cpf})}"><input type="button" value="Geral" class="button" /></a>
-					<a href=""><input type="button" value="Preferencias" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/trocas(cpf=${cpf})}"><input type="button" value="Minhas Trocas" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}"><input type="button" value="Meus Anúncios" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}"><input type="button" value="Biblioteca" class="button" /></a>
+					<a th:href="@{/usuario/{cpf}/compras (cpf=${cpf})}"><input type="button" value="Minhas compras"
+							class="button" /></a>
+					<a th:href="@{/usuario/{cpf}/trocas(cpf=${cpf})}"><input type="button" value="Minhas Trocas"
+							class="button" /></a>
+					<a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}"><input type="button" value="Meus Anúncios"
+							class="button" /></a>
+					<a th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}"><input type="button" value="Biblioteca"
+							class="button" /></a>
 				</div>
 			</div>
 		</div>
@@ -102,8 +106,7 @@
 						<div class="row row-cols-1 row-cols-md-2 g-4">
 							<div th:each="anuncio: ${anuncio}" class="col">
 								<div class="card h-100">
-									<img th:src="${anuncio.imagem.url}"
-										class="card-img-top" alt="..." />
+									<img th:src="${anuncio.imagem.url}" class="card-img-top" alt="..." />
 									<div class="card-body">
 										<h5 class="card-title">
 											<span th:text="${anuncio.nomeAnuncio}"></span>

@@ -81,7 +81,8 @@
 			<div class="container-button">
 				<div class="button">
 					<a th:href="@{/usuario/{cpf}(cpf=${cpf})}"><input type="button" value="Geral" class="button" /></a>
-					<a href=""><input type="button" value="Preferencias" class="button" /></a>
+					<a th:href="@{/usuario/{cpf}/compras (cpf=${cpf})}"><input type="button" value="Minhas compras"
+							class="button" /></a>
 					<a th:href="@{/usuario/{cpf}/trocas(cpf=${cpf})}"><input type="button" value="Minhas Trocas"
 							class="button" /></a> <a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}"><input
 							type="button" value="Meus Anúncios" class="button" /></a>

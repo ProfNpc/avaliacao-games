@@ -16,6 +16,7 @@ import com.belval.avaliacaogames.entities.ItemCarrinho;
 import com.belval.avaliacaogames.entities.ItemPedido;
 import com.belval.avaliacaogames.entities.Pedido;
 import com.belval.avaliacaogames.entities.Usuario;
+import com.belval.avaliacaogames.entities.pk.ItemPedidoPK;
 import com.belval.avaliacaogames.repositories.CarrinhoRepository;
 import com.belval.avaliacaogames.repositories.ItemCarrinhoRepository;
 import com.belval.avaliacaogames.repositories.ItemPedidoRepository;
@@ -44,6 +45,7 @@ public class PedidoController {
 	@Autowired
 	private PedidoRepository pedidoRepository;
 
+	// Mostra todas as compras do usuario
 	@GetMapping("/usuario/{cpf}/compras")
 	public ModelAndView minhasCompras(@PathVariable("cpf") Long cpf) {
 		Usuario usuario = usuarioService.findById(cpf);
@@ -52,18 +54,17 @@ public class PedidoController {
 		List<ItemPedido> itensPedido = new ArrayList<>();
 
 		for (Pedido p : pedidos) {
-			itensPedido = itemPedidoRepository.findByIdPedido(p);
+			List<ItemPedido> ip = itemPedidoRepository.findByIdPedido(p);
+			itensPedido.addAll(ip);
 		}
-
-		System.out.println(itensPedido.size());
 
 		ModelAndView mv = new ModelAndView("compra/minhas-compras");
 		mv.addObject("itensPedido", itensPedido);
-		
+
 		return mv;
 	}
 
-	// Tela de finalizar compra
+	// Tela para finalizar compra
 	@GetMapping("/usuario/{cpf}/compra/finalizar")
 	public ModelAndView comprar(@PathVariable("cpf") Long cpf) {
 		Usuario usuario = usuarioService.findById(cpf);
@@ -94,7 +95,7 @@ public class PedidoController {
 		return mv;
 	}
 
-	// Realiza a compra
+	// Realizar a compra
 	@PostMapping("/usuario/{cpf}/compra/finalizar")
 	public ModelAndView terminarCompra(@PathVariable("cpf") Long cpf, Pedido pedido) {
 		Usuario usuario = usuarioService.findById(cpf);
@@ -120,6 +121,15 @@ public class PedidoController {
 
 		itemCarrinhoRepository.deleteAll(itensCarrinho);
 		carrinhoRepository.delete(carrinho);
+
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/compras");
+
+		return mv;
+	}
+
+	// Cancelar a compra do usuario
+	@PostMapping("/usuario/{cpf}/compra/{id}/cancelar")
+	public ModelAndView cancelarCompra(@PathVariable("cpf") Long cpf, @PathVariable("id") ItemPedidoPK id) {
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/compras");
 
