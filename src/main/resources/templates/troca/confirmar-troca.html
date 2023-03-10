@@ -83,81 +83,37 @@
 
 			<!-- Container do Carrinho, continuar compra -->
 			<div class="card-footer text-muted">
-				<div class="card-header">Produtos que serão trocados:</div>
+				<div class="card-header">Produtos para a troca:</div>
 				<div class="row row-cols-1 row-cols-md-3 g-4">
-					<div class="col">
+					<div th:each="itensTroca : ${itensTroca}" class="col">
 						<div class="card h-100">
-							<img src="..." class="card-img-top" alt="..." />
+							<img th:src="${itensTroca.produto.imagem.url}" class="card-img-top" alt="..." />
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card h-100">
-							<img src="..." class="card-img-top" alt="..." />
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card h-100">
-							<img src="..." class="card-img-top" alt="..." />
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card h-100">
-							<img src="..." class="card-img-top" alt="..." />
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
+								<h5 class="card-title"><span th:text="${itensTroca.produto.nomeProd}"></span></h5>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="card-footer text-muted">
-				<div class="card-header">Produtos que ganhará:</div>
+				<div class="card-header">Oferta da troca:</div>
 				<div class="row row-cols-1 row-cols-md-3 g-4">
 					<div class="col">
 						<div class="card h-100">
-							<img src="..." class="card-img-top" alt="..." />
+							<img th:src="${troca.cad_produto.produto.imagem.url}" class="card-img-top" alt="..." />
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card h-100">
-							<img src="..." class="card-img-top" alt="..." />
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card h-100">
-							<img src="..." class="card-img-top" alt="..." />
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card h-100">
-							<img src="..." class="card-img-top" alt="..." />
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
+								<h5 class="card-title"><span th:text="${troca.nomeTroca}"></span></h5>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="card-footer text-muted">
-				<a href="#" class="btn btn-primary">Continuar a troca</a>
+				<form th:action="@{/usuario/{cpf}/trocar/{codTroca}/finalizar (cpf=${cpf}, codTroca=${codTroca})}" method="post">
+					<div class="d-grid gap-2 col-6 mx-auto">
+						<button class="btn btn-primary" type="submit">Finalizar troca</button>
+					</div>
+				</form>
 			</div>
 		</div>
 		<!-- Terminou Container Carrinho -->

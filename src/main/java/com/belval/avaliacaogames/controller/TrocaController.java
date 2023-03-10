@@ -20,6 +20,7 @@ import com.belval.avaliacaogames.entities.Item_Troca;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
+import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
 import com.belval.avaliacaogames.repositories.Item_TrocaRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.repositories.TrocaRepository;
@@ -60,6 +61,9 @@ public class TrocaController {
 	@Autowired
 	private Item_TrocaRepository item_TrocaRepository;
 
+	@Autowired
+	private Cad_ProdutoRepository cad_ProdutoRepository;
+
 	// public static Troca troca;
 	public List<Item_Troca> itens_troca = new ArrayList<>();
 
@@ -80,20 +84,15 @@ public class TrocaController {
 		return mv;
 	}
 
-	// Tela de troca
+	// Tela de anuncio de troca
 	@GetMapping("/usuario/{cpf}/troca/{codTroca}")
 	public String printTroca(@PathVariable("cpf") Long cpf, @PathVariable("codTroca") Long codTroca, Model model) {
 
-		// Pega todas as trocas
 		List<Troca> trocas = trocaService.findAll();
-
-		// Encontra a troca clicada
 		Troca troca = trocaService.findById(codTroca);
 
-		// Encontra o vendedor da troca
 		Usuario usuario = usuarioService.findById(troca.getCodUsuario());
 
-		// Encontra os produtos para troca
 		List<Item_Troca> itens_troca = item_TrocaService.findByTroca(troca);
 
 		model.addAttribute("itens_troca", itens_troca);
@@ -104,7 +103,7 @@ public class TrocaController {
 		return "troca/troca";
 	}
 
-	// Abre a tela de pesquisar produto para troca
+	// Abre a tela de pesquisar produto para trocar
 	@GetMapping("/usuario/{cpf}/trocar/{codCadProd}/pesquisar")
 	public String pesquisarTroca(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd,
 			Troca troca) {
@@ -123,7 +122,7 @@ public class TrocaController {
 		return "troca/troca-pesquisado";
 	}
 
-	// Pesquisar produtos de troca
+	// Pesquisar produtos para trocar
 	@PostMapping("/usuario/{cpf}/trocar/{codCadProd}/pesquisar")
 	public ModelAndView pesquisarTroca(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd,
 			String nomeProd) {
@@ -137,7 +136,7 @@ public class TrocaController {
 		return mv;
 	}
 
-	// Adicionar produto para troca
+	// Adicionar produto para trocar
 	@PostMapping("/usuario/{cpf}/trocar/{codCadProd}/adicionar/{codProd}")
 	public ModelAndView adicionarItem_Troca(@PathVariable("cpf") Long cpf, @PathVariable("codProd") Long codProd,
 			@PathVariable("codCadProd") Long codCadProd, Item_Troca item_troca) {
@@ -212,6 +211,57 @@ public class TrocaController {
 		trocaRepository.deleteById(codTroca);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/trocas");
+
+		return mv;
+	}
+
+	@GetMapping("/usuario/{cpf}/trocar/{codTroca}/finalizar")
+	public ModelAndView finalizarTroca(@PathVariable("cpf") Long cpf, @PathVariable("codTroca") Long codTroca) {
+
+		Troca troca = trocaService.findById(codTroca);
+		List<Item_Troca> itensTroca = item_TrocaRepository.findByTroca(troca);
+
+		ModelAndView mv = new ModelAndView("troca/confirmar-troca");
+
+		mv.addObject("itensTroca", itensTroca);
+		mv.addObject("troca", troca);
+
+		return mv;
+	}
+
+	@PostMapping("/usuario/{cpf}/trocar/{codTroca}/finalizar")
+	public ModelAndView finalizarTrocae(@PathVariable("cpf") Long cpf, @PathVariable("codTroca") Long codTroca) {
+
+		Usuario usuario = usuarioService.findById(cpf);
+
+		Troca troca = trocaService.findById(codTroca);
+		List<Item_Troca> itensTroca = item_TrocaRepository.findByTroca(troca);
+
+		for (Item_Troca it : itensTroca) {
+			Cad_Produto cadProduto = cad_ProdutoRepository.findByUsuarioAndProduto(usuario, it.getProduto());
+			if (cadProduto.getQuantidade() > 1) {
+				cadProduto.setQuantidade(cadProduto.getQuantidade() - 1);
+				cad_ProdutoRepository.save(cadProduto);
+			} else {
+				cad_ProdutoRepository.delete(cadProduto);
+			}
+		}
+
+		Cad_Produto cp = new Cad_Produto();
+		cp.setProduto(troca.getCad_produto().getProduto());
+		cp.setUsuario(usuario);
+		cp.setQuantidade(1L);
+		cp.setStatus(true);
+
+		cad_ProdutoRepository.save(cp);
+
+		item_TrocaRepository.deleteAll(itensTroca);
+		trocaRepository.delete(troca);
+
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
+
+		mv.addObject("itensTroca", itensTroca);
+		mv.addObject("troca", troca);
 
 		return mv;
 	}

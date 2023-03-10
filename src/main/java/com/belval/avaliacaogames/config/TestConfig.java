@@ -169,7 +169,7 @@ public class TestConfig implements CommandLineRunner {
 		Cad_Produto cp3 = new Cad_Produto(3L, p3, 6L, u2, true);
 		Cad_Produto cp4 = new Cad_Produto(4L, p5, 1L, u3, true);
 		Cad_Produto cp5 = new Cad_Produto(5L, p4, 9L, u4, true);
-		Cad_Produto cp6 = new Cad_Produto(6L, p7, 8L, u1, true);
+		Cad_Produto cp6 = new Cad_Produto(6L, p7, 1L, u1, true);
 		Cad_Produto cp7 = new Cad_Produto(7L, p8, 2L, u3, true);
 		Cad_Produto cp8 = new Cad_Produto(8L, p8, 2L, u2, true);
 

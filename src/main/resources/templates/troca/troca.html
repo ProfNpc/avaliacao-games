@@ -85,11 +85,14 @@
 					<h5 class="card-title text-center">
 						<span th:text="${troca.nomeTroca}"></span>
 					</h5>
-					<div class="d-grid gap-2 col-6 mx-auto">
-						<button class="botao btn btn-primary" type="button">
-							Trocar
-						</button>
-					</div>
+					<form th:action="@{/usuario/{cpf}/trocar/{codTroca}/finalizar (cpf=${cpf}, codTroca=${codTroca})}"
+						method="get">
+						<div class="d-grid gap-2 col-6 mx-auto">
+							<button class="botao btn btn-primary" type="submit">
+								Trocar
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
 			<div class="card" style="max-width: 50rem">
@@ -106,7 +109,7 @@
 								<img th:src="${itens_troca.produto.imagem.url}" class="card-img-top" alt="..." />
 								<div class="card-body">
 									<h5 class="card-title"><span th:text="${itens_troca.produto.nomeProd}"></span></h5>
-									<p class="card-text">Você tem!</span></p>
+									<p class="card-text">Você tem!!</p>
 								</div>
 							</div>
 						</div>
