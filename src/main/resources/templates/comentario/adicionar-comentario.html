@@ -6,9 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="/CSS/Tela_Biblioteca.css" />
-	<link rel="stylesheet" href="/CSS/NewNavBar.css" />
-
+	<link rel="stylesheet" href="/CSS/Tela_Comentario.css" />
+	<link rel="stylesheet" href="/CSS/NavBar.css" />
 	<title>Pacifier</title>
 </head>
 
@@ -77,58 +76,52 @@
 			</div>
 		</nav>
 	</header>
-
 	<main>
-		<!-- Container da nav-bar lateral -->
-		<div class="nav-lateral">
-			<div class="container-button">
-				<div class="button">
-					<a th:href="@{/usuario/{cpf}(cpf=${cpf})}"><input type="button" value="Geral" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/compras (cpf=${cpf})}"><input type="button" value="Minhas compras"
-							class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/trocas(cpf=${cpf})}"><input type="button" value="Minhas Trocas"
-							class="button" /></a> <a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}"><input
-							type="button" value="Meus Anúncios" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}"><input type="button" value="Biblioteca"
-							class="button" /></a>
+		<div class="card text-center container">
+			<div class="card-header">DEIXE SUA AVALIAÇÃO</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-6 mb-3 mb-sm-0">
+						<div class="card">
+							<img th:src="${anuncio.imagem.url}" class="card-img-top" alt="..." />
+							<div class="card-body">
+								<h5 class="card-title"><span th:text="${anuncio.nomeAnuncio}"></span></h5>
+								<p class="card-text"><span th:text="${anuncio.valorAnuncio}"></span></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="card">
+							<form
+								th:action="@{/usuario/{cpf}/anuncio/{codAnuncio}/comentar (cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
+								method="post">
+								<div class="card-body">
+									<h5 class="card-title">Comentar</h5>
+									<p class="card-text">
+										Escreva seu comentario:
+										<textarea id="texto" name="comenComentario" rows="4" cols="50"></textarea>
+									</p>
+									<p class="card-text">
+										Avalie o produto:
+										<input type="number" name="avalComentario" placeholder="Ex: 5" />
+									</p>
+									<div class="d-grid gap-2 col-6 mx-auto">
+										<button class="btn btn-primary" type="submit">
+											Enviar avaliação
+										</button>
+							</form>
+							<form th:action="@{/usuario/{cpf}/anuncio/{codAnuncio}/descartar (cpf=${cpf})}"
+								method="get">
+								<button class="btn btn-primary" type="submit">
+									Descartar
+								</button>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="color">
-			<!-- Container da biblioteca -->
-			<div class="container-biblioteca">
-				<br />
-				<!-- Div para add cor ao fundo dos jogos -->
-				<div class="container-color">
-					<!-- Jogos que aparecerão na biblioteca -->
-					<section class="container-produto">
-						<div class="row row-cols-1 row-cols-md-3 g-4">
-							<div th:each="itensPedido : ${itensPedido}" class="col">
-								<div class="card h-100">
-									<img th:src="${itensPedido.anuncio.imagem.url}" class="card-img-top" alt="..." />
-									<div class="card-body">
-										<h5 class="card-title">
-											<span th:text="${itensPedido.anuncio.nomeAnuncio}"></span>
-										</h5>
-										<p class="card-text">
-											Quant: <span th:text="${itensPedido.quantidade}"></span>
-										</p>
-										<p class="card-text">
-											Valor: R$ <span th:text="${itensPedido.preco}"></span>
-										</p>
-										<form
-											th:action="@{/usuario/{cpf}/anuncio/{codAnuncio}/comentar (cpf=${cpf}, codAnuncio=${itensPedido.anuncio.codAnuncio})}"
-											method="get">
-											<input class="btn btn-primary" type="submit" value="Avaliar">
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-				</div>
-			</div>
+		</div>
 		</div>
 	</main>
 	<footer></footer>

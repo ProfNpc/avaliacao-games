@@ -73,21 +73,18 @@ public class ProdutoController {
 		return mv;
 	}
 
-	/*
-	 * Pesquisar produto na tela inicial
-	 * 
-	 * @PostMapping("/pesquisar") public ModelAndView pesquisar(String nomeAnuncio)
-	 * {
-	 * 
-	 * ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
-	 * 
-	 * System.out.println(nomeAnuncio); List<Anuncio> anuncios =
-	 * anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
-	 * 
-	 * mv.addObject("anuncios", anuncios);
-	 * 
-	 * return mv; }
-	 */
+	// Pesquisar produto na tela inicial para usuario não cadastrado
+	@PostMapping("/usuario/pesquisar")
+	public ModelAndView pesquisar(String nomeAnuncio) {
+
+		ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
+
+		List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
+
+		mv.addObject("anuncios", anuncios);
+
+		return mv;
+	}
 
 	// Tela do produto
 	@GetMapping("/usuario/{cpf}/produto/{codAnuncio}")

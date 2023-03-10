@@ -14,4 +14,6 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Long> {
 	List<Anuncio> findByUsuario(Usuario usuario);
 
 	List<Anuncio> findByNomeAnuncioContainingIgnoreCase(String nomeAnuncio);
+
+	List<Anuncio> findByUsuarioAndNomeAnuncioContainingIgnoreCase(Usuario usuario, String nomeAnuncio);
 }
