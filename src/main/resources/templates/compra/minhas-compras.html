@@ -84,7 +84,8 @@
 			<div class="container-button">
 				<div class="button">
 					<a th:href="@{/usuario/{cpf}(cpf=${cpf})}"><input type="button" value="Geral" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/compras (cpf=${cpf})}"><input type="button" value="Minhas compras" class="button" /></a>
+					<a th:href="@{/usuario/{cpf}/compras (cpf=${cpf})}"><input type="button" value="Minhas compras"
+							class="button" /></a>
 					<a th:href="@{/usuario/{cpf}/trocas(cpf=${cpf})}"><input type="button" value="Minhas Trocas"
 							class="button" /></a> <a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}"><input
 							type="button" value="Meus Anúncios" class="button" /></a>
@@ -103,46 +104,26 @@
 					<!-- Jogos que aparecerão na biblioteca -->
 					<section class="container-produto">
 						<div class="row row-cols-1 row-cols-md-3 g-4">
-							<div th:each="produto, iStat : ${produtos}" class="col">
+							<div th:each="itensPedido : ${itensPedido}" class="col">
 								<div class="card h-100">
-									<img th:src="${produto.imagem.url}" class="card-img-top" alt="..." />
+									<img th:src="${itensPedido.anuncio.imagem.url}" class="card-img-top" alt="..." />
 									<div class="card-body">
 										<h5 class="card-title">
-											<span th:text="${produto.nomeProd}"></span>
+											<span th:text="${itensPedido.anuncio.nomeAnuncio}"></span>
 										</h5>
 										<p class="card-text">
-											Quant:
-											<span th:text="${cad_produtos[iStat.index].quantidade}"></span>
+											Quant: <span th:text="${itensPedido.quantidade}"></span>
 										</p>
 										<p class="card-text">
-											Valor: R$<span th:text="${produto.valorProd}"></span>
+											Valor: R$ <span th:text="${itensPedido.preco}"></span>
 										</p>
-										<form
-											th:action="@{/usuario/{cpf}/trocar/{codCadProd}/pesquisar (cpf=${cpf}, codCadProd=${cad_produtos[iStat.index].codCadProd})}"
-											method="get">
-											<input class="btn btn-primary" type="submit" value="Trocar">
-										</form>
-										<form
-											th:action="@{/usuario/{cpf}/biblioteca/{codCadProd}/deletar (cpf=${cpf}, codCadProd=${cad_produtos[iStat.index].codCadProd})}"
-											method="post">
-											<input class="btn btn-primary" type="submit" value="Excluir">
-										</form>
+										<input class="btn btn-primary" type="submit" value="Cancelar">
 									</div>
 								</div>
 							</div>
 						</div>
 					</section>
 				</div>
-				<!-- Botões de Excluir e Cadastrar -->
-				<section class="container-button">
-					<!-- Botão de Cadastrar -->
-					<div>
-						<form th:action="@{/usuario/{cpf}/biblioteca/adicionar(cpf=${cpf})}" method="get">
-							<label for="#">Adicionar jogo: </label><br />
-							<a href=""><button>Adicionar</button></a>
-						</form>
-					</div>
-				</section>
 			</div>
 		</div>
 	</main>

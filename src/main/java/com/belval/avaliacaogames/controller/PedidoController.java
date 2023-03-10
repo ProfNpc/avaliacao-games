@@ -1,5 +1,6 @@
 package com.belval.avaliacaogames.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,25 @@ public class PedidoController {
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
+
+	@GetMapping("/usuario/{cpf}/compras")
+	public ModelAndView minhasCompras(@PathVariable("cpf") Long cpf) {
+		Usuario usuario = usuarioService.findById(cpf);
+
+		List<Pedido> pedidos = pedidoRepository.findByUsuario(usuario);
+		List<ItemPedido> itensPedido = new ArrayList<>();
+
+		for (Pedido p : pedidos) {
+			itensPedido = itemPedidoRepository.findByIdPedido(p);
+		}
+
+		System.out.println(itensPedido.size());
+
+		ModelAndView mv = new ModelAndView("compra/minhas-compras");
+		mv.addObject("itensPedido", itensPedido);
+		
+		return mv;
+	}
 
 	// Tela de finalizar compra
 	@GetMapping("/usuario/{cpf}/compra/finalizar")
@@ -101,7 +121,7 @@ public class PedidoController {
 		itemCarrinhoRepository.deleteAll(itensCarrinho);
 		carrinhoRepository.delete(carrinho);
 
-		ModelAndView mv = new ModelAndView("redirect:/home/{cpf}");
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/compras");
 
 		return mv;
 	}
