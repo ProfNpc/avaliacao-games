@@ -150,16 +150,19 @@
 						</select>
 					</div>
 					</p>
-					<a href="#" class="btn btn-primary">Continuar</a>
+					<a href="#" class="btn btn-primary">Adicionar cartão</a>
 				</div>
 			</div>
-			<div class="card-footer text-muted">
-				<div class="d-grid gap-2 col-6 mx-auto">
-					<button class="btn btn-primary" type="button">
-						Terminar compra
-					</button>
+			<form th:action="@{/usuario/{cpf}/compra/finalizar(cpf=${cpf})}" method="post">
+				<div class="card-footer text-muted">
+					<div class="d-grid gap-2 col-6 mx-auto">
+						<button class="btn btn-primary" type="submit">
+							Terminar compra
+						</button>
+					</div>
 				</div>
-			</div>
+			</form>
+
 		</div>
 	</main>
 	<footer></footer>

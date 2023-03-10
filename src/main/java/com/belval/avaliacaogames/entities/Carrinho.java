@@ -23,7 +23,7 @@ public class Carrinho {
 
 	// Ligação com tabela usuario
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "cpfUsuario")
 	private Usuario usuario;
 

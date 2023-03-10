@@ -1,6 +1,5 @@
 package com.belval.avaliacaogames.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,37 +13,23 @@ import com.belval.avaliacaogames.entities.Carrinho;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.ItemCarrinho;
 import com.belval.avaliacaogames.entities.ItemPedido;
+import com.belval.avaliacaogames.entities.Pedido;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.CarrinhoRepository;
-import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.ItemCarrinhoRepository;
 import com.belval.avaliacaogames.repositories.ItemPedidoRepository;
-import com.belval.avaliacaogames.services.AnuncioService;
+import com.belval.avaliacaogames.repositories.PedidoRepository;
 import com.belval.avaliacaogames.services.EnderecoService;
-import com.belval.avaliacaogames.services.ItemCarrinhoService;
-import com.belval.avaliacaogames.services.ItemPedidoService;
 import com.belval.avaliacaogames.services.UsuarioService;
 
 @Controller
 public class PedidoController {
 
 	@Autowired
-	private AnuncioService anuncioService;
-
-	@Autowired
 	private UsuarioService usuarioService;
 
 	@Autowired
-	private ItemCarrinhoService itemCarrinhoService;
-
-	@Autowired
 	private EnderecoService enderecoService;
-
-	@Autowired
-	private ItemPedidoService itemPedidoService;
-
-	@Autowired
-	private EnderecoRepository enderecoRepository;
 
 	@Autowired
 	private CarrinhoRepository carrinhoRepository;
@@ -55,6 +40,10 @@ public class PedidoController {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 
+	@Autowired
+	private PedidoRepository pedidoRepository;
+
+	// Tela de finalizar compra
 	@GetMapping("/usuario/{cpf}/compra/finalizar")
 	public ModelAndView comprar(@PathVariable("cpf") Long cpf) {
 		Usuario usuario = usuarioService.findById(cpf);
@@ -65,15 +54,15 @@ public class PedidoController {
 			ModelAndView mve = new ModelAndView("redirect:/usuario/{cpf}/cadastrar/endereco");
 			return mve;
 		}
-		
+
 		Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
 		List<ItemCarrinho> itensCarrinho = itemCarrinhoRepository.findByCarrinho(carrinho);
-		
+
 		int quant = itensCarrinho.size();
-		
+
 		double total = 0;
 		for (ItemCarrinho item : itensCarrinho) {
-			total += item.getAnuncio().getValorAnuncio() * item.getQuantItemCar();	
+			total += item.getAnuncio().getValorAnuncio() * item.getQuantItemCar();
 		}
 
 		ModelAndView mv = new ModelAndView("compra/finalizar-compra");
@@ -85,25 +74,33 @@ public class PedidoController {
 		return mv;
 	}
 
+	// Realiza a compra
 	@PostMapping("/usuario/{cpf}/compra/finalizar")
-	public ModelAndView terminarCompra(@PathVariable("cpf") Long cpf) {
+	public ModelAndView terminarCompra(@PathVariable("cpf") Long cpf, Pedido pedido) {
 		Usuario usuario = usuarioService.findById(cpf);
 
 		Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
 		List<ItemCarrinho> itensCarrinho = itemCarrinhoRepository.findByCarrinho(carrinho);
 
-		List<ItemPedido> itensPedido = new ArrayList<>();
+		pedido.setUsuario(usuario);
+
+		pedidoRepository.save(pedido);
 
 		for (ItemCarrinho ic : itensCarrinho) {
-			for (ItemPedido ip : itensPedido) {
-				ip.setAnuncio(ic.getAnuncio());
-				ip.setQuantidade(ic.getQuantItemCar());
-				ip.setPreco(ic.getAnuncio().getValorAnuncio());
+			ItemPedido itemPedido = new ItemPedido();
 
-				itemPedidoRepository.save(ip);
-			}
+			itemPedido.setAnuncio(ic.getAnuncio());
+			itemPedido.setQuantidade(ic.getQuantItemCar());
+			itemPedido.setPreco(ic.getAnuncio().getValorAnuncio());
+			itemPedido.setPedido(pedido);
+
+			itemPedidoRepository.save(itemPedido);
+
 		}
-		
+
+		itemCarrinhoRepository.deleteAll(itensCarrinho);
+		carrinhoRepository.delete(carrinho);
+
 		ModelAndView mv = new ModelAndView("redirect:/home/{cpf}");
 
 		return mv;
