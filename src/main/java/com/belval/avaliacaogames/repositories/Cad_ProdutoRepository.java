@@ -14,8 +14,10 @@ import com.belval.avaliacaogames.entities.Usuario;
 public interface Cad_ProdutoRepository extends JpaRepository<Cad_Produto, Long> {
 
 	List<Cad_Produto> findByUsuario(Usuario usuario);
-	
+
 	Optional<Cad_Produto> findByProduto(Produto produto);
-	
+
 	Cad_Produto findByUsuarioAndProduto(Usuario usuario, Produto produto);
+
+	boolean existsByProduto(Produto produto);
 }

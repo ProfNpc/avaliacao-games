@@ -88,7 +88,7 @@
 					<form th:action="@{/usuario/{cpf}/trocar/{codTroca}/finalizar (cpf=${cpf}, codTroca=${codTroca})}"
 						method="get">
 						<div class="d-grid gap-2 col-6 mx-auto">
-							<button class="botao btn btn-primary" type="submit">
+							<button th:disabled="${naoPodeTrocar}" class="botao btn btn-primary" type="submit">
 								Trocar
 							</button>
 						</div>
@@ -104,12 +104,12 @@
 					<h5 class="card-title text-center">Produto para troca:</h5>
 					<br />
 					<div class="row row-cols-1 row-cols-md-3 g-4">
-						<div class="col" style="width: 8rem" th:each="itens_troca, iStat: ${itens_troca}">
+						<div class="col" style="width: 8rem" th:each="item_troca, iStat: ${itens_troca}">
 							<div class="card h-100">
-								<img th:src="${itens_troca.produto.imagem.url}" class="card-img-top" alt="..." />
+								<img th:src="${item_troca.produto.imagem.url}" class="card-img-top" alt="..." />
 								<div class="card-body">
-									<h5 class="card-title"><span th:text="${itens_troca.produto.nomeProd}"></span></h5>
-									<p class="card-text">Você tem!!</p>
+									<h5 class="card-title"><span th:text="${item_troca.produto.nomeProd}"></span></h5>
+									<span th:text="${(#lists.contains(produtos, item_troca.produto)) ? 'Voce tem!' : 'Voce não tem'}" class="card-text"></span>
 								</div>
 							</div>
 						</div>

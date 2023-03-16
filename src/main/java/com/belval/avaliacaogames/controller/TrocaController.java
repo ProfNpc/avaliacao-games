@@ -92,13 +92,39 @@ public class TrocaController {
 		Troca troca = trocaService.findById(codTroca);
 
 		Usuario usuario = usuarioService.findById(troca.getCodUsuario());
-
+		Usuario usuarioAtual = usuarioService.findById(cpf);
+		
 		List<Item_Troca> itens_troca = item_TrocaService.findByTroca(troca);
+		List<Produto> produtos = new ArrayList<Produto>();
+		
+		/*
+		if(itens_troca.getProduto.equals(cad_produto.getProduto)) {
+			boolean validar = false
+		} else {
+			boolean validar = true;
+		}
+		*/
+		
+		boolean podeTrocar = true;
+		for (Cad_Produto cad : cad_ProdutoService.findByUsuario(usuarioAtual)) {
+			Produto p = cad.getProduto();
+			produtos.add(p);
+			
+			// Verificar para cada produto
+			boolean passou = false;
+			for (Produto produto : produtos) {
+				passou = passou || produto.equals(p);
+			}
+			
+			podeTrocar = podeTrocar && passou; 
+		}
 
 		model.addAttribute("itens_troca", itens_troca);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("troca", troca);
 		model.addAttribute("trocas", trocas);
+		model.addAttribute("produtos", produtos);
+		model.addAttribute("naoPodeTrocar", !podeTrocar);
 
 		return "troca/troca";
 	}
