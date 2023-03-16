@@ -18,6 +18,4 @@ public interface Cad_ProdutoRepository extends JpaRepository<Cad_Produto, Long> 
 	Optional<Cad_Produto> findByProduto(Produto produto);
 
 	Cad_Produto findByUsuarioAndProduto(Usuario usuario, Produto produto);
-
-	boolean existsByProduto(Produto produto);
 }

@@ -109,7 +109,7 @@
 								<img th:src="${item_troca.produto.imagem.url}" class="card-img-top" alt="..." />
 								<div class="card-body">
 									<h5 class="card-title"><span th:text="${item_troca.produto.nomeProd}"></span></h5>
-									<span th:text="${(#lists.contains(produtos, item_troca.produto)) ? 'Voce tem!' : 'Voce não tem'}" class="card-text"></span>
+									<span th:text="${(#lists.contains(produtosUsuario, item_troca.produto)) ? 'Voce tem!' : 'Voce não tem'}" class="card-text"></span>
 								</div>
 							</div>
 						</div>
