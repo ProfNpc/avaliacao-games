@@ -2,167 +2,167 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="/CSS/Tela_Produto.css" />
-	<link rel="stylesheet" href="/CSS/NewNavBar.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/CSS/Tela_Produto.css" />
+    <link rel="stylesheet" href="/CSS/NewNavBar.css" />
 
-	<title>Pacifier</title>
+    <title>Pacifier</title>
 </head>
 
 <body>
-	<header>
-		<nav class="navbar navbar-expand-lg bg-body-tertiary">
-			<div class="container-fluid">
-				<a class="logo navbar-brand" th:href="@{/home/{cpf} (cpf=${cpf})}"><img src="/imagens/Controle.png"
-						alt="" /></a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="colorFont nav-link" aria-current="page" href="#">Comunidade</a>
-						</li>
-						<li class="nav-item">
-							<a class="colorFont nav-link" href="#">Contato</a>
-						</li>
-						<li class="nav-item">
-							<a class="car nav-link" th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}"><img
-									src="/imagens/CarrinhoCompra.png" alt="" /></a>
-						</li>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="logo navbar-brand" th:href="@{/home/{cpf} (cpf=${cpf})}"><img src="/imagens/Controle.png"
+                        alt="" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="colorFont nav-link" aria-current="page" href="#">Comunidade</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="colorFont nav-link" href="#">Contato</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="car nav-link" th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}"><img
+                                    src="/imagens/CarrinhoCompra.png" alt="" /></a>
+                        </li>
 
-						<!-- Botão de login -->
-						<li class="nav-item">
-							<div class="login-button">
-								<div class="dropdown">
-									<button class="btn btn-secondary dropdown-toggle" type="button"
-										data-bs-toggle="dropdown" aria-expanded="false">
-										<img src="/imagens/foto_perfil.png" alt="" />
-									</button>
-									<ul class="dropdown-menu">
-										<li>
-											<a class="dropdown-item" th:href="@{/usuario/{cpf}(cpf=${cpf})}">Perfil</a>
-										</li>
-										<li>
-											<a class="dropdown-item"
-												th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}">Sua biblioteca</a>
-										</li>
-										<li>
-											<a class="dropdown-item"
-												th:href="@{/usuario/{cpf}/anunciar(cpf=${cpf})}">Anunciar</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</li>
-					</ul>
+                        <!-- Botão de login -->
+                        <li class="nav-item">
+                            <div class="login-button">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="/imagens/foto_perfil.png" alt="" />
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" th:href="@{/usuario/{cpf}(cpf=${cpf})}">Perfil</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item"
+                                                th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}">Sua biblioteca</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item"
+                                                th:href="@{/usuario/{cpf}/anunciar(cpf=${cpf})}">Anunciar</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
 
-					<!-- Barra de pesquisa -->
-					<form th:action="@{/usuario/{cpf}/pesquisar(cpf=${cpf})}" method="post" class="d-flex"
-						role="search">
-						<input class="form-control me-2" type="search" name="nomeAnuncio"
-							placeholder="Buscar produtos..." aria-label="Search" />
+                    <!-- Barra de pesquisa -->
+                    <form th:action="@{/usuario/{cpf}/pesquisar(cpf=${cpf})}" method="post" class="d-flex"
+                        role="search">
+                        <input class="form-control me-2" type="search" name="nomeAnuncio"
+                            placeholder="Buscar produtos..." aria-label="Search" />
 
-						<!-- Botão de pesquisa -->
-						<button class="btn btn-outline-success" type="submit">
-							Pesquisar
-						</button>
-					</form>
-				</div>
-			</div>
-		</nav>
-	</header>
-	<main>
-		<section class="containerProduto">
-			<div class="card" style="width: 42.3rem">
-				<img th:src="${anuncio.imagem.url}" class="card-img-top" alt="..." />
-				<div class="card-body">
-					<h5 class="card-title text-center">
-						<span th:text="${anuncio.nomeAnuncio}"></span>
-					</h5>
-					<p class="card-text text-center">
-						R$ <span th:text="${anuncio.valorAnuncio}"></span>
-					</p>
-					<form
-						th:action="@{/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho(cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
-						method="post">
+                        <!-- Botão de pesquisa -->
+                        <button class="btn btn-outline-success" type="submit">
+                            Pesquisar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="containerProduto">
+            <div class="card" style="width: 42.3rem">
+                <img th:src="${anuncio.imagem.url}" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title text-center">
+                        <span th:text="${anuncio.nomeAnuncio}"></span>
+                    </h5>
+                    <p class="card-text text-center">
+                        R$ <span th:text="${anuncio.valorAnuncio}"></span>
+                    </p>
+                    <form
+                        th:action="@{/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho(cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
+                        method="post">
 
-						<div class="input"><input type="numer" placeholder="Quantidade" name="quantItemCar" /></div>
+                        <div class="input"><input type="numer" placeholder="Quantidade" name="quantItemCar" /></div>
 
-						<div class="d-grid gap-2 col-6 mx-auto">
-							<button class=" botao btn btn-primary" type="button">Comprar</button>
-						</div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button class=" botao btn btn-primary" type="button">Comprar</button>
+                        </div>
 
-						<div class="d-grid gap-2 col-6 mx-auto">
-							<button class="botao btn btn-primary" type="submit">
-								Adicionar ao carrinho
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button class="botao btn btn-primary" type="submit">
+                                Adicionar ao carrinho
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-			<div class="card" style="width: 22.5rem">
-				<div class="card-body">
-					<h5 class="card-title text-center">
-						<span th:text="${usuario.nome}"></span>
-					</h5>
-					<p class="card-text text-center">Produtos vendidos</p>
-					<h5 class="card-title text-center">Avaliação do Produto</h5>
-					<br />
-					<div class="usuario" th:each="comentarios, iStat: ${comentarios}">
-						<h6 class="card-title"><span th:text="${nomeComentarios[iStat.index]}"></span></h6>
-						<p class="card-text"><span th:text="${comentarios.comenComentario}"></span></p>
-						<br />
-					</div>
+            <div class="card-AVprod" >
+                <div class="card-body-av">
+                    <h5 class="card-title text-center">
+                        <span th:text="${usuario.nome}"></span>
+                    </h5>
+                    <p class="card-text text-center">Produtos vendidos</p>
+                    <h5 class="card-title text-center">Avaliação do Produto</h5>
+                    <br />
+                    <div class="usuario" th:each="comentarios, iStat: ${comentarios}">
+                        <h6 class="card-title"><span th:text="${nomeComentarios[iStat.index]}"></span></h6>
+                        <p class="card-text"><span th:text="${comentarios.comenComentario}"></span></p>
+                        <br />
+                    </div>
 
-				</div>
-			</div>
-		</section>
+                </div>
+            </div>
+        </section>
 
-		<section class="containerDescricao">
-			<div class="card">
-				<div class="card-header">Descrição</div>
-				<div class="card-body">
-					<h5 class="card-title">
-						<span th:text="${anuncio.nomeAnuncio}"></span>
-					</h5>
-					<p class="card-text">
-						<span th:text="${anuncio.descAnuncio}"></span>
-					</p>
-					<a href="#" class="btn btn-primary">Mais sobre</a>
-				</div>
-			</div>
-		</section>
+        <section class="containerDescricao">
+            <div class="card">
+                <div class="card-header">Descrição</div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <span th:text="${anuncio.nomeAnuncio}"></span>
+                    </h5>
+                    <p class="card-text">
+                        <span th:text="${anuncio.descAnuncio}"></span>
+                    </p>
+                    <a href="#" class="btn btn-primary">Mais sobre</a>
+                </div>
+            </div>
+        </section>
 
-		<section class="containerProdutos">
-			<div class="tituloProduto">Similiares</div>
-			<div class="row row-cols-1 row-cols-md-5 g-4">
-				<div class="col" th:each="anuncios: ${anuncios}">
-					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncios.codAnuncio})}">
-						<div class="card h-100">
-							<img th:src="${anuncios.imagem.url}" class="card-img-top" alt="..." />
-							<div class="card-body">
-								<h5 class="card-title">
-									<span th:text="${anuncios.nomeAnuncio}"></span>
-								</h5>
-								<p class="card-text">
-									<span th:text="${anuncios.valorAnuncio}"></span>
-								</p>
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
-		</section>
-	</main>
-	<footer></footer>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+        <section class="containerProdutos">
+            <div class="tituloProduto">Similiares</div>
+            <div class="row row-cols-1 row-cols-md-5 g-4">
+                <div class="col" th:each="anuncios: ${anuncios}">
+                    <a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncios.codAnuncio})}">
+                        <div class="card h-100">
+                            <img th:src="${anuncios.imagem.url}" class="card-img-top" alt="..." />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span th:text="${anuncios.nomeAnuncio}"></span>
+                                </h5>
+                                <p class="card-text">
+                                    <span th:text="${anuncios.valorAnuncio}"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
