@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
 	<link rel="stylesheet" href="/CSS/Tela_Perfil.css" />
 	<link rel="stylesheet" href="/CSS/NewNavBar.css" />
 	<title>Pacifier</title>
@@ -75,149 +76,153 @@
 				</div>
 			</div>
 		</nav>
+		<div class="w3-sidebar w3-bar-block w3-border-right" style="display: none" id="mySidebar">
+			<button onclick="w3_close()" class="w3-bar-item w3-large">
+				Fechar &times;
+			</button>
+			<a th:href="@{/usuario/{cpf}(cpf=${cpf})}" class="w3-bar-item w3-button">Geral</a>
+			<a th:href="@{/usuario/{cpf}/compras (cpf=${cpf})}" class="w3-bar-item w3-button">Minhas compras</a>
+			<a th:href="@{/usuario/{cpf}/trocas(cpf=${cpf})}" class="w3-bar-item w3-button">Minhas trocas</a>
+			<a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}" class="w3-bar-item w3-button">Meus anúncios</a>
+			<a th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}" class="w3-bar-item w3-button">Biblioteca</a>
+		</div>
+
+		<!-- Page Content -->
+		<div class="">
+			<button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">
+				☰
+			</button>
+		</div>
 	</header>
 	<main>
-		<div class="container">
-			<div class="container-button">
-				<div class="button">
-					<a th:href="@{/usuario/{cpf}(cpf=${cpf})}"><input type="button" value="Geral" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/compras (cpf=${cpf})}"><input type="button" value="Minhas compras"
-							class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/trocas(cpf=${cpf})}"><input type="button" value="Minhas Trocas"
-							class="button" /></a> <a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}"><input
-							type="button" value="Meus Anúncios" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/biblioteca (cpf=${cpf})}"><input type="button" value="Biblioteca"
-							class="button" /></a>
-				</div>
+		<div class="container-ever">
+			<div class="title">
+				<h1>Configurações gerais</h1>
 			</div>
-			<div class="container-ever">
-				<div class="container-geral">
-					<div class="title">
-						<h1>Configurações gerais</h1>
+			<div class="geral">
+				<p>
+					Gerencie os detalhes da conta que você compartilhou com a Epic
+					Games, incluindo seu nome, informações de contato e mais
+				</p>
+			</div>
+
+			<div class="title">
+				<h1>Informações da conta</h1>
+			</div>
+			<div class="geral-info">
+				<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="post">
+					<div class="text-info">
+						<label for="">Sua senha:</label>
+						<br />
+						<input type="password" name="senha" th:value="${usuario.senha}" placeholder="Senha" disabled />
+						<button type="button">Editar</button>
 					</div>
-					<div class="geral">
-						<p>
-							Gerencie os detalhes da conta que você compartilhou com a Epic
-							Games, incluindo seu nome, informações de contato e mais
-						</p>
+					<div class="text-info">
+						<button>Salvar Mudanças</button>
+					</div>
+				</form>
+				<form th:action="@{/usuario/{path}(path=${cpf})}" method="get">
+					<div class="text-info">
+						<button>Descartar Mudanças</button>
+					</div>
+				</form>
+			</div>
+
+			<div class="title">
+				<h1>Detalhes Pessoais</h1>
+			</div>
+			<div class="geral">
+				<p>
+					Gerencie seu nome e informações de contato. Essas informações
+					pessoais são privadas e não serão exibidos para outros usuários.
+					Veja a nossa Política de Privacidade
+				</p>
+			</div>
+
+			<div class="geral-detalhe">
+				<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="post">
+					<div class="text-info">
+						<label for="#">Nome:</label><br />
+						<input type="text" name="nome" th:value="${usuario.nome}" placeholder="Nome" />
+					</div>
+					<div class="text-info">
+						<label for="">Sobrenome:</label><br />
+
+						<input type="text" name="sobrenome" th:value="${usuario.sobrenome}" placeholder="Sobrenome" />
+					</div>
+					<div class="text-info">
+						<label for="">Telefone:</label><br />
+						<input type="text" name="celular" th:value="${usuario.celular}" placeholder="(xx) xxxxx-xxxx" />
 					</div>
 
-					<div class="title">
-						<h1>Informações da conta</h1>
+					<div class="text-info">
+						<button type="submit">Salvar Mudanças</button>
 					</div>
-					<div class="geral-info">
-						<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="post">
-							<div class="text-info">
-								<label for="">Sua senha:</label>
-								<br />
-								<input type="password" name="senha" th:value="${usuario.senha}" placeholder="Senha"
-									disabled />
-								<button type="button">Editar</button>
-							</div>
-							<div class="text-info">
-								<button>Salvar Mudanças</button>
-							</div>
-						</form>
-						<form th:action="@{/usuario/{path}(path=${cpf})}" method="get">
-							<div class="text-info">
-								<button>Descartar Mudanças</button>
-							</div>
-						</form>
+				</form>
+				<form th:action="@{/usuario/{path}(path=${cpf})}" method="get">
+					<div class="text-info">
+						<button>Descartar Mudanças</button>
 					</div>
+				</form>
+			</div>
 
-					<div class="title">
-						<h1>Detalhes Pessoais</h1>
-					</div>
-					<div class="geral">
-						<p>
-							Gerencie seu nome e informações de contato. Essas informações
-							pessoais são privadas e não serão exibidos para outros usuários.
-							Veja a nossa Política de Privacidade
-						</p>
-					</div>
-
-					<div class="geral-detalhe">
-						<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="post">
-							<div class="text-info">
-								<label for="#">Nome:</label><br />
-								<input type="text" name="nome" th:value="${usuario.nome}" placeholder="Nome" />
-							</div>
-							<div class="text-info">
-								<label for="">Sobrenome:</label><br />
-
-								<input type="text" name="sobrenome" th:value="${usuario.sobrenome}"
-									placeholder="Sobrenome" />
-							</div>
-							<div class="text-info">
-								<label for="">Telefone:</label><br />
-								<input type="text" name="celular" th:value="${usuario.celular}"
-									placeholder="(xx) xxxxx-xxxx" />
-							</div>
-
-							<div class="text-info">
-								<button type="submit">Salvar Mudanças</button>
-							</div>
-						</form>
-						<form th:action="@{/usuario/{path}(path=${cpf})}" method="get">
-							<div class="text-info">
-								<button>Descartar Mudanças</button>
-							</div>
-						</form>
-					</div>
-
-					<div class="geral-endereco">
-						<div class="title">
-							<h1>Endereço</h1>
-						</div>
-
-						<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="post">
-							<div class="text-info">
-								<label for="">CEP:</label><br />
-								<input type="text" name="cepEnd" th:value="${endereco.cepEnd}" placeholder="CEP" />
-							</div>
-							<div class="text-info">
-								<label for="">País:</label><br />
-								<input type="text" name="paisEnd" th:value="${endereco.paisEnd}" placeholder="País" />
-							</div>
-							<div class="text-info">
-								<label for="">Estado:</label><br />
-								<input type="text" name="estadoEnd" th:value="${endereco.estadoEnd}"
-									placeholder="Estado" />
-							</div>
-							<div class="text-info">
-								<label for="">Cidade:</label><br />
-								<input type="text" name="cidadeEnd" th:value="${endereco.cidadeEnd}"
-									placeholder="Cidade" />
-							</div>
-							<div class="text-info">
-								<label for="">Bairro:</label><br />
-								<input type="text" name="bairroEnd" th:value="${endereco.bairroEnd}"
-									placeholder="Bairro" />
-							</div>
-							<div class="text-info">
-								<label for="">Rua:</label><br />
-								<input type="text" name="ruaEnd" th:value="${endereco.ruaEnd}" placeholder="Rua" />
-							</div>
-							<div class="text-info">
-								<label for="">Numero:</label><br />
-								<input type="text" name="numEnd" th:value="${endereco.numEnd}" placeholder="Numero" />
-							</div>
-							<div class="text-info">
-								<button>Salvar Mudanças</button>
-							</div>
-						</form>
-						<form th:action="@{/usuario/{path}(path=${cpf})}" method="get">
-							<div class="text-info">
-								<button>Descartar Mudanças</button>
-							</div>
-						</form>
-					</div>
+			<div class="geral-endereco">
+				<div class="title">
+					<h1>Endereço</h1>
 				</div>
+
+				<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="post">
+					<div class="text-info">
+						<label for="">CEP:</label><br />
+						<input type="text" name="cepEnd" th:value="${endereco.cepEnd}" placeholder="CEP" />
+					</div>
+					<div class="text-info">
+						<label for="">País:</label><br />
+						<input type="text" name="paisEnd" th:value="${endereco.paisEnd}" placeholder="País" />
+					</div>
+					<div class="text-info">
+						<label for="">Estado:</label><br />
+						<input type="text" name="estadoEnd" th:value="${endereco.estadoEnd}" placeholder="Estado" />
+					</div>
+					<div class="text-info">
+						<label for="">Cidade:</label><br />
+						<input type="text" name="cidadeEnd" th:value="${endereco.cidadeEnd}" placeholder="Cidade" />
+					</div>
+					<div class="text-info">
+						<label for="">Bairro:</label><br />
+						<input type="text" name="bairroEnd" th:value="${endereco.bairroEnd}" placeholder="Bairro" />
+					</div>
+					<div class="text-info">
+						<label for="">Rua:</label><br />
+						<input type="text" name="ruaEnd" th:value="${endereco.ruaEnd}" placeholder="Rua" />
+					</div>
+					<div class="text-info">
+						<label for="">Numero:</label><br />
+						<input type="text" name="numEnd" th:value="${endereco.numEnd}" placeholder="Numero" />
+					</div>
+					<div class="text-info">
+						<button>Salvar Mudanças</button>
+					</div>
+				</form>
+				<form th:action="@{/usuario/{path}(path=${cpf})}" method="get">
+					<div class="text-info">
+						<button>Descartar Mudanças</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</main>
 	<footer></footer>
 
+	<script>
+		function w3_open() {
+			document.getElementById("mySidebar").style.display = "block";
+		}
+
+		function w3_close() {
+			document.getElementById("mySidebar").style.display = "none";
+		}
+	</script>
 	<script src="/JS/NavBar.js"></script>
 	<script src="/JS/Tela_Perfil.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>

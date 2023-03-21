@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
 	<link rel="stylesheet" href="/CSS/Tela_Biblioteca.css" />
 	<link rel="stylesheet" href="/CSS/NewNavBar.css" />
 	<title>Pacifier</title>
@@ -75,77 +76,84 @@
 				</div>
 			</div>
 		</nav>
+		<div class="w3-sidebar w3-bar-block w3-border-right" style="display: none" id="mySidebar">
+			<button onclick="w3_close()" class="w3-bar-item w3-large">
+				Fechar &times;
+			</button>
+			<a th:href="@{/usuario/{cpf}(cpf=${cpf})}" class="w3-bar-item w3-button">Geral</a>
+			<a th:href="@{/usuario/{cpf}/compras (cpf=${cpf})}" class="w3-bar-item w3-button">Minhas compras</a>
+			<a th:href="@{/usuario/{cpf}/trocas(cpf=${cpf})}" class="w3-bar-item w3-button">Minhas trocas</a>
+			<a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}" class="w3-bar-item w3-button">Meus anúncios</a>
+			<a th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}" class="w3-bar-item w3-button">Biblioteca</a>
+		</div>
+
+		<!-- Page Content -->
+		<div class="">
+			<button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">
+				☰
+			</button>
+		</div>
 	</header>
 
 	<main>
-		<!-- Container da nav-bar lateral -->
-		<div class="nav-lateral">
-			<div class="container-button">
-				<div class="button">
-					<a th:href="@{/usuario/{cpf}(cpf=${cpf})}"><input type="button" value="Geral" class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/compras (cpf=${cpf})}"><input type="button" value="Minhas compras"
-							class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/trocas(cpf=${cpf})}"><input type="button" value="Minhas Trocas"
-							class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/anuncios(cpf=${cpf})}"><input type="button" value="Meus Anúncios"
-							class="button" /></a>
-					<a th:href="@{/usuario/{cpf}/biblioteca(cpf=${cpf})}"><input type="button" value="Biblioteca"
-							class="button" /></a>
-				</div>
-			</div>
-		</div>
-
-		<div class="color">
-			<!-- Container da biblioteca -->
-			<div class="container-biblioteca">
-				<br />
-				<!-- Div para add cor ao fundo dos jogos -->
-				<div class="container-color">
-					<!-- Jogos que aparecerão na biblioteca -->
-					<section class="container-produto">
-						<div class="row row-cols-1 row-cols-md-2 g-4">
-							<div th:each="anuncio: ${anuncio}" class="col">
-								<div class="card h-100">
-									<img th:src="${anuncio.imagem.url}" class="card-img-top" alt="..." />
-									<div class="card-body">
-										<h5 class="card-title">
-											<span th:text="${anuncio.nomeAnuncio}"></span>
-										</h5>
-										<p class="card-text">
-											Quantidade:
-											<span th:text="${anuncio.quantAnuncio}"></span>
-										</p>
-										<p class="card-text">
-											Valor: R$<span th:text="${anuncio.valorAnuncio}"></span>
-										</p>
-										<p class="card-text">
-											Status: <span th:text="${anuncio.statusAnuncio}"></span>
-										</p>
-										<form
-											th:action="@{/usuario/{cpf}/anuncio/{codAnuncio}/deletar (cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
-											method="post">
-											<input class="btn btn-primary" type="submit" value="Excluir">
-										</form>
-									</div>
+		<!-- Container da biblioteca -->
+		<div class="container-biblioteca">
+			<br />
+			<!-- Div para add cor ao fundo dos jogos -->
+			<div class="container-color">
+				<!-- Jogos que aparecerão na biblioteca -->
+				<section class="container-produto">
+					<div class="row row-cols-2 row-cols-md-5 g-4">
+						<div th:each="anuncio: ${anuncio}" class="col">
+							<div class="card h-100">
+								<img th:src="${anuncio.imagem.url}" class="card-img-top" alt="..." />
+								<div class="card-body">
+									<h5 class="card-title">
+										<span th:text="${anuncio.nomeAnuncio}"></span>
+									</h5>
+									<p class="card-text">
+										Quantidade:
+										<span th:text="${anuncio.quantAnuncio}"></span>
+									</p>
+									<p class="card-text">
+										Valor: R$<span th:text="${anuncio.valorAnuncio}"></span>
+									</p>
+									<p class="card-text">
+										Status: <span th:text="${anuncio.statusAnuncio}"></span>
+									</p>
+									<form
+										th:action="@{/usuario/{cpf}/anuncio/{codAnuncio}/deletar (cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
+										method="post">
+										<input class="btn btn-primary" type="submit" value="Excluir" />
+									</form>
 								</div>
 							</div>
 						</div>
-					</section>
-				</div>
-				<!-- Botões de Excluir e Cadastrar -->
-				<section class="container-button">
-					<!-- Botão de Cadastrar -->
-					<div>
-						<form th:action="@{/usuario/{cpf}/anunciar(cpf=${cpf})}" method="get">
-							<label for="#">Adicionar anuncio: </label><br />
-							<a href=""><button>Adicionar</button></a>
-						</form>
 					</div>
 				</section>
 			</div>
+			<!-- Botões de Excluir e Cadastrar -->
+			<section class="container-button">
+				<!-- Botão de Cadastrar -->
+				<div>
+					<form th:action="@{/usuario/{cpf}/anunciar(cpf=${cpf})}" method="get">
+						<label for="#">Adicionar anuncio: </label><br />
+						<a href=""><button>Adicionar</button></a>
+					</form>
+				</div>
+			</section>
 		</div>
 	</main>
 	<footer></footer>
+	<script>
+		function w3_open() {
+			document.getElementById("mySidebar").style.display = "block";
+		}
+
+		function w3_close() {
+			document.getElementById("mySidebar").style.display = "none";
+		}
+	</script>
 	<script src="/JS/NavBar.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

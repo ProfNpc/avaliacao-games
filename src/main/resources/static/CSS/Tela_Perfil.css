@@ -14,40 +14,11 @@ header {
   background-color: #24252a;
 }
 
-.container {
-  margin-top: 3em;
-  margin-left: 3em;
-  margin-right: 3em;
-}
-
-.button {
-  color: white;
-  background-color: #24252a;
-  border-color: rgb(48, 48, 48);
-}
-
-.button:hover {
-  background-color: rgb(54, 54, 54);
-  cursor: pointer;
-}
-
 .container-ever {
   background-color: #202124;
   border-radius: 2em;
-}
-
-.container-button {
-  display: flex;
-  align-items: left;
-  justify-content: left;
-  float: left;
-  margin-right: 3em;
-}
-
-.container-geral {
-  margin-left: 2em;
-  margin-right: 2em;
-  margin-bottom: 2em;
+  margin: 2.5em;
+  padding: 2.5em;
 }
 
 .title {
@@ -100,32 +71,14 @@ header {
 }
 
 .delete button {
-	width: 8em;
-  	height: 3em;
-  	border-radius: 0.5em;
-  	font-size: 0.8em;
-  	font-weight: bold;
-  	cursor: pointer;
-  	background-color: rgb(255, 128, 128);
-}
-
-/* .geral-detalhe button {
-  width: 12em;
-  height: 2em;
-  border-radius: 0.7em;
-  cursor: pointer;
-  font-size: 1em;
+  width: 8em;
+  height: 3em;
+  border-radius: 0.5em;
+  font-size: 0.8em;
   font-weight: bold;
-}
-
-.geral-endereco button {
-  width: 12em;
-  height: 2em;
-  border-radius: 0.7em;
   cursor: pointer;
-  font-size: 1em;
-  font-weight: bold;
-} */
+  background-color: rgb(255, 128, 128);
+}
 
 .text-info label {
   color: #eeeeee;
@@ -134,10 +87,4 @@ header {
 .button input {
   width: 100%;
   height: 52%;
-}
-
-.container-ever {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

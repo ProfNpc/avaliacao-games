@@ -16,22 +16,6 @@ header {
   background-color: #24252a;
 }
 
-/* Container para colocar a nav na lateral  */
-.container-button {
-  display: flex;
-  align-items: left;
-  justify-content: left;
-  float: left;
-  margin-right: 3em;
-}
-
-/* Container para dar margin na nav lateral */
-.nav-lateral {
-  margin-top: 3em;
-  margin-left: 3em;
-  margin-right: 3em;
-}
-
 /* Botões */
 .button {
   color: white;
@@ -51,7 +35,7 @@ header {
 
 /*Container principal*/
 .container-biblioteca {
-  margin: 2em;
+  margin: 2.5em;
   border-radius: 2em;
   background-color: #24252a;
   align-items: center;
@@ -98,4 +82,8 @@ header {
   font-weight: bold;
   color: #eeeeee;
   margin-right: 2em;
+}
+
+.btnForm {
+  margin-top: 0.8em;
 }
