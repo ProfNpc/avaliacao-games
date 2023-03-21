@@ -148,7 +148,7 @@
 		<!-- Titulo lista de jogos -->
 		<div class="title">Trocas</div>
 		<!-- Lista de jogos -->
-		<div class="row row-cols-1 row-cols-md-2 g-4 margin img-list wid">
+		<div class="row row-cols-2 row-cols-md-5 g-4 margin img-list wid">
 			<div class="col" th:each="trocas: ${trocas}">
 				<a th:href="@{/usuario/{cpf}/troca/{codTroca} (cpf=${cpf}, codTroca=${trocas.codTroca})}">
 					<div class="card h-100">
