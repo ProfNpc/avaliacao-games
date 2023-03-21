@@ -38,4 +38,8 @@ public class Cad_ProdutoService {
 			return new Cad_Produto();
 		}
 	}
+	
+	public Cad_Produto findByUsuarioAndProduto(Usuario usuario, Produto produto) {
+		return repository.findByUsuarioAndProduto(usuario, produto);
+	}
 }

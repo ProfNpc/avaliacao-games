@@ -169,12 +169,18 @@ public class ProdutoController {
 
 		Usuario usuario = usuarioService.findById(cpf);
 		Produto produto = produtoService.findById(codProd);
-
-		cad_produto.setStatus(true);
-		cad_produto.setUsuario(usuario);
-		cad_produto.setProduto(produto);
-
-		cad_produtoRepository.save(cad_produto);
+		
+		Cad_Produto cadProdutoNoBd = cad_produtoService.findByUsuarioAndProduto(usuario, produto);
+		if (cadProdutoNoBd == null) {
+			cad_produto.setStatus(true);
+			cad_produto.setUsuario(usuario);
+			cad_produto.setProduto(produto);
+			
+			cad_produtoRepository.save(cad_produto);
+		} else {
+			cadProdutoNoBd.setQuantidade(cadProdutoNoBd.getQuantidade() + cad_produto.getQuantidade());
+			cad_produtoRepository.save(cadProdutoNoBd);
+		}
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
 		return mv;
