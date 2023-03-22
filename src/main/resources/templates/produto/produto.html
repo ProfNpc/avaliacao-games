@@ -91,11 +91,14 @@
 					<form
 						th:action="@{/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho(cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
 						method="post">
-
-						<div class="input"><input type="numer" placeholder="Quantidade" name="quantItemCar" /></div>
+						<div class="input">
+							<input type="numer" placeholder="Quantidade" name="quantItemCar" />
+						</div>
 
 						<div class="d-grid gap-2 col-6 mx-auto">
-							<button class=" botao btn btn-primary" type="button">Comprar</button>
+							<button class="botao btn btn-primary" type="button">
+								Comprar
+							</button>
 						</div>
 
 						<div class="d-grid gap-2 col-6 mx-auto">
@@ -107,8 +110,8 @@
 				</div>
 			</div>
 
-			<div class="card-AVprod">
-				<div class="card-body-av">
+			<div class="card" style="width: 22.5rem">
+				<div class="card-body">
 					<h5 class="card-title text-center">
 						<span th:text="${usuario.nome}"></span>
 					</h5>
@@ -116,11 +119,14 @@
 					<h5 class="card-title text-center">Avaliação do Produto</h5>
 					<br />
 					<div class="usuario" th:each="comentarios, iStat: ${comentarios}">
-						<h6 class="card-title"><span th:text="${nomeComentarios[iStat.index]}"></span></h6>
-						<p class="card-text"><span th:text="${comentarios.comenComentario}"></span></p>
+						<h6 class="card-title">
+							<span th:text="${nomeComentarios[iStat.index]}"></span>
+						</h6>
+						<p class="card-text">
+							<span th:text="${comentarios.comenComentario}"></span>
+						</p>
 						<br />
 					</div>
-
 				</div>
 			</div>
 		</section>
@@ -142,7 +148,7 @@
 
 		<section class="containerProdutos">
 			<div class="tituloProduto">Similiares</div>
-			<div class="row row-cols-1 row-cols-md-5 g-4">
+			<div class="row row-cols-2 row-cols-md-5 g-4">
 				<div class="col" th:each="anuncios: ${anuncios}">
 					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncios.codAnuncio})}">
 						<div class="card h-100">

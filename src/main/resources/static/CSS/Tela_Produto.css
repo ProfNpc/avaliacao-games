@@ -1,102 +1,65 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap");
-
 * {
-    padding: 0;
-    margin: 0;
-    font-family: "Inter", sans-serif;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
 }
 
 /*Body*/
 body {
-    background-color: rgb(18, 18, 18);
+  background-color: rgb(18, 18, 18);
 }
 
 /*Header*/
 header {
-    background-color: #24252a;
+  background-color: #24252a;
 }
 
 /*Carousel*/
 .carousel-inner {
-    width: 22em;
+  width: 22em;
 }
 
 /* Produto */
 .containerProduto {
-    display: flex;
-    flex-wrap: wrap;
-    margin-inline-start: 18em;
-    margin-top: 2em;
-}
-/*Box Avaliação*/
-.card-AVprod{
-    width: 22.5rem;
-    margin-left: 3em;   
-    
-}
-.card-body-av {
-    background-color: #eeee;    
-    width: 22.5rem;
-    height: 16em;
-    border-radius: 1em;
-    
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2em;
 }
 
 /* Descricao do produto */
 .containerDescricao {
-   position: relative;
-    margin-inline-start: 18em;
-    margin-top: 1em;
-    width: 42.2em;
+  margin: 2em;
 }
 
 /* Produtos similiares e mais vendidos */
 .containerProdutos {
-    margin: 2em;
-}
-
-.col{
-    margin-inline-start: 16em;
+  margin: 2em;
 }
 
 .col a {
-    text-decoration: none;
-    color: inherit;
-    margin-left: 2em;
+  text-decoration: none;
+  color: inherit;
 }
 
 .tituloProduto {
-    font-size: 1.8em;
-    color: white;
-    margin-inline-start: 9em;
+  font-size: 1.8em;
+  color: white;
 }
 
 /* Inuput quantidade */
 .input input[type="number"] {
-    max-width: 10em;
+  max-width: 10em;
 }
 
 .input {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Botão carrinho e compra  */
 .botao {
-    margin-top: 1em;
-}
-/* Botão Pesquisar*/
-.btn.btn-outline-success{
-    color: #eeee;
-    background-color: #0D6EFD;
-}
-/*Botao dropdown navbar*/
-.btn.btn-secondary.dropdown-toggle{
-    background-color: #0D6EFD;
-}
-/*link comunidade e contato navbar*/
-.colorFont.nav-link{
-    color: aliceblue;
+  margin-top: 1em;
 }
