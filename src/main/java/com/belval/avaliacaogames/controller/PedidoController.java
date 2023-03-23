@@ -24,6 +24,7 @@ import com.belval.avaliacaogames.repositories.ItemPedidoRepository;
 import com.belval.avaliacaogames.repositories.PedidoRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.EnderecoService;
+import com.belval.avaliacaogames.services.PedidoService;
 import com.belval.avaliacaogames.services.UsuarioService;
 
 @Controller
@@ -39,6 +40,9 @@ public class PedidoController {
 	private AnuncioService anuncioService;
 
 	@Autowired
+	private PedidoService pedidoService;
+
+	@Autowired
 	private CarrinhoRepository carrinhoRepository;
 
 	@Autowired
@@ -49,6 +53,9 @@ public class PedidoController {
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
+
+	private Pedido ped;
+	private ItemPedido itemPed;
 
 	// Mostra todas as compras do usuario
 	@GetMapping("/usuario/{cpf}/compras")
@@ -71,22 +78,34 @@ public class PedidoController {
 
 	@PostMapping("/usuario/{cpf}/compra/{codAnuncio}/adicionar")
 	public ModelAndView adicionarCompra(@PathVariable("cpf") Long cpf, @PathVariable("codAnuncio") Long codAnuncio,
-			Carrinho carrinho, ItemCarrinho itemCarrinho, Integer quantidade) {
+			Carrinho carrinho, ItemCarrinho itemCarrinho, Pedido pedido, ItemPedido itemPedido, Integer quantidade) {
 
 		Usuario usuario = usuarioService.findById(cpf);
 
 		Anuncio anuncio = anuncioService.findById(codAnuncio);
 
-		if (carrinhoRepository.findByUsuario(usuario) == null) {
-			carrinho.setUsuario(usuario);
-			carrinhoRepository.save(carrinho);
-		} else {
-			carrinho = carrinhoRepository.findByUsuario(usuario);
-		}
+		/*
+		 * if (carrinhoRepository.findByUsuario(usuario) == null) {
+		 * carrinho.setUsuario(usuario); carrinhoRepository.save(carrinho); } else {
+		 * carrinho = carrinhoRepository.findByUsuario(usuario); }
+		 * 
+		 * itemCarrinho.setAnuncio(anuncio); itemCarrinho.setCarrinho(carrinho);
+		 * itemCarrinho.setQuantidade(quantidade);
+		 */
 
-		itemCarrinho.setAnuncio(anuncio);
-		itemCarrinho.setCarrinho(carrinho);
-		itemCarrinho.setQuantidade(quantidade);
+		pedido.setStatusPedido(false);
+		pedido.setUsuario(usuario);
+		pedidoRepository.save(pedido);
+
+		ped = pedido;
+
+		itemPedido.setAnuncio(anuncio);
+		itemPedido.setPedido(pedido);
+		itemPedido.setPreco(anuncio.getValorAnuncio());
+		itemPedido.setQuantidade(quantidade);
+		itemPedidoRepository.save(itemPedido);
+
+		itemPed = itemPedido;
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/compra/finalizar");
 		return mv;
@@ -97,7 +116,7 @@ public class PedidoController {
 	public ModelAndView comprar(@PathVariable("cpf") Long cpf, Integer quantidade) {
 		Usuario usuario = usuarioService.findById(cpf);
 
-		System.out.println(quantidade);
+		ModelAndView mv = new ModelAndView("compra/finalizar-compra");
 
 		Endereco endereco = enderecoService.findByUsuario(usuario);
 
@@ -106,53 +125,88 @@ public class PedidoController {
 			return mve;
 		}
 
-		Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
-		List<ItemCarrinho> itensCarrinho = itemCarrinhoRepository.findByCarrinho(carrinho);
+		if (ped != null) {
+			Pedido pedido = pedidoService.findById(ped.getCodPedido());
+			List<ItemPedido> itemPedido = itemPedidoRepository.findByIdPedido(pedido);
 
-		int quant = itensCarrinho.size();
+			int quant = 1;
+			double total = 0;
 
-		double total = 0;
-		for (ItemCarrinho item : itensCarrinho) {
-			total += item.getAnuncio().getValorAnuncio() * item.getQuantidade();
+			for (ItemPedido ip : itemPedido) {
+				total = ip.getPreco();
+			}
+
+			mv.addObject("quant", quant);
+			mv.addObject("total", total);
+		} else {
+
+			Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
+			List<ItemCarrinho> itensCarrinho = itemCarrinhoRepository.findByCarrinho(carrinho);
+
+			int quant = itensCarrinho.size();
+
+			double total = 0;
+			for (ItemCarrinho item : itensCarrinho) {
+				total += item.getAnuncio().getValorAnuncio() * item.getQuantidade();
+			}
+
+			mv.addObject("quant", quant);
+			mv.addObject("total", total);
 		}
 
-		ModelAndView mv = new ModelAndView("compra/finalizar-compra");
-
 		mv.addObject("endereco", endereco);
-		mv.addObject("quant", quant);
-		mv.addObject("total", total);
 
 		return mv;
 	}
 
 	// Realizar a compra
 	@PostMapping("/usuario/{cpf}/compra/finalizar")
-	public ModelAndView terminarCompra(@PathVariable("cpf") Long cpf, Pedido pedido) {
+	public ModelAndView terminarCompra(@PathVariable("cpf") Long cpf, Pedido pedido, ItemPedido item) {
 		Usuario usuario = usuarioService.findById(cpf);
 
-		Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
-		List<ItemCarrinho> itensCarrinho = itemCarrinhoRepository.findByCarrinho(carrinho);
-
-		pedido.setUsuario(usuario);
-
-		pedidoRepository.save(pedido);
-
-		for (ItemCarrinho ic : itensCarrinho) {
-			ItemPedido itemPedido = new ItemPedido();
-
-			itemPedido.setAnuncio(ic.getAnuncio());
-			itemPedido.setQuantidade(ic.getQuantidade());
-			itemPedido.setPreco(ic.getAnuncio().getValorAnuncio());
-			itemPedido.setPedido(pedido);
-
-			itemPedidoRepository.save(itemPedido);
-
-		}
-
-		itemCarrinhoRepository.deleteAll(itensCarrinho);
-		carrinhoRepository.delete(carrinho);
-
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/compras");
+
+		if (ped != null) {
+
+			pedido.setDataPedido(ped.getDataPedido());
+			pedido.setStatusPedido(true);
+			pedido.setUsuario(ped.getUsuario());
+			pedido.setCodPedido(ped.getCodPedido());
+			pedidoRepository.save(pedido);
+
+			item.setAnuncio(itemPed.getAnuncio());
+			item.setPedido(pedido);
+			item.setPreco(itemPed.getPreco());
+			item.setQuantidade(itemPed.getQuantidade());
+			itemPedidoRepository.save(item);
+
+			ped = null;
+			itemPed = null;
+
+		} else {
+
+			Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
+			List<ItemCarrinho> itensCarrinho = itemCarrinhoRepository.findByCarrinho(carrinho);
+
+			pedido.setUsuario(usuario);
+			pedido.setStatusPedido(true);
+			pedidoRepository.save(pedido);
+
+			for (ItemCarrinho ic : itensCarrinho) {
+				ItemPedido itemPedido = new ItemPedido();
+
+				itemPedido.setAnuncio(ic.getAnuncio());
+				itemPedido.setQuantidade(ic.getQuantidade());
+				itemPedido.setPreco(ic.getAnuncio().getValorAnuncio());
+				itemPedido.setPedido(pedido);
+
+				itemPedidoRepository.save(itemPedido);
+
+			}
+
+			itemCarrinhoRepository.deleteAll(itensCarrinho);
+			carrinhoRepository.delete(carrinho);
+		}
 
 		return mv;
 	}

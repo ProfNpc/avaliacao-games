@@ -42,7 +42,7 @@ public class CarrinhoController {
 
 	// Tela com todos os produtos no carrinho
 	@GetMapping("/usuario/{cpf}/carrinho")
-	public ModelAndView carrinho(@PathVariable("cpf") Long cpf, Model model, Integer quantCarrinho) {
+	public ModelAndView carrinho(@PathVariable("cpf") Long cpf, Model model, Integer quantidade) {
 		Usuario usuario = usuarioService.findById(cpf);
 
 		Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);

@@ -12,4 +12,6 @@ import com.belval.avaliacaogames.entities.Usuario;
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
 	List<Pedido> findByUsuario(Usuario usuario);
+	
+
 }
