@@ -18,7 +18,7 @@ public class ItemCarrinho implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codItemCar;
 
-	private Integer quantItemCar;
+	private Integer quantidade;
 
 	@ManyToOne
 	@JoinColumn(name = "codAnuncio")
@@ -32,10 +32,10 @@ public class ItemCarrinho implements Serializable {
 		super();
 	}
 
-	public ItemCarrinho(Long codItemCar, Integer quantItemCar, Anuncio anuncio, Carrinho carrinho) {
+	public ItemCarrinho(Long codItemCar, Integer quantidade, Anuncio anuncio, Carrinho carrinho) {
 		super();
 		this.codItemCar = codItemCar;
-		this.quantItemCar = quantItemCar;
+		this.quantidade = quantidade;
 		this.anuncio = anuncio;
 		this.carrinho = carrinho;
 	}
@@ -68,12 +68,12 @@ public class ItemCarrinho implements Serializable {
 		this.codItemCar = codItemCar;
 	}
 
-	public Integer getQuantItemCar() {
-		return quantItemCar;
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQuantItemCar(Integer quantItemCar) {
-		this.quantItemCar = quantItemCar;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	@Override

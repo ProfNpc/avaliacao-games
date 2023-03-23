@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Carrinho;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.ItemCarrinho;
@@ -21,6 +22,7 @@ import com.belval.avaliacaogames.repositories.CarrinhoRepository;
 import com.belval.avaliacaogames.repositories.ItemCarrinhoRepository;
 import com.belval.avaliacaogames.repositories.ItemPedidoRepository;
 import com.belval.avaliacaogames.repositories.PedidoRepository;
+import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.EnderecoService;
 import com.belval.avaliacaogames.services.UsuarioService;
 
@@ -32,6 +34,9 @@ public class PedidoController {
 
 	@Autowired
 	private EnderecoService enderecoService;
+
+	@Autowired
+	private AnuncioService anuncioService;
 
 	@Autowired
 	private CarrinhoRepository carrinhoRepository;
@@ -64,10 +69,35 @@ public class PedidoController {
 		return mv;
 	}
 
+	@PostMapping("/usuario/{cpf}/compra/{codAnuncio}/adicionar")
+	public ModelAndView adicionarCompra(@PathVariable("cpf") Long cpf, @PathVariable("codAnuncio") Long codAnuncio,
+			Carrinho carrinho, ItemCarrinho itemCarrinho, Integer quantidade) {
+
+		Usuario usuario = usuarioService.findById(cpf);
+
+		Anuncio anuncio = anuncioService.findById(codAnuncio);
+
+		if (carrinhoRepository.findByUsuario(usuario) == null) {
+			carrinho.setUsuario(usuario);
+			carrinhoRepository.save(carrinho);
+		} else {
+			carrinho = carrinhoRepository.findByUsuario(usuario);
+		}
+
+		itemCarrinho.setAnuncio(anuncio);
+		itemCarrinho.setCarrinho(carrinho);
+		itemCarrinho.setQuantidade(quantidade);
+
+		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/compra/finalizar");
+		return mv;
+	}
+
 	// Tela para finalizar compra
 	@GetMapping("/usuario/{cpf}/compra/finalizar")
-	public ModelAndView comprar(@PathVariable("cpf") Long cpf) {
+	public ModelAndView comprar(@PathVariable("cpf") Long cpf, Integer quantidade) {
 		Usuario usuario = usuarioService.findById(cpf);
+
+		System.out.println(quantidade);
 
 		Endereco endereco = enderecoService.findByUsuario(usuario);
 
@@ -83,7 +113,7 @@ public class PedidoController {
 
 		double total = 0;
 		for (ItemCarrinho item : itensCarrinho) {
-			total += item.getAnuncio().getValorAnuncio() * item.getQuantItemCar();
+			total += item.getAnuncio().getValorAnuncio() * item.getQuantidade();
 		}
 
 		ModelAndView mv = new ModelAndView("compra/finalizar-compra");
@@ -111,7 +141,7 @@ public class PedidoController {
 			ItemPedido itemPedido = new ItemPedido();
 
 			itemPedido.setAnuncio(ic.getAnuncio());
-			itemPedido.setQuantidade(ic.getQuantItemCar());
+			itemPedido.setQuantidade(ic.getQuantidade());
 			itemPedido.setPreco(ic.getAnuncio().getValorAnuncio());
 			itemPedido.setPedido(pedido);
 

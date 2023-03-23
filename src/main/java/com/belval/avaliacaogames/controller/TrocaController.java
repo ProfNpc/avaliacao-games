@@ -93,39 +93,38 @@ public class TrocaController {
 
 		Usuario usuario = usuarioService.findById(troca.getCodUsuario());
 		Usuario usuarioAtual = usuarioService.findById(cpf);
-		
+
 		List<Item_Troca> itens_troca = item_TrocaService.findByTroca(troca);
-		
+
 		// Cria a lista dos produtos que o usuário tem
 		List<Produto> produtosUsuario = new ArrayList<Produto>();
 		for (Cad_Produto cad : cad_ProdutoService.findByUsuario(usuarioAtual)) {
 			produtosUsuario.add(cad.getProduto());
 		}
-		
+
 		// Cria a lista dos produtos da troca
 		List<Produto> produtosTroca = new ArrayList<Produto>();
 		for (Item_Troca item : itens_troca) {
 			produtosTroca.add(item.getProduto());
 		}
-		
+
 		// Compara as duas listas
 		boolean podeTrocar = true;
 		for (Produto produtoTroca : produtosTroca) {
 			boolean usuarioPossui = false;
-			
+
 			for (Produto produtoUsuario : produtosUsuario) {
 				if (produtoTroca.equals(produtoUsuario)) {
 					usuarioPossui = true;
 					break;
 				}
 			}
-			
+
 			if (!usuarioPossui) {
 				podeTrocar = false;
 				break;
 			}
 		}
-		
 
 		model.addAttribute("itens_troca", itens_troca);
 		model.addAttribute("usuario", usuario);
@@ -290,6 +289,7 @@ public class TrocaController {
 		cad_ProdutoRepository.save(cp);
 
 		item_TrocaRepository.deleteAll(itensTroca);
+		cad_ProdutoRepository.delete(troca.getCad_produto());
 		trocaRepository.delete(troca);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");

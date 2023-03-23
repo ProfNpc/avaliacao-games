@@ -51,7 +51,7 @@ public class CarrinhoController {
 
 		double total = 0;
 		for (ItemCarrinho item : itens) {
-			total += item.getAnuncio().getValorAnuncio() * item.getQuantItemCar();
+			total += item.getAnuncio().getValorAnuncio() * item.getQuantidade();
 		}
 
 		ModelAndView mv = new ModelAndView("carrinho/carrinho");
@@ -65,7 +65,7 @@ public class CarrinhoController {
 	// Adiciona o produto ao carrinho
 	@PostMapping("/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho")
 	public ModelAndView adicionarCarrinho(@PathVariable("cpf") Long cpf, @PathVariable("codAnuncio") Long codAnuncio,
-			Carrinho carrinho, ItemCarrinho itemCarrinho, Integer quantItemCar) {
+			Carrinho carrinho, ItemCarrinho itemCarrinho, Integer quantidade) {
 
 		Usuario usuario = usuarioService.findById(cpf);
 		Anuncio anuncio = anuncioService.findById(codAnuncio);
@@ -78,7 +78,7 @@ public class CarrinhoController {
 		}
 
 		itemCarrinho.setAnuncio(anuncio);
-		itemCarrinho.setQuantItemCar(quantItemCar);
+		itemCarrinho.setQuantidade(quantidade);
 		itemCarrinho.setCarrinho(carrinho);
 		itemCarrinhoRepository.save(itemCarrinho);
 
@@ -101,10 +101,10 @@ public class CarrinhoController {
 	// Altera a quantidade do produto pelo carrinho
 	@PostMapping("/usuario/{cpf}/carrinho/{codItemCar}/quantidade")
 	public ModelAndView alteraQuantidade(@PathVariable("cpf") Long cpf, @PathVariable("codItemCar") Long codItemCar,
-			Integer quantItemCar) {
+			Integer quantidade) {
 
 		ItemCarrinho itemCarrinho = itemCarrinhoService.findById(codItemCar);
-		itemCarrinho.setQuantItemCar(quantItemCar);
+		itemCarrinho.setQuantidade(quantidade);
 		itemCarrinhoRepository.save(itemCarrinho);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/carrinho");

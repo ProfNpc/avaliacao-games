@@ -92,11 +92,13 @@
 						th:action="@{/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho(cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
 						method="post">
 						<div class="input">
-							<input type="numer" placeholder="Quantidade" name="quantItemCar" />
+							<input type="numer" placeholder="Quantidade" name="quantidade" />
 						</div>
 
 						<div class="d-grid gap-2 col-6 mx-auto">
-							<button class="botao btn btn-primary" type="button">
+							<button class="botao btn btn-primary"
+								th:formaction="@{/usuario/{cpf}/compra/{codAnuncio}/adicionar (cpf=${cpf}, codAnuncio=${codAnuncio})}"
+								formmethod="post" type="submit">
 								Comprar
 							</button>
 						</div>
