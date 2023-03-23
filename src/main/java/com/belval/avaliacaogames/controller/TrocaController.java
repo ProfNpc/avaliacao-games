@@ -241,7 +241,12 @@ public class TrocaController {
 	@PostMapping("/usuario/{cpf}/trocar/{codTroca}/deletar")
 	public ModelAndView deletarTroca(@PathVariable("cpf") Long cpf, @PathVariable("codTroca") Long codTroca) {
 
+		Troca troca = trocaService.findById(codTroca);
+
+		Cad_Produto cadProduto = cad_ProdutoService.findById(troca.getCad_produto().getCodCadProd());
+
 		trocaRepository.deleteById(codTroca);
+		cad_ProdutoRepository.delete(cadProduto);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/trocas");
 
