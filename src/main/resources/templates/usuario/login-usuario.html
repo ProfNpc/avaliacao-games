@@ -15,9 +15,15 @@
 			<div class="logo">
 				<img src="/imagens/Controle.png" alt="" />
 			</div>
+			
+			<div id="alerta" class="alert" 
+          	th:style="${alerta == null} ? 'display: none' : 'display: block'" 
+          	th:utext="${alerta}">
+	  	  	</div>
+			
 			<form action="/usuario/login" method="post">
 				<label for="email">E-mail: </label>
-				<input type="email" name="email" placeholder="Digite seu e-mail" class="input-login" autofocus />
+				<input type="email" name="email" th:value="${email}" placeholder="Digite seu e-mail" class="input-login" autofocus />
 				<label for="senha">Senha: </label>
 				<input type="password" name="senha" class="input-login" placeholder="Digite sua senha" />
 				<input type="submit" value="Entrar" class="submit" />

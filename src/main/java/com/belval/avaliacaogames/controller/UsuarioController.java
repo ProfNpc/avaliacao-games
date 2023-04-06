@@ -130,7 +130,9 @@ public class UsuarioController {
 		ModelAndView model;
 
 		if (!service.existsByEmail(email)) {
-			model = new ModelAndView("redirect:/usuario/login");
+			model = new ModelAndView("usuario/login-usuario");
+			model.addObject("alerta", "Não existe uma conta com esse e-mail registrado");
+			model.addObject("email", data.getEmail());
 			return model;
 		}
 
@@ -138,11 +140,13 @@ public class UsuarioController {
 
 		if (data.getSenha().equals(usuario.getSenha())) {
 			model = new ModelAndView("redirect:/home/" + usuario.getCpf());
+			return model;
 		} else {
-			model = new ModelAndView("redirect:/usuario/login");
+			model = new ModelAndView("usuario/login-usuario");
+			model.addObject("alerta", "Senha incorreta");
+			model.addObject("email", data.getEmail());
+			return model;
 		}
-
-		return model;
 	}
 
 	// Metodo para acessar perfil do usuario
