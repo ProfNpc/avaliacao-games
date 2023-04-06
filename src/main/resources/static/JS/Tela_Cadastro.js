@@ -70,7 +70,7 @@ function confirmarDados() {
 		return false;
 	}
 	
-	if (email.value == "") {
+	if (email.value == "" || !email.value.includes("@") || email.value.indexOf("@") == email.value.length - 1) {
 		alertar("Insira um e-mail válido");
 		return false;
 	}
