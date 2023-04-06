@@ -22,12 +22,20 @@ public class UsuarioService {
 	
 	public Usuario findById(Long cpf) {
 		Optional<Usuario> obj = repository.findById(cpf);
-		return obj.get();
+		if (obj.isPresent()) {
+			return obj.get();
+		} else {
+			return null;
+		}
 	}
 	
 	public Usuario findByEmail(String email) {
 		Optional<Usuario> obj = repository.findByEmail(email);
-		return obj.get();
+		if (obj.isPresent()) {
+			return obj.get();
+		} else {
+			return null;
+		}
 	}
 
 	public List<Usuario> findAll(String email) {

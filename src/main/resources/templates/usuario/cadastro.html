@@ -16,7 +16,7 @@
       
       
       <div class="form">
-        <form id="formCadastro" action="/usuario/cadastrar" method="post">
+        <form id="formCadastro" action="/usuario/cadastrar" method="post" th:object="${usuario}">
           <div class="form-header">
             <div class="title">
               <h1>Cadastre-se</h1>
@@ -26,8 +26,9 @@
             </div>
           </div>
           
-          <div id="alerta" class="alert" display=none>
-	        Alerta
+          <div id="alerta" class="alert" 
+          th:style="${alerta == null} ? 'display: none' : 'display: block'" 
+          th:utext="${alerta}">
 	  	  </div>
           
           <div class="input-group">
@@ -38,6 +39,7 @@
                 id="nome"
                 name="nome"
                 placeholder="Digite seu primeiro nome"
+                th:value="*{nome}"
                 required
               />
             </div>
@@ -49,6 +51,7 @@
                 id="sobrenome"
                 name="sobrenome"
                 placeholder="Digite seu sobrenome"
+                th:value="*{sobrenome}"
                 required
               />
             </div>
@@ -60,6 +63,7 @@
                 id="email"
                 name="email"
                 placeholder="Digite seu email"
+                th:value="*{email}"
                 required
               />
             </div>
@@ -71,6 +75,7 @@
                 id="celular"
                 name="celular"
                 placeholder="(xx) xxxxx-xxxx"
+                th:value="*{celular}"
                 required
               />
             </div>
@@ -82,6 +87,7 @@
                 id="cpf"
                 name="cpf"
                 placeholder="xxx.xxx.xxx-xx"
+                th:value="*{cpf}"
                 required
               />
             </div>
