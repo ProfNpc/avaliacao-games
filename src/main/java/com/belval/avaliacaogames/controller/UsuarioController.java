@@ -98,20 +98,16 @@ public class UsuarioController {
 	@PostMapping("/usuario/cadastrar")
 	public ModelAndView form(Usuario usuario) {
 		
-		Usuario usuarioExistente = service.findById(usuario.getCpf());
-		if (usuarioExistente != null) {
+		if (service.existsById(usuario.getCpf())) {
 			ModelAndView model = new ModelAndView("usuario/cadastro");
 			model.addObject("usuario", usuario);
 			model.addObject("alerta", "Já existe um usuário com este CPF");
 			return model;
-		} else {
-			usuarioExistente = service.findByEmail(usuario.getEmail());
-			if (usuarioExistente != null) {
-				ModelAndView model = new ModelAndView("usuario/cadastro");
-				model.addObject("usuario", usuario);
-				model.addObject("alerta", "Já existe um usuário com este e-mail");
-				return model;
-			}
+		} else if (service.existsByEmail(usuario.getEmail())) {
+			ModelAndView model = new ModelAndView("usuario/cadastro");
+			model.addObject("usuario", usuario);
+			model.addObject("alerta", "Já existe um usuário com este e-mail");
+			return model;
 		}
 		
 		repository.save(usuario);

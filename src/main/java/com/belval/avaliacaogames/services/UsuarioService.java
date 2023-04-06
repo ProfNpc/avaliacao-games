@@ -45,5 +45,9 @@ public class UsuarioService {
 	public boolean existsByEmail(String email) {
 		return repository.existsByEmail(email);
 	}
+	
+	public boolean existsById(Long cpf) {
+		return repository.existsById(cpf);
+	}
 
 }
