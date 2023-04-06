@@ -1,8 +1,14 @@
+var form = document.querySelector("#formCadastro");
+var nome = document.querySelector("#nome");
+var sobrenome = document.querySelector("#sobrenome");
+var email = document.querySelector("#email");
 var alerta = document.querySelector("#alerta");
 var celular = document.querySelector("#celular");
 var cpf = document.querySelector("#cpf")
 var senha = document.querySelector("#senha");
 var confirmarSenha = document.querySelector("#confirmarSenha");
+
+console.log(form.tagName);
 
 function alertar(mensagem) {
 	alerta.innerHTML = mensagem;
@@ -53,6 +59,22 @@ function confirmarSenhas(senha1, senha2) {
 }
 
 function confirmarDados() {
+	// Confirmar primeiros campos
+	if (nome.value == "") {
+		alertar("Insira um nome válido");
+		return false;
+	}
+	
+	if (sobrenome.value== "") {
+		alertar("Insira um sobrenome válido");
+		return false;
+	}
+	
+	if (email.value == "") {
+		alertar("Insira um e-mail válido");
+		return false;
+	}
+	
 	// Confirmar celular
 	let cel = celular.value
 		.replaceAll(" ", "")
@@ -61,7 +83,7 @@ function confirmarDados() {
 		.replaceAll(")", "");
 	
 	if (!confirmarCelular(cel)) {
-		alertar("Celular inválido");
+		alertar("Insira um número de celular válido");
 		return false;
 	}
 	
@@ -71,19 +93,21 @@ function confirmarDados() {
 		.replaceAll("-", "");
 	
 	if (!confirmarCpf(codCpf)) {
-		alertar("CPF inválido");
+		alertar("Insira um número de CPF válido");
 		return false;
 	}
 	
 	// Confirmar senhas
-	if (!confirmarSenhas(senha.value, confirmarSenha.value)) {
-		console.log("senha diferentes");
-		alertar("Senhas diferentes");
+	if (senha.value == "" || confirmarSenha.value == "") {
+		alertar("Senha não pode estar em branco");
+		return;
+	} else if (!confirmarSenhas(senha.value, confirmarSenha.value)) {
+		alertar("As senhas devem ser iguais");
 	    return false;
   	}
-  	
+
   	cpf.value = codCpf;
-  	return true;
+  	form.submit();
 }
 
 console.log("carregado");
