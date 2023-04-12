@@ -10,12 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.Comentario;
 import com.belval.avaliacaogames.entities.Usuario;
-import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.ComentarioRepository;
-import com.belval.avaliacaogames.repositories.PedidoRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
-import com.belval.avaliacaogames.services.ImagemService;
-import com.belval.avaliacaogames.services.PedidoService;
 import com.belval.avaliacaogames.services.UsuarioService;
 
 @Controller
@@ -25,34 +21,23 @@ public class ComentarioController {
 	private UsuarioService usuarioService;
 
 	@Autowired
-	private ImagemService imagemService;
-
-	@Autowired
 	private AnuncioService anuncioService;
-
-	@Autowired
-	private PedidoService pedidoService;
-
-	@Autowired
-	private AnuncioRepository anuncioRepository;
-
-	@Autowired
-	private PedidoRepository pedidoRepository;
 
 	@Autowired
 	private ComentarioRepository comentarioRepository;
 
 	// Abre a tela para comentar
 	@GetMapping("/usuario/{cpf}/anuncio/{codAnuncio}/comentar")
-	public ModelAndView adicionarComentario(@PathVariable("cpf") Long cpf, @PathVariable("codAnuncio") Long codAnuncio) {
-		
+	public ModelAndView adicionarComentario(@PathVariable("cpf") Long cpf,
+			@PathVariable("codAnuncio") Long codAnuncio) {
+
 		Anuncio anuncio = anuncioService.findById(codAnuncio);
 
 		ModelAndView mv = new ModelAndView("comentario/adicionar-comentario");
 		mv.addObject("anuncio", anuncio);
 		return mv;
 	}
-	
+
 	// Cadastra o comentario no banco de dados
 	@PostMapping("/usuario/{cpf}/anuncio/{codAnuncio}/comentar")
 	public ModelAndView adicionarComentario(@PathVariable("cpf") Long cpf, @PathVariable("codAnuncio") Long codAnuncio,
@@ -69,7 +54,7 @@ public class ComentarioController {
 
 		return mv;
 	}
-	
+
 	@GetMapping("/usuario/{cpf}/anuncio/{codAnuncio}/descartar")
 	public ModelAndView descartarComentario(@PathVariable("cpf") Long cpf) {
 
@@ -77,5 +62,5 @@ public class ComentarioController {
 
 		return mv;
 	}
-	
+
 }

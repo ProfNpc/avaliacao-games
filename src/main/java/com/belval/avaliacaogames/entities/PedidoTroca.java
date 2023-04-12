@@ -2,6 +2,7 @@ package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -21,7 +22,8 @@ public class PedidoTroca implements Serializable {
 	private Long codPedidoTroca;
 
 	private String dataPedidoTroca;
-	private Boolean statusPedidoTroca;
+	private String statusRemetente;
+	private String statusDestinatario;
 
 	@ManyToOne
 	@JoinColumn(name = "cpf_usuario")
@@ -34,11 +36,13 @@ public class PedidoTroca implements Serializable {
 		super();
 	}
 
-	public PedidoTroca(Long codPedidoTroca, String dataPedidoTroca, Boolean statusPedidoTroca, Usuario usuario) {
+	public PedidoTroca(Long codPedidoTroca, String dataPedidoTroca, String statusRemetente, String statusDestinatario,
+			Usuario usuario) {
 		super();
 		this.codPedidoTroca = codPedidoTroca;
 		this.dataPedidoTroca = dataPedidoTroca;
-		this.statusPedidoTroca = statusPedidoTroca;
+		this.statusRemetente = statusRemetente;
+		this.statusDestinatario = statusDestinatario;
 		this.usuario = usuario;
 	}
 
@@ -74,11 +78,37 @@ public class PedidoTroca implements Serializable {
 		this.dataPedidoTroca = dataPedidoTroca;
 	}
 
-	public Boolean getStatusPedidoTroca() {
-		return statusPedidoTroca;
+	public String getStatusRemetente() {
+		return statusRemetente;
 	}
 
-	public void setStatusPedidoTroca(Boolean statusPedidoTroca) {
-		this.statusPedidoTroca = statusPedidoTroca;
+	public void setStatusRemetente(String statusRemetente) {
+		this.statusRemetente = statusRemetente;
+	}
+
+	public String getStatusDestinatario() {
+		return statusDestinatario;
+	}
+
+	public void setStatusDestinatario(String statusDestinatario) {
+		this.statusDestinatario = statusDestinatario;
+	}
+
+	// HashCode
+	@Override
+	public int hashCode() {
+		return Objects.hash(codPedidoTroca);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PedidoTroca other = (PedidoTroca) obj;
+		return Objects.equals(codPedidoTroca, other.codPedidoTroca);
 	}
 }

@@ -32,6 +32,7 @@ public class Anuncio implements Serializable {
 	private Integer quantAnuncio;
 	private Boolean statusAnuncio;
 	private String generoAnuncio;
+	private Integer quantVendida;
 
 	@ManyToOne
 	@JoinColumn(name = "cpf_usuario")
@@ -176,6 +177,14 @@ public class Anuncio implements Serializable {
 
 	public void setGeneroAnuncio(String generoAnuncio) {
 		this.generoAnuncio = generoAnuncio;
+	}
+
+	public Integer getQuantVendida() {
+		return quantVendida;
+	}
+
+	public void setQuantVendida(Integer quantVendida) {
+		this.quantVendida = quantVendida;
 	}
 
 	// Hash Code

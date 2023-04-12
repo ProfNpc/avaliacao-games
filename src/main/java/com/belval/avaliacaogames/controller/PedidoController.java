@@ -93,7 +93,7 @@ public class PedidoController {
 		 * itemCarrinho.setQuantidade(quantidade);
 		 */
 
-		pedido.setStatusPedido(false);
+		pedido.setStatusPedido("AGUARDANDO_PAGAMENTO");
 		pedido.setUsuario(usuario);
 		pedidoRepository.save(pedido);
 
@@ -169,7 +169,7 @@ public class PedidoController {
 		if (ped != null) {
 
 			pedido.setDataPedido(ped.getDataPedido());
-			pedido.setStatusPedido(true);
+			pedido.setStatusPedido("PAGAMENTO_EFETUADO");
 			pedido.setUsuario(ped.getUsuario());
 			pedido.setCodPedido(ped.getCodPedido());
 			pedidoRepository.save(pedido);
@@ -189,7 +189,7 @@ public class PedidoController {
 			List<ItemCarrinho> itensCarrinho = itemCarrinhoRepository.findByCarrinho(carrinho);
 
 			pedido.setUsuario(usuario);
-			pedido.setStatusPedido(true);
+			pedido.setStatusPedido("PAGAMENTO_EFETUADO");
 			pedidoRepository.save(pedido);
 
 			for (ItemCarrinho ic : itensCarrinho) {

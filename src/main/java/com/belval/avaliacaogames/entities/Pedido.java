@@ -24,7 +24,7 @@ public class Pedido implements Serializable {
 	private Long codPedido;
 
 	private String dataPedido;
-	private Boolean statusPedido;
+	private String statusPedido;
 
 	@ManyToOne
 	@JoinColumn(name = "codUsuario")
@@ -40,7 +40,7 @@ public class Pedido implements Serializable {
 		super();
 	}
 
-	public Pedido(Long codPedido, String dataPedido, Boolean statusPedido, Usuario usuario) {
+	public Pedido(Long codPedido, String dataPedido, String statusPedido, Usuario usuario) {
 		super();
 		this.codPedido = codPedido;
 		this.dataPedido = dataPedido;
@@ -80,11 +80,11 @@ public class Pedido implements Serializable {
 		this.dataPedido = dataPedido;
 	}
 
-	public Boolean getStatusPedido() {
+	public String getStatusPedido() {
 		return statusPedido;
 	}
 
-	public void setStatusPedido(Boolean statusPedido) {
+	public void setStatusPedido(String statusPedido) {
 		this.statusPedido = statusPedido;
 	}
 
