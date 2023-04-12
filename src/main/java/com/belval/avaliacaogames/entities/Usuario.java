@@ -59,6 +59,11 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Pedido> pedido = new ArrayList<>();
 
+	// Ligação com tabela pedido troca
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<PedidoTroca> pedidoTroca = new ArrayList<>();
+
 	// @ManyToMany
 	// @JoinTable(name = "usuario_endereco", joinColumns = @JoinColumn(name =
 	// "usuario_id"), inverseJoinColumns = @JoinColumn(name = "id_end"))
@@ -79,15 +84,6 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 		this.genero = genero;
 	}
-
-	/*
-	 * public Set<Endereco> getEnderecos() { return enderecos; }
-	 */
-
-	/*
-	 * public void setEnderecos(Set<Endereco> enderecos) { this.enderecos =
-	 * enderecos; }
-	 */
 
 	// Getters and Setters pedido
 	public List<Pedido> getPedido() {

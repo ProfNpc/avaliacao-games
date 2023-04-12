@@ -1,7 +1,9 @@
 package com.belval.avaliacaogames.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -47,6 +49,10 @@ public class Troca {
 	@JoinColumn(name = "codImagem")
 	private Imagem imagem;
 
+	// Ligação com tabela ItemPedidoTrocaPK
+	@OneToMany(mappedBy = "id.troca")
+	private Set<ItemPedidoTroca> itens = new HashSet<>();
+
 	// Constructors
 	public Troca() {
 		super();
@@ -62,6 +68,16 @@ public class Troca {
 		this.usuario = usuario;
 		this.cadProduto = cad_produto;
 		this.imagem = imagem;
+	}
+
+	// Getters and Setters itemPedidoTroca
+	@JsonIgnore
+	private Set<PedidoTroca> getPedidos() {
+		Set<PedidoTroca> set = new HashSet<>();
+		for (ItemPedidoTroca x : itens) {
+			set.add(x.getPedidoTroca());
+		}
+		return set;
 	}
 
 	// Getters and Setters itens_troca
