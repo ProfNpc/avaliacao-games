@@ -75,6 +75,7 @@ public class AnuncioController {
 			@RequestParam("file") MultipartFile file) {
 
 		Usuario usuario = usuarioService.findById(cpf);
+		anuncio.setQuantVendida(0);
 		anuncio.setUsuario(usuario);
 		anuncio.setStatusAnuncio(true);
 

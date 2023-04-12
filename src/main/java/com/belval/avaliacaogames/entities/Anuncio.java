@@ -62,6 +62,20 @@ public class Anuncio implements Serializable {
 	}
 
 	public Anuncio(Long codAnuncio, String nomeAnuncio, String descAnuncio, Double valorAnuncio, Integer quantAnuncio,
+			Integer quantVendida, Boolean statusAnuncio, Usuario usuario, Imagem imagem, String generoAnuncio) {
+		this.codAnuncio = codAnuncio;
+		this.nomeAnuncio = nomeAnuncio;
+		this.descAnuncio = descAnuncio;
+		this.valorAnuncio = valorAnuncio;
+		this.quantAnuncio = quantAnuncio;
+		this.quantVendida = quantVendida;
+		this.statusAnuncio = statusAnuncio;
+		this.usuario = usuario;
+		this.imagem = imagem;
+		this.generoAnuncio = generoAnuncio;
+	}
+
+	public Anuncio(Long codAnuncio, String nomeAnuncio, String descAnuncio, Double valorAnuncio, Integer quantAnuncio,
 			Boolean statusAnuncio, Usuario usuario, Imagem imagem, String generoAnuncio) {
 		this.codAnuncio = codAnuncio;
 		this.nomeAnuncio = nomeAnuncio;
