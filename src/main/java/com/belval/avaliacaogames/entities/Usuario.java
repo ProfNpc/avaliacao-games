@@ -32,8 +32,8 @@ public class Usuario implements Serializable {
 
 	// Ligação com tabela endereco
 	@JsonIgnore
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	private List<Endereco> enderecos = new ArrayList<>();
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private Endereco endereco;
 
 	// Ligação com tabela anuncio
 	@JsonIgnore

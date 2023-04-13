@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Endereco implements Serializable {
@@ -25,7 +25,7 @@ public class Endereco implements Serializable {
 	private String estadoEnd;
 	private String paisEnd;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;
 
