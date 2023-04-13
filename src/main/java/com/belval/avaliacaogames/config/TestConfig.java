@@ -11,7 +11,9 @@ import com.belval.avaliacaogames.entities.Cad_Produto;
 import com.belval.avaliacaogames.entities.Comentario;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Imagem;
+import com.belval.avaliacaogames.entities.ItemPedidoTroca;
 import com.belval.avaliacaogames.entities.Item_Troca;
+import com.belval.avaliacaogames.entities.PedidoTroca;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
@@ -20,7 +22,9 @@ import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
 import com.belval.avaliacaogames.repositories.ComentarioRepository;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.ImagemRepository;
+import com.belval.avaliacaogames.repositories.ItemPedidoTrocaRepository;
 import com.belval.avaliacaogames.repositories.Item_TrocaRepository;
+import com.belval.avaliacaogames.repositories.PedidoTrocaRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.repositories.TrocaRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
@@ -54,6 +58,12 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private ImagemRepository imagemRepository;
+
+	@Autowired
+	private PedidoTrocaRepository pedidoTrocaRepository;
+
+	@Autowired
+	private ItemPedidoTrocaRepository itemPedidoTrocaRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -228,6 +238,16 @@ public class TestConfig implements CommandLineRunner {
 		Item_Troca it11 = new Item_Troca(11L, t5, p10);
 
 		item_TrocaRepository.saveAll(Arrays.asList(it1, it2, it3, it4, it5, it6, it7, it8, it9, it10, it11));
+
+		PedidoTroca pt1 = new PedidoTroca(1L, "10/04/2023", "A CAMINHO", "TRANSPORTADORA", u1);
+		PedidoTroca pt2 = new PedidoTroca(2L, "12/04/2023", "TRANSPORTADORA", "TRANSPORTADORA", u2);
+
+		pedidoTrocaRepository.saveAll(Arrays.asList(pt1, pt2));
+
+		ItemPedidoTroca ipt1 = new ItemPedidoTroca(pt1, t1);
+		ItemPedidoTroca ipt2 = new ItemPedidoTroca(pt2, t2);
+
+		itemPedidoTrocaRepository.saveAll(Arrays.asList(ipt1, ipt2));
 	}
 
 }
