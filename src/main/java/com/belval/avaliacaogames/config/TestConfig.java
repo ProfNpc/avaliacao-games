@@ -168,6 +168,7 @@ public class TestConfig implements CommandLineRunner {
 				img18);
 
 		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5));
+		System.out.println("Id do endereço 1 é " + e1.getCodEnd());
 		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
 
