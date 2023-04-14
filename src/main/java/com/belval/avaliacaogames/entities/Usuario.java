@@ -64,6 +64,10 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<PedidoTroca> pedidoTroca = new ArrayList<>();
 
+	// Ligação com tabela ItemPedidoTroca
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<ItemPedidoTroca> itemPedidoTroca = new ArrayList<>();
+
 	// @ManyToMany
 	// @JoinTable(name = "usuario_endereco", joinColumns = @JoinColumn(name =
 	// "usuario_id"), inverseJoinColumns = @JoinColumn(name = "id_end"))

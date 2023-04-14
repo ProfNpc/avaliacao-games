@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.belval.avaliacaogames.entities.pk.ItemPedidoTrocaPK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,14 +18,19 @@ public class ItemPedidoTroca implements Serializable {
 	@EmbeddedId
 	private ItemPedidoTrocaPK id = new ItemPedidoTrocaPK();
 
+	@ManyToOne
+	@JoinColumn(name = "cpf_usuario")
+	private Usuario usuario;
+
 	public ItemPedidoTroca() {
 		super();
 	}
 
-	public ItemPedidoTroca(PedidoTroca pedidoTroca, Troca troca) {
+	public ItemPedidoTroca(PedidoTroca pedidoTroca, Cad_Produto cad_produto, Usuario usuario) {
 		super();
 		id.setPedidoTroca(pedidoTroca);
-		id.setTroca(troca);
+		id.setCad_Produto(cad_produto);
+		this.usuario = usuario;
 	}
 
 	// Getters and Setters pedidoTroca
@@ -37,12 +44,12 @@ public class ItemPedidoTroca implements Serializable {
 	}
 
 	// Getters and Setters troca
-	public Troca getTroca() {
-		return id.getTroca();
+	public Cad_Produto getCad_Produto() {
+		return id.getCad_Produto();
 	}
 
-	public void setTroca(Troca troca) {
-		id.setTroca(troca);
+	public void setCad_Produto(Cad_Produto cad_produto) {
+		id.setCad_Produto(cad_produto);
 	}
 
 	@Override

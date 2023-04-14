@@ -7,8 +7,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.belval.avaliacaogames.entities.Cad_Produto;
 import com.belval.avaliacaogames.entities.PedidoTroca;
-import com.belval.avaliacaogames.entities.Troca;
 
 @Embeddable
 public class ItemPedidoTrocaPK implements Serializable {
@@ -19,8 +19,8 @@ public class ItemPedidoTrocaPK implements Serializable {
 	private PedidoTroca pedidoTroca;
 
 	@ManyToOne
-	@JoinColumn(name = "codTroca")
-	private Troca troca;
+	@JoinColumn(name = "codCadProduto")
+	private Cad_Produto cad_produto;
 
 	public PedidoTroca getPedidoTroca() {
 		return pedidoTroca;
@@ -30,17 +30,17 @@ public class ItemPedidoTrocaPK implements Serializable {
 		this.pedidoTroca = pedidoTroca;
 	}
 
-	public Troca getTroca() {
-		return troca;
+	public Cad_Produto getCad_Produto() {
+		return cad_produto;
 	}
 
-	public void setTroca(Troca troca) {
-		this.troca = troca;
+	public void setCad_Produto(Cad_Produto cad_produto) {
+		this.cad_produto = cad_produto;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(pedidoTroca, troca);
+		return Objects.hash(pedidoTroca, cad_produto);
 	}
 
 	@Override
@@ -52,6 +52,6 @@ public class ItemPedidoTrocaPK implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ItemPedidoTrocaPK other = (ItemPedidoTrocaPK) obj;
-		return Objects.equals(pedidoTroca, other.pedidoTroca) && Objects.equals(troca, other.troca);
+		return Objects.equals(pedidoTroca, other.pedidoTroca) && Objects.equals(cad_produto, other.cad_produto);
 	}
 }

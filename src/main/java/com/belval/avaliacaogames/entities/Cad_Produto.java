@@ -1,6 +1,8 @@
 package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,7 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cad_Produto implements Serializable {
@@ -34,6 +39,10 @@ public class Cad_Produto implements Serializable {
 	@OneToOne(mappedBy = "cadProduto", cascade = CascadeType.ALL)
 	private Troca troca;
 
+	// Ligação com a tabela ItemPedidoTroca
+	@OneToMany(mappedBy = "id.cad_produto")
+	private Set<ItemPedidoTroca> itens = new HashSet<>();
+
 	// Constructor
 	public Cad_Produto() {
 	}
@@ -45,6 +54,16 @@ public class Cad_Produto implements Serializable {
 		this.quantidade = quantidade;
 		this.usuario = usuario;
 		this.status = status;
+	}
+
+	// Getters and Setters itemPedidoTroca
+	@JsonIgnore
+	private Set<PedidoTroca> getPedidos() {
+		Set<PedidoTroca> set = new HashSet<>();
+		for (ItemPedidoTroca x : itens) {
+			set.add(x.getPedidoTroca());
+		}
+		return set;
 	}
 
 	// Produto

@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class PedidoTroca implements Serializable {
@@ -32,18 +35,25 @@ public class PedidoTroca implements Serializable {
 	@OneToMany(mappedBy = "id.pedidoTroca")
 	private Set<ItemPedidoTroca> itens = new HashSet<>();
 
+	// Ligação com tabela Cad_Produto
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name = "codTroca")
+	private Troca troca;
+
 	public PedidoTroca() {
 		super();
 	}
 
 	public PedidoTroca(Long codPedidoTroca, String dataPedidoTroca, String statusRemetente, String statusDestinatario,
-			Usuario usuario) {
+			Usuario usuario, Troca troca) {
 		super();
 		this.codPedidoTroca = codPedidoTroca;
 		this.dataPedidoTroca = dataPedidoTroca;
 		this.statusRemetente = statusRemetente;
 		this.statusDestinatario = statusDestinatario;
 		this.usuario = usuario;
+		this.troca = troca;
 	}
 
 	// Getters and Setters Itens
