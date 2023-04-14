@@ -10,12 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codEnd;
 	private String cepEnd;
 	private Integer numEnd;
@@ -25,6 +27,7 @@ public class Endereco implements Serializable {
 	private String estadoEnd;
 	private String paisEnd;
 
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario usuario;

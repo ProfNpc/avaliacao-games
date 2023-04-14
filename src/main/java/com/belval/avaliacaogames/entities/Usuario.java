@@ -31,7 +31,6 @@ public class Usuario implements Serializable {
 	private List<Cad_Produto> cad_produto = new ArrayList<>();
 
 	// Ligação com tabela endereco
-	@JsonIgnore
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private Endereco endereco;
 
