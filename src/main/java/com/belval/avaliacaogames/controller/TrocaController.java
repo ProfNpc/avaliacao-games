@@ -1,6 +1,8 @@
 package com.belval.avaliacaogames.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +19,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.belval.avaliacaogames.entities.Cad_Produto;
 import com.belval.avaliacaogames.entities.Imagem;
 import com.belval.avaliacaogames.entities.Item_Troca;
+import com.belval.avaliacaogames.entities.PedidoTroca;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
 import com.belval.avaliacaogames.repositories.Item_TrocaRepository;
+import com.belval.avaliacaogames.repositories.PedidoTrocaRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.repositories.TrocaRepository;
 import com.belval.avaliacaogames.services.Cad_ProdutoService;
@@ -63,6 +67,12 @@ public class TrocaController {
 
 	@Autowired
 	private Cad_ProdutoRepository cad_ProdutoRepository;
+	
+	@Autowired
+	private PedidoTrocaRepository pedidoTrocaRepository;
+	
+	// Formatador de data e hora
+	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	// public static Troca troca;
 	public List<Item_Troca> itens_troca = new ArrayList<>();
@@ -275,29 +285,18 @@ public class TrocaController {
 		Troca troca = trocaService.findById(codTroca);
 		List<Item_Troca> itensTroca = item_TrocaRepository.findByTroca(troca);
 
-		// Reduz 1 (ou deleta) dos Cad_Produtos do criador da troca
-		for (Item_Troca it : itensTroca) {
-			Cad_Produto cadProduto = cad_ProdutoRepository.findByUsuarioAndProduto(usuario, it.getProduto());
-			if (cadProduto.getQuantidade() > 1) {
-				cadProduto.setQuantidade(cadProduto.getQuantidade() - 1);
-				cad_ProdutoRepository.save(cadProduto);
-			} else {
-				cad_ProdutoRepository.delete(cadProduto);
-			}
-		}
+		// Cria PedidoTroca e define a data
+		PedidoTroca pedidoTroca = new PedidoTroca();
+		LocalDateTime now = LocalDateTime.now();
+		pedidoTroca.setDataPedidoTroca(dtf.format(now));
 		
-		// Cria um novo Cad_Produto na conta do usuário com o produto da troca
-		Cad_Produto cp = new Cad_Produto();
-		cp.setProduto(troca.getCad_produto().getProduto());
-		cp.setUsuario(usuario);
-		cp.setQuantidade(1L);
-		cp.setStatus(true);
-		cad_ProdutoRepository.save(cp);
-
-		// Deleta todos os Itens_Troca da troca, o Cad_Produto da troca e a troca em si
-		item_TrocaRepository.deleteAll(itensTroca);
-		cad_ProdutoRepository.delete(troca.getCad_produto());
-		trocaRepository.delete(troca);
+		// Define outros atributos
+		pedidoTroca.setUsuario(usuario);
+		pedidoTroca.setStatusDestinatario("PREPARANDO");
+		pedidoTroca.setStatusRemetente("PREPARANDO");
+		
+		// Salva no banco de dados
+		pedidoTrocaRepository.save(pedidoTroca);
 
 		// Cria o modelo da página e retorna
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
