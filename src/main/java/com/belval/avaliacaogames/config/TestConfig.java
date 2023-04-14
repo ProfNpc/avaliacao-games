@@ -11,7 +11,9 @@ import com.belval.avaliacaogames.entities.Cad_Produto;
 import com.belval.avaliacaogames.entities.Comentario;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Imagem;
+import com.belval.avaliacaogames.entities.ItemPedidoTroca;
 import com.belval.avaliacaogames.entities.Item_Troca;
+import com.belval.avaliacaogames.entities.PedidoTroca;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
@@ -180,9 +182,9 @@ public class TestConfig implements CommandLineRunner {
 		Cad_Produto cp6 = new Cad_Produto(6L, p7, 1L, u1, true);
 		Cad_Produto cp7 = new Cad_Produto(7L, p8, 2L, u3, true);
 		Cad_Produto cp8 = new Cad_Produto(8L, p8, 2L, u2, true);
-		Cad_Produto cp9 = new Cad_Produto(9L, p8, 2L, u1, true);
-		Cad_Produto cp10 = new Cad_Produto(10L, p9, 2L, u1, true);
-		Cad_Produto cp11 = new Cad_Produto(11L, p5, 1L, u2, true);
+		Cad_Produto cp9 = new Cad_Produto(9L, p8, 2L, u2, true);
+		Cad_Produto cp10 = new Cad_Produto(10L, p9, 2L, u2, true);
+		Cad_Produto cp11 = new Cad_Produto(11L, p5, 1L, u1, true);
 
 		cad_produtoRepository.saveAll(Arrays.asList(cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8));
 
@@ -239,23 +241,21 @@ public class TestConfig implements CommandLineRunner {
 		Item_Troca it10 = new Item_Troca(10L, t6, p7);
 		Item_Troca it11 = new Item_Troca(11L, t5, p10);
 
-		item_TrocaRepository.saveAll(Arrays.asList(it1, it2, it3, it4, it5, it6, it7, it8, it9, it10, it11));
+		/*item_TrocaRepository.saveAll(Arrays.asList(it1, it2, it3, it4, it5, it6, it7, it8, it9, it10, it11));
 
-		/*
-		 * PedidoTroca pt1 = new PedidoTroca(1L, "10/04/2023", "A CAMINHO",
-		 * "TRANSPORTADORA", u1, t1); PedidoTroca pt2 = new PedidoTroca(2L,
-		 * "12/04/2023", "TRANSPORTADORA", "TRANSPORTADORA", u2, t2);
-		 * 
-		 * pedidoTrocaRepository.saveAll(Arrays.asList(pt1, pt2));
-		 * 
-		 * ItemPedidoTroca ipt1 = new ItemPedidoTroca(pt1, cp1); ItemPedidoTroca ipt2 =
-		 * new ItemPedidoTroca(pt1, cp9); ItemPedidoTroca ipt3 = new
-		 * ItemPedidoTroca(pt1, cp10); ItemPedidoTroca ipt4 = new ItemPedidoTroca(pt2,
-		 * cp3); ItemPedidoTroca ipt5 = new ItemPedidoTroca(pt2, cp11);
-		 * 
-		 * itemPedidoTrocaRepository.saveAll(Arrays.asList(ipt1, ipt2, ipt3, ipt4,
-		 * ipt5));
-		 */
+		PedidoTroca pt1 = new PedidoTroca(1L, "10/04/2023", "A CAMINHO", "TRANSPORTADORA", u2, t1);
+		PedidoTroca pt2 = new PedidoTroca(2L, "12/04/2023", "TRANSPORTADORA", "TRANSPORTADORA", u1, t2);
+
+		pedidoTrocaRepository.saveAll(Arrays.asList(pt1, pt2));
+
+		ItemPedidoTroca ipt1 = new ItemPedidoTroca(pt1, cp1, u1);
+		ItemPedidoTroca ipt2 = new ItemPedidoTroca(pt1, cp9, u2);
+		ItemPedidoTroca ipt3 = new ItemPedidoTroca(pt1, cp10, u2);
+		ItemPedidoTroca ipt4 = new ItemPedidoTroca(pt2, cp3, u2);
+		ItemPedidoTroca ipt5 = new ItemPedidoTroca(pt2, cp11, u1);
+
+		itemPedidoTrocaRepository.saveAll(Arrays.asList(ipt1, ipt2, ipt3, ipt4, ipt5));*/
+
 	}
 
 }
