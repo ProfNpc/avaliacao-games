@@ -104,6 +104,18 @@ public class PedidoTroca implements Serializable {
 		this.statusDestinatario = statusDestinatario;
 	}
 
+	public Troca getTroca() {
+		return troca;
+	}
+
+	public void setTroca(Troca troca) {
+		this.troca = troca;
+	}
+
+	public void setItens(Set<ItemPedidoTroca> itens) {
+		this.itens = itens;
+	}
+
 	// HashCode
 	@Override
 	public int hashCode() {

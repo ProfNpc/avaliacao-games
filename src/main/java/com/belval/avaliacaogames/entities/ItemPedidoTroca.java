@@ -34,6 +34,15 @@ public class ItemPedidoTroca implements Serializable {
 	}
 
 	// Getters and Setters pedidoTroca
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	@JsonIgnore
 	public PedidoTroca getPedidoTroca() {
 		return id.getPedidoTroca();

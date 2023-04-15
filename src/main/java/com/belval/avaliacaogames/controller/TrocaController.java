@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Cad_Produto;
 import com.belval.avaliacaogames.entities.Imagem;
+import com.belval.avaliacaogames.entities.ItemPedidoTroca;
 import com.belval.avaliacaogames.entities.Item_Troca;
 import com.belval.avaliacaogames.entities.PedidoTroca;
 import com.belval.avaliacaogames.entities.Produto;
@@ -290,10 +293,25 @@ public class TrocaController {
 		LocalDateTime now = LocalDateTime.now();
 		pedidoTroca.setDataPedidoTroca(dtf.format(now));
 		
+		// Adiciona o set de ItensPedidoTroca
+		Set<ItemPedidoTroca> itens = new HashSet<>();
+		for (Item_Troca item_Troca : troca.getItens_troca()) {
+			ItemPedidoTroca itemPedidoTroca = new ItemPedidoTroca();
+			itemPedidoTroca.setPedido(pedidoTroca);
+			/*
+			itemPedidoTroca.setUsuario(usuario);
+			itemPedidoTroca.setCad_Produto(null);
+			*/
+			itens.add(itemPedidoTroca);
+		}
+		pedidoTroca.setItens(itens);	
+		
 		// Define outros atributos
 		pedidoTroca.setUsuario(usuario);
 		pedidoTroca.setStatusDestinatario("PREPARANDO");
 		pedidoTroca.setStatusRemetente("PREPARANDO");
+		pedidoTroca.setTroca(troca);
+		
 		
 		// Salva no banco de dados
 		pedidoTrocaRepository.save(pedidoTroca);
