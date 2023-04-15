@@ -76,6 +76,7 @@
                 name="celular"
                 placeholder="(xx) xxxxx-xxxx"
                 th:value="*{celular}"
+                oninput="inserirAoModelo(this.placeholder, numeros(this.value), str => this.value = str)"
                 required
               />
             </div>
@@ -88,6 +89,7 @@
                 name="cpf"
                 placeholder="xxx.xxx.xxx-xx"
                 th:value="*{cpf}"
+                oninput="inserirAoModelo(this.placeholder, numeros(this.value), str => this.value = str)"
                 required
               />
             </div>
@@ -123,5 +125,6 @@
     </div>
     
     <script src="/JS/Tela_Cadastro.js"></script>
+    <script src="/JS/InserirAoModelo.js"></script>
   </body>
 </html>
