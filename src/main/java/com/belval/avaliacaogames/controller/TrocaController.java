@@ -295,14 +295,19 @@ public class TrocaController {
 		
 		// Adiciona o set de ItensPedidoTroca
 		Set<ItemPedidoTroca> itens = new HashSet<>();
+		
+		ItemPedidoTroca iptUsuario = new ItemPedidoTroca();
+		iptUsuario.setUsuario(usuario);
+		iptUsuario.setCad_Produto(troca.getCad_produto());
+		iptUsuario.setPedido(pedidoTroca);
+		itens.add(iptUsuario);
+		
 		for (Item_Troca item_Troca : troca.getItens_troca()) {
-			ItemPedidoTroca itemPedidoTroca = new ItemPedidoTroca();
-			itemPedidoTroca.setPedido(pedidoTroca);
-			/*
-			itemPedidoTroca.setUsuario(usuario);
-			itemPedidoTroca.setCad_Produto(null);
-			*/
-			itens.add(itemPedidoTroca);
+			ItemPedidoTroca iptAnunciante = new ItemPedidoTroca();
+			iptAnunciante.setUsuario(troca.getUsuario());
+			iptAnunciante.setCad_Produto(cad_ProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()));
+			iptAnunciante.setPedido(pedidoTroca);
+			itens.add(iptAnunciante);
 		}
 		pedidoTroca.setItens(itens);	
 		
@@ -311,7 +316,6 @@ public class TrocaController {
 		pedidoTroca.setStatusDestinatario("PREPARANDO");
 		pedidoTroca.setStatusRemetente("PREPARANDO");
 		pedidoTroca.setTroca(troca);
-		
 		
 		// Salva no banco de dados
 		pedidoTrocaRepository.save(pedidoTroca);
