@@ -34,6 +34,33 @@ function alternarSenha() {
 	inputSenha.disabled = !inputSenha.disabled;
 }
 
+function preencherEnderecoComCep() {
+	// Para se o cep não está preenchido corretamente
+	if (inputCep.value.length < 9) return;
+	
+	// Cria a URL da requisição
+	let cep = inputCep.value.replace(/\D/g, "");
+	let urlCep = `https://viacep.com.br/ws/${cep}/json/`;
+	
+	// Faz a requisição
+	fetch(urlCep)
+		// Transforma a resposta em um objeto JSON
+		.then(response => response.json())
+		.then(data => {
+			// Preencher primeiro o estado com o nome completo
+			fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${data.uf}`)
+				.then(response => response.json())
+				.then(data => inputEstado.value = data.nome)
+				.catch(error => console.log(error));
+			
+			// Prencheer outros campos
+			inputRua.value = data.logradouro;
+			inputBairro.value = data.bairro;
+			inputCidade.value = data.localidade;
+		})
+		.catch(error => console.log(error));
+}
+
 function confirmarDados() {
 	// Verificar se todos os campos estão preenchidos e corretos
 	if (inputSenha.value == "") {

@@ -169,7 +169,8 @@
 				<div class="text-info">
 					<label for="">CEP:</label><br />
 					<input id="cep" type="text" name="cepEnd" th:value="${endereco.cepEnd}" placeholder="CEP" 
-					oninput="inserirAoModelo('xxxxx-xxx', numeros(this.value), str => this.value = str)"/>
+					oninput="inserirAoModelo('xxxxx-xxx', numeros(this.value), str => this.value = str)"
+					onblur="preencherEnderecoComCep()"/>
 				</div>
 				<div class="text-info">
 					<label for="">País:</label><br />
