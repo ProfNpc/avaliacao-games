@@ -27,6 +27,7 @@ import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.CadProdutoRepository;
+import com.belval.avaliacaogames.repositories.ItemPedidoTrocaRepository;
 import com.belval.avaliacaogames.repositories.ItemTrocaRepository;
 import com.belval.avaliacaogames.repositories.PedidoTrocaRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
@@ -73,6 +74,9 @@ public class TrocaController {
 
 	@Autowired
 	private PedidoTrocaRepository pedidoTrocaRepository;
+	
+	@Autowired
+	private ItemPedidoTrocaRepository itemPedidoTrocaRepository;
 
 	// Formatador de data e hora
 	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -300,14 +304,15 @@ public class TrocaController {
 		iptUsuario.setUsuario(usuario);
 		iptUsuario.setCad_Produto(troca.getCad_produto());
 		iptUsuario.setPedido(pedidoTroca);
+		iptUsuario = itemPedidoTrocaRepository.save(iptUsuario);
 		itens.add(iptUsuario);
 
 		for (ItemTroca item_Troca : troca.getItens_troca()) {
 			ItemPedidoTroca iptAnunciante = new ItemPedidoTroca();
 			iptAnunciante.setUsuario(troca.getUsuario());
-			iptAnunciante
-					.setCad_Produto(cad_ProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()));
+			iptAnunciante.setCad_Produto(cad_ProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()));
 			iptAnunciante.setPedido(pedidoTroca);
+			iptAnunciante = itemPedidoTrocaRepository.save(iptAnunciante);
 			itens.add(iptAnunciante);
 		}
 		pedidoTroca.setItens(itens);
