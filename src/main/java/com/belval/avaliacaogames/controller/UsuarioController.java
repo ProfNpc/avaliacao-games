@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Anuncio;
-import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
-import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
+import com.belval.avaliacaogames.repositories.CadProdutoRepository;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
-import com.belval.avaliacaogames.services.Cad_ProdutoService;
+import com.belval.avaliacaogames.services.CadProdutoService;
 import com.belval.avaliacaogames.services.EnderecoService;
 import com.belval.avaliacaogames.services.TrocaService;
 import com.belval.avaliacaogames.services.UsuarioService;
@@ -38,7 +38,7 @@ public class UsuarioController {
 	private AnuncioService anuncioService;
 
 	@Autowired
-	private Cad_ProdutoService cad_ProdutoService;
+	private CadProdutoService cad_ProdutoService;
 
 	@Autowired
 	private TrocaService trocaService;
@@ -53,7 +53,7 @@ public class UsuarioController {
 	private AnuncioRepository anuncioRepository;
 
 	@Autowired
-	private Cad_ProdutoRepository cad_ProdutoRepository;
+	private CadProdutoRepository cad_ProdutoRepository;
 
 	// Home
 	@GetMapping("/")
@@ -243,7 +243,7 @@ public class UsuarioController {
 		List<Anuncio> anuncios = anuncioService.findByUsuario(usuario);
 		anuncioRepository.deleteAll(anuncios);
 
-		List<Cad_Produto> cad_produtos = cad_ProdutoService.findByUsuario(usuario);
+		List<CadProduto> cad_produtos = cad_ProdutoService.findByUsuario(usuario);
 		cad_ProdutoRepository.deleteAll(cad_produtos);
 
 		Endereco enderecos = enderecoService.findByUsuario(usuario);

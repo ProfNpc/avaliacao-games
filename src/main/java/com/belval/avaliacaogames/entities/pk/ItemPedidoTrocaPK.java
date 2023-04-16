@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.PedidoTroca;
 
 @Embeddable
@@ -20,7 +20,7 @@ public class ItemPedidoTrocaPK implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "codCadProduto")
-	private Cad_Produto cad_produto;
+	private CadProduto cad_produto;
 
 	public PedidoTroca getPedidoTroca() {
 		return pedidoTroca;
@@ -30,11 +30,11 @@ public class ItemPedidoTrocaPK implements Serializable {
 		this.pedidoTroca = pedidoTroca;
 	}
 
-	public Cad_Produto getCad_Produto() {
+	public CadProduto getCad_Produto() {
 		return cad_produto;
 	}
 
-	public void setCad_Produto(Cad_Produto cad_produto) {
+	public void setCad_Produto(CadProduto cad_produto) {
 		this.cad_produto = cad_produto;
 	}
 

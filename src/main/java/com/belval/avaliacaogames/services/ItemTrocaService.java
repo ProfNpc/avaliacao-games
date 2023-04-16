@@ -6,28 +6,28 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.belval.avaliacaogames.entities.Item_Troca;
+import com.belval.avaliacaogames.entities.ItemTroca;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Troca;
-import com.belval.avaliacaogames.repositories.Item_TrocaRepository;
+import com.belval.avaliacaogames.repositories.ItemTrocaRepository;
 
 @Service
-public class Item_TrocaService {
+public class ItemTrocaService {
 
 	@Autowired
-	private Item_TrocaRepository repository;
+	private ItemTrocaRepository repository;
 
-	public List<Item_Troca> findAll() {
+	public List<ItemTroca> findAll() {
 		return repository.findAll();
 	}
 
-	public Item_Troca findById(Long id) {
-		Optional<Item_Troca> obj = repository.findById(id);
+	public ItemTroca findById(Long id) {
+		Optional<ItemTroca> obj = repository.findById(id);
 		return obj.get();
 	}
 	
-	public Item_Troca findByProdutoAndTroca(Produto produto, Troca troca) {
-		Optional<Item_Troca> obj = repository.findByProdutoAndTroca(produto, troca);
+	public ItemTroca findByProdutoAndTroca(Produto produto, Troca troca) {
+		Optional<ItemTroca> obj = repository.findByProdutoAndTroca(produto, troca);
 		if (obj.isPresent()) {
 			return obj.get();
 		} else {
@@ -35,7 +35,7 @@ public class Item_TrocaService {
 		}
 	}
 	
-	public List<Item_Troca> findByTroca(Troca troca) {
+	public List<ItemTroca> findByTroca(Troca troca) {
 		return repository.findByTroca(troca);
 	}
 	/*

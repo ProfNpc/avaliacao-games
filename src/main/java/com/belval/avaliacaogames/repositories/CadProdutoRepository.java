@@ -6,16 +6,16 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Usuario;
 
 @Repository
-public interface Cad_ProdutoRepository extends JpaRepository<Cad_Produto, Long> {
+public interface CadProdutoRepository extends JpaRepository<CadProduto, Long> {
 
-	List<Cad_Produto> findByUsuario(Usuario usuario);
+	List<CadProduto> findByUsuario(Usuario usuario);
 
-	Optional<Cad_Produto> findByProduto(Produto produto);
+	Optional<CadProduto> findByProduto(Produto produto);
 
-	Cad_Produto findByUsuarioAndProduto(Usuario usuario, Produto produto);
+	CadProduto findByUsuarioAndProduto(Usuario usuario, Produto produto);
 }

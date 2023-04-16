@@ -1,5 +1,7 @@
 package com.belval.avaliacaogames.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,9 +95,16 @@ public class PedidoController {
 		 * itemCarrinho.setQuantidade(quantidade);
 		 */
 
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		LocalDateTime instante = LocalDateTime.now();
+		String instantePedido = instante.format(formatter);
+
 		pedido.setStatusPedido("AGUARDANDO_PAGAMENTO");
 		pedido.setUsuario(usuario);
+		pedido.setDataPedido(instantePedido);
 		pedidoRepository.save(pedido);
+
+		System.out.println(instantePedido);
 
 		ped = pedido;
 
@@ -188,7 +197,12 @@ public class PedidoController {
 			Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
 			List<ItemCarrinho> itensCarrinho = itemCarrinhoRepository.findByCarrinho(carrinho);
 
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+			LocalDateTime instante = LocalDateTime.now();
+			String instantePedido = instante.format(formatter);
+
 			pedido.setUsuario(usuario);
+			pedido.setDataPedido(instantePedido);
 			pedido.setStatusPedido("PAGAMENTO_EFETUADO");
 			pedidoRepository.save(pedido);
 

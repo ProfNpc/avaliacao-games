@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Item_Troca {
+public class ItemTroca {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +25,11 @@ public class Item_Troca {
 	private Produto produto;
 
 	// Constructors
-	public Item_Troca() {
+	public ItemTroca() {
 		super();
 	}
 
-	public Item_Troca(Long codItemTroca, Troca troca, Produto produto) {
+	public ItemTroca(Long codItemTroca, Troca troca, Produto produto) {
 		super();
 		this.codItemTroca = codItemTroca;
 		this.troca = troca;
@@ -85,7 +85,7 @@ public class Item_Troca {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Item_Troca other = (Item_Troca) obj;
+		ItemTroca other = (ItemTroca) obj;
 		if (codItemTroca == null) {
 			if (other.codItemTroca != null)
 				return false;

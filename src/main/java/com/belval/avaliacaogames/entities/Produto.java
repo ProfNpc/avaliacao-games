@@ -31,12 +31,12 @@ public class Produto implements Serializable {
 	// Ligação com a tabela cad_produto
 	@JsonIgnore
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-	private Set<Cad_Produto> cad_produtos = new HashSet<>();
+	private Set<CadProduto> cad_produtos = new HashSet<>();
 
 	// Ligação com a tabela Item_Troca
 	@JsonIgnore
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-	private List<Item_Troca> itens_troca = new ArrayList<>();
+	private List<ItemTroca> itens_troca = new ArrayList<>();
 
 	// ligação com tabela imagem
 	@JsonIgnore
@@ -58,11 +58,11 @@ public class Produto implements Serializable {
 	}
 
 	// Getters and Setters itens_troca
-	public List<Item_Troca> getItens_troca() {
+	public List<ItemTroca> getItens_troca() {
 		return itens_troca;
 	}
 
-	public void setItens_troca(List<Item_Troca> itens_troca) {
+	public void setItens_troca(List<ItemTroca> itens_troca) {
 		this.itens_troca = itens_troca;
 	}
 
@@ -76,11 +76,11 @@ public class Produto implements Serializable {
 	}
 
 	// Cad_Produto
-	public Set<Cad_Produto> getCad_produtos() {
+	public Set<CadProduto> getCad_produtos() {
 		return cad_produtos;
 	}
 
-	public void setCad_produtos(Set<Cad_Produto> cad_produtos) {
+	public void setCad_produtos(Set<CadProduto> cad_produtos) {
 		this.cad_produtos = cad_produtos;
 	}
 
