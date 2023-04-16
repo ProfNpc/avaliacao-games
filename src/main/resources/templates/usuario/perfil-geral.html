@@ -115,12 +115,6 @@
 					<br />
 					<input type="password" name="senha" th:value="${usuario.senha}" placeholder="Senha" disabled />
 				</div>
-
-				<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="get">
-					<div class="text-info">
-						<button>Alterar senha</button>
-					</div>
-				</form>
 			</div>
 
 			<div class="title">
@@ -149,18 +143,12 @@
 				</div>
 				<div class="text-info">
 					<label for="">CPF:</label><br />
-					<span th:text="${usuario.cpf}"></span>
+					<span id="cpf" th:text="${usuario.cpf}"></span>
 				</div>
 				<div class="text-info">
 					<label for="">Telefone:</label><br />
 					<span th:text="${usuario.celular}"></span>
 				</div>
-
-				<form th:action="@{/usuario/{path}/edit(path=${cpf})}" method="get">
-					<div class="text-info">
-						<button>Alterar informações</button>
-					</div>
-				</form>
 			</div>
 
 			<div class="geral-endereco">
