@@ -3,6 +3,7 @@ package com.belval.avaliacaogames.scheduled;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ import com.belval.avaliacaogames.entities.PedidoTroca;
 import com.belval.avaliacaogames.repositories.PedidoTrocaRepository;
 
 @Component
+@EnableScheduling
 public class PedidoTrocaScheduler {
 
 	@Autowired
@@ -21,19 +23,15 @@ public class PedidoTrocaScheduler {
 
 		for (PedidoTroca pedidoTroca : pedidosTrocas) {
 			switch (pedidoTroca.getStatusRemetente()) {
-			case "PAGAMENTO_EFETUADO":
-				pedidoTroca.setStatusRemetente("EM_PREPARO");
-				pedidoTroca.setStatusDestinatario("EM_PREPARO");
-				break;
-			case "EM_PREPARO":
+			case "PREPARANDO":
 				pedidoTroca.setStatusRemetente("NA_TRANSPORTADORA");
 				pedidoTroca.setStatusDestinatario("NA_TRANSPORTADORA");
 				break;
-			case "NA_TRANSPORTADORA":
+			case "EM_PREPARO":
 				pedidoTroca.setStatusRemetente("A_CAMINHO");
 				pedidoTroca.setStatusDestinatario("A_CAMINHO");
 				break;
-			case "A_CAMINHO":
+			case "NA_TRANSPORTADORA":
 				pedidoTroca.setStatusRemetente("ENTREGUE");
 				pedidoTroca.setStatusDestinatario("ENTREGUE");
 				break;
