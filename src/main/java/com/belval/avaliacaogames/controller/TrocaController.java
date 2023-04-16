@@ -70,12 +70,12 @@ public class TrocaController {
 
 	@Autowired
 	private CadProdutoRepository cad_ProdutoRepository;
-	
+
 	@Autowired
 	private PedidoTrocaRepository pedidoTrocaRepository;
-	
+
 	// Formatador de data e hora
-	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
 	// public static Troca troca;
 	public List<ItemTroca> itens_troca = new ArrayList<>();
@@ -292,31 +292,32 @@ public class TrocaController {
 		PedidoTroca pedidoTroca = new PedidoTroca();
 		LocalDateTime now = LocalDateTime.now();
 		pedidoTroca.setDataPedidoTroca(dtf.format(now));
-		
+
 		// Adiciona o set de ItensPedidoTroca
 		Set<ItemPedidoTroca> itens = new HashSet<>();
-		
+
 		ItemPedidoTroca iptUsuario = new ItemPedidoTroca();
 		iptUsuario.setUsuario(usuario);
 		iptUsuario.setCad_Produto(troca.getCad_produto());
 		iptUsuario.setPedido(pedidoTroca);
 		itens.add(iptUsuario);
-		
+
 		for (ItemTroca item_Troca : troca.getItens_troca()) {
 			ItemPedidoTroca iptAnunciante = new ItemPedidoTroca();
 			iptAnunciante.setUsuario(troca.getUsuario());
-			iptAnunciante.setCad_Produto(cad_ProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()));
+			iptAnunciante
+					.setCad_Produto(cad_ProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()));
 			iptAnunciante.setPedido(pedidoTroca);
 			itens.add(iptAnunciante);
 		}
-		pedidoTroca.setItens(itens);	
-		
+		pedidoTroca.setItens(itens);
+
 		// Define outros atributos
 		pedidoTroca.setUsuario(usuario);
 		pedidoTroca.setStatusDestinatario("PREPARANDO");
 		pedidoTroca.setStatusRemetente("PREPARANDO");
 		pedidoTroca.setTroca(troca);
-		
+
 		// Salva no banco de dados
 		pedidoTrocaRepository.save(pedidoTroca);
 
