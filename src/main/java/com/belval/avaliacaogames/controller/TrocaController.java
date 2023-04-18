@@ -296,9 +296,12 @@ public class TrocaController {
 		PedidoTroca pedidoTroca = new PedidoTroca();
 		LocalDateTime now = LocalDateTime.now();
 		pedidoTroca.setDataPedidoTroca(dtf.format(now));
+		pedidoTroca = pedidoTrocaRepository.save(pedidoTroca);
 
 		// Adiciona o set de ItensPedidoTroca
 		Set<ItemPedidoTroca> itens = new HashSet<>();
+		
+		System.out.println("Cad : " + pedidoTroca.getCodPedidoTroca());
 
 		ItemPedidoTroca iptUsuario = new ItemPedidoTroca();
 		iptUsuario.setUsuario(usuario);
@@ -331,5 +334,7 @@ public class TrocaController {
 		mv.addObject("itensTroca", itensTroca);
 		mv.addObject("troca", troca);
 		return mv;
+		
+		
 	}
 }
