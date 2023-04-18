@@ -11,9 +11,7 @@ import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.Comentario;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Imagem;
-import com.belval.avaliacaogames.entities.ItemPedidoTroca;
 import com.belval.avaliacaogames.entities.ItemTroca;
-import com.belval.avaliacaogames.entities.PedidoTroca;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
@@ -68,7 +66,7 @@ public class TestConfig implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		/*Usuario u1 = new Usuario(89854665412L, "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456",
+		Usuario u1 = new Usuario(89854665412L, "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456",
 				"Masculino");
 		Usuario u2 = new Usuario(47898763225L, "Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456",
 				"Masculino");
@@ -241,7 +239,7 @@ public class TestConfig implements CommandLineRunner {
 		ItemTroca it10 = new ItemTroca(10L, t6, p7);
 		ItemTroca it11 = new ItemTroca(11L, t5, p10);
 
-		item_TrocaRepository.saveAll(Arrays.asList(it1, it2, it3, it4, it5, it6, it7, it8, it9, it10, it11));*/
+		item_TrocaRepository.saveAll(Arrays.asList(it1, it2, it3, it4, it5, it6, it7, it8, it9, it10, it11));
 
 		/*
 		 * PedidoTroca pt1 = new PedidoTroca(1L, "10/04/2023", "A CAMINHO",

@@ -74,7 +74,7 @@ public class TrocaController {
 
 	@Autowired
 	private PedidoTrocaRepository pedidoTrocaRepository;
-	
+
 	@Autowired
 	private ItemPedidoTrocaRepository itemPedidoTrocaRepository;
 
@@ -296,11 +296,13 @@ public class TrocaController {
 		PedidoTroca pedidoTroca = new PedidoTroca();
 		LocalDateTime now = LocalDateTime.now();
 		pedidoTroca.setDataPedidoTroca(dtf.format(now));
+		pedidoTroca.setStatusRemetente("PREPARANDO");
+		pedidoTroca.setStatusDestinatario("PREPARANDO");
 		pedidoTroca = pedidoTrocaRepository.save(pedidoTroca);
 
 		// Adiciona o set de ItensPedidoTroca
 		Set<ItemPedidoTroca> itens = new HashSet<>();
-		
+
 		System.out.println("Cad : " + pedidoTroca.getCodPedidoTroca());
 
 		ItemPedidoTroca iptUsuario = new ItemPedidoTroca();
@@ -313,7 +315,8 @@ public class TrocaController {
 		for (ItemTroca item_Troca : troca.getItens_troca()) {
 			ItemPedidoTroca iptAnunciante = new ItemPedidoTroca();
 			iptAnunciante.setUsuario(troca.getUsuario());
-			iptAnunciante.setCad_Produto(cad_ProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()));
+			iptAnunciante
+					.setCad_Produto(cad_ProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()));
 			iptAnunciante.setPedido(pedidoTroca);
 			iptAnunciante = itemPedidoTrocaRepository.save(iptAnunciante);
 			itens.add(iptAnunciante);
@@ -334,7 +337,6 @@ public class TrocaController {
 		mv.addObject("itensTroca", itensTroca);
 		mv.addObject("troca", troca);
 		return mv;
-		
-		
+
 	}
 }
