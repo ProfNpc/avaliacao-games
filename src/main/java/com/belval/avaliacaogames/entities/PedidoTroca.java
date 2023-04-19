@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,6 +28,7 @@ public class PedidoTroca implements Serializable {
 	private String dataPedidoTroca;
 	private String statusRemetente;
 	private String statusDestinatario;
+	private String nomeTroca;
 
 	@ManyToOne
 	@JoinColumn(name = "cpf_usuario")
@@ -41,6 +43,12 @@ public class PedidoTroca implements Serializable {
 	@JoinColumn(name = "codTroca")
 	private Troca troca;
 
+	// ligação com tabela imagem
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "codImagem")
+	private Imagem imagem;
+
 	public PedidoTroca() {
 		super();
 	}
@@ -54,6 +62,24 @@ public class PedidoTroca implements Serializable {
 		this.statusDestinatario = statusDestinatario;
 		this.usuario = usuario;
 		this.troca = troca;
+	}
+
+	// Getters and Setters Imagem
+	public Imagem getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(Imagem imagem) {
+		this.imagem = imagem;
+	}
+
+	// Getters and Setters Troca
+	public String getNomeTroca() {
+		return nomeTroca;
+	}
+
+	public void setNomeTroca(String nomeTroca) {
+		this.nomeTroca = nomeTroca;
 	}
 
 	// Getters and Setters Itens

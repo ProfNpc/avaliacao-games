@@ -28,6 +28,9 @@ public class Imagem {
 	@OneToOne(mappedBy = "imagem", cascade = CascadeType.ALL)
 	private Troca troca;
 
+	@OneToOne(mappedBy = "imagem", cascade = CascadeType.ALL)
+	private PedidoTroca pedidoTroca;
+
 	public Imagem() {
 		super();
 	}

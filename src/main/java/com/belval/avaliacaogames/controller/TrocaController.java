@@ -298,6 +298,8 @@ public class TrocaController {
 		pedidoTroca.setDataPedidoTroca(dtf.format(now));
 		pedidoTroca.setStatusRemetente("PREPARANDO");
 		pedidoTroca.setStatusDestinatario("PREPARANDO");
+		pedidoTroca.setNomeTroca(troca.getNomeTroca());
+		pedidoTroca.setImagem(troca.getImagem());
 		pedidoTroca = pedidoTrocaRepository.save(pedidoTroca);
 
 		// Adiciona o set de ItensPedidoTroca
