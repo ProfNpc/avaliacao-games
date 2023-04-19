@@ -329,10 +329,11 @@ public class TrocaController {
 		pedidoTroca.setUsuario(usuario);
 		pedidoTroca.setStatusDestinatario("PREPARANDO");
 		pedidoTroca.setStatusRemetente("PREPARANDO");
-		pedidoTroca.setTroca(troca);
 
 		// Salva no banco de dados
 		pedidoTrocaRepository.save(pedidoTroca);
+
+		trocaRepository.delete(troca);
 
 		// Cria o modelo da página e retorna
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
