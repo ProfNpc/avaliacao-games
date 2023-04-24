@@ -107,53 +107,60 @@
 					</div>
 				</div>
 			</div>
-			<div class="card text-center">
-				<div class="card-header">
-					<ul class="nav nav-tabs card-header-tabs">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="true" href="#">Cartão de credito</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" aria-current="true" href="#">Boleto</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" aria-current="true" href="#">PIX</a>
-						</li>
-					</ul>
-				</div>
-				<div class="card-body">
-					<h5 class="card-title">Cartão de Credito</h5>
-					<p class="card-text">
-						Número do cartão:
-						<input type="text" />
-					</p>
-					<p class="card-text">
-						Nome completo:
-						<input type="text" />
-					</p>
-					<p class="card-text">
-						Validade:
-						<input type="text" />
-					</p>
-					<p class="card-text">
-						Código de Segurança:
-						<input type="text" />
-					</p>
-					<p class="card-text">
-						Número de parcelas:
-					<div class="input-group mb-3">
-						<select class="form-select" id="inputGroupSelect01">
-							<option selected>Selecione...</option>
-							<option value="1">Uma</option>
-							<option value="2">Duas</option>
-							<option value="3">Três</option>
-						</select>
-					</div>
-					</p>
-					<a href="#" class="btn btn-primary">Adicionar cartão</a>
-				</div>
-			</div>
+
 			<form th:action="@{/usuario/{cpf}/compra/finalizar(cpf=${cpf})}" method="post">
+				<div class="card text-center">
+					<div class="tab">
+						<input type="radio" class="tablinks active" name="tipo" onclick="openTab(event, 'credit-card')"
+							value="Crédito">Cartão de crédito</input>
+						<input type="radio" class="tablinks" name="tipo" onclick="openTab(event, 'pix')"
+							value="Pix">PIX</input>
+						<input type="radio" class="tablinks" name="tipo" onclick="openTab(event, 'boleto')"
+							value="Boleto">Boleto</input>
+					</div>
+
+					<div id="credit-card" class="tabcontent">
+						<div class="card-body">
+							<h5 class="card-title">Cartão de Credito</h5>
+							<p class="card-text">
+								Número do cartão:
+								<input type="text" required />
+							</p>
+							<p class="card-text">
+								Nome completo:
+								<input type="text" required />
+							</p>
+							<p class="card-text">
+								Validade:
+								<input type="text" required />
+							</p>
+							<p class="card-text">
+								Código de Segurança:
+								<input type="text" required />
+							</p>
+							<p class="card-text">
+								Número de parcelas:
+							<div class="input-group mb-3">
+								<select class="form-select" id="inputGroupSelect01" required>
+									<option selected>À vista</option>
+									<option value="1">Uma</option>
+									<option value="2">Duas</option>
+									<option value="3">Três</option>
+								</select>
+							</div>
+							</p>
+						</div>
+					</div>
+
+					<div id="pix" class="tabcontent" style="display: none">
+						<!-- conteúdo da aba de PIX -->
+					</div>
+
+					<div id="boleto" class="tabcontent" style="display: none">
+						<!-- conteúdo da aba de boleto -->
+					</div>
+				</div>
+
 				<div class="card-footer text-muted">
 					<div class="d-grid gap-2 col-6 mx-auto">
 						<button class="btn btn-primary" type="submit">
@@ -166,6 +173,7 @@
 		</div>
 	</main>
 	<footer></footer>
+	<script src="/JS/mudar-aba.js"></script>
 	<script src="/JS/NavBar.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
