@@ -2,9 +2,12 @@ package com.belval.avaliacaogames.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -86,7 +89,7 @@ public class UsuarioController {
 
 	// Metodo para cadastrar
 	@GetMapping("/usuario/cadastrar")
-	public String form(Model model, Long cpf) {
+	public String cadastrarUsuario(Model model, Long cpf) {
 
 		// testar
 		model.addAttribute("usuario", new Usuario());
@@ -95,25 +98,41 @@ public class UsuarioController {
 	}
 
 	// Salvar o usuario
+	/*
+	 * @PostMapping("/usuario/cadastrar") public ModelAndView form(Usuario usuario)
+	 * {
+	 * 
+	 * if (service.existsById(usuario.getCpf())) { ModelAndView model = new
+	 * ModelAndView("usuario/cadastro"); model.addObject("usuario", usuario);
+	 * model.addObject("alerta", "Já existe um usuário com este CPF"); return model;
+	 * } else if (service.existsByEmail(usuario.getEmail())) { ModelAndView model =
+	 * new ModelAndView("usuario/cadastro"); model.addObject("usuario", usuario);
+	 * model.addObject("alerta", "Já existe um usuário com este e-mail"); return
+	 * model; }
+	 * 
+	 * repository.save(usuario);
+	 * 
+	 * ModelAndView model = new ModelAndView("redirect:/usuario/login"); return
+	 * model; }
+	 */
+
+	// Salvar usuario - otimizado
 	@PostMapping("/usuario/cadastrar")
-	public ModelAndView form(Usuario usuario) {
-		
-		if (service.existsById(usuario.getCpf())) {
-			ModelAndView model = new ModelAndView("usuario/cadastro");
-			model.addObject("usuario", usuario);
-			model.addObject("alerta", "Já existe um usuário com este CPF");
-			return model;
-		} else if (service.existsByEmail(usuario.getEmail())) {
-			ModelAndView model = new ModelAndView("usuario/cadastro");
-			model.addObject("usuario", usuario);
-			model.addObject("alerta", "Já existe um usuário com este e-mail");
-			return model;
+	public ModelAndView cadastrarUsuario(@Valid Usuario usuario, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return new ModelAndView("usuario/cadastro", "usuario", usuario);
 		}
-		
+
+		if (service.existsById(usuario.getCpf())) {
+			return new ModelAndView("usuario/cadastro", "alerta", "Já existe um usuário com este CPF");
+		} else if (service.existsByEmail(usuario.getEmail())) {
+			return new ModelAndView("usuario/cadastro", "alerta", "Já existe um usuário com este e-mail");
+		}
+
 		repository.save(usuario);
-		
-		ModelAndView model = new ModelAndView("redirect:/usuario/login");
-		return model;
+
+		return new ModelAndView("redirect:/usuario/login");
 	}
 
 	// Metodo para fazer login
@@ -169,10 +188,6 @@ public class UsuarioController {
 		Usuario usuario = service.findById(cpf);
 
 		Endereco endereco = enderecoService.findByUsuario(usuario);
-
-		/*
-		 * if (usuario == null) { return "usuario/usuario-nao-existe"; }
-		 */
 
 		model.addAttribute("endereco", endereco);
 		model.addAttribute("usuario", usuario);

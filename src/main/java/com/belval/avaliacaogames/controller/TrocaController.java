@@ -329,6 +329,7 @@ public class TrocaController {
 		pedidoTroca.setUsuario(usuario);
 		pedidoTroca.setStatusDestinatario("PREPARANDO");
 		pedidoTroca.setStatusRemetente("PREPARANDO");
+		// pedidoTroca.setTroca(troca);
 
 		// Salva no banco de dados
 		pedidoTrocaRepository.save(pedidoTroca);
