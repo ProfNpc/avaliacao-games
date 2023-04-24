@@ -101,8 +101,6 @@ public class PedidoController {
 		pedido.setDataPedido(instantePedido);
 		pedidoRepository.save(pedido);
 
-		System.out.println(instantePedido);
-
 		ped = pedido;
 
 		itemPedido.setAnuncio(anuncio);
