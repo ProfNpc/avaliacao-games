@@ -16,6 +16,9 @@ public class AnuncioService {
 	@Autowired
 	private AnuncioRepository repository;
 
+	@Autowired
+	private UsuarioService usuarioService;
+
 	public List<Anuncio> findAll() {
 		return repository.findAll();
 	}
@@ -25,17 +28,13 @@ public class AnuncioService {
 		return obj.get();
 	}
 
-	/*public Anuncio findByUsuario(Usuario usuario) {
-		Optional<Anuncio> obj = repository.findByUsuario(usuario);
-		if (obj.isPresent()) {
-			return obj.get();
-		} else {
-			return new Anuncio();
-		}
-	}*/
-	
 	public List<Anuncio> findByUsuario(Usuario usuario) {
 		return repository.findByUsuario(usuario);
+	}
+
+	public List<Anuncio> findAllAnunciosExcetoUsuario(Long cpf) {
+		Usuario usuario = usuarioService.findById(cpf);
+		return repository.findAllByUsuarioCpfNotOrderByNomeAnuncioDesc(usuario.getCpf());
 	}
 
 }

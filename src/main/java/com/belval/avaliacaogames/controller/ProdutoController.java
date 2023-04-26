@@ -66,7 +66,8 @@ public class ProdutoController {
 
 		ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
 
-		List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
+		List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCaseAndUsuarioCpfNot(nomeAnuncio,
+				cpf);
 
 		mv.addObject("anuncios", anuncios);
 
@@ -156,13 +157,13 @@ public class ProdutoController {
 
 		Usuario usuario = usuarioService.findById(cpf);
 		Produto produto = produtoService.findById(codProd);
-		
+
 		CadProduto cadProdutoNoBd = cad_produtoService.findByUsuarioAndProduto(usuario, produto);
 		if (cadProdutoNoBd == null) {
 			cad_produto.setStatus(true);
 			cad_produto.setUsuario(usuario);
 			cad_produto.setProduto(produto);
-			
+
 			cad_produtoRepository.save(cad_produto);
 		} else {
 			cadProdutoNoBd.setQuantidade(cadProdutoNoBd.getQuantidade() + cad_produto.getQuantidade());

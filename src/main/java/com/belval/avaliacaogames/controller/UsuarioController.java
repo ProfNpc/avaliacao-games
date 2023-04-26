@@ -1,14 +1,17 @@
 package com.belval.avaliacaogames.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -78,10 +81,10 @@ public class UsuarioController {
 		Usuario usuario = service.findById(cpf);
 		model.addAttribute(usuario);
 
-		List<Anuncio> anuncios = anuncioService.findAll();
+		List<Anuncio> anuncios = anuncioService.findAllAnunciosExcetoUsuario(cpf);
 		model.addAttribute("anuncios", anuncios);
 
-		List<Troca> trocas = trocaService.findAll();
+		List<Troca> trocas = trocaService.findAllAnunciosExcetoUsuario(cpf);
 		model.addAttribute("trocas", trocas);
 
 		return "home/home-logado";
@@ -196,44 +199,67 @@ public class UsuarioController {
 	}
 
 	// Confirma as alterações
+	/*
+	 * @PostMapping("/usuario/{cpf}/edit")
+	 * 
+	 * @Transactional public ModelAndView editConfirm(@PathVariable("cpf") Long cpf,
+	 * Usuario usuario, Endereco endereco) { ModelAndView mv = new
+	 * ModelAndView("redirect:/usuario/{cpf}");
+	 * 
+	 * Usuario usuarioOld = service.findById(cpf); Endereco enderecoOld =
+	 * enderecoService.findByUsuario(usuarioOld);
+	 * 
+	 * // Usuario if (usuario.getNome() == null)
+	 * usuario.setNome(usuarioOld.getNome()); if (usuario.getSobrenome() == null)
+	 * usuario.setSobrenome(usuarioOld.getSobrenome()); if (usuario.getEmail() ==
+	 * null) usuario.setEmail(usuarioOld.getEmail()); if (usuario.getCelular() ==
+	 * null) usuario.setCelular(usuarioOld.getCelular()); if (usuario.getSenha() ==
+	 * null) usuario.setSenha(usuarioOld.getSenha());
+	 * 
+	 * // Endereco if (endereco.getCepEnd() == null)
+	 * endereco.setCepEnd(enderecoOld.getCepEnd()); if (endereco.getPaisEnd() ==
+	 * null) endereco.setPaisEnd(enderecoOld.getPaisEnd()); if
+	 * (endereco.getEstadoEnd() == null)
+	 * endereco.setEstadoEnd(enderecoOld.getEstadoEnd()); if
+	 * (endereco.getCidadeEnd() == null)
+	 * endereco.setCidadeEnd(enderecoOld.getCidadeEnd()); if
+	 * (endereco.getBairroEnd() == null)
+	 * endereco.setBairroEnd(enderecoOld.getBairroEnd()); if (endereco.getRuaEnd()
+	 * == null) endereco.setRuaEnd(enderecoOld.getRuaEnd()); if
+	 * (endereco.getNumEnd() == null) endereco.setNumEnd(enderecoOld.getNumEnd());
+	 * if (endereco.getUsuario() == null) endereco.setUsuario(usuario); if
+	 * (endereco.getCodEnd() == null) endereco.setCodEnd(enderecoOld.getCodEnd());
+	 * 
+	 * repository.save(usuario); enderecoRepository.save(endereco);
+	 * 
+	 * return mv; }
+	 */
+
+	// Confirma as alterações - otimizado
 	@PostMapping("/usuario/{cpf}/edit")
-	public ModelAndView editConfirm(@PathVariable("cpf") Long cpf, Usuario usuario, Endereco endereco) {
+	@Transactional
+	public ModelAndView editConfirm(@PathVariable("cpf") Long cpf, @ModelAttribute("usuario") Usuario usuario,
+			@ModelAttribute("endereco") Endereco endereco) {
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}");
 
 		Usuario usuarioOld = service.findById(cpf);
 		Endereco enderecoOld = enderecoService.findByUsuario(usuarioOld);
 
-		// Usuario
-		if (usuario.getNome() == null)
-			usuario.setNome(usuarioOld.getNome());
-		if (usuario.getSobrenome() == null)
-			usuario.setSobrenome(usuarioOld.getSobrenome());
-		if (usuario.getEmail() == null)
-			usuario.setEmail(usuarioOld.getEmail());
-		if (usuario.getCelular() == null)
-			usuario.setCelular(usuarioOld.getCelular());
-		if (usuario.getSenha() == null)
-			usuario.setSenha(usuarioOld.getSenha());
+		usuario.setNome(Optional.ofNullable(usuario.getNome()).orElse(usuarioOld.getNome()));
+		usuario.setSobrenome(Optional.ofNullable(usuario.getSobrenome()).orElse(usuarioOld.getSobrenome()));
+		usuario.setEmail(Optional.ofNullable(usuario.getEmail()).orElse(usuarioOld.getEmail()));
+		usuario.setCelular(Optional.ofNullable(usuario.getCelular()).orElse(usuarioOld.getCelular()));
+		usuario.setSenha(Optional.ofNullable(usuario.getSenha()).orElse(usuarioOld.getSenha()));
 
-		// Endereco
-		if (endereco.getCepEnd() == null)
-			endereco.setCepEnd(enderecoOld.getCepEnd());
-		if (endereco.getPaisEnd() == null)
-			endereco.setPaisEnd(enderecoOld.getPaisEnd());
-		if (endereco.getEstadoEnd() == null)
-			endereco.setEstadoEnd(enderecoOld.getEstadoEnd());
-		if (endereco.getCidadeEnd() == null)
-			endereco.setCidadeEnd(enderecoOld.getCidadeEnd());
-		if (endereco.getBairroEnd() == null)
-			endereco.setBairroEnd(enderecoOld.getBairroEnd());
-		if (endereco.getRuaEnd() == null)
-			endereco.setRuaEnd(enderecoOld.getRuaEnd());
-		if (endereco.getNumEnd() == null)
-			endereco.setNumEnd(enderecoOld.getNumEnd());
-		if (endereco.getUsuario() == null)
-			endereco.setUsuario(usuario);
-		if (endereco.getCodEnd() == null)
-			endereco.setCodEnd(enderecoOld.getCodEnd());
+		endereco.setCepEnd(Optional.ofNullable(endereco.getCepEnd()).orElse(enderecoOld.getCepEnd()));
+		endereco.setPaisEnd(Optional.ofNullable(endereco.getPaisEnd()).orElse(enderecoOld.getPaisEnd()));
+		endereco.setEstadoEnd(Optional.ofNullable(endereco.getEstadoEnd()).orElse(enderecoOld.getEstadoEnd()));
+		endereco.setCidadeEnd(Optional.ofNullable(endereco.getCidadeEnd()).orElse(enderecoOld.getCidadeEnd()));
+		endereco.setBairroEnd(Optional.ofNullable(endereco.getBairroEnd()).orElse(enderecoOld.getBairroEnd()));
+		endereco.setRuaEnd(Optional.ofNullable(endereco.getRuaEnd()).orElse(enderecoOld.getRuaEnd()));
+		endereco.setNumEnd(Optional.ofNullable(endereco.getNumEnd()).orElse(enderecoOld.getNumEnd()));
+		endereco.setUsuario(Optional.ofNullable(endereco.getUsuario()).orElse(usuario));
+		endereco.setCodEnd(Optional.ofNullable(endereco.getCodEnd()).orElse(enderecoOld.getCodEnd()));
 
 		repository.save(usuario);
 		enderecoRepository.save(endereco);

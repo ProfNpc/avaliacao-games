@@ -14,5 +14,8 @@ import com.belval.avaliacaogames.entities.Usuario;
 public interface TrocaRepository extends JpaRepository<Troca, Long> {
 
 	List<Troca> findByUsuario(Usuario usuario);
+
 	Optional<Troca> findByCadProduto(CadProduto cad_produto);
+
+	List<Troca> findAllByUsuarioCpfNotOrderByNomeTrocaDesc(Long cpf);
 }
