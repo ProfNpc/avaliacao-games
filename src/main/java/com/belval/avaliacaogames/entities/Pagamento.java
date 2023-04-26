@@ -1,14 +1,13 @@
 package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,21 +19,21 @@ public class Pagamento implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codPag;
-	private Instant momPag;
+	private String tipo;
 
 	@JsonIgnore
 	@OneToOne
-	@MapsId
+	@JoinColumn(name = "codPedido")
 	private Pedido pedido;
 
 	public Pagamento() {
 		super();
 	}
 
-	public Pagamento(Long codPag, Instant momPag, Pedido pedido) {
+	public Pagamento(Long codPag, String tipo, Pedido pedido) {
 		super();
 		this.codPag = codPag;
-		this.momPag = momPag;
+		this.tipo = tipo;
 		this.pedido = pedido;
 	}
 
@@ -46,8 +45,8 @@ public class Pagamento implements Serializable {
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
-	
-	// Getters and Setters 
+
+	// Getters and Setters
 	public Long getCodPag() {
 		return codPag;
 	}
@@ -56,12 +55,12 @@ public class Pagamento implements Serializable {
 		this.codPag = codPag;
 	}
 
-	public Instant getMomPag() {
-		return momPag;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setMomPag(Instant momPag) {
-		this.momPag = momPag;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

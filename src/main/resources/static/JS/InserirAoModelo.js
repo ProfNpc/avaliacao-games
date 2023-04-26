@@ -1,15 +1,3 @@
-var inputSenha = document.querySelector(".geral-info input");
-var botaoSenha = document.querySelector(".geral-info button");
-var spanCpf = document.querySelector("#cpf");
-
-if (botaoSenha && botaoSenha.innerHTML == "Editar") {
-	botaoSenha.addEventListener("click", () => {
-	    inputSenha.disabled = !inputSenha.disabled;
-	});
-}
-
-// Não consegui dar um jeito de reutilizar essa função do outro script
-// então eu só vou colar ela aqui :()
 function inserirAoModelo(modelo, str, func) {
 	// Faz uma gambiarra para "inserir" a string no modelo
 	let indiceStr = 0;
@@ -34,4 +22,7 @@ function inserirAoModelo(modelo, str, func) {
 	return retorno;
 }
 
-spanCpf.innerHTML = inserirAoModelo("xxx.xxx.xxx-xx", spanCpf.innerHTML);
+function numeros(str) {
+	// Retorna a string apenas com os números
+	return str.replace(/[^0-9]/g, "");
+}

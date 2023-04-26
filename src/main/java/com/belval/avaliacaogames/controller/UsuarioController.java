@@ -1,26 +1,32 @@
 package com.belval.avaliacaogames.controller;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Anuncio;
-import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
-import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
+import com.belval.avaliacaogames.repositories.CadProdutoRepository;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
-import com.belval.avaliacaogames.services.Cad_ProdutoService;
+import com.belval.avaliacaogames.services.CadProdutoService;
 import com.belval.avaliacaogames.services.EnderecoService;
 import com.belval.avaliacaogames.services.TrocaService;
 import com.belval.avaliacaogames.services.UsuarioService;
@@ -38,7 +44,7 @@ public class UsuarioController {
 	private AnuncioService anuncioService;
 
 	@Autowired
-	private Cad_ProdutoService cad_ProdutoService;
+	private CadProdutoService cad_ProdutoService;
 
 	@Autowired
 	private TrocaService trocaService;
@@ -53,7 +59,7 @@ public class UsuarioController {
 	private AnuncioRepository anuncioRepository;
 
 	@Autowired
-	private Cad_ProdutoRepository cad_ProdutoRepository;
+	private CadProdutoRepository cad_ProdutoRepository;
 
 	// Home
 	@GetMapping("/")
@@ -75,10 +81,10 @@ public class UsuarioController {
 		Usuario usuario = service.findById(cpf);
 		model.addAttribute(usuario);
 
-		List<Anuncio> anuncios = anuncioService.findAll();
+		List<Anuncio> anuncios = anuncioService.findAllAnunciosExcetoUsuario(cpf);
 		model.addAttribute("anuncios", anuncios);
 
-		List<Troca> trocas = trocaService.findAll();
+		List<Troca> trocas = trocaService.findAllAnunciosExcetoUsuario(cpf);
 		model.addAttribute("trocas", trocas);
 
 		return "home/home-logado";
@@ -86,7 +92,7 @@ public class UsuarioController {
 
 	// Metodo para cadastrar
 	@GetMapping("/usuario/cadastrar")
-	public String form(Model model, Long cpf) {
+	public String cadastrarUsuario(Model model, Long cpf) {
 
 		// testar
 		model.addAttribute("usuario", new Usuario());
@@ -95,25 +101,41 @@ public class UsuarioController {
 	}
 
 	// Salvar o usuario
+	/*
+	 * @PostMapping("/usuario/cadastrar") public ModelAndView form(Usuario usuario)
+	 * {
+	 * 
+	 * if (service.existsById(usuario.getCpf())) { ModelAndView model = new
+	 * ModelAndView("usuario/cadastro"); model.addObject("usuario", usuario);
+	 * model.addObject("alerta", "Já existe um usuário com este CPF"); return model;
+	 * } else if (service.existsByEmail(usuario.getEmail())) { ModelAndView model =
+	 * new ModelAndView("usuario/cadastro"); model.addObject("usuario", usuario);
+	 * model.addObject("alerta", "Já existe um usuário com este e-mail"); return
+	 * model; }
+	 * 
+	 * repository.save(usuario);
+	 * 
+	 * ModelAndView model = new ModelAndView("redirect:/usuario/login"); return
+	 * model; }
+	 */
+
+	// Salvar usuario - otimizado
 	@PostMapping("/usuario/cadastrar")
-	public ModelAndView form(Usuario usuario) {
-		
-		if (service.existsById(usuario.getCpf())) {
-			ModelAndView model = new ModelAndView("usuario/cadastro");
-			model.addObject("usuario", usuario);
-			model.addObject("alerta", "Já existe um usuário com este CPF");
-			return model;
-		} else if (service.existsByEmail(usuario.getEmail())) {
-			ModelAndView model = new ModelAndView("usuario/cadastro");
-			model.addObject("usuario", usuario);
-			model.addObject("alerta", "Já existe um usuário com este e-mail");
-			return model;
+	public ModelAndView cadastrarUsuario(@Valid Usuario usuario, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return new ModelAndView("usuario/cadastro", "usuario", usuario);
 		}
-		
+
+		if (service.existsById(usuario.getCpf())) {
+			return new ModelAndView("usuario/cadastro", "alerta", "Já existe um usuário com este CPF");
+		} else if (service.existsByEmail(usuario.getEmail())) {
+			return new ModelAndView("usuario/cadastro", "alerta", "Já existe um usuário com este e-mail");
+		}
+
 		repository.save(usuario);
-		
-		ModelAndView model = new ModelAndView("redirect:/usuario/login");
-		return model;
+
+		return new ModelAndView("redirect:/usuario/login");
 	}
 
 	// Metodo para fazer login
@@ -170,10 +192,6 @@ public class UsuarioController {
 
 		Endereco endereco = enderecoService.findByUsuario(usuario);
 
-		/*
-		 * if (usuario == null) { return "usuario/usuario-nao-existe"; }
-		 */
-
 		model.addAttribute("endereco", endereco);
 		model.addAttribute("usuario", usuario);
 
@@ -181,44 +199,67 @@ public class UsuarioController {
 	}
 
 	// Confirma as alterações
+	/*
+	 * @PostMapping("/usuario/{cpf}/edit")
+	 * 
+	 * @Transactional public ModelAndView editConfirm(@PathVariable("cpf") Long cpf,
+	 * Usuario usuario, Endereco endereco) { ModelAndView mv = new
+	 * ModelAndView("redirect:/usuario/{cpf}");
+	 * 
+	 * Usuario usuarioOld = service.findById(cpf); Endereco enderecoOld =
+	 * enderecoService.findByUsuario(usuarioOld);
+	 * 
+	 * // Usuario if (usuario.getNome() == null)
+	 * usuario.setNome(usuarioOld.getNome()); if (usuario.getSobrenome() == null)
+	 * usuario.setSobrenome(usuarioOld.getSobrenome()); if (usuario.getEmail() ==
+	 * null) usuario.setEmail(usuarioOld.getEmail()); if (usuario.getCelular() ==
+	 * null) usuario.setCelular(usuarioOld.getCelular()); if (usuario.getSenha() ==
+	 * null) usuario.setSenha(usuarioOld.getSenha());
+	 * 
+	 * // Endereco if (endereco.getCepEnd() == null)
+	 * endereco.setCepEnd(enderecoOld.getCepEnd()); if (endereco.getPaisEnd() ==
+	 * null) endereco.setPaisEnd(enderecoOld.getPaisEnd()); if
+	 * (endereco.getEstadoEnd() == null)
+	 * endereco.setEstadoEnd(enderecoOld.getEstadoEnd()); if
+	 * (endereco.getCidadeEnd() == null)
+	 * endereco.setCidadeEnd(enderecoOld.getCidadeEnd()); if
+	 * (endereco.getBairroEnd() == null)
+	 * endereco.setBairroEnd(enderecoOld.getBairroEnd()); if (endereco.getRuaEnd()
+	 * == null) endereco.setRuaEnd(enderecoOld.getRuaEnd()); if
+	 * (endereco.getNumEnd() == null) endereco.setNumEnd(enderecoOld.getNumEnd());
+	 * if (endereco.getUsuario() == null) endereco.setUsuario(usuario); if
+	 * (endereco.getCodEnd() == null) endereco.setCodEnd(enderecoOld.getCodEnd());
+	 * 
+	 * repository.save(usuario); enderecoRepository.save(endereco);
+	 * 
+	 * return mv; }
+	 */
+
+	// Confirma as alterações - otimizado
 	@PostMapping("/usuario/{cpf}/edit")
-	public ModelAndView editConfirm(@PathVariable("cpf") Long cpf, Usuario usuario, Endereco endereco) {
+	@Transactional
+	public ModelAndView editConfirm(@PathVariable("cpf") Long cpf, @ModelAttribute("usuario") Usuario usuario,
+			@ModelAttribute("endereco") Endereco endereco) {
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}");
 
 		Usuario usuarioOld = service.findById(cpf);
 		Endereco enderecoOld = enderecoService.findByUsuario(usuarioOld);
 
-		// Usuario
-		if (usuario.getNome() == null)
-			usuario.setNome(usuarioOld.getNome());
-		if (usuario.getSobrenome() == null)
-			usuario.setSobrenome(usuarioOld.getSobrenome());
-		if (usuario.getEmail() == null)
-			usuario.setEmail(usuarioOld.getEmail());
-		if (usuario.getCelular() == null)
-			usuario.setCelular(usuarioOld.getCelular());
-		if (usuario.getSenha() == null)
-			usuario.setSenha(usuarioOld.getSenha());
+		usuario.setNome(Optional.ofNullable(usuario.getNome()).orElse(usuarioOld.getNome()));
+		usuario.setSobrenome(Optional.ofNullable(usuario.getSobrenome()).orElse(usuarioOld.getSobrenome()));
+		usuario.setEmail(Optional.ofNullable(usuario.getEmail()).orElse(usuarioOld.getEmail()));
+		usuario.setCelular(Optional.ofNullable(usuario.getCelular()).orElse(usuarioOld.getCelular()));
+		usuario.setSenha(Optional.ofNullable(usuario.getSenha()).orElse(usuarioOld.getSenha()));
 
-		// Endereco
-		if (endereco.getCepEnd() == null)
-			endereco.setCepEnd(enderecoOld.getCepEnd());
-		if (endereco.getPaisEnd() == null)
-			endereco.setPaisEnd(enderecoOld.getPaisEnd());
-		if (endereco.getEstadoEnd() == null)
-			endereco.setEstadoEnd(enderecoOld.getEstadoEnd());
-		if (endereco.getCidadeEnd() == null)
-			endereco.setCidadeEnd(enderecoOld.getCidadeEnd());
-		if (endereco.getBairroEnd() == null)
-			endereco.setBairroEnd(enderecoOld.getBairroEnd());
-		if (endereco.getRuaEnd() == null)
-			endereco.setRuaEnd(enderecoOld.getRuaEnd());
-		if (endereco.getNumEnd() == null)
-			endereco.setNumEnd(enderecoOld.getNumEnd());
-		if (endereco.getUsuario() == null)
-			endereco.setUsuario(usuario);
-		if (endereco.getCodEnd() == null)
-			endereco.setCodEnd(enderecoOld.getCodEnd());
+		endereco.setCepEnd(Optional.ofNullable(endereco.getCepEnd()).orElse(enderecoOld.getCepEnd()));
+		endereco.setPaisEnd(Optional.ofNullable(endereco.getPaisEnd()).orElse(enderecoOld.getPaisEnd()));
+		endereco.setEstadoEnd(Optional.ofNullable(endereco.getEstadoEnd()).orElse(enderecoOld.getEstadoEnd()));
+		endereco.setCidadeEnd(Optional.ofNullable(endereco.getCidadeEnd()).orElse(enderecoOld.getCidadeEnd()));
+		endereco.setBairroEnd(Optional.ofNullable(endereco.getBairroEnd()).orElse(enderecoOld.getBairroEnd()));
+		endereco.setRuaEnd(Optional.ofNullable(endereco.getRuaEnd()).orElse(enderecoOld.getRuaEnd()));
+		endereco.setNumEnd(Optional.ofNullable(endereco.getNumEnd()).orElse(enderecoOld.getNumEnd()));
+		endereco.setUsuario(Optional.ofNullable(endereco.getUsuario()).orElse(usuario));
+		endereco.setCodEnd(Optional.ofNullable(endereco.getCodEnd()).orElse(enderecoOld.getCodEnd()));
 
 		repository.save(usuario);
 		enderecoRepository.save(endereco);
@@ -243,7 +284,7 @@ public class UsuarioController {
 		List<Anuncio> anuncios = anuncioService.findByUsuario(usuario);
 		anuncioRepository.deleteAll(anuncios);
 
-		List<Cad_Produto> cad_produtos = cad_ProdutoService.findByUsuario(usuario);
+		List<CadProduto> cad_produtos = cad_ProdutoService.findByUsuario(usuario);
 		cad_ProdutoRepository.deleteAll(cad_produtos);
 
 		Endereco enderecos = enderecoService.findByUsuario(usuario);

@@ -15,17 +15,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Anuncio;
-import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.Comentario;
 import com.belval.avaliacaogames.entities.Imagem;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
-import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
+import com.belval.avaliacaogames.repositories.CadProdutoRepository;
 import com.belval.avaliacaogames.repositories.ComentarioRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
-import com.belval.avaliacaogames.services.Cad_ProdutoService;
+import com.belval.avaliacaogames.services.CadProdutoService;
 import com.belval.avaliacaogames.services.ImagemService;
 import com.belval.avaliacaogames.services.ProdutoService;
 import com.belval.avaliacaogames.services.UsuarioService;
@@ -34,7 +34,7 @@ import com.belval.avaliacaogames.services.UsuarioService;
 public class ProdutoController {
 
 	@Autowired
-	private Cad_ProdutoService cad_produtoService;
+	private CadProdutoService cad_produtoService;
 
 	@Autowired
 	private UsuarioService usuarioService;
@@ -49,7 +49,7 @@ public class ProdutoController {
 	private ImagemService imagemService;
 
 	@Autowired
-	private Cad_ProdutoRepository cad_produtoRepository;
+	private CadProdutoRepository cad_produtoRepository;
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
@@ -66,20 +66,8 @@ public class ProdutoController {
 
 		ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
 
-		List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
-
-		mv.addObject("anuncios", anuncios);
-
-		return mv;
-	}
-
-	// Pesquisar produto na tela inicial para usuario não cadastrado
-	@PostMapping("/usuario/pesquisar")
-	public ModelAndView pesquisar(String nomeAnuncio) {
-
-		ModelAndView mv = new ModelAndView("produto/produto-pesquisado");
-
-		List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCase(nomeAnuncio);
+		List<Anuncio> anuncios = anuncioRepository.findByNomeAnuncioContainingIgnoreCaseAndUsuarioCpfNot(nomeAnuncio,
+				cpf);
 
 		mv.addObject("anuncios", anuncios);
 
@@ -114,15 +102,15 @@ public class ProdutoController {
 
 	// Biblioteca
 	@GetMapping("/usuario/{cpf}/biblioteca")
-	public String biblioteca(@PathVariable("cpf") Long cpf, Model model, Cad_Produto cad_prod, Usuario usu) {
+	public String biblioteca(@PathVariable("cpf") Long cpf, Model model, CadProduto cad_prod, Usuario usu) {
 
 		Usuario usuario = usuarioService.findById(cpf);
 
-		List<Cad_Produto> cad_produtos = cad_produtoService.findByUsuario(usuario);
+		List<CadProduto> cad_produtos = cad_produtoService.findByUsuario(usuario);
 		List<Long> id_prods = new ArrayList<Long>();
 		List<Produto> produtos = new ArrayList<Produto>();
 
-		for (Cad_Produto cp : cad_produtos) {
+		for (CadProduto cp : cad_produtos) {
 			Long id = cp.getProdutoID();
 			Produto prod = produtoService.findById(id);
 			id_prods.add(id);
@@ -165,17 +153,17 @@ public class ProdutoController {
 	// Adicionar produto na biblioteca
 	@PostMapping("/usuario/{cpf}/biblioteca/{codProd}/adicionar")
 	public ModelAndView adicionarProduto(@PathVariable("cpf") Long cpf, @PathVariable("codProd") Long codProd,
-			Cad_Produto cad_produto) {
+			CadProduto cad_produto) {
 
 		Usuario usuario = usuarioService.findById(cpf);
 		Produto produto = produtoService.findById(codProd);
-		
-		Cad_Produto cadProdutoNoBd = cad_produtoService.findByUsuarioAndProduto(usuario, produto);
+
+		CadProduto cadProdutoNoBd = cad_produtoService.findByUsuarioAndProduto(usuario, produto);
 		if (cadProdutoNoBd == null) {
 			cad_produto.setStatus(true);
 			cad_produto.setUsuario(usuario);
 			cad_produto.setProduto(produto);
-			
+
 			cad_produtoRepository.save(cad_produto);
 		} else {
 			cadProdutoNoBd.setQuantidade(cadProdutoNoBd.getQuantidade() + cad_produto.getQuantidade());
@@ -196,7 +184,7 @@ public class ProdutoController {
 
 	// Cadastar produto na biblioteca
 	@PostMapping("/usuario/{cpf}/biblioteca/cadastrar")
-	public ModelAndView cadastrarProduto(Cad_Produto cad_produto, Produto produto, @PathVariable("cpf") Long cpf,
+	public ModelAndView cadastrarProduto(CadProduto cad_produto, Produto produto, @PathVariable("cpf") Long cpf,
 			@RequestParam("file") MultipartFile file) {
 
 		Imagem imagem = null;

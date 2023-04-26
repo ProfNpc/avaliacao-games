@@ -6,8 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.Troca;
+import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.TrocaRepository;
 
 @Service
@@ -15,6 +16,9 @@ public class TrocaService {
 
 	@Autowired
 	private TrocaRepository repository;
+
+	@Autowired
+	private UsuarioService usuarioService;
 
 	public List<Troca> findAll() {
 		return repository.findAll();
@@ -24,8 +28,8 @@ public class TrocaService {
 		Optional<Troca> obj = repository.findById(id);
 		return obj.get();
 	}
-	
-	public Troca findByCadProduto(Cad_Produto cadProduto) {
+
+	public Troca findByCadProduto(CadProduto cadProduto) {
 		Optional<Troca> obj = repository.findByCadProduto(cadProduto);
 		if (obj.isPresent()) {
 			return obj.get();
@@ -33,14 +37,9 @@ public class TrocaService {
 			return null;
 		}
 	}
-	
-	/*
-	 * public List<Troca> findByUsuario(Usuario usuario) { return
-	 * repository.findByUsuario(usuario); }
-	 */
-	/*
-	 * public Troca findByProduto(Produto produto) { Optional<Troca> obj =
-	 * repository.findByProduto(produto); if (obj.isPresent()) { return obj.get(); }
-	 * else { return new Troca(); } }
-	 */
+
+	public List<Troca> findAllAnunciosExcetoUsuario(Long cpf) {
+		Usuario usuario = usuarioService.findById(cpf);
+		return repository.findAllByUsuarioCpfNotOrderByNomeTrocaDesc(usuario.getCpf());
+	}
 }

@@ -1,5 +1,7 @@
 package com.belval.avaliacaogames.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.Anuncio;
@@ -15,12 +18,14 @@ import com.belval.avaliacaogames.entities.Carrinho;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.ItemCarrinho;
 import com.belval.avaliacaogames.entities.ItemPedido;
+import com.belval.avaliacaogames.entities.Pagamento;
 import com.belval.avaliacaogames.entities.Pedido;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.entities.pk.ItemPedidoPK;
 import com.belval.avaliacaogames.repositories.CarrinhoRepository;
 import com.belval.avaliacaogames.repositories.ItemCarrinhoRepository;
 import com.belval.avaliacaogames.repositories.ItemPedidoRepository;
+import com.belval.avaliacaogames.repositories.PagamentoRepository;
 import com.belval.avaliacaogames.repositories.PedidoRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.EnderecoService;
@@ -54,6 +59,9 @@ public class PedidoController {
 	@Autowired
 	private PedidoRepository pedidoRepository;
 
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
+
 	private Pedido ped;
 	private ItemPedido itemPed;
 
@@ -84,17 +92,13 @@ public class PedidoController {
 
 		Anuncio anuncio = anuncioService.findById(codAnuncio);
 
-		/*
-		 * if (carrinhoRepository.findByUsuario(usuario) == null) {
-		 * carrinho.setUsuario(usuario); carrinhoRepository.save(carrinho); } else {
-		 * carrinho = carrinhoRepository.findByUsuario(usuario); }
-		 * 
-		 * itemCarrinho.setAnuncio(anuncio); itemCarrinho.setCarrinho(carrinho);
-		 * itemCarrinho.setQuantidade(quantidade);
-		 */
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		LocalDateTime instante = LocalDateTime.now();
+		String instantePedido = instante.format(formatter);
 
 		pedido.setStatusPedido("AGUARDANDO_PAGAMENTO");
 		pedido.setUsuario(usuario);
+		pedido.setDataPedido(instantePedido);
 		pedidoRepository.save(pedido);
 
 		ped = pedido;
@@ -161,7 +165,8 @@ public class PedidoController {
 
 	// Realizar a compra
 	@PostMapping("/usuario/{cpf}/compra/finalizar")
-	public ModelAndView terminarCompra(@PathVariable("cpf") Long cpf, Pedido pedido, ItemPedido item) {
+	public ModelAndView terminarCompra(@PathVariable("cpf") Long cpf, Pedido pedido, ItemPedido item,
+			Pagamento pagamento, @RequestParam("tipo") String pag) {
 		Usuario usuario = usuarioService.findById(cpf);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/compras");
@@ -188,7 +193,12 @@ public class PedidoController {
 			Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
 			List<ItemCarrinho> itensCarrinho = itemCarrinhoRepository.findByCarrinho(carrinho);
 
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+			LocalDateTime instante = LocalDateTime.now();
+			String instantePedido = instante.format(formatter);
+
 			pedido.setUsuario(usuario);
+			pedido.setDataPedido(instantePedido);
 			pedido.setStatusPedido("PAGAMENTO_EFETUADO");
 			pedidoRepository.save(pedido);
 
@@ -207,6 +217,10 @@ public class PedidoController {
 			itemCarrinhoRepository.deleteAll(itensCarrinho);
 			carrinhoRepository.delete(carrinho);
 		}
+
+		pagamento.setPedido(pedido);
+		pagamento.setTipo(pag);
+		pagamentoRepository.save(pagamento);
 
 		return mv;
 	}

@@ -23,12 +23,11 @@ public class Usuario implements Serializable {
 	private String email;
 	private String celular;
 	private String senha;
-	private String genero;
 
 	// Ligação com tabela cad_produto
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	private List<Cad_Produto> cad_produto = new ArrayList<>();
+	private List<CadProduto> cad_produto = new ArrayList<>();
 
 	// Ligação com tabela endereco
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -77,7 +76,7 @@ public class Usuario implements Serializable {
 
 	}
 
-	public Usuario(Long cpf, String nome, String sobrenome, String email, String celular, String senha, String genero) {
+	public Usuario(Long cpf, String nome, String sobrenome, String email, String celular, String senha) {
 
 		this.cpf = cpf;
 		this.nome = nome;
@@ -85,7 +84,6 @@ public class Usuario implements Serializable {
 		this.email = email;
 		this.celular = celular;
 		this.senha = senha;
-		this.genero = genero;
 	}
 
 	// Getters and Setters pedido
@@ -145,14 +143,6 @@ public class Usuario implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-
-	public String getGenero() {
-		return genero;
-	}
-
-	public void setGenero(String genero) {
-		this.genero = genero;
 	}
 
 	// Metodos

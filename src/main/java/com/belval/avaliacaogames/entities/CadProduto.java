@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Cad_Produto implements Serializable {
+public class CadProduto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -44,10 +44,10 @@ public class Cad_Produto implements Serializable {
 	private Set<ItemPedidoTroca> itens = new HashSet<>();
 
 	// Constructor
-	public Cad_Produto() {
+	public CadProduto() {
 	}
 
-	public Cad_Produto(Long codCadProd, Produto produto, Long quantidade, Usuario usuario, Boolean status) {
+	public CadProduto(Long codCadProd, Produto produto, Long quantidade, Usuario usuario, Boolean status) {
 		super();
 		this.codCadProd = codCadProd;
 		this.produto = produto;
@@ -129,7 +129,7 @@ public class Cad_Produto implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cad_Produto other = (Cad_Produto) obj;
+		CadProduto other = (CadProduto) obj;
 		if (codCadProd == null) {
 			if (other.codCadProd != null)
 				return false;

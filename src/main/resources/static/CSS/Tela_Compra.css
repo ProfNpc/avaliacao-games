@@ -21,3 +21,35 @@ header {
   margin-top: 2em;
   margin-bottom: 2em;
 }
+
+.tab {
+  overflow: hidden;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+}
+
+.tab button {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button.active {
+  background-color: #fff;
+  border-bottom: 2px solid #ccc;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}

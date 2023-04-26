@@ -29,7 +29,7 @@ public class Troca {
 	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "cod_cad_produto")
-	private Cad_Produto cadProduto;
+	private CadProduto cadProduto;
 
 	// Ligação com tabela usuario
 	@ManyToOne
@@ -39,7 +39,7 @@ public class Troca {
 	// Ligação com tabela item_troca
 	@JsonIgnore
 	@OneToMany(mappedBy = "troca", cascade = CascadeType.ALL)
-	private List<Item_Troca> itens_troca = new ArrayList<>();
+	private List<ItemTroca> itens_troca = new ArrayList<>();
 
 	// ligação com tabela imagem
 	@JsonIgnore
@@ -57,7 +57,7 @@ public class Troca {
 	}
 
 	public Troca(Long codTroca, String nomeTroca, String descTroca, Boolean statusTroca, Usuario usuario,
-			Cad_Produto cad_produto, Imagem imagem) {
+			CadProduto cad_produto, Imagem imagem) {
 		super();
 		this.codTroca = codTroca;
 		this.nomeTroca = nomeTroca;
@@ -69,11 +69,11 @@ public class Troca {
 	}
 
 	// Getters and Setters itens_troca
-	public List<Item_Troca> getItens_troca() {
+	public List<ItemTroca> getItens_troca() {
 		return itens_troca;
 	}
 
-	public void setItens_troca(List<Item_Troca> itens_troca) {
+	public void setItens_troca(List<ItemTroca> itens_troca) {
 		this.itens_troca = itens_troca;
 	}
 
@@ -87,11 +87,11 @@ public class Troca {
 	}
 
 	// Getters and Setters cad_produto
-	public Cad_Produto getCad_produto() {
+	public CadProduto getCad_produto() {
 		return cadProduto;
 	}
 
-	public void setCad_produto(Cad_Produto cad_produto) {
+	public void setCad_produto(CadProduto cad_produto) {
 		this.cadProduto = cad_produto;
 	}
 

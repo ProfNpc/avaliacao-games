@@ -38,8 +38,6 @@ public class CarrinhoController {
 	@Autowired
 	private ItemCarrinhoRepository itemCarrinhoRepository;
 
-	// public static List<Anuncio> cartAnuncio = new ArrayList<>();
-
 	// Tela com todos os produtos no carrinho
 	@GetMapping("/usuario/{cpf}/carrinho")
 	public ModelAndView carrinho(@PathVariable("cpf") Long cpf, Model model, Integer quantidade) {

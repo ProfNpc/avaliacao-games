@@ -7,23 +7,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import com.belval.avaliacaogames.entities.Anuncio;
-import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.Comentario;
 import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Imagem;
-import com.belval.avaliacaogames.entities.ItemPedidoTroca;
-import com.belval.avaliacaogames.entities.Item_Troca;
-import com.belval.avaliacaogames.entities.PedidoTroca;
+import com.belval.avaliacaogames.entities.ItemTroca;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
-import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
+import com.belval.avaliacaogames.repositories.CadProdutoRepository;
 import com.belval.avaliacaogames.repositories.ComentarioRepository;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.ImagemRepository;
 import com.belval.avaliacaogames.repositories.ItemPedidoTrocaRepository;
-import com.belval.avaliacaogames.repositories.Item_TrocaRepository;
+import com.belval.avaliacaogames.repositories.ItemTrocaRepository;
 import com.belval.avaliacaogames.repositories.PedidoTrocaRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.repositories.TrocaRepository;
@@ -42,7 +40,7 @@ public class TestConfig implements CommandLineRunner {
 	private EnderecoRepository enderecoRepository;
 
 	@Autowired
-	private Cad_ProdutoRepository cad_produtoRepository;
+	private CadProdutoRepository cad_produtoRepository;
 
 	@Autowired
 	private AnuncioRepository anuncioRepository;
@@ -54,7 +52,7 @@ public class TestConfig implements CommandLineRunner {
 	private TrocaRepository trocaRepository;
 
 	@Autowired
-	private Item_TrocaRepository item_TrocaRepository;
+	private ItemTrocaRepository item_TrocaRepository;
 
 	@Autowired
 	private ImagemRepository imagemRepository;
@@ -68,15 +66,11 @@ public class TestConfig implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Usuario u1 = new Usuario(89854665412L, "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456",
-				"Masculino");
-		Usuario u2 = new Usuario(47898763225L, "Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456",
-				"Masculino");
-		Usuario u3 = new Usuario(12365478932L, "Luiz", "Camargo", "luiz@gmail.com", "11978894456", "123456",
-				"Masculino");
-		Usuario u4 = new Usuario(78965432112L, "Arthur", "Felipe", "arthur@gmail.com", "1194563214", "123456",
-				"Masculino");
-		Usuario u5 = new Usuario(123L, "Testador", "adm", "adm@gmail.com", "1194563123", "123456", "Masculino");
+		Usuario u1 = new Usuario(89854665412L, "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456");
+		Usuario u2 = new Usuario(47898763225L, "Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456");
+		Usuario u3 = new Usuario(12365478932L, "Luiz", "Camargo", "luiz@gmail.com", "11978894456", "123456");
+		Usuario u4 = new Usuario(78965432112L, "Arthur", "Felipe", "arthur@gmail.com", "1194563214", "123456");
+		Usuario u5 = new Usuario(123L, "Testador", "adm", "adm@gmail.com", "1194563123", "123456");
 
 		Endereco e1 = new Endereco(1L, "06634080", 222, "Avenida Comandante", "Km 18", "Osasco", "São Paulo", "Brasil",
 				u2);
@@ -174,17 +168,17 @@ public class TestConfig implements CommandLineRunner {
 		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
 
-		Cad_Produto cp1 = new Cad_Produto(1L, p2, 5L, u1, true);
-		Cad_Produto cp2 = new Cad_Produto(2L, p1, 2L, u1, true);
-		Cad_Produto cp3 = new Cad_Produto(3L, p3, 6L, u2, true);
-		Cad_Produto cp4 = new Cad_Produto(4L, p5, 1L, u3, true);
-		Cad_Produto cp5 = new Cad_Produto(5L, p4, 9L, u4, true);
-		Cad_Produto cp6 = new Cad_Produto(6L, p7, 1L, u1, true);
-		Cad_Produto cp7 = new Cad_Produto(7L, p8, 2L, u3, true);
-		Cad_Produto cp8 = new Cad_Produto(8L, p8, 2L, u2, true);
-		Cad_Produto cp9 = new Cad_Produto(9L, p8, 2L, u2, true);
-		Cad_Produto cp10 = new Cad_Produto(10L, p9, 2L, u2, true);
-		Cad_Produto cp11 = new Cad_Produto(11L, p5, 1L, u1, true);
+		CadProduto cp1 = new CadProduto(1L, p2, 5L, u1, true);
+		CadProduto cp2 = new CadProduto(2L, p1, 2L, u1, true);
+		CadProduto cp3 = new CadProduto(3L, p3, 6L, u2, true);
+		CadProduto cp4 = new CadProduto(4L, p5, 1L, u3, true);
+		CadProduto cp5 = new CadProduto(5L, p4, 9L, u4, true);
+		CadProduto cp6 = new CadProduto(6L, p7, 1L, u1, true);
+		CadProduto cp7 = new CadProduto(7L, p8, 2L, u3, true);
+		CadProduto cp8 = new CadProduto(8L, p8, 2L, u2, true);
+		CadProduto cp9 = new CadProduto(9L, p8, 2L, u2, true);
+		CadProduto cp10 = new CadProduto(10L, p9, 2L, u2, true);
+		CadProduto cp11 = new CadProduto(11L, p5, 1L, u1, true);
 
 		cad_produtoRepository.saveAll(Arrays.asList(cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8));
 
@@ -229,32 +223,36 @@ public class TestConfig implements CommandLineRunner {
 
 		trocaRepository.saveAll(Arrays.asList(t1, t2, t3, t4, t5, t6));
 
-		Item_Troca it1 = new Item_Troca(1L, t1, p9);
-		Item_Troca it2 = new Item_Troca(2L, t1, p8);
-		Item_Troca it3 = new Item_Troca(3L, t2, p5);
-		Item_Troca it4 = new Item_Troca(4L, t3, p6);
-		Item_Troca it5 = new Item_Troca(5L, t3, p1);
-		Item_Troca it6 = new Item_Troca(6L, t3, p2);
-		Item_Troca it7 = new Item_Troca(7L, t4, p7);
-		Item_Troca it8 = new Item_Troca(8L, t5, p1);
-		Item_Troca it9 = new Item_Troca(9L, t6, p2);
-		Item_Troca it10 = new Item_Troca(10L, t6, p7);
-		Item_Troca it11 = new Item_Troca(11L, t5, p10);
+		ItemTroca it1 = new ItemTroca(1L, t1, p9);
+		ItemTroca it2 = new ItemTroca(2L, t1, p8);
+		ItemTroca it3 = new ItemTroca(3L, t2, p5);
+		ItemTroca it4 = new ItemTroca(4L, t3, p6);
+		ItemTroca it5 = new ItemTroca(5L, t3, p1);
+		ItemTroca it6 = new ItemTroca(6L, t3, p2);
+		ItemTroca it7 = new ItemTroca(7L, t4, p7);
+		ItemTroca it8 = new ItemTroca(8L, t5, p1);
+		ItemTroca it9 = new ItemTroca(9L, t6, p2);
+		ItemTroca it10 = new ItemTroca(10L, t6, p7);
+		ItemTroca it11 = new ItemTroca(11L, t5, p10);
 
-		/*item_TrocaRepository.saveAll(Arrays.asList(it1, it2, it3, it4, it5, it6, it7, it8, it9, it10, it11));
+		item_TrocaRepository.saveAll(Arrays.asList(it1, it2, it3, it4, it5, it6, it7, it8, it9, it10, it11));
 
-		PedidoTroca pt1 = new PedidoTroca(1L, "10/04/2023", "A CAMINHO", "TRANSPORTADORA", u2, t1);
-		PedidoTroca pt2 = new PedidoTroca(2L, "12/04/2023", "TRANSPORTADORA", "TRANSPORTADORA", u1, t2);
-
-		pedidoTrocaRepository.saveAll(Arrays.asList(pt1, pt2));
-
-		ItemPedidoTroca ipt1 = new ItemPedidoTroca(pt1, cp1, u1);
-		ItemPedidoTroca ipt2 = new ItemPedidoTroca(pt1, cp9, u2);
-		ItemPedidoTroca ipt3 = new ItemPedidoTroca(pt1, cp10, u2);
-		ItemPedidoTroca ipt4 = new ItemPedidoTroca(pt2, cp3, u2);
-		ItemPedidoTroca ipt5 = new ItemPedidoTroca(pt2, cp11, u1);
-
-		itemPedidoTrocaRepository.saveAll(Arrays.asList(ipt1, ipt2, ipt3, ipt4, ipt5));*/
+		/*
+		 * PedidoTroca pt1 = new PedidoTroca(1L, "10/04/2023", "A CAMINHO",
+		 * "TRANSPORTADORA", u2, t1); PedidoTroca pt2 = new PedidoTroca(2L,
+		 * "12/04/2023", "TRANSPORTADORA", "TRANSPORTADORA", u1, t2);
+		 * 
+		 * pedidoTrocaRepository.saveAll(Arrays.asList(pt1, pt2));
+		 * 
+		 * ItemPedidoTroca ipt1 = new ItemPedidoTroca(pt1, cp1, u1); ItemPedidoTroca
+		 * ipt2 = new ItemPedidoTroca(pt1, cp9, u2); ItemPedidoTroca ipt3 = new
+		 * ItemPedidoTroca(pt1, cp10, u2); ItemPedidoTroca ipt4 = new
+		 * ItemPedidoTroca(pt2, cp3, u2); ItemPedidoTroca ipt5 = new
+		 * ItemPedidoTroca(pt2, cp11, u1);
+		 * 
+		 * itemPedidoTrocaRepository.saveAll(Arrays.asList(ipt1, ipt2, ipt3, ipt4,
+		 * ipt5));
+		 */
 
 	}
 

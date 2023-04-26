@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,21 +18,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.belval.avaliacaogames.entities.Cad_Produto;
+import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.Imagem;
-import com.belval.avaliacaogames.entities.Item_Troca;
+import com.belval.avaliacaogames.entities.ItemPedidoTroca;
+import com.belval.avaliacaogames.entities.ItemTroca;
 import com.belval.avaliacaogames.entities.PedidoTroca;
 import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
-import com.belval.avaliacaogames.repositories.Cad_ProdutoRepository;
-import com.belval.avaliacaogames.repositories.Item_TrocaRepository;
+import com.belval.avaliacaogames.repositories.CadProdutoRepository;
+import com.belval.avaliacaogames.repositories.ItemPedidoTrocaRepository;
+import com.belval.avaliacaogames.repositories.ItemTrocaRepository;
 import com.belval.avaliacaogames.repositories.PedidoTrocaRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.repositories.TrocaRepository;
-import com.belval.avaliacaogames.services.Cad_ProdutoService;
+import com.belval.avaliacaogames.services.CadProdutoService;
 import com.belval.avaliacaogames.services.ImagemService;
-import com.belval.avaliacaogames.services.Item_TrocaService;
+import com.belval.avaliacaogames.services.ItemTrocaService;
 import com.belval.avaliacaogames.services.ProdutoService;
 import com.belval.avaliacaogames.services.TrocaService;
 import com.belval.avaliacaogames.services.UsuarioService;
@@ -45,13 +49,13 @@ public class TrocaController {
 	private UsuarioService usuarioService;
 
 	@Autowired
-	private Cad_ProdutoService cad_ProdutoService;
+	private CadProdutoService cad_ProdutoService;
 
 	@Autowired
 	private ProdutoService produtoService;
 
 	@Autowired
-	private Item_TrocaService item_TrocaService;
+	private ItemTrocaService item_TrocaService;
 
 	@Autowired
 	private ImagemService imagemService;
@@ -63,19 +67,22 @@ public class TrocaController {
 	private ProdutoRepository produtoRepository;
 
 	@Autowired
-	private Item_TrocaRepository item_TrocaRepository;
+	private ItemTrocaRepository item_TrocaRepository;
 
 	@Autowired
-	private Cad_ProdutoRepository cad_ProdutoRepository;
-	
+	private CadProdutoRepository cad_ProdutoRepository;
+
 	@Autowired
 	private PedidoTrocaRepository pedidoTrocaRepository;
-	
+
+	@Autowired
+	private ItemPedidoTrocaRepository itemPedidoTrocaRepository;
+
 	// Formatador de data e hora
-	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
 	// public static Troca troca;
-	public List<Item_Troca> itens_troca = new ArrayList<>();
+	public List<ItemTroca> itens_troca = new ArrayList<>();
 
 	public Troca trocas;
 
@@ -104,17 +111,17 @@ public class TrocaController {
 		Usuario usuario = usuarioService.findById(troca.getCodUsuario());
 		Usuario usuarioAtual = usuarioService.findById(cpf);
 
-		List<Item_Troca> itens_troca = item_TrocaService.findByTroca(troca);
+		List<ItemTroca> itens_troca = item_TrocaService.findByTroca(troca);
 
 		// Cria a lista dos produtos que o usuário tem
 		List<Produto> produtosUsuario = new ArrayList<Produto>();
-		for (Cad_Produto cad : cad_ProdutoService.findByUsuario(usuarioAtual)) {
+		for (CadProduto cad : cad_ProdutoService.findByUsuario(usuarioAtual)) {
 			produtosUsuario.add(cad.getProduto());
 		}
 
 		// Cria a lista dos produtos da troca
 		List<Produto> produtosTroca = new ArrayList<Produto>();
-		for (Item_Troca item : itens_troca) {
+		for (ItemTroca item : itens_troca) {
 			produtosTroca.add(item.getProduto());
 		}
 
@@ -152,7 +159,7 @@ public class TrocaController {
 			Troca troca) {
 
 		Usuario usuario = usuarioService.findById(cpf);
-		Cad_Produto cad_produto = cad_ProdutoService.findById(codCadProd);
+		CadProduto cad_produto = cad_ProdutoService.findById(codCadProd);
 
 		if (trocaService.findByCadProduto(cad_produto) == null) {
 			troca.setUsuario(usuario);
@@ -182,10 +189,10 @@ public class TrocaController {
 	// Adicionar produto para trocar
 	@PostMapping("/usuario/{cpf}/trocar/{codCadProd}/adicionar/{codProd}")
 	public ModelAndView adicionarItem_Troca(@PathVariable("cpf") Long cpf, @PathVariable("codProd") Long codProd,
-			@PathVariable("codCadProd") Long codCadProd, Item_Troca item_troca) {
+			@PathVariable("codCadProd") Long codCadProd, ItemTroca item_troca) {
 
 		Produto produto = produtoService.findById(codProd);
-		Cad_Produto cadProduto = cad_ProdutoService.findById(codCadProd);
+		CadProduto cadProduto = cad_ProdutoService.findById(codCadProd);
 		Troca troca = trocaService.findByCadProduto(cadProduto);
 
 		if (item_TrocaService.findByProdutoAndTroca(produto, troca) == null) {
@@ -195,7 +202,7 @@ public class TrocaController {
 			item_TrocaRepository.save(item_troca);
 		}
 
-		List<Item_Troca> itens = item_TrocaService.findByTroca(troca);
+		List<ItemTroca> itens = item_TrocaService.findByTroca(troca);
 		ModelAndView mv = new ModelAndView("troca/troca-pesquisado");
 		mv.addObject("itens", itens);
 
@@ -207,9 +214,9 @@ public class TrocaController {
 	public String cadastrarTroca(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd,
 			Model model) {
 
-		Cad_Produto cad_produto = cad_ProdutoService.findById(codCadProd);
+		CadProduto cad_produto = cad_ProdutoService.findById(codCadProd);
 		Troca troca = trocaService.findByCadProduto(cad_produto);
-		List<Item_Troca> itens = item_TrocaService.findByTroca(troca);
+		List<ItemTroca> itens = item_TrocaService.findByTroca(troca);
 
 		model.addAttribute("cad_produto", cad_produto);
 		model.addAttribute("itens", itens);
@@ -224,7 +231,7 @@ public class TrocaController {
 
 		System.out.println("Cadastro");
 
-		Cad_Produto cad_produto = cad_ProdutoService.findById(codCadProd);
+		CadProduto cad_produto = cad_ProdutoService.findById(codCadProd);
 
 		Troca novaTroca = trocaService.findByCadProduto(cad_produto);
 		novaTroca.setNomeTroca(troca.getNomeTroca());
@@ -253,7 +260,7 @@ public class TrocaController {
 
 		Troca troca = trocaService.findById(codTroca);
 
-		Cad_Produto cadProduto = cad_ProdutoService.findById(troca.getCad_produto().getCodCadProd());
+		CadProduto cadProduto = cad_ProdutoService.findById(troca.getCad_produto().getCodCadProd());
 
 		trocaRepository.deleteById(codTroca);
 		cad_ProdutoRepository.delete(cadProduto);
@@ -267,7 +274,7 @@ public class TrocaController {
 	public ModelAndView finalizarTroca(@PathVariable("cpf") Long cpf, @PathVariable("codTroca") Long codTroca) {
 
 		Troca troca = trocaService.findById(codTroca);
-		List<Item_Troca> itensTroca = item_TrocaRepository.findByTroca(troca);
+		List<ItemTroca> itensTroca = item_TrocaRepository.findByTroca(troca);
 
 		ModelAndView mv = new ModelAndView("troca/confirmar-troca");
 
@@ -283,25 +290,57 @@ public class TrocaController {
 		// Adquire o usuário, a troca e os itens da troca
 		Usuario usuario = usuarioService.findById(cpf);
 		Troca troca = trocaService.findById(codTroca);
-		List<Item_Troca> itensTroca = item_TrocaRepository.findByTroca(troca);
+		List<ItemTroca> itensTroca = item_TrocaRepository.findByTroca(troca);
 
 		// Cria PedidoTroca e define a data
 		PedidoTroca pedidoTroca = new PedidoTroca();
 		LocalDateTime now = LocalDateTime.now();
 		pedidoTroca.setDataPedidoTroca(dtf.format(now));
-		
+		pedidoTroca.setStatusRemetente("PREPARANDO");
+		pedidoTroca.setStatusDestinatario("PREPARANDO");
+		pedidoTroca.setNomeTroca(troca.getNomeTroca());
+		pedidoTroca.setImagem(troca.getImagem());
+		pedidoTroca = pedidoTrocaRepository.save(pedidoTroca);
+
+		// Adiciona o set de ItensPedidoTroca
+		Set<ItemPedidoTroca> itens = new HashSet<>();
+
+		System.out.println("Cad : " + pedidoTroca.getCodPedidoTroca());
+
+		ItemPedidoTroca iptUsuario = new ItemPedidoTroca();
+		iptUsuario.setUsuario(usuario);
+		iptUsuario.setCad_Produto(troca.getCad_produto());
+		iptUsuario.setPedido(pedidoTroca);
+		iptUsuario = itemPedidoTrocaRepository.save(iptUsuario);
+		itens.add(iptUsuario);
+
+		for (ItemTroca item_Troca : troca.getItens_troca()) {
+			ItemPedidoTroca iptAnunciante = new ItemPedidoTroca();
+			iptAnunciante.setUsuario(troca.getUsuario());
+			iptAnunciante
+					.setCad_Produto(cad_ProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()));
+			iptAnunciante.setPedido(pedidoTroca);
+			iptAnunciante = itemPedidoTrocaRepository.save(iptAnunciante);
+			itens.add(iptAnunciante);
+		}
+		pedidoTroca.setItens(itens);
+
 		// Define outros atributos
 		pedidoTroca.setUsuario(usuario);
 		pedidoTroca.setStatusDestinatario("PREPARANDO");
 		pedidoTroca.setStatusRemetente("PREPARANDO");
-		
+		// pedidoTroca.setTroca(troca);
+
 		// Salva no banco de dados
 		pedidoTrocaRepository.save(pedidoTroca);
+
+		trocaRepository.delete(troca);
 
 		// Cria o modelo da página e retorna
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
 		mv.addObject("itensTroca", itensTroca);
 		mv.addObject("troca", troca);
 		return mv;
+
 	}
 }

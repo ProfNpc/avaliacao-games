@@ -27,15 +27,6 @@
 					</ul>
 				</div>
 
-				<!-- Carrinho -->
-				<div class="nav-list">
-					<ul>
-						<li class="car nav-item">
-							<a href=""><img src="/imagens/CarrinhoCompra.png" alt="" /></a>
-						</li>
-					</ul>
-				</div>
-
 				<div class="login-button">
 					<button><a href="/usuario/cadastrar">Entrar</a></button>
 				</div>
@@ -70,7 +61,7 @@
 				</p>
 			</div>
 			<div class="search">
-				<form th:action="@{/usuario/{cpf}/pesquisar (cpf=${cpf})}" method="post">
+				<form th:action="@{/usuario/cadastrar}" method="get">
 					<input type="text" name="nomeAnuncio" placeholder="O que procura?" />
 					<input type="submit" value="Pesquisar" />
 				</form>
@@ -113,7 +104,7 @@
 		<!-- Jogos em ofertas -->
 		<div class="row row-cols-2 row-cols-md-5 g-4 margin-ofertas">
 			<div class="col" th:each="anuncios: ${anuncios}">
-				<a href="">
+				<a th:href="@{/usuario/cadastrar}">
 					<div class="card h-100">
 						<img th:src="${anuncios.imagem.url}" class="card-img-top" alt="...">
 						<div class="card-body">
@@ -129,9 +120,9 @@
 		<!-- Titulo lista de jogos -->
 		<div class="title">Trocas</div>
 		<!-- Lista de jogos -->
-		<div class="row row-cols-1 row-cols-md-2 g-4 margin img-list wid">
+		<div class="row row-cols-2 row-cols-md-5 g-4 margin img-list wid">
 			<div class="col" th:each="trocas: ${trocas}">
-				<a th:href="@{/usuario/{cpf}/produto/{codTroca} (cpf=${cpf}, codTroca=${trocas.codTroca})}">
+				<a th:href="@{/usuario/cadastrar}">
 					<div class="card h-100">
 						<img th:src="${trocas.cad_produto.produto.imagem.url}" class="card-img-top" alt="...">
 						<div class="card-body">
