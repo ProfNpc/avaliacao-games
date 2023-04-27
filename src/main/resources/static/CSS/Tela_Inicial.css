@@ -143,23 +143,27 @@ header {
 
 /* Titulo de serviços */
 .title {
-  text-align: center;
   font-weight: bold;
   font-size: 3em;
   color: white;
-  margin-bottom: 2%;
-  margin-top: 2%;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
-/* Jogos em ofertas */
-.margin-ofertas {
-  margin-left: 10%;
-  margin-right: 10%;
+/* Texto e Button em linha */
+.container-mais {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container {
+  margin-left: 2em;
 }
 
 .col a {
-	text-decoration: none;
-	color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Jogos em listas */
