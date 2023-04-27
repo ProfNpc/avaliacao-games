@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.Imagem;
 import com.belval.avaliacaogames.entities.ItemPedidoTroca;
