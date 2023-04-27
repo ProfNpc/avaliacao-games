@@ -15,17 +15,20 @@
 	<div class="container-anuncio">
 		<div class="row row-cols-2 row-cols-md-5 g-4">
 			<div class="col" th:each="anuncio: ${anuncios}" th:object="${anuncio}">
-				<div class="card h-100">
-					<img th:src="*{imagem.url}" class="card-img-top" alt="Imagem do produto" />
-					<div class="card-body">
-						<h5 class="card-title">
-							<span th:text="*{nomeAnuncio}"></span>
-						</h5>
-						<p class="card-text">
-							<span th:text="*{valorAnuncio}"></span>
-						</p>
+				<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=*{codAnuncio})}"
+					style="text-decoration: none;">
+					<div class="card h-100">
+						<img th:src="*{imagem.url}" class="card-img-top" alt="Imagem do produto" />
+						<div class="card-body">
+							<h5 class="card-title">
+								<span th:text="*{nomeAnuncio}"></span>
+							</h5>
+							<p class="card-text">
+								<span th:text="*{valorAnuncio}"></span>
+							</p>
+						</div>
 					</div>
-				</div>
+				</a>
 			</div>
 		</div>
 	</div>

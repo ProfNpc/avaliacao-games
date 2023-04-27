@@ -345,13 +345,13 @@ public class TrocaController {
 
 	}
 
-	// Abre a tela ver mais anuncios
+	// Abre a tela ver mais trocas
 	@GetMapping("/usuario/{cpf}/mais/trocas")
 	public String verMaisTrocas(@PathVariable("cpf") Long cpf, Model model) {
 
 		List<Troca> trocas = trocaService.findAllAnunciosExcetoUsuario(cpf);
 		model.addAttribute("trocas", trocas);
 
-		return "anuncio/mais-anuncios";
+		return "troca/mais-trocas";
 	}
 }

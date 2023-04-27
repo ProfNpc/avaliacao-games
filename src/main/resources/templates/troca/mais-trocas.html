@@ -15,7 +15,7 @@
 	<div class="container-troca">
 		<div class="row row-cols-2 row-cols-md-5 g-4">
 			<div class="col" th:each="troca: ${trocas}" th:object="${troca}">
-				<a th:href="@{/usuario/{cpf}/troca/{codTroca} (cpf=${cpf}, codTroca=*{codTroca})}">
+				<a th:href="@{/usuario/{cpf}/troca/{codTroca} (cpf=${cpf}, codTroca=*{codTroca})}" style="text-decoration: none;">
 					<div class="card h-100">
 						<img th:src="*{cad_produto.produto.imagem.url}" class="card-img-top" alt="Imagem do produto" />
 						<div class="card-body">
