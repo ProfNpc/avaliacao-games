@@ -103,7 +103,15 @@
 		</div>
 
 		<!-- Titulo oferta -->
-		<div class="title" id="oferta">Ofertas</div>
+		<div class="container-mais">
+			<div class="text-container">
+				<h1 class="text-mais title">Ofertas</h1>
+			</div>
+
+			<div class="button-container">
+				<a class="btn btn-primary" href="#" role="button">Ver mais</a>
+			</div>
+		</div>
 		<!-- Jogos em ofertas -->
 		<div id="ofertas" class="container">
 			<div th:each="anuncio: ${anuncios}" th:object="${anuncio}">
@@ -120,7 +128,15 @@
 		</div>
 
 		<!-- Titulo lista de jogos -->
-		<div class="title">Trocas</div>
+		<div class="container-mais">
+			<div class="text-container">
+				<h1 class="text-mais title">Trocas</h1>
+			</div>
+
+			<div class="button-container">
+				<a class="btn btn-primary" href="#" role="button">Ver mais</a>
+			</div>
+		</div>
 		<!-- Lista de jogos -->
 		<div id="trocas" class="container">
 			<div th:each="troca: ${trocas}" th:object="${troca}">
@@ -135,33 +151,6 @@
 				</a>
 			</div>
 		</div>
-
-		<!-- Titulo de serviços -->
-		<!-- <div class="title" id="servi">Serviços</div> -->
-		<!-- Botões de serviços -->
-		<!-- <div class="serv">
-        <ul> -->
-		<!-- COMPRA -->
-		<!-- <li>
-            <a href=""><img src="../imagens/COMPRA.jpg" alt="" /></a>
-          </li> -->
-		<!-- VENDA -->
-		<!-- <li>
-            <a href=""><img src="../imagens/VENDA.jpg" alt="" /></a>
-          </li> -->
-		<!-- TROCA -->
-		<!-- <li>
-            <a href=""><img src="../imagens/TROCA.jpg" alt="" /></a>
-          </li>
-        </ul> -->
-		<!-- COMUNIDADE -->
-		<!-- <ul>
-          <li>
-            <a href=""><img src="../imagens/COMUNIDADE.jpg" alt="" /></a>
-          </li>
-        </ul>
-      </div>
-    </main> -->
 
 		<footer>
 			<section class="backColor">
