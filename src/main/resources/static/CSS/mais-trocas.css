@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+/*Body*/
+body {
+  background-color: rgb(18, 18, 18);
+}
+
+/*Header*/
+header {
+  background-color: #24252a;
+}
+
+.container-troca {
+  margin: 2em;
+}

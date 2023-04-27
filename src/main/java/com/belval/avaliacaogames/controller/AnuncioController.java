@@ -95,6 +95,16 @@ public class AnuncioController {
 		return mv;
 	}
 
+	// Abre a tela ver mais anuncios
+	@GetMapping("/usuario/{cpf}/mais/anuncios")
+	public String verMaisAnuncios(@PathVariable("cpf") Long cpf, Model model) {
+
+		List<Anuncio> anuncios = anuncioService.findAllAnunciosExcetoUsuario(cpf);
+		model.addAttribute("anuncios", anuncios);
+
+		return "anuncio/mais-anuncios";
+	}
+
 	// Deletar anuncio do banco de dados
 	@PostMapping("/usuario/{cpf}/anuncio/{codAnuncio}/deletar")
 	public ModelAndView deletarAnuncio(@PathVariable("cpf") Long cpf, @PathVariable("codAnuncio") Long codAnuncio) {

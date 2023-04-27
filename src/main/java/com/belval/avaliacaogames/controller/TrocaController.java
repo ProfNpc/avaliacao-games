@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.belval.avaliacaogames.entities.Anuncio;
 import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.Imagem;
 import com.belval.avaliacaogames.entities.ItemPedidoTroca;
@@ -342,5 +343,15 @@ public class TrocaController {
 		mv.addObject("troca", troca);
 		return mv;
 
+	}
+
+	// Abre a tela ver mais anuncios
+	@GetMapping("/usuario/{cpf}/mais/trocas")
+	public String verMaisTrocas(@PathVariable("cpf") Long cpf, Model model) {
+
+		List<Troca> trocas = trocaService.findAllAnunciosExcetoUsuario(cpf);
+		model.addAttribute("trocas", trocas);
+
+		return "anuncio/mais-anuncios";
 	}
 }
