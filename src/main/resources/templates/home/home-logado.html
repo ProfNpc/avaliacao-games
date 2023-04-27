@@ -133,13 +133,14 @@
 		<!-- Jogos em ofertas -->
 		<div id="ofertas" class="container">
 			<div th:each="anuncio: ${anuncios}" th:object="${anuncio}">
-				<a href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=*{codAnuncio})}" style="text-decoration: none; color: black;">
+				<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=*{codAnuncio})}"
+					style="text-decoration: none; color: black;">
 					<div class="card" style="width: 18rem;">
-		  				<img th:src="*{imagem.url}" class="card-img-top" alt="...">
-		  				<div class="card-body">
-		    				<h5 class="card-title"><span th:text="*{nomeAnuncio}"></span></h5>
+						<img th:src="*{imagem.url}" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title"><span th:text="*{nomeAnuncio}"></span></h5>
 							<p class="card-text">R$ <span th:text="*{valorAnuncio}"></span></p>
-		  				</div>
+						</div>
 					</div>
 				</a>
 			</div>
@@ -203,7 +204,7 @@
 		</div>
 		
 		-->
-		
+
 		<!--
 		<div class="col" th:each="anuncios: ${anuncios}">
 			<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncios.codAnuncio})}">
@@ -222,19 +223,22 @@
 		<!-- Titulo lista de jogos -->
 		<div class="title">Trocas</div>
 		<!-- Lista de jogos -->
-		<div class="row row-cols-2 row-cols-md-5 g-4 margin img-list wid">
-			<div class="col" th:each="trocas: ${trocas}">
-				<a th:href="@{/usuario/{cpf}/troca/{codTroca} (cpf=${cpf}, codTroca=${trocas.codTroca})}">
-					<div class="card h-100">
-						<img th:src="${trocas.cad_produto.produto.imagem.url}" class="card-img-top" alt="...">
+		
+		<div id="trocas" class="container">
+			<div th:each="troca: ${trocas}" th:object="${troca}">
+				<a th:href="@{/usuario/{cpf}/troca/{codTroca} (cpf=${cpf}, codTroca=*{codTroca})}"
+					style="text-decoration: none; color: black;">
+					<div class="card" style="width: 20rem;">
+						<img th:src="*{cad_produto.produto.imagem.url}" class="card-img-top" alt="...">
 						<div class="card-body">
-							<h5 class="card-title"><span th:text="${trocas.nomeTroca}"></span></h5>
-							<p class="card-text"><span th:text="${trocas.descTroca}"></p>
+							<h5 class="card-title"><span th:text="*{nomeTroca}"></span></h5>
+							<!-- <p class="card-text"><span th:text="*{descTroca}"></p> -->
 						</div>
 					</div>
 				</a>
 			</div>
 		</div>
+	
 
 		<!-- Titulo de serviços -->
 		<!-- <div class="title" id="servi">Serviços</div> -->
@@ -292,7 +296,7 @@
 		<script src="/JS/jquery-3.6.4.js"></script>
 		<script src="/slick/slick.min.js"></script>
 		<script src="/JS/Tela_Inicial.js"></script>
-		
+
 		<script src="/JS/NavBar.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
