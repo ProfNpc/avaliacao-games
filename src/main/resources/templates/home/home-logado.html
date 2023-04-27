@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="../CSS/Tela_Inicial.css" />
 	<link rel="stylesheet" href="/CSS/NavBar.css">
+	<link rel="stylesheet" href="/slick/slick.css">
+	<link rel="stylesheet" href="/slick/slick-theme.css">
 
 	<title>Pacifier</title>
 </head>
@@ -129,7 +131,21 @@
 		<!-- Titulo oferta -->
 		<div class="title" id="oferta">Ofertas</div>
 		<!-- Jogos em ofertas -->
-			
+		<div id="ofertas" class="container">
+			<div th:each="anuncio: ${anuncios}" th:object="${anuncio}">
+				<a href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=*{codAnuncio})}" style="text-decoration: none; color: black;">
+					<div class="card" style="width: 18rem;">
+		  				<img th:src="*{imagem.url}" class="card-img-top" alt="...">
+		  				<div class="card-body">
+		    				<h5 class="card-title"><span th:text="*{nomeAnuncio}"></span></h5>
+							<p class="card-text">R$ <span th:text="*{valorAnuncio}"></span></p>
+		  				</div>
+					</div>
+				</a>
+			</div>
+		</div>
+		<!--
+		
 		<div id="carouselExample" class="carousel slide w-100 g-4">
 			<div class="carousel-inner" th:each="i: ${#numbers.sequence(0, #lists.size(anuncios)/3)}">
 				
@@ -185,6 +201,8 @@
 		    	<span class="visually-hidden">Next</span>
 		  	</button>
 		</div>
+		
+		-->
 		
 		<!--
 		<div class="col" th:each="anuncios: ${anuncios}">
@@ -271,6 +289,10 @@
 				</div>
 			</section>
 		</footer>
+		<script src="/JS/jquery-3.6.4.js"></script>
+		<script src="/slick/slick.min.js"></script>
+		<script src="/JS/Tela_Inicial.js"></script>
+		
 		<script src="/JS/NavBar.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
