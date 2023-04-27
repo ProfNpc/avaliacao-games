@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.belval.avaliacaogames.entities.CadProduto;
+import com.belval.avaliacaogames.entities.Endereco;
 import com.belval.avaliacaogames.entities.Imagem;
 import com.belval.avaliacaogames.entities.ItemPedidoTroca;
 import com.belval.avaliacaogames.entities.ItemTroca;
@@ -33,6 +34,7 @@ import com.belval.avaliacaogames.repositories.PedidoTrocaRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.repositories.TrocaRepository;
 import com.belval.avaliacaogames.services.CadProdutoService;
+import com.belval.avaliacaogames.services.EnderecoService;
 import com.belval.avaliacaogames.services.ImagemService;
 import com.belval.avaliacaogames.services.ItemTrocaService;
 import com.belval.avaliacaogames.services.ProdutoService;
@@ -77,6 +79,9 @@ public class TrocaController {
 
 	@Autowired
 	private ItemPedidoTrocaRepository itemPedidoTrocaRepository;
+	
+	@Autowired
+	private EnderecoService enderecoService;
 
 	// Formatador de data e hora
 	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -275,11 +280,24 @@ public class TrocaController {
 
 		Troca troca = trocaService.findById(codTroca);
 		List<ItemTroca> itensTroca = item_TrocaRepository.findByTroca(troca);
+		
+		// Montar strings de endereço
+		Endereco enderecoDest = enderecoService.findByUsuario(troca.getUsuario());
+		String enderecoDestString = enderecoDest.getRuaEnd() + ", " + enderecoDest.getNumEnd() + ", "
+				+ enderecoDest.getBairroEnd() + ", " + enderecoDest.getCidadeEnd() + ", " 
+				+ enderecoDest.getEstadoEnd() + ", " + enderecoDest.getPaisEnd();
+		
+		Endereco enderecoRem = enderecoService.findByUsuario(usuarioService.findById(cpf));
+		String enderecoRemString = enderecoRem.getRuaEnd() + ", " + enderecoRem.getNumEnd() + ", "
+				+ enderecoRem.getBairroEnd() + ", " + enderecoRem.getCidadeEnd() + ", " 
+				+ enderecoRem.getEstadoEnd() + ", " + enderecoRem.getPaisEnd();
 
 		ModelAndView mv = new ModelAndView("troca/confirmar-troca");
 
 		mv.addObject("itensTroca", itensTroca);
 		mv.addObject("troca", troca);
+		mv.addObject("enderecoDest", enderecoDestString);
+		mv.addObject("enderecoRem", enderecoRemString);
 
 		return mv;
 	}
