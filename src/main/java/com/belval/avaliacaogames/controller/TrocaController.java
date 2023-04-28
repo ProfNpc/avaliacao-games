@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import com.belval.avaliacaogames.entities.Produto;
 import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.CadProdutoRepository;
+import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.ItemPedidoTrocaRepository;
 import com.belval.avaliacaogames.repositories.ItemTrocaRepository;
 import com.belval.avaliacaogames.repositories.PedidoTrocaRepository;
@@ -82,6 +84,9 @@ public class TrocaController {
 	
 	@Autowired
 	private EnderecoService enderecoService;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 
 	// Formatador de data e hora
 	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -281,6 +286,17 @@ public class TrocaController {
 		Troca troca = trocaService.findById(codTroca);
 		List<ItemTroca> itensTroca = item_TrocaRepository.findByTroca(troca);
 		
+		// Verifica se o usuário tem um endereço cadastrado
+		Usuario usuario = usuarioService.findById(cpf);
+		Optional<Endereco> obj = enderecoRepository.findByUsuario(usuario);
+		if (!obj.isPresent()) {
+			ModelAndView mv = new ModelAndView("usuario/perfil-geral");
+			mv.addObject("alerta", "Cadastre seu endereço antes de finalizar a troca");
+			mv.addObject("usuario", usuario);
+			mv.addObject("endereco", enderecoService.findByUsuario(usuario));
+			return mv;
+		}
+		
 		// Montar strings de endereço
 		Endereco enderecoDest = enderecoService.findByUsuario(troca.getUsuario());
 		String enderecoDestString = enderecoDest.getRuaEnd() + ", " + enderecoDest.getNumEnd() + ", "
@@ -352,7 +368,13 @@ public class TrocaController {
 		// Salva no banco de dados
 		pedidoTrocaRepository.save(pedidoTroca);
 
+		// Deleta a troca (pelo menos era pra fazer isso)
 		trocaRepository.delete(troca);
+		if (!trocaRepository.findById(codTroca).isPresent()) {
+			System.out.println("Sucesso");
+		} else {
+			System.out.println("Falhou");
+		}
 
 		// Cria o modelo da página e retorna
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");

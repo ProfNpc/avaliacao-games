@@ -95,6 +95,10 @@
 		</div>
 	</header>
 	<main>
+		<div id="alerta" class="alert" 
+          th:style="${alerta == null} ? 'display: none' : 'display: block'" 
+          th:utext="${alerta}">
+	  	</div>
 		<div class="container-ever">
 			<div class="title">
 				<h1>Configurações gerais</h1>
