@@ -87,7 +87,7 @@
 			<!-- Pesquisar -->
 			<div class="pesquisar">
 				<form th:action="@{/usuario/{cpf}/biblioteca/adicionar (cpf=${cpf})}" method="post">
-					<input type="text" placeholder="Pesquisar" name="nomeProd" />
+					<input type="text" placeholder="Pesquisar" name="nomeProd" required/>
 					<input type="submit" value="Pesquisar" />
 				</form>
 			</div>

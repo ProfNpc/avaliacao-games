@@ -65,7 +65,7 @@
 					<form th:action="@{/usuario/{cpf}/pesquisar(cpf=${cpf})}" method="post" class="d-flex"
 						role="search">
 						<input class="form-control me-2" type="search" name="nomeAnuncio"
-							placeholder="Buscar produtos..." aria-label="Search" />
+							placeholder="Buscar produtos..." aria-label="Search" required/>
 
 						<!-- Botão de pesquisa -->
 						<button class="btn btn-outline-success" type="submit">
@@ -88,7 +88,7 @@
 			<div class="pesquisar">
 				<form th:action="@{/usuario/{cpf}/trocar/{codCadProd}/pesquisar(cpf=${cpf}, codCadProd=${codCadProd})}"
 					method="post">
-					<input type="text" placeholder="Pesquisar" name="nomeProd" />
+					<input type="text" placeholder="Pesquisar" name="nomeProd" required/>
 					<input type="submit" value="Pesquisar" />
 				</form>
 			</div>
