@@ -108,7 +108,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="card-footer text-body-secondary">Endereço de entrega: <span th:text="${enderecoDest}"></div>
+				<div class="card-footer text-body-secondary">Endereço de entrega: <span th:text="${enderecoRem}"></div>
 			</div>
 			<div class="card-footer text-muted">
 				<form th:action="@{/usuario/{cpf}/trocar/{codTroca}/finalizar (cpf=${cpf}, codTroca=${codTroca})}" method="post">
