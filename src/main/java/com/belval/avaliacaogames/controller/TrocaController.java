@@ -368,6 +368,10 @@ public class TrocaController {
 		// Salva no banco de dados
 		pedidoTrocaRepository.save(pedidoTroca);
 
+		for (ItemTroca item : troca.getItens_troca()) {
+		    item_TrocaRepository.delete(item);
+		}
+		
 		// Deleta a troca (pelo menos era pra fazer isso)
 		trocaRepository.delete(troca);
 		if (!trocaRepository.findById(codTroca).isPresent()) {

@@ -37,12 +37,6 @@ public class PedidoTroca implements Serializable {
 	@OneToMany(mappedBy = "id.pedidoTroca")
 	private Set<ItemPedidoTroca> itens = new HashSet<>();
 
-	// Ligação com tabela Cad_Produto
-	@JsonIgnore
-	@OneToOne
-	@JoinColumn(name = "codTroca")
-	private Troca troca;
-
 	// ligação com tabela imagem
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
@@ -54,14 +48,13 @@ public class PedidoTroca implements Serializable {
 	}
 
 	public PedidoTroca(Long codPedidoTroca, String dataPedidoTroca, String statusRemetente, String statusDestinatario,
-			Usuario usuario, Troca troca) {
+			Usuario usuario) {
 		super();
 		this.codPedidoTroca = codPedidoTroca;
 		this.dataPedidoTroca = dataPedidoTroca;
 		this.statusRemetente = statusRemetente;
 		this.statusDestinatario = statusDestinatario;
 		this.usuario = usuario;
-		this.troca = troca;
 	}
 
 	// Getters and Setters Imagem
@@ -128,14 +121,6 @@ public class PedidoTroca implements Serializable {
 
 	public void setStatusDestinatario(String statusDestinatario) {
 		this.statusDestinatario = statusDestinatario;
-	}
-
-	public Troca getTroca() {
-		return troca;
-	}
-
-	public void setTroca(Troca troca) {
-		this.troca = troca;
 	}
 
 	public void setItens(Set<ItemPedidoTroca> itens) {

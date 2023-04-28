@@ -38,18 +38,14 @@ public class Troca {
 
 	// Ligação com tabela item_troca
 	@JsonIgnore
-	@OneToMany(mappedBy = "troca", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "troca", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ItemTroca> itens_troca = new ArrayList<>();
 
 	// ligação com tabela imagem
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "codImagem")
 	private Imagem imagem;
-
-	// Ligação com tabela PedidoTroca
-	@OneToOne(mappedBy = "troca", cascade = CascadeType.ALL)
-	private PedidoTroca pedidoTroca;
 
 	// Constructors
 	public Troca() {
