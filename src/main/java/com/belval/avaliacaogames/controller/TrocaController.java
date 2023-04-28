@@ -81,10 +81,10 @@ public class TrocaController {
 
 	@Autowired
 	private ItemPedidoTrocaRepository itemPedidoTrocaRepository;
-	
+
 	@Autowired
 	private EnderecoService enderecoService;
-	
+
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 
@@ -285,7 +285,7 @@ public class TrocaController {
 
 		Troca troca = trocaService.findById(codTroca);
 		List<ItemTroca> itensTroca = item_TrocaRepository.findByTroca(troca);
-		
+
 		// Verifica se o usuário tem um endereço cadastrado
 		Usuario usuario = usuarioService.findById(cpf);
 		Optional<Endereco> obj = enderecoRepository.findByUsuario(usuario);
@@ -296,17 +296,17 @@ public class TrocaController {
 			mv.addObject("endereco", enderecoService.findByUsuario(usuario));
 			return mv;
 		}
-		
+
 		// Montar strings de endereço
 		Endereco enderecoDest = enderecoService.findByUsuario(troca.getUsuario());
 		String enderecoDestString = enderecoDest.getRuaEnd() + ", " + enderecoDest.getNumEnd() + ", "
-				+ enderecoDest.getBairroEnd() + ", " + enderecoDest.getCidadeEnd() + ", " 
-				+ enderecoDest.getEstadoEnd() + ", " + enderecoDest.getPaisEnd();
-		
+				+ enderecoDest.getBairroEnd() + ", " + enderecoDest.getCidadeEnd() + ", " + enderecoDest.getEstadoEnd()
+				+ ", " + enderecoDest.getPaisEnd();
+
 		Endereco enderecoRem = enderecoService.findByUsuario(usuarioService.findById(cpf));
 		String enderecoRemString = enderecoRem.getRuaEnd() + ", " + enderecoRem.getNumEnd() + ", "
-				+ enderecoRem.getBairroEnd() + ", " + enderecoRem.getCidadeEnd() + ", " 
-				+ enderecoRem.getEstadoEnd() + ", " + enderecoRem.getPaisEnd();
+				+ enderecoRem.getBairroEnd() + ", " + enderecoRem.getCidadeEnd() + ", " + enderecoRem.getEstadoEnd()
+				+ ", " + enderecoRem.getPaisEnd();
 
 		ModelAndView mv = new ModelAndView("troca/confirmar-troca");
 
@@ -369,9 +369,9 @@ public class TrocaController {
 		pedidoTrocaRepository.save(pedidoTroca);
 
 		for (ItemTroca item : troca.getItens_troca()) {
-		    item_TrocaRepository.delete(item);
+			item_TrocaRepository.delete(item);
 		}
-		
+
 		// Deleta a troca (pelo menos era pra fazer isso)
 		trocaRepository.delete(troca);
 		if (!trocaRepository.findById(codTroca).isPresent()) {
