@@ -348,7 +348,7 @@ public class TrocaController {
 		iptUsuario = itemPedidoTrocaRepository.save(iptUsuario);
 		itens.add(iptUsuario);
 
-		for (ItemTroca item_Troca : troca.getItens_troca()) {
+		for (ItemTroca item_Troca : itensTroca) {
 			ItemPedidoTroca iptAnunciante = new ItemPedidoTroca();
 			iptAnunciante.setUsuario(troca.getUsuario());
 			iptAnunciante
@@ -356,6 +356,9 @@ public class TrocaController {
 			iptAnunciante.setPedido(pedidoTroca);
 			iptAnunciante = itemPedidoTrocaRepository.save(iptAnunciante);
 			itens.add(iptAnunciante);
+			
+			// Deleta o itemTroca
+			item_TrocaRepository.delete(item_Troca);
 		}
 		pedidoTroca.setItens(itens);
 
@@ -365,13 +368,6 @@ public class TrocaController {
 		pedidoTroca.setStatusRemetente("PREPARANDO");
 		// pedidoTroca.setTroca(troca);
 
-		// Salva no banco de dados
-		pedidoTrocaRepository.save(pedidoTroca);
-
-		for (ItemTroca item : troca.getItens_troca()) {
-			item_TrocaRepository.delete(item);
-		}
-
 		// Deleta a troca (pelo menos era pra fazer isso)
 		trocaRepository.delete(troca);
 		if (!trocaRepository.findById(codTroca).isPresent()) {
@@ -379,6 +375,9 @@ public class TrocaController {
 		} else {
 			System.out.println("Falhou");
 		}
+		
+		// Salva no banco de dados
+		pedidoTrocaRepository.save(pedidoTroca);
 
 		// Cria o modelo da página e retorna
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
