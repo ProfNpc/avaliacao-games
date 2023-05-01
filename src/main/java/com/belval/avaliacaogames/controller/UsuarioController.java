@@ -63,6 +63,7 @@ public class UsuarioController {
 
 	// Home
 	@GetMapping("/")
+	@Transactional
 	public String indice(Model model) {
 
 		List<Anuncio> anuncios = anuncioService.findAll();
@@ -76,6 +77,7 @@ public class UsuarioController {
 
 	// Home (quando estiver logado)
 	@GetMapping("/home/{cpf}")
+	@Transactional
 	public String logado(@PathVariable("cpf") Long cpf, Model model) {
 
 		Usuario usuario = service.findById(cpf);

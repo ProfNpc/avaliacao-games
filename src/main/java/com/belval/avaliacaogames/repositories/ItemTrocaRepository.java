@@ -13,5 +13,6 @@ import com.belval.avaliacaogames.entities.Troca;
 @Repository
 public interface ItemTrocaRepository extends JpaRepository<ItemTroca, Long> {
 	List<ItemTroca> findByTroca(Troca troca);
+
 	Optional<ItemTroca> findByProdutoAndTroca(Produto produto, Troca troca);
 }

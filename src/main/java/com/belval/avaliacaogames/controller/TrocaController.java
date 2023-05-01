@@ -356,7 +356,7 @@ public class TrocaController {
 			iptAnunciante.setPedido(pedidoTroca);
 			iptAnunciante = itemPedidoTrocaRepository.save(iptAnunciante);
 			itens.add(iptAnunciante);
-			
+
 			// Deleta o itemTroca
 			item_TrocaRepository.delete(item_Troca);
 		}
@@ -375,14 +375,14 @@ public class TrocaController {
 		} else {
 			System.out.println("Falhou");
 		}
-		
+
 		// Salva no banco de dados
 		pedidoTrocaRepository.save(pedidoTroca);
 
 		// Cria o modelo da página e retorna
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
-		mv.addObject("itensTroca", itensTroca);
-		mv.addObject("troca", troca);
+		// mv.addObject("itensTroca", itensTroca);
+		// mv.addObject("troca", troca);
 		return mv;
 
 	}
