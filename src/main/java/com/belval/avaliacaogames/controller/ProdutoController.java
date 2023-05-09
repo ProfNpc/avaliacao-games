@@ -34,7 +34,7 @@ import com.belval.avaliacaogames.services.UsuarioService;
 public class ProdutoController {
 
 	@Autowired
-	private CadProdutoService cad_produtoService;
+	private CadProdutoService cadProdutoService;
 
 	@Autowired
 	private UsuarioService usuarioService;
@@ -49,7 +49,7 @@ public class ProdutoController {
 	private ImagemService imagemService;
 
 	@Autowired
-	private CadProdutoRepository cad_produtoRepository;
+	private CadProdutoRepository cadProdutoRepository;
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
@@ -106,7 +106,7 @@ public class ProdutoController {
 
 		Usuario usuario = usuarioService.findById(cpf);
 
-		List<CadProduto> cad_produtos = cad_produtoService.findByUsuario(usuario);
+		List<CadProduto> cad_produtos = cadProdutoService.findByUsuario(usuario);
 		List<Long> id_prods = new ArrayList<Long>();
 		List<Produto> produtos = new ArrayList<Produto>();
 
@@ -158,15 +158,15 @@ public class ProdutoController {
 		Usuario usuario = usuarioService.findById(cpf);
 		Produto produto = produtoService.findById(codProd);
 
-		CadProduto cadProdutoNoBd = cad_produtoService.findByUsuarioAndProduto(usuario, produto);
+		CadProduto cadProdutoNoBd = cadProdutoService.findByUsuarioAndProduto(usuario, produto);
 		if (cadProdutoNoBd == null) {
 			cad_produto.setUsuario(usuario);
 			cad_produto.setProduto(produto);
 
-			cad_produtoRepository.save(cad_produto);
+			cadProdutoRepository.save(cad_produto);
 		} else {
 			cadProdutoNoBd.setQuantidade(cadProdutoNoBd.getQuantidade() + cad_produto.getQuantidade());
-			cad_produtoRepository.save(cadProdutoNoBd);
+			cadProdutoRepository.save(cadProdutoNoBd);
 		}
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
@@ -200,7 +200,7 @@ public class ProdutoController {
 
 		cad_produto.setUsuario(usuarioService.findById(cpf));
 		cad_produto.setProduto(produto);
-		cad_produtoRepository.save(cad_produto);
+		cadProdutoRepository.save(cad_produto);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
 		return mv;
@@ -210,7 +210,7 @@ public class ProdutoController {
 	@PostMapping("/usuario/{cpf}/biblioteca/{codCadProd}/deletar")
 	public ModelAndView deletarProduto(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd) {
 
-		cad_produtoRepository.deleteById(codCadProd);
+		cadProdutoRepository.deleteById(codCadProd);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
 

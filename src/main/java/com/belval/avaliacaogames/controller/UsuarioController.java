@@ -44,7 +44,7 @@ public class UsuarioController {
 	private AnuncioService anuncioService;
 
 	@Autowired
-	private CadProdutoService cad_ProdutoService;
+	private CadProdutoService cadProdutoService;
 
 	@Autowired
 	private TrocaService trocaService;
@@ -59,7 +59,7 @@ public class UsuarioController {
 	private AnuncioRepository anuncioRepository;
 
 	@Autowired
-	private CadProdutoRepository cad_ProdutoRepository;
+	private CadProdutoRepository cadProdutoRepository;
 
 	// Home
 	@GetMapping("/")
@@ -286,8 +286,8 @@ public class UsuarioController {
 		List<Anuncio> anuncios = anuncioService.findByUsuario(usuario);
 		anuncioRepository.deleteAll(anuncios);
 
-		List<CadProduto> cad_produtos = cad_ProdutoService.findByUsuario(usuario);
-		cad_ProdutoRepository.deleteAll(cad_produtos);
+		List<CadProduto> cad_produtos = cadProdutoService.findByUsuario(usuario);
+		cadProdutoRepository.deleteAll(cad_produtos);
 
 		Endereco enderecos = enderecoService.findByUsuario(usuario);
 		enderecoRepository.delete(enderecos);
