@@ -20,9 +20,7 @@ import com.belval.avaliacaogames.repositories.CadProdutoRepository;
 import com.belval.avaliacaogames.repositories.ComentarioRepository;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
 import com.belval.avaliacaogames.repositories.ImagemRepository;
-import com.belval.avaliacaogames.repositories.ItemPedidoTrocaRepository;
 import com.belval.avaliacaogames.repositories.ItemTrocaRepository;
-import com.belval.avaliacaogames.repositories.PedidoTrocaRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
 import com.belval.avaliacaogames.repositories.TrocaRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
@@ -56,12 +54,6 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private ImagemRepository imagemRepository;
-
-	@Autowired
-	private PedidoTrocaRepository pedidoTrocaRepository;
-
-	@Autowired
-	private ItemPedidoTrocaRepository itemPedidoTrocaRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -180,7 +172,7 @@ public class TestConfig implements CommandLineRunner {
 		CadProduto cp10 = new CadProduto(10L, p9, 2L, u2, true);
 		CadProduto cp11 = new CadProduto(11L, p5, 1L, u1, true);
 
-		cad_produtoRepository.saveAll(Arrays.asList(cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8));
+		cad_produtoRepository.saveAll(Arrays.asList(cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8, cp9, cp10, cp11));
 
 		Anuncio an1 = new Anuncio(1L, "Outlast", "Jogo novo, quase sem utilização", 72.50, 5, 0, true, u2, img1,
 				"Terror");
@@ -236,23 +228,6 @@ public class TestConfig implements CommandLineRunner {
 		ItemTroca it11 = new ItemTroca(11L, t5, p10);
 
 		item_TrocaRepository.saveAll(Arrays.asList(it1, it2, it3, it4, it5, it6, it7, it8, it9, it10, it11));
-
-		/*
-		 * PedidoTroca pt1 = new PedidoTroca(1L, "10/04/2023", "A CAMINHO",
-		 * "TRANSPORTADORA", u2, t1); PedidoTroca pt2 = new PedidoTroca(2L,
-		 * "12/04/2023", "TRANSPORTADORA", "TRANSPORTADORA", u1, t2);
-		 * 
-		 * pedidoTrocaRepository.saveAll(Arrays.asList(pt1, pt2));
-		 * 
-		 * ItemPedidoTroca ipt1 = new ItemPedidoTroca(pt1, cp1, u1); ItemPedidoTroca
-		 * ipt2 = new ItemPedidoTroca(pt1, cp9, u2); ItemPedidoTroca ipt3 = new
-		 * ItemPedidoTroca(pt1, cp10, u2); ItemPedidoTroca ipt4 = new
-		 * ItemPedidoTroca(pt2, cp3, u2); ItemPedidoTroca ipt5 = new
-		 * ItemPedidoTroca(pt2, cp11, u1);
-		 * 
-		 * itemPedidoTrocaRepository.saveAll(Arrays.asList(ipt1, ipt2, ipt3, ipt4,
-		 * ipt5));
-		 */
 
 	}
 
