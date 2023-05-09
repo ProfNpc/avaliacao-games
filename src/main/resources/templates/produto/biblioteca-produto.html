@@ -27,10 +27,10 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="colorFont nav-link" aria-current="page" href="#">Comunidade</a>
+							<a class="colorFont nav-link" aria-current="page" th:href="@{/usuario/{cpf}/mais/anuncios (cpf=${cpf})}">Ofertas</a>
 						</li>
 						<li class="nav-item">
-							<a class="colorFont nav-link" href="#">Contato</a>
+							<a class="colorFont nav-link" th:href="@{/usuario/{cpf}/mais/trocas (cpf=${cpf})}">Trocas</a>
 						</li>
 						<li class="nav-item">
 							<a class="car nav-link" th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}"><img
