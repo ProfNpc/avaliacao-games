@@ -8,8 +8,6 @@ var cpf = document.querySelector("#cpf")
 var senha = document.querySelector("#senha");
 var confirmarSenha = document.querySelector("#confirmarSenha");
 
-console.log(form.tagName);
-
 function alertar(mensagem) {
 	alerta.innerHTML = mensagem;
 	alerta.style.display = "block"
@@ -62,17 +60,20 @@ function confirmarDados() {
 	// Confirmar primeiros campos
 	if (nome.value == "") {
 		alertar("Insira um nome válido");
-		return false;
+		nome.focus();
+		return;
 	}
 	
 	if (sobrenome.value== "") {
 		alertar("Insira um sobrenome válido");
-		return false;
+		sobrenome.focus();
+		return;
 	}
 	
 	if (email.value == "" || !email.value.includes("@") || email.value.indexOf("@") == email.value.length - 1) {
 		alertar("Insira um e-mail válido");
-		return false;
+		email.focus();
+		return;
 	}
 	
 	// Confirmar celular
@@ -84,7 +85,8 @@ function confirmarDados() {
 	
 	if (!confirmarCelular(cel)) {
 		alertar("Insira um número de celular válido");
-		return false;
+		celular.focus();
+		return;
 	}
 	
 	// Confirmar CPF
@@ -94,20 +96,33 @@ function confirmarDados() {
 	
 	if (!confirmarCpf(codCpf)) {
 		alertar("Insira um número de CPF válido");
-		return false;
+		cpf.focus();
+		return;
 	}
 	
 	// Confirmar senhas
-	if (senha.value == "" || confirmarSenha.value == "") {
+	if (senha.value == "") {
 		alertar("Senha não pode estar em branco");
+		senha.focus();
 		return;
-	} else if (!confirmarSenhas(senha.value, confirmarSenha.value)) {
+	} else if (confirmarSenha.value == "") {
+		alertar("Senha não pode estar em branco");
+		confirmarSenha.focus();
+		return;
+	}else if (!confirmarSenhas(senha.value, confirmarSenha.value)) {
 		alertar("As senhas devem ser iguais");
-	    return false;
+		confirmarSenha.focus();
+	    return;
   	}
 
   	cpf.value = codCpf;
   	form.submit();
 }
 
-console.log("carregado");
+form.onkeypress = function(event) { 
+	var key = event.charCode || event.keyCode || 0;
+	if (key == 13) {
+		event.preventDefault();
+		confirmarDados();
+	}
+}
