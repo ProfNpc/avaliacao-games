@@ -160,7 +160,6 @@ public class ProdutoController {
 
 		CadProduto cadProdutoNoBd = cad_produtoService.findByUsuarioAndProduto(usuario, produto);
 		if (cadProdutoNoBd == null) {
-			cad_produto.setStatus(true);
 			cad_produto.setUsuario(usuario);
 			cad_produto.setProduto(produto);
 

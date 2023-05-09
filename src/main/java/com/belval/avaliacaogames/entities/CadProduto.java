@@ -2,6 +2,7 @@ package com.belval.avaliacaogames.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,6 @@ public class CadProduto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codCadProd;
 	private Long quantidade;
-	private Boolean status;
 
 	// Ligação com a tabela produto
 	@ManyToOne
@@ -47,13 +47,12 @@ public class CadProduto implements Serializable {
 	public CadProduto() {
 	}
 
-	public CadProduto(Long codCadProd, Produto produto, Long quantidade, Usuario usuario, Boolean status) {
+	public CadProduto(Long codCadProd, Produto produto, Long quantidade, Usuario usuario) {
 		super();
 		this.codCadProd = codCadProd;
 		this.produto = produto;
 		this.quantidade = quantidade;
 		this.usuario = usuario;
-		this.status = status;
 	}
 
 	// Getters and Setters itemPedidoTroca
@@ -105,20 +104,9 @@ public class CadProduto implements Serializable {
 		this.quantidade = quantidade;
 	}
 
-	public Boolean getStatus() {
-		return status;
-	}
-
-	public void setStatus(Boolean status) {
-		this.status = status;
-	}
-
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((codCadProd == null) ? 0 : codCadProd.hashCode());
-		return result;
+		return Objects.hash(codCadProd);
 	}
 
 	@Override
@@ -130,12 +118,6 @@ public class CadProduto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		CadProduto other = (CadProduto) obj;
-		if (codCadProd == null) {
-			if (other.codCadProd != null)
-				return false;
-		} else if (!codCadProd.equals(other.codCadProd))
-			return false;
-		return true;
+		return Objects.equals(codCadProd, other.codCadProd);
 	}
-
 }

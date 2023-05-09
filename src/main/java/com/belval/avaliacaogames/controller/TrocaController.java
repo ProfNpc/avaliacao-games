@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -318,6 +319,7 @@ public class TrocaController {
 		return mv;
 	}
 
+	@Transactional
 	@PostMapping("/usuario/{cpf}/trocar/{codTroca}/finalizar")
 	public ModelAndView finalizarTrocae(@PathVariable("cpf") Long cpf, @PathVariable("codTroca") Long codTroca) {
 
@@ -368,21 +370,30 @@ public class TrocaController {
 		pedidoTroca.setStatusRemetente("PREPARANDO");
 		// pedidoTroca.setTroca(troca);
 
-		// Deleta a troca (pelo menos era pra fazer isso)
-		trocaRepository.delete(troca);
-		if (!trocaRepository.findById(codTroca).isPresent()) {
-			System.out.println("Sucesso");
-		} else {
-			System.out.println("Falhou");
-		}
-
 		// Salva no banco de dados
 		pedidoTrocaRepository.save(pedidoTroca);
 
-		// Cria o modelo da página e retorna
+		troca.setCad_produto(null);
+		troca.setImagem(null);
+		troca.setUsuario(null);
+		trocaRepository.save(troca);
+		trocaRepository.flush();
+
+		try {
+			trocaRepository.deleteById(codTroca);
+			System.out.println("Sucesso");
+		} catch (Exception e) {
+			System.out.println("Falhou: " + e.getMessage());
+		}
+
+		/*
+		 * if (!trocaRepository.findById(codTroca).isPresent()) {
+		 * System.out.println("Sucesso"); } else { System.out.println("Falhou: " +
+		 * e.get); }
+		 */
+
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");
-		// mv.addObject("itensTroca", itensTroca);
-		// mv.addObject("troca", troca);
+
 		return mv;
 
 	}

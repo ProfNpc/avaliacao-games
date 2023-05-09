@@ -160,17 +160,17 @@ public class TestConfig implements CommandLineRunner {
 		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
 
-		CadProduto cp1 = new CadProduto(1L, p2, 5L, u1, true);
-		CadProduto cp2 = new CadProduto(2L, p1, 2L, u1, true);
-		CadProduto cp3 = new CadProduto(3L, p3, 6L, u2, true);
-		CadProduto cp4 = new CadProduto(4L, p5, 1L, u3, true);
-		CadProduto cp5 = new CadProduto(5L, p4, 9L, u4, true);
-		CadProduto cp6 = new CadProduto(6L, p7, 1L, u1, true);
-		CadProduto cp7 = new CadProduto(7L, p8, 2L, u3, true);
-		CadProduto cp8 = new CadProduto(8L, p8, 2L, u2, true);
-		CadProduto cp9 = new CadProduto(9L, p8, 2L, u2, true);
-		CadProduto cp10 = new CadProduto(10L, p9, 2L, u2, true);
-		CadProduto cp11 = new CadProduto(11L, p5, 1L, u1, true);
+		CadProduto cp1 = new CadProduto(1L, p2, 5L, u1);
+		CadProduto cp2 = new CadProduto(2L, p1, 2L, u1);
+		CadProduto cp3 = new CadProduto(3L, p3, 6L, u2);
+		CadProduto cp4 = new CadProduto(4L, p5, 1L, u3);
+		CadProduto cp5 = new CadProduto(5L, p4, 9L, u4);
+		CadProduto cp6 = new CadProduto(6L, p7, 1L, u1);
+		CadProduto cp7 = new CadProduto(7L, p8, 2L, u3);
+		CadProduto cp8 = new CadProduto(8L, p8, 2L, u2);
+		CadProduto cp9 = new CadProduto(9L, p8, 2L, u2);
+		CadProduto cp10 = new CadProduto(10L, p9, 2L, u2);
+		CadProduto cp11 = new CadProduto(11L, p5, 1L, u1);
 
 		cad_produtoRepository.saveAll(Arrays.asList(cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8, cp9, cp10, cp11));
 
