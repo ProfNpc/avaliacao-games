@@ -18,4 +18,6 @@ public interface TrocaRepository extends JpaRepository<Troca, Long> {
 	Optional<Troca> findByCadProduto(CadProduto cad_produto);
 
 	List<Troca> findAllByUsuarioCpfNotOrderByNomeTrocaDesc(Long cpf);
+	
+	List<Troca> findAllByUsuarioCpfNotAndStatusTrocaTrue(Long cpf);
 }

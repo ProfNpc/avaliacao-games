@@ -373,18 +373,9 @@ public class TrocaController {
 		// Salva no banco de dados
 		pedidoTrocaRepository.save(pedidoTroca);
 
-		troca.setCad_produto(null);
-		troca.setImagem(null);
-		troca.setUsuario(null);
+		// "Deleta" a troca
+		troca.setStatusTroca(false);
 		trocaRepository.save(troca);
-		trocaRepository.flush();
-
-		try {
-			trocaRepository.deleteById(codTroca);
-			System.out.println("Sucesso");
-		} catch (Exception e) {
-			System.out.println("Falhou: " + e.getMessage());
-		}
 
 		/*
 		 * if (!trocaRepository.findById(codTroca).isPresent()) {
@@ -402,7 +393,7 @@ public class TrocaController {
 	@GetMapping("/usuario/{cpf}/mais/trocas")
 	public String verMaisTrocas(@PathVariable("cpf") Long cpf, Model model) {
 
-		List<Troca> trocas = trocaService.findAllAnunciosExcetoUsuario(cpf);
+		List<Troca> trocas = trocaService.findAllValidAnunciosExcetoUsuario(cpf);
 		model.addAttribute("trocas", trocas);
 
 		return "troca/mais-trocas";

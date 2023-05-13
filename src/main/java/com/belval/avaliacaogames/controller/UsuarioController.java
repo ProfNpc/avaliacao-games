@@ -86,7 +86,7 @@ public class UsuarioController {
 		List<Anuncio> anuncios = anuncioService.findAllAnunciosExcetoUsuario(cpf);
 		model.addAttribute("anuncios", anuncios);
 
-		List<Troca> trocas = trocaService.findAllAnunciosExcetoUsuario(cpf);
+		List<Troca> trocas = trocaService.findAllValidAnunciosExcetoUsuario(cpf);
 		model.addAttribute("trocas", trocas);
 
 		return "home/home-logado";

@@ -42,4 +42,8 @@ public class TrocaService {
 		Usuario usuario = usuarioService.findById(cpf);
 		return repository.findAllByUsuarioCpfNotOrderByNomeTrocaDesc(usuario.getCpf());
 	}
+	
+	public List<Troca> findAllValidAnunciosExcetoUsuario(Long cpf) {
+		return repository.findAllByUsuarioCpfNotAndStatusTrocaTrue(cpf);
+	}
 }
