@@ -70,6 +70,7 @@ public class ProdutoController {
 				cpf);
 
 		mv.addObject("anuncios", anuncios);
+		mv.addObject("nomeAnuncio", nomeAnuncio);
 
 		return mv;
 	}

@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/CSS/Tela_ProcuraProduto.css" />
 	<link rel="stylesheet" href="/CSS/NewNavBar.css" />
-	<title>Pacifier</title>
+	<title th:text="'Pesquisa por ' + ${nomeAnuncio} + ' - Pacifier'"></title>
 </head>
 
 <body>
@@ -65,7 +65,7 @@
 					<form th:action="@{/usuario/{cpf}/pesquisar(cpf=${cpf})}" method="post" class="d-flex"
 						role="search">
 						<input class="form-control me-2" type="search" name="nomeAnuncio"
-							placeholder="Buscar produtos..." aria-label="Search" required/>
+							placeholder="Buscar produtos..." aria-label="Search" th:value="${nomeAnuncio}"required/>
 
 						<!-- Botão de pesquisa -->
 						<button class="btn btn-outline-success" type="submit">
@@ -77,23 +77,9 @@
 		</nav>
 	</header>
 	<main>
-		<!-- Section de pesquisar -->
-		<section>
-			<!-- Titulo do Pesquisar -->
-			<div class="tituloPesquisar">
-				<label for="">Pesquise qualquer produto:</label>
-			</div>
-
-			<!-- Pesquisar -->
-			<div class="pesquisar">
-				<form th:action="@{/usuario/{cpf}/pesquisar (cpf=${cpf})}" method="post">
-					<input type="text" placeholder="Pesquisar" name="nomeAnuncio" required/>
-					<input type="submit" value="Pesquisar" />
-				</form>
-			</div>
-		</section>
 		<!-- Section de produtos -->
 		<section>
+			<br><br>
 			<!-- Titulo do Produto -->
 			<div class="tituloProduto">Sua Pesquisa:</div>
 
