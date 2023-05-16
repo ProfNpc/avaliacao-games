@@ -89,25 +89,25 @@ public class TestConfig implements CommandLineRunner {
 		Imagem img8 = new Imagem(8l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
 				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
 		Imagem img9 = new Imagem(9l, "GTA V.png", "image/png", 516994L, "xj7ero5ay2bhwajzem1c",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678474848/xj7ero5ay2bhwajzem1c.png");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198138/library_600x900_2x_ggivsh.jpg");
 		Imagem img10 = new Imagem(10l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684197894/library_600x900_2x_dece3p.jpg");
 		Imagem img11 = new Imagem(11l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198209/library_600x900_2x_zgrdla.jpg");
 		Imagem img12 = new Imagem(12l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198284/library_600x900_2x_fscgev.jpg");
 		Imagem img13 = new Imagem(13l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198378/library_600x900_2x_dmsip6.jpg");
 		Imagem img14 = new Imagem(14l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198444/library_600x900_2x_oeitkb.jpg");
 		Imagem img15 = new Imagem(15l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198627/6f39cf2c11945e47f55e60fa895d5626_mvj8hh.jpg");
 		Imagem img16 = new Imagem(16l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684199497/library_600x900_2x_sq4mks.jpg");
 		Imagem img17 = new Imagem(17l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198731/bbe3ee49261344a75b4ac2bdec2da19b_wgzyao.jpg");
 		Imagem img18 = new Imagem(18l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198828/library_600x900_2x_s1iku6.jpg");
 		Imagem img19 = new Imagem(19l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
 				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
 		Imagem img20 = new Imagem(20l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
@@ -124,10 +124,10 @@ public class TestConfig implements CommandLineRunner {
 		imagemRepository.saveAll(Arrays.asList(img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11,
 				img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22, img23, img24));
 
-		Produto p1 = new Produto(1L, "GTA V", 50,
+		Produto p1 = new Produto(1L, "Grand Theft Auto V", 50,
 				"Grand Theft Auto V é um jogo eletrônico de ação-aventura desenvolvido pela Rockstar North e publicado pela Rockstar Games.",
 				img9);
-		Produto p2 = new Produto(2L, "CS:GO", 20,
+		Produto p2 = new Produto(2L, "Counter-Strike: Global Offensive", 20,
 				"Counter-Strike: Global Offensive é um jogo online desenvolvido pela Valve Corporation e pela Hidden Path Entertainment, sendo uma sequência de Counter-Strike: Source. É o quarto título principal da franquia.",
 				img10);
 		Produto p3 = new Produto(3L, "Outlast", 70,
@@ -136,13 +136,13 @@ public class TestConfig implements CommandLineRunner {
 		Produto p4 = new Produto(4L, "Red Dead Redemption 2", 120,
 				"Red Dead é uma série de jogos de vídeo game de ação e aventura no velho oeste americano aclamados pela crítica. ",
 				img12);
-		Produto p5 = new Produto(5L, "Elder Ring", 100,
+		Produto p5 = new Produto(5L, "Elden Ring", 100,
 				"Elden Ring é um jogo eletrônico de RPG de ação em terceira pessoa, desenvolvido pela FromSoftware e publicado pela Bandai Namco Entertainment.",
 				img13);
 		Produto p6 = new Produto(6L, "God of War", 230,
 				"God of War é um jogo eletrônico de ação-aventura desenvolvido pela Santa Monica Studio e publicado pela Sony Interactive Entertainment.",
 				img14);
-		Produto p7 = new Produto(7L, "Tony Hawk's", 40,
+		Produto p7 = new Produto(7L, "Tony Hawk's Pro Skater 1+2", 40,
 				"Tony Hawk's é uma série de jogos digitais com foco em Skate tendo o skatista profissional Tony Hawk como principal personalidade.",
 				img15);
 		Produto p8 = new Produto(8L, "Hitman 3", 60,
