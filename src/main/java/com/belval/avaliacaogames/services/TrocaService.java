@@ -46,4 +46,8 @@ public class TrocaService {
 	public List<Troca> findAllValidAnunciosExcetoUsuario(Long cpf) {
 		return repository.findAllByUsuarioCpfNotAndStatusTrocaTrue(cpf);
 	}
+	
+	public List<Troca> findAllValidAnuncios() {
+		return repository.findAllByStatusTrocaTrue();
+	}
 }

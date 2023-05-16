@@ -24,6 +24,7 @@ import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.CadProdutoRepository;
 import com.belval.avaliacaogames.repositories.EnderecoRepository;
+import com.belval.avaliacaogames.repositories.TrocaRepository;
 import com.belval.avaliacaogames.repositories.UsuarioRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.CadProdutoService;
@@ -61,6 +62,9 @@ public class UsuarioController {
 	@Autowired
 	private CadProdutoRepository cadProdutoRepository;
 
+	@Autowired
+	private TrocaRepository trocaRepository;
+
 	// Home
 	@GetMapping("/")
 	@Transactional
@@ -69,7 +73,7 @@ public class UsuarioController {
 		List<Anuncio> anuncios = anuncioService.findAll();
 		model.addAttribute("anuncios", anuncios);
 
-		List<Troca> trocas = trocaService.findAll();
+		List<Troca> trocas = trocaService.findAllValidAnuncios();
 		model.addAttribute("trocas", trocas);
 
 		return "home/home";
@@ -287,10 +291,27 @@ public class UsuarioController {
 		anuncioRepository.deleteAll(anuncios);
 
 		List<CadProduto> cad_produtos = cadProdutoService.findByUsuario(usuario);
+
+		for (CadProduto cp : cad_produtos) {
+			Optional<Troca> t = trocaRepository.findByCadProduto(cp);
+			if (t.isPresent()) {
+				Troca troca = t.get();
+				troca.setCad_produto(null);
+				troca.setStatusTroca(false);
+				trocaRepository.save(troca);
+			}
+			cadProdutoRepository.delete(cp);
+		}
 		cadProdutoRepository.deleteAll(cad_produtos);
 
 		Endereco enderecos = enderecoService.findByUsuario(usuario);
 		enderecoRepository.delete(enderecos);
+
+		List<Troca> trocas = trocaRepository.findByUsuario(usuario);
+		for (Troca troca : trocas) {
+			troca.setUsuario(null);
+			trocaRepository.save(troca);
+		}
 
 		repository.deleteById(cpf);
 
