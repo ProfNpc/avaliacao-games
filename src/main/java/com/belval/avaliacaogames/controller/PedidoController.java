@@ -125,7 +125,10 @@ public class PedidoController {
 		Endereco endereco = enderecoService.findByUsuario(usuario);
 
 		if (endereco.getCodEnd() == null) {
-			ModelAndView mve = new ModelAndView("redirect:/usuario/{cpf}/cadastrar/endereco");
+			ModelAndView mve = new ModelAndView("usuario/perfil-geral");
+			mve.addObject("alerta", "Cadastre seu endereço antes de finalizar a compra");
+			mve.addObject("usuario", usuario);
+			mve.addObject("endereco", enderecoService.findByUsuario(usuario));
 			return mve;
 		}
 
