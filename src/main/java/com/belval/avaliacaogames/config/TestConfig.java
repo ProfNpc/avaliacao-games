@@ -73,21 +73,21 @@ public class TestConfig implements CommandLineRunner {
 				u4);
 
 		Imagem img1 = new Imagem(1l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684280967/images_ola1av.jpg");
 		Imagem img2 = new Imagem(2l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684280807/hqdefault_toeunz.jpg");
 		Imagem img3 = new Imagem(3l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684280727/FLgQOu1XwAcvIHe_cf0zzg.jpg");
 		Imagem img4 = new Imagem(4l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684280650/81RfK8Xrm8L._CR0_204_1224_1224_UX256_sz0gtf.jpg");
 		Imagem img5 = new Imagem(5l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684280546/cuphead-fisica_dacyoh.jpg");
 		Imagem img6 = new Imagem(6l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684280377/cvsn71i0owbqkbhj65lc.jpg");
 		Imagem img7 = new Imagem(7l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684280232/s-l1600_ujpozn.jpg");
 		Imagem img8 = new Imagem(8l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684280807/hqdefault_toeunz.jpg");
 		Imagem img9 = new Imagem(9l, "GTA V.png", "image/png", 516994L, "xj7ero5ay2bhwajzem1c",
 				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198138/library_600x900_2x_ggivsh.jpg");
 		Imagem img10 = new Imagem(10l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
@@ -181,9 +181,9 @@ public class TestConfig implements CommandLineRunner {
 				"Aventura");
 		Anuncio an4 = new Anuncio(4L, "God of War", "Jogo novo, quase sem utilização", 55.50, 5, 1, true, u3, img4,
 				"Ação");
-		Anuncio an5 = new Anuncio(5L, "Cuphead", "Jogo novo, quase sem utilização", 100.50, 5, 4, true, u2, img5,
+		Anuncio an5 = new Anuncio(5L, "Cuphead midia física Xbox One", "Jogo novo, quase sem utilização", 100.50, 5, 4, true, u2, img5,
 				"Aventura");
-		Anuncio an6 = new Anuncio(6L, "Red Dead Redeptiom 2", "Jogo novo, quase sem utilização", 150.50, 5, 1, true, u3,
+		Anuncio an6 = new Anuncio(6L, "Red Dead Redemption 2 semi-novo", "Jogo novo, quase sem utilização", 150.50, 5, 1, true, u3,
 				img6, "Ação");
 		Anuncio an7 = new Anuncio(7L, "StarCraft", "Jogo novo, quase sem utilização", 60.50, 5, 0, true, u1, img7,
 				"Aventura");
