@@ -26,10 +26,10 @@ public class ItemPedidoTroca implements Serializable {
 		super();
 	}
 
-	public ItemPedidoTroca(PedidoTroca pedidoTroca, CadProduto cad_produto, Usuario usuario) {
+	public ItemPedidoTroca(PedidoTroca pedidoTroca, Produto produto, Usuario usuario) {
 		super();
 		id.setPedidoTroca(pedidoTroca);
-		id.setCad_Produto(cad_produto);
+		id.setProduto(produto);
 		this.usuario = usuario;
 	}
 
@@ -53,12 +53,12 @@ public class ItemPedidoTroca implements Serializable {
 	}
 
 	// Getters and Setters troca
-	public CadProduto getCad_Produto() {
-		return id.getCad_Produto();
+	public Produto getProduto() {
+		return id.getProduto();
 	}
 
-	public void setCad_Produto(CadProduto cad_produto) {
-		id.setCad_Produto(cad_produto);
+	public void setProduto(Produto produto) {
+		id.setProduto(produto);
 	}
 
 	@Override

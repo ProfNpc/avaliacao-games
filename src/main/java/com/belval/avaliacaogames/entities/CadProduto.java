@@ -39,10 +39,6 @@ public class CadProduto implements Serializable {
 	@OneToOne(mappedBy = "cadProduto", cascade = CascadeType.ALL)
 	private Troca troca;
 
-	// Ligação com a tabela ItemPedidoTroca
-	@OneToMany(mappedBy = "id.cad_produto")
-	private Set<ItemPedidoTroca> itens = new HashSet<>();
-
 	// Constructor
 	public CadProduto() {
 	}
@@ -53,16 +49,6 @@ public class CadProduto implements Serializable {
 		this.produto = produto;
 		this.quantidade = quantidade;
 		this.usuario = usuario;
-	}
-
-	// Getters and Setters itemPedidoTroca
-	@JsonIgnore
-	private Set<PedidoTroca> getPedidos() {
-		Set<PedidoTroca> set = new HashSet<>();
-		for (ItemPedidoTroca x : itens) {
-			set.add(x.getPedidoTroca());
-		}
-		return set;
 	}
 
 	// Produto

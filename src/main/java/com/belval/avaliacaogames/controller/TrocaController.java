@@ -345,7 +345,7 @@ public class TrocaController {
 
 		ItemPedidoTroca iptUsuario = new ItemPedidoTroca();
 		iptUsuario.setUsuario(usuario);
-		iptUsuario.setCad_Produto(troca.getCad_produto());
+		iptUsuario.setProduto(troca.getCad_produto().getProduto());
 		iptUsuario.setPedido(pedidoTroca);
 		iptUsuario = itemPedidoTrocaRepository.save(iptUsuario);
 		itens.add(iptUsuario);
@@ -354,7 +354,7 @@ public class TrocaController {
 			ItemPedidoTroca iptAnunciante = new ItemPedidoTroca();
 			iptAnunciante.setUsuario(troca.getUsuario());
 			iptAnunciante
-					.setCad_Produto(cadProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()));
+					.setProduto(cadProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()).getProduto());
 			iptAnunciante.setPedido(pedidoTroca);
 			iptAnunciante = itemPedidoTrocaRepository.save(iptAnunciante);
 			itens.add(iptAnunciante);
