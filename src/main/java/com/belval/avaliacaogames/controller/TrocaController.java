@@ -376,6 +376,11 @@ public class TrocaController {
 		// "Deleta" a troca
 		troca.setStatusTroca(false);
 		trocaRepository.save(troca);
+		
+		// Deleta os CadProdutos
+		for (ItemPedidoTroca item : itens) {
+			cadProdutoService.removeCadProdutoFromUsuario(item.getProduto(), usuario);
+		}
 
 		/*
 		 * if (!trocaRepository.findById(codTroca).isPresent()) {

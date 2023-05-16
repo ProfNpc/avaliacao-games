@@ -42,4 +42,30 @@ public class CadProdutoService {
 	public CadProduto findByUsuarioAndProduto(Usuario usuario, Produto produto) {
 		return repository.findByUsuarioAndProduto(usuario, produto);
 	}
+	
+	public void addCadProdutoToUsuario(Produto produto, Usuario usuario) {
+		CadProduto cp = repository.findByUsuarioAndProduto(usuario, produto);
+		if (cp == null) {
+			cp = new CadProduto();
+			cp.setUsuario(usuario);
+			cp.setProduto(produto);
+			cp.setQuantidade(1L);
+		} else {
+			cp.setQuantidade(cp.getQuantidade() + 1);
+		}
+		
+		repository.save(cp);
+	}
+	
+	public void removeCadProdutoFromUsuario(Produto produto, Usuario usuario) {
+		CadProduto cp = repository.findByUsuarioAndProduto(usuario, produto);
+		if (cp == null) return;
+		
+		cp.setQuantidade(cp.getQuantidade() - 1);
+		if (cp.getQuantidade() == 0) {
+			repository.delete(cp);
+		} else {
+			repository.save(cp);
+		}
+	}
 }
