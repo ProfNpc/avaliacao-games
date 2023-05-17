@@ -63,6 +63,8 @@ public class TestConfig implements CommandLineRunner {
 		Usuario u3 = new Usuario(12365478932L, "Luiz", "Camargo", "luiz@gmail.com", "11978894456", "123456");
 		Usuario u4 = new Usuario(78965432112L, "Arthur", "Felipe", "arthur@gmail.com", "1194563214", "123456");
 		Usuario u5 = new Usuario(123L, "Testador", "adm", "adm@gmail.com", "1194563123", "123456");
+		
+		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5));
 
 		Endereco e1 = new Endereco(1L, "06634080", 222, "Avenida Comandante", "Km 18", "Osasco", "São Paulo", "Brasil",
 				u2);
@@ -71,6 +73,8 @@ public class TestConfig implements CommandLineRunner {
 				u3);
 		Endereco e4 = new Endereco(4L, "06563080", 100, "Rua Xang", "Vila do Conde", "Barueri", "São Paulo", "Brasil",
 				u4);
+		
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
 
 		Imagem img1 = new Imagem(1l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
 				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684280967/images_ola1av.jpg");
@@ -120,9 +124,27 @@ public class TestConfig implements CommandLineRunner {
 				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
 		Imagem img24 = new Imagem(24l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
 				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img25 = new Imagem(25l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684281630/library_600x900_2x_e5xrrz.jpg");
+		Imagem img26 = new Imagem(26l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684282231/e4fdf2676a5d6fee5b206603258d15a2_bizgqy.jpg");
+		Imagem img27 = new Imagem(27l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684283132/library_600x900_2x_qspoct.jpg");
+		Imagem img28 = new Imagem(28l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684283644/library_600x900_2x_w82qdz.jpg");
+		Imagem img29 = new Imagem(29l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684284023/library_600x900_2x_yts7tw.jpg");
+		Imagem img30 = new Imagem(30l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"https://cdn2.steamgriddb.com/file/sgdb-cdn/thumb/0ed5055450adbd836945761a6fa43ee0.jpg");
+		Imagem img31 = new Imagem(31l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684284989/6abd5c03e1414f4600add2d7956bb442_padw4t.png");
+		Imagem img32 = new Imagem(32l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684285328/8d9f1677ead632bcc3f1a48e6743d984_wciflb.jpg");
+
 
 		imagemRepository.saveAll(Arrays.asList(img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11,
-				img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22, img23, img24));
+				img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22, img23, img24, img25, 
+				img26, img27, img28, img29, img30, img31, img32));
 
 		Produto p1 = new Produto(1L, "Grand Theft Auto V", 50,
 				"Grand Theft Auto V é um jogo eletrônico de ação-aventura desenvolvido pela Rockstar North e publicado pela Rockstar Games.",
@@ -134,7 +156,7 @@ public class TestConfig implements CommandLineRunner {
 				"O inferno é um experimento do qual não há escapatória em Outlast, um jogo de terror de sobrevivência em primeira pessoa da Red Barrels. Como o jornalista investigativo Miles Upshur, explore o Mount Massive Asylum e tente sobreviver tempo o bastante para",
 				img11);
 		Produto p4 = new Produto(4L, "Red Dead Redemption 2", 120,
-				"Red Dead é uma série de jogos de vídeo game de ação e aventura no velho oeste americano aclamados pela crítica. ",
+				"Red Dead Redemption é uma série de jogos de vídeo game de ação e aventura no velho oeste americano aclamados pela crítica. ",
 				img12);
 		Produto p5 = new Produto(5L, "Elden Ring", 100,
 				"Elden Ring é um jogo eletrônico de RPG de ação em terceira pessoa, desenvolvido pela FromSoftware e publicado pela Bandai Namco Entertainment.",
@@ -154,11 +176,32 @@ public class TestConfig implements CommandLineRunner {
 		Produto p10 = new Produto(10L, "Cuphead", 78,
 				"Cuphead é um jogo eletrônico de run and gun e plataforma criado pelos irmãos canadenses Chad e Jared Moldenhauer através da Studio MDHR.",
 				img18);
-
-		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5));
-		System.out.println("Id do endereço 1 é " + e1.getCodEnd());
-		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+		Produto p11 = new Produto(11L, "Resident Evil 4", 250,
+				"Resident Evil 4 é o grande novo lançamento da Capcom, reimaginando o clássico de 2005. Jogue como Leon Kennedy em sua busca pela filha do presidente, enquanto luta contra criaturas aterrorizantes.",
+				img25);
+		Produto p12 = new Produto(12L, "The Legend of Zelda: Tears of the Kingdom", 300,
+				"The Legend of Zelda: Tears of the Kingdom é o novo lançamento da Nintendo e um dos jogos mais aguardados do ano. Reviva o mundo de Hyrule após os eventos de Breath of the Wild com novos personagens, mecânicas e um vasto novo mundo.",
+				img26);
+		Produto p13 = new Produto(13L, "The King of Fighters XV", 100,
+				"The King of Fighters, ou KOF para os mais familiarizados, é uma franquia de jogos de luta bastante popular na América do Sul. KOF XV é o jogo mais recente dessa franquia, com gráficos surpreendentes e gameplay enfatizada em técnica.",
+				img27);
+		Produto p14 = new Produto(14L, "Guilty Gear Strive", 100,
+				"Nesse novo jogo da série Guilty Gear, famosa por seus gráficos estilizados em anime e lutas de rítmo acelerado, jogue com uma variedade de personagens antigos e novos, pensado para que jogadores novatos possam jogar sem dificuldades.",
+				img28);
+		Produto p15 = new Produto(15L, "Guilty Gear Xrd Rev 2", 40,
+				"Um marco na indústria dos jogos de luta, jogue esse jogo da série Guilty Gear que se tornou um cult classic devido a seu gameplay acelerado, mecânicas com grande profundidade e excelente netcode para jogar online.",
+				img29);
+		Produto p16 = new Produto(16L, "Minecraft", 150,
+				"Grande clássico dos videogames e jogo mais vendido da história. Solte sua criatividade e explore lugares incríveis em um mundo feito de blocos, sozinho ou com amigos. Aqui sempre tem algo a fazer!",
+				img30);
+		Produto p17 = new Produto(17L, "Forza Horizon 5", 150,
+				"Forza Horizon 5 é um jogo eletrônico de corrida desenvolvido pela Playground Games e publicado pela Xbox Game Studios.",
+				img31);
+		Produto p18 = new Produto(18L, "Mario Kart 8 Deluxe", 150,
+				"Em Mario Kart 8 Deluxe, jogue com vários personagens da franquia Mario, em pistas bastante diversas que incluem seções submersas e antigravidade para o gameplay caótico pelo qual a série é conhecida.",
+				img32);
+		
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18));
 
 		CadProduto cp1 = new CadProduto(1L, p2, 5L, u1);
 		CadProduto cp2 = new CadProduto(2L, p1, 2L, u1);
