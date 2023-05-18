@@ -19,15 +19,18 @@ import com.belval.avaliacaogames.entities.CadProduto;
 import com.belval.avaliacaogames.entities.Comentario;
 import com.belval.avaliacaogames.entities.Imagem;
 import com.belval.avaliacaogames.entities.Produto;
+import com.belval.avaliacaogames.entities.Troca;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.CadProdutoRepository;
 import com.belval.avaliacaogames.repositories.ComentarioRepository;
 import com.belval.avaliacaogames.repositories.ProdutoRepository;
+import com.belval.avaliacaogames.repositories.TrocaRepository;
 import com.belval.avaliacaogames.services.AnuncioService;
 import com.belval.avaliacaogames.services.CadProdutoService;
 import com.belval.avaliacaogames.services.ImagemService;
 import com.belval.avaliacaogames.services.ProdutoService;
+import com.belval.avaliacaogames.services.TrocaService;
 import com.belval.avaliacaogames.services.UsuarioService;
 
 @Controller
@@ -49,6 +52,9 @@ public class ProdutoController {
 	private ImagemService imagemService;
 
 	@Autowired
+	private TrocaService trocaService;
+
+	@Autowired
 	private CadProdutoRepository cadProdutoRepository;
 
 	@Autowired
@@ -59,6 +65,9 @@ public class ProdutoController {
 
 	@Autowired
 	private ComentarioRepository comentarioRepository;
+
+	@Autowired
+	private TrocaRepository trocaRepository;
 
 	// Pesquisar produto na tela inicial
 	@PostMapping("/usuario/{cpf}/pesquisar")
@@ -211,6 +220,15 @@ public class ProdutoController {
 	@PostMapping("/usuario/{cpf}/biblioteca/{codCadProd}/deletar")
 	public ModelAndView deletarProduto(@PathVariable("cpf") Long cpf, @PathVariable("codCadProd") Long codCadProd) {
 
+		CadProduto cadProduto = cadProdutoService.findById(codCadProd);
+
+		Troca troca = trocaService.findByCadProduto(cadProduto);
+
+		if (troca != null) {
+			troca.setCad_produto(null);
+			troca.setStatusTroca(false);
+			trocaRepository.save(troca);
+		}
 		cadProdutoRepository.deleteById(codCadProd);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/biblioteca");

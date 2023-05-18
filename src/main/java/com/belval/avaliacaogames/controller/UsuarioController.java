@@ -293,12 +293,11 @@ public class UsuarioController {
 		List<CadProduto> cad_produtos = cadProdutoService.findByUsuario(usuario);
 
 		for (CadProduto cp : cad_produtos) {
-			Optional<Troca> t = trocaRepository.findByCadProduto(cp);
-			if (t.isPresent()) {
-				Troca troca = t.get();
-				troca.setCad_produto(null);
-				troca.setStatusTroca(false);
-				trocaRepository.save(troca);
+			Troca t = trocaRepository.findByCadProduto(cp);
+			if (t != null) {
+				t.setCad_produto(null);
+				t.setStatusTroca(false);
+				trocaRepository.save(t);
 			}
 			cadProdutoRepository.delete(cp);
 		}

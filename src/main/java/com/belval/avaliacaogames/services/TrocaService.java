@@ -30,9 +30,9 @@ public class TrocaService {
 	}
 
 	public Troca findByCadProduto(CadProduto cadProduto) {
-		Optional<Troca> obj = repository.findByCadProduto(cadProduto);
-		if (obj.isPresent()) {
-			return obj.get();
+		Troca obj = repository.findByCadProduto(cadProduto);
+		if (obj != null) {
+			return obj;
 		} else {
 			return null;
 		}
@@ -42,11 +42,11 @@ public class TrocaService {
 		Usuario usuario = usuarioService.findById(cpf);
 		return repository.findAllByUsuarioCpfNotOrderByNomeTrocaDesc(usuario.getCpf());
 	}
-	
+
 	public List<Troca> findAllValidAnunciosExcetoUsuario(Long cpf) {
 		return repository.findAllByUsuarioCpfNotAndStatusTrocaTrue(cpf);
 	}
-	
+
 	public List<Troca> findAllValidAnuncios() {
 		return repository.findAllByStatusTrocaTrue();
 	}
