@@ -114,7 +114,7 @@
 		<div id="ofertas" class="container">
 			<div th:each="anuncio: ${anuncios}" th:object="${anuncio}">
 				<a href="/usuario/cadastrar" style="text-decoration: none; color: black;">
-					<div class="card" style="width: 18rem;">
+					<div class="card" style="max-width: 18rem;">
 						<img th:src="*{imagem.url}" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title"><span th:text="*{nomeAnuncio}"></span></h5>
