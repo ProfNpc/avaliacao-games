@@ -22,6 +22,7 @@ import com.belval.avaliacaogames.entities.Pagamento;
 import com.belval.avaliacaogames.entities.Pedido;
 import com.belval.avaliacaogames.entities.Usuario;
 import com.belval.avaliacaogames.entities.pk.ItemPedidoPK;
+import com.belval.avaliacaogames.repositories.AnuncioRepository;
 import com.belval.avaliacaogames.repositories.CarrinhoRepository;
 import com.belval.avaliacaogames.repositories.ItemCarrinhoRepository;
 import com.belval.avaliacaogames.repositories.ItemPedidoRepository;
@@ -34,6 +35,8 @@ import com.belval.avaliacaogames.services.UsuarioService;
 
 @Controller
 public class PedidoController {
+
+	private static final int ItemPedido = 0;
 
 	@Autowired
 	private UsuarioService usuarioService;
@@ -61,6 +64,9 @@ public class PedidoController {
 
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private AnuncioRepository anuncioRepository;
 
 	private Pedido ped;
 	private ItemPedido itemPed;
@@ -219,6 +225,14 @@ public class PedidoController {
 
 			itemCarrinhoRepository.deleteAll(itensCarrinho);
 			carrinhoRepository.delete(carrinho);
+		}
+		
+		List<ItemPedido> itensPedidos = itemPedidoRepository.findByIdPedido(pedido);
+		
+		for(ItemPedido it : itensPedidos) {
+			Anuncio anuncio = anuncioService.findById(it.getAnuncio().getCodAnuncio());
+			anuncio.setQuantVendida(anuncio.getQuantVendida() + it.getQuantidade());
+			anuncioRepository.save(anuncio);
 		}
 
 		pagamento.setPedido(pedido);

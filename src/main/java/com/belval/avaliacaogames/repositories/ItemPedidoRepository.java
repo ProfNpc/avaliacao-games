@@ -12,5 +12,4 @@ import com.belval.avaliacaogames.entities.Pedido;
 public interface ItemPedidoRepository extends JpaRepository<ItemPedido, Long> {
 
 	List<ItemPedido> findByIdPedido(Pedido pedido);
-	
 }
