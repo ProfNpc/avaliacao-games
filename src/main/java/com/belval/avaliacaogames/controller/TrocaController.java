@@ -101,9 +101,7 @@ public class TrocaController {
 	@GetMapping("/usuario/{cpf}/trocas")
 	public ModelAndView minhasTrocas(@PathVariable("cpf") Long cpf, Model model) {
 
-		Usuario usuario = usuarioService.findById(cpf);
-
-		List<Troca> trocas = trocaRepository.findByUsuario(usuario);
+		List<Troca> trocas = trocaRepository.findAllByUsuarioCpfAndStatusTrocaTrue(cpf);
 
 		ModelAndView mv = new ModelAndView("troca/minhas-trocas");
 
@@ -271,10 +269,12 @@ public class TrocaController {
 
 		Troca troca = trocaService.findById(codTroca);
 
-		CadProduto cadProduto = cadProdutoService.findById(troca.getCad_produto().getCodCadProd());
+		troca.setCad_produto(null);
+		troca.setStatusTroca(false);
+
+		trocaRepository.save(troca);
 
 		trocaRepository.deleteById(codTroca);
-		cadProdutoRepository.delete(cadProduto);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/trocas");
 
@@ -353,8 +353,8 @@ public class TrocaController {
 		for (ItemTroca item_Troca : itensTroca) {
 			ItemPedidoTroca iptAnunciante = new ItemPedidoTroca();
 			iptAnunciante.setUsuario(troca.getUsuario());
-			iptAnunciante
-					.setProduto(cadProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()).getProduto());
+			iptAnunciante.setProduto(
+					cadProdutoRepository.findByUsuarioAndProduto(usuario, item_Troca.getProduto()).getProduto());
 			iptAnunciante.setPedido(pedidoTroca);
 			iptAnunciante = itemPedidoTrocaRepository.save(iptAnunciante);
 			itens.add(iptAnunciante);
@@ -376,7 +376,7 @@ public class TrocaController {
 		// "Deleta" a troca
 		troca.setStatusTroca(false);
 		trocaRepository.save(troca);
-		
+
 		// Deleta os CadProdutos
 		for (ItemPedidoTroca item : itens) {
 			cadProdutoService.removeCadProdutoFromUsuario(item.getProduto(), usuario);
