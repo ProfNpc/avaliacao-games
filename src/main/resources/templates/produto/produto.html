@@ -26,10 +26,12 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="colorFont nav-link" aria-current="page" th:href="@{/usuario/{cpf}/mais/anuncios (cpf=${cpf})}">Ofertas</a>
+							<a class="colorFont nav-link" aria-current="page"
+								th:href="@{/usuario/{cpf}/mais/anuncios (cpf=${cpf})}">Ofertas</a>
 						</li>
 						<li class="nav-item">
-							<a class="colorFont nav-link" th:href="@{/usuario/{cpf}/mais/trocas (cpf=${cpf})}">Trocas</a>
+							<a class="colorFont nav-link"
+								th:href="@{/usuario/{cpf}/mais/trocas (cpf=${cpf})}">Trocas</a>
 						</li>
 						<li class="nav-item">
 							<a class="car nav-link" th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}"><img
@@ -66,7 +68,7 @@
 					<form th:action="@{/usuario/{cpf}/pesquisar(cpf=${cpf})}" method="post" class="d-flex"
 						role="search">
 						<input class="form-control me-2" type="search" name="nomeAnuncio"
-							placeholder="Buscar produtos..." aria-label="Search" required/>
+							placeholder="Buscar produtos..." aria-label="Search" required />
 
 						<!-- Botão de pesquisa -->
 						<button class="btn btn-outline-success" type="submit">
@@ -82,11 +84,15 @@
 			<div class="card" style="width: 42.3rem">
 				<img th:src="${anuncio.imagem.url}" class="card-img-top" alt="..." />
 				<div class="card-body">
-					<h5 class="card-title text-center">
+					<h4 class="card-title text-center">
 						<span th:text="${anuncio.nomeAnuncio}"></span>
-					</h5>
-					<p class="card-text text-center">
+					</h4>
+					<h5 class="card-text text-center">
 						R$ <span th:text="${anuncio.valorAnuncio}"></span>
+					</h5>
+
+					<p class="card-text text-center">
+						Estoque: <span th:text="${anuncio.quantAnuncio}"></span> unidades
 					</p>
 					<form
 						th:action="@{/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho(cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
