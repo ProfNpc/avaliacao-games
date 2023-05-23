@@ -78,10 +78,10 @@
 		</nav>
 	</header>
 	<main>
-		<section class="containerProduto">
-			<div class="card" style="width: 40rem">
-				<img th:src="${troca.cad_produto.produto.imagem.url}" class="card-img-top" alt="..." />
-				<div class="card-body">
+		<section class="containerProduto justify-content-center">
+			<div class="card " style="width: 45%">
+				<img th:src="${troca.cad_produto.produto.imagem.url}" class="card-img-top w-50 d-block mx-auto justify-content-center" alt="..."/>
+				<div class="card-body w-100">
 					<h5 class="card-title text-center">
 						<span th:text="${troca.nomeTroca}"></span>
 					</h5>
@@ -95,16 +95,15 @@
 					</form>
 				</div>
 			</div>
-			<div class="card" style="max-width: 50rem">
-				<div class="card-body">
+			<div class="card mx-4" style="width: 38%" >
+				<div class="card-body ">
 					<h5 class="card-title text-center">
-						<span th:text="${usuario.nome}"></span>
+						<span th:text="'Anunciante: ' + ${usuario.nome}"></span>
 					</h5>
-					<p class="card-text text-center">Produtos vendidos</p>
-					<h5 class="card-title text-center">Produto para troca:</h5>
+					<h5 class="card-title text-center">Produtos para troca:</h5>
 					<br />
-					<div class="row row-cols-1 row-cols-md-3 g-4">
-						<div class="col" style="width: 8rem" th:each="item_troca, iStat: ${itens_troca}">
+					<div class="row row-cols-1 row-cols-md-4">
+						<div class="col mb-4"  th:each="item_troca, iStat: ${itens_troca}">
 							<div class="card h-100">
 								<img th:src="${item_troca.produto.imagem.url}" class="card-img-top" alt="..." />
 								<div class="card-body">

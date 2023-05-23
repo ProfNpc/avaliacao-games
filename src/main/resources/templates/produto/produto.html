@@ -78,8 +78,8 @@
 		</nav>
 	</header>
 	<main>
-		<section class="containerProduto">
-			<div class="card" style="width: 42.3rem">
+		<section class="containerProduto justify-content-center">
+			<div class="card" style="width: 46%">
 				<img th:src="${anuncio.imagem.url}" class="card-img-top" alt="..." />
 				<div class="card-body">
 					<h5 class="card-title text-center">
@@ -112,12 +112,11 @@
 				</div>
 			</div>
 
-			<div class="card" style="width: 22.5rem">
+			<div class="card w-25 " style="width: 22.5%; margin-left : 9vh">
 				<div class="card-body">
-					<h5 class="card-title text-center">
-						<span th:text="${usuario.nome}"></span>
-					</h5>
-					<p class="card-text text-center">Produtos vendidos</p>
+					<h3 class="card-title text-center">
+						<span th:text="'Anunciante: ' + ${usuario.nome}"></span>
+					</h3>
 					<h5 class="card-title text-center">Avaliação do Produto</h5>
 					<br />
 					<div class="usuario" th:each="comentarios, iStat: ${comentarios}">
