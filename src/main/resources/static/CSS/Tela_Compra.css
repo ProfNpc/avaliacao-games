@@ -53,3 +53,12 @@ header {
   border: 1px solid #ccc;
   border-top: none;
 }
+
+.conteiner-button-radio {
+	margin: 1rem;
+}
+
+.button-radio {
+	width: 2rem;
+	
+}
