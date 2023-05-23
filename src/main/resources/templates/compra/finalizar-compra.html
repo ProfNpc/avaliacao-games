@@ -25,10 +25,12 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="colorFont nav-link" aria-current="page" th:href="@{/usuario/{cpf}/mais/anuncios (cpf=${cpf})}">Ofertas</a>
+							<a class="colorFont nav-link" aria-current="page"
+								th:href="@{/usuario/{cpf}/mais/anuncios (cpf=${cpf})}">Ofertas</a>
 						</li>
 						<li class="nav-item">
-							<a class="colorFont nav-link" th:href="@{/usuario/{cpf}/mais/trocas (cpf=${cpf})}">Trocas</a>
+							<a class="colorFont nav-link"
+								th:href="@{/usuario/{cpf}/mais/trocas (cpf=${cpf})}">Trocas</a>
 						</li>
 						<li class="nav-item">
 							<a class="car nav-link" th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}"><img
@@ -110,12 +112,12 @@
 
 			<form th:action="@{/usuario/{cpf}/compra/finalizar(cpf=${cpf})}" method="post">
 				<div class="card text-center">
-					<div class="tab">
-						<input type="radio" class="tablinks active" name="tipo" onclick="openTab(event, 'credit-card')"
+					<div class="tab conteiner-button-radio">
+						<input type="radio" class="tablinks active button-radio" name="tipo" onclick="openTab(event, 'credit-card')"
 							value="Crédito">Cartão de crédito</input>
-						<input type="radio" class="tablinks" name="tipo" onclick="openTab(event, 'pix')"
+						<input type="radio" class="tablinks button-radio" name="tipo" onclick="openTab(event, 'pix')"
 							value="Pix">PIX</input>
-						<input type="radio" class="tablinks" name="tipo" onclick="openTab(event, 'boleto')"
+						<input type="radio" class="tablinks button-radio" name="tipo" onclick="openTab(event, 'boleto')"
 							value="Boleto">Boleto</input>
 					</div>
 
@@ -143,21 +145,36 @@
 							<div class="input-group mb-3">
 								<select class="form-select" id="inputGroupSelect01" required>
 									<option selected>À vista</option>
-									<option value="1">Uma</option>
-									<option value="2">Duas</option>
-									<option value="3">Três</option>
+									<option value="1">Duas</option>
+									<option value="2">Três</option>
 								</select>
 							</div>
 							</p>
 						</div>
 					</div>
-
-					<div id="pix" class="tabcontent" style="display: none">
-						<!-- conteúdo da aba de PIX -->
+					<div id="pix" class="tabcontent">
+						<div class="card-body">
+							<h5 class="card-title">Pix</h5>
+							<p class="card-text">
+								Pague com pix, utlizando o QR Code abaixo
+							</p>
+							<img src="/imagens/pix-qrcode.png" alt="qr code pix" />
+							<p class="card-text">
+								Basta entrar em seu banco, na aba 'PAGAR COM PIX', e localizar o QR Code
+							</p>
+						</div>
 					</div>
-
-					<div id="boleto" class="tabcontent" style="display: none">
-						<!-- conteúdo da aba de boleto -->
+					<div id="boleto" class="tabcontent">
+						<div class="card-body">
+							<h5 class="card-title">Boleto</h5>
+							<p class="card-text">
+								Pague com boleto, utilizando o código de barras abaixo
+							</p>
+							<img src="/imagens/code-boleto.png" alt="codigo do boleto" />
+							<p class="card-text">
+								Basta entrar em seu banco, na aba 'BOLETO' e clicar em pagar
+							</p>
+						</div>
 					</div>
 				</div>
 
