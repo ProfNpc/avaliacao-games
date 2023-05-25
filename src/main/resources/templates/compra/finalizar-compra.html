@@ -8,6 +8,21 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/CSS/Tela_Compra.css" />
 	<link rel="stylesheet" href="/CSS/NavBar.css" />
+	
+	<style>
+		.alert {
+			display: none;
+			color: #58151c;
+			background-color: #ea868f;
+			margin: 0.6rem 0;
+		  	padding: 0.8rem 1.2rem;
+		  	border: none;
+		  	border-radius: 10px;
+		  	box-shadow: 1px 1px 1px black;
+		  	text-align: left;
+		}
+	</style>
+	
 	<title>Finalizar compra - Pacifier</title>
 </head>
 
@@ -109,15 +124,20 @@
 					</div>
 				</div>
 			</div>
+			
+			<div id="alerta" class="alert" 
+	          th:style="${alerta == null} ? 'display: none' : 'display: block'" 
+	          th:utext="${alerta}">
+		  	</div>
 
-			<form th:action="@{/usuario/{cpf}/compra/finalizar(cpf=${cpf})}" method="post">
+			<form id="form" th:action="@{/usuario/{cpf}/compra/finalizar(cpf=${cpf})}" method="post">
 				<div class="card text-center">
 					<div class="tab conteiner-button-radio">
-						<input type="radio" class="tablinks active button-radio" name="tipo" onclick="openTab(event, 'credit-card')"
+						<input id="radioCartao" type="radio" class="tablinks active button-radio" name="tipo" onclick="openTab(event, 'credit-card')"
 							value="Crédito">Cartão de crédito</input>
-						<input type="radio" class="tablinks button-radio" name="tipo" onclick="openTab(event, 'pix')"
+						<input id="radioPix" type="radio" class="tablinks button-radio" name="tipo" onclick="openTab(event, 'pix')"
 							value="Pix">Pix</input>
-						<input type="radio" class="tablinks button-radio" name="tipo" onclick="openTab(event, 'boleto')"
+						<input id="radioBoleto" type="radio" class="tablinks button-radio" name="tipo" onclick="openTab(event, 'boleto')"
 							value="Boleto">Boleto</input>
 					</div>
 
@@ -126,19 +146,26 @@
 							<h5 class="card-title">Cartão de Credito</h5>
 							<p class="card-text">
 								Número do cartão:
-								<input type="text" required />
+								<input id="cartao" type="text" 
+								oninput="inserirAoModelo('xxxx xxxx xxxx xxxx', numeros(this.value), r => this.value = r)" 
+								required />
 							</p>
 							<p class="card-text">
 								Nome completo:
-								<input type="text" required />
+								<input id="nome" type="text"
+								required />
 							</p>
 							<p class="card-text">
 								Validade:
-								<input type="text" required />
+								<input id="validade" type="text"
+								oninput="inserirAoModelo('xx/xx', numeros(this.value), r => this.value = r)" 
+								required />
 							</p>
 							<p class="card-text">
 								Código de Segurança:
-								<input type="text" required />
+								<input id="cvv" type="text"
+								oninput="inserirAoModelo('xxx', numeros(this.value), r => this.value = r)" 
+								required />
 							</p>
 							<p class="card-text">
 								Número de parcelas:
@@ -180,7 +207,7 @@
 
 				<div class="card-footer text-muted">
 					<div class="d-grid gap-2 col-6 mx-auto">
-						<button class="btn btn-primary" type="submit">
+						<button class="btn btn-primary" onclick="confirmarCompra(event)">
 							Terminar compra
 						</button>
 					</div>
@@ -191,6 +218,8 @@
 	</main>
 	<footer></footer>
 	<script src="/JS/mudar-aba.js"></script>
+	<script src="/JS/TelaFinalizarCompra.js"></script>
+	<script src="/JS/InserirAoModelo.js"></script>
 	<script src="/JS/NavBar.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
