@@ -140,11 +140,17 @@ public class TestConfig implements CommandLineRunner {
 				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684284989/6abd5c03e1414f4600add2d7956bb442_padw4t.png");
 		Imagem img32 = new Imagem(32l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
 				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684285328/8d9f1677ead632bcc3f1a48e6743d984_wciflb.jpg");
+		
+		// TODO Adicionar fotos dos jogos aqui!
+		Imagem img33 = new Imagem(33l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684285328/8d9f1677ead632bcc3f1a48e6743d984_wciflb.jpg");
+		Imagem img34 = new Imagem(34l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684285328/8d9f1677ead632bcc3f1a48e6743d984_wciflb.jpg");
 
 
 		imagemRepository.saveAll(Arrays.asList(img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11,
 				img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22, img23, img24, img25, 
-				img26, img27, img28, img29, img30, img31, img32));
+				img26, img27, img28, img29, img30, img31, img32, img33, img34));
 
 		Produto p1 = new Produto(1L, "Grand Theft Auto V", 50,
 				"Grand Theft Auto V é um jogo eletrônico de ação-aventura desenvolvido pela Rockstar North e publicado pela Rockstar Games.",
@@ -200,8 +206,14 @@ public class TestConfig implements CommandLineRunner {
 		Produto p18 = new Produto(18L, "Mario Kart 8 Deluxe", 150,
 				"Em Mario Kart 8 Deluxe, jogue com vários personagens da franquia Mario, em pistas bastante diversas que incluem seções submersas e antigravidade para o gameplay caótico pelo qual a série é conhecida.",
 				img32);
+		Produto p19 = new Produto(19L, "Watch Dogs", 150,
+				"Em Watch Dogs, a história segue um homem chamado Aiden Pearce, um hacker que, devido a uma tragédia familiar violenta, procura fazer sua própria justiça para com os culpados manipulando o Sistema de Operação Central.",
+				img33);
+		Produto p20 = new Produto(20L, "God of War Ragnarök", 150,
+				"God of War Ragnarök é um jogo eletrônico de ação-aventura desenvolvido pela Santa Monica Studio e publicado pela Sony Interactive Entertainment. Foi lançado em 9 de novembro de 2022 para PlayStation 4 e PlayStation 5.",
+				img34);
 		
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18));
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20));
 
 		CadProduto cp1 = new CadProduto(1L, p2, 5L, u1);
 		CadProduto cp2 = new CadProduto(2L, p1, 2L, u1);
