@@ -56,7 +56,10 @@ function confirmarSenhas(senha1, senha2) {
 	return senha1 == senha2;
 }
 
-function confirmarDados() {
+function confirmarDados(event) {
+	// Previnir comportamento padrão
+	event.preventDefault();
+	
 	// Confirmar primeiros campos
 	if (nome.value == "") {
 		alertar("Insira um nome válido");
