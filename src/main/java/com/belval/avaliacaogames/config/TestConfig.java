@@ -143,9 +143,9 @@ public class TestConfig implements CommandLineRunner {
 		
 		// TODO Adicionar fotos dos jogos aqui!
 		Imagem img33 = new Imagem(33l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684285328/8d9f1677ead632bcc3f1a48e6743d984_wciflb.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1685486759/df827da31d664707840bc6c221f22d72_f6hzth.png");
 		Imagem img34 = new Imagem(34l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684285328/8d9f1677ead632bcc3f1a48e6743d984_wciflb.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1685486879/fd93fd1de50e084dd7d3b0b9f6950450_uexfgy.png");
 
 
 		imagemRepository.saveAll(Arrays.asList(img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11,
