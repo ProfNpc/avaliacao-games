@@ -36,5 +36,10 @@ public class AnuncioService {
 		Usuario usuario = usuarioService.findById(cpf);
 		return repository.findAllByUsuarioCpfNotOrderByNomeAnuncioDesc(usuario.getCpf());
 	}
+	
+	public List<Anuncio> findAllValidAnunciosExcetoUsuario(Long cpf) {
+		Usuario usuario = usuarioService.findById(cpf);
+		return repository.findAllValidAnunciosExcetoUsuario(usuario.getCpf());
+	}
 
 }

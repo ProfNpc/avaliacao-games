@@ -99,7 +99,7 @@ public class AnuncioController {
 	@GetMapping("/usuario/{cpf}/mais/anuncios")
 	public String verMaisAnuncios(@PathVariable("cpf") Long cpf, Model model) {
 
-		List<Anuncio> anuncios = anuncioService.findAllAnunciosExcetoUsuario(cpf);
+		List<Anuncio> anuncios = anuncioService.findAllValidAnunciosExcetoUsuario(cpf);
 		model.addAttribute("anuncios", anuncios);
 
 		return "anuncio/mais-anuncios";

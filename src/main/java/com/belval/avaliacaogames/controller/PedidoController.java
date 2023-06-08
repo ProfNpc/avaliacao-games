@@ -232,6 +232,7 @@ public class PedidoController {
 		for(ItemPedido it : itensPedidos) {
 			Anuncio anuncio = anuncioService.findById(it.getAnuncio().getCodAnuncio());
 			anuncio.setQuantVendida(anuncio.getQuantVendida() + it.getQuantidade());
+			anuncio.setQuantAnuncio(anuncio.getQuantAnuncio() - it.getQuantidade());
 			anuncioRepository.save(anuncio);
 		}
 
