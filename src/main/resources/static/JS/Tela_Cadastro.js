@@ -13,6 +13,21 @@ function alertar(mensagem) {
 	alerta.style.display = "block"
 }
 
+function confirmarEmail(e) {
+	let usuario = e.substring(0, e.indexOf("@"));
+	let dominio = e.substring(e.indexOf("@") + 1, e.length);
+	
+	return (usuario.length >= 1 &&
+			dominio.length >= 3 &&
+			usuario.search("@") == -1 &&
+			dominio.search("@") == -1 &&
+			usuario.search(" ") == -1 &&
+			dominio.search(" ") == -1 &&
+			dominio.search(".") != -1 &&
+			dominio.indexOf(".") >= 1 &&
+			dominio.lastIndexOf(".") < dominio.length - 1);
+}
+
 function confirmarCelular(celular) {
 	if (celular.length != 11) return false;
 	
@@ -73,7 +88,7 @@ function confirmarDados(event) {
 		return;
 	}
 	
-	if (email.value == "" || !email.value.includes("@") || email.value.indexOf("@") == email.value.length - 1) {
+	if (!confirmarEmail(email.value)) {
 		alertar("Insira um e-mail válido");
 		email.focus();
 		return;
