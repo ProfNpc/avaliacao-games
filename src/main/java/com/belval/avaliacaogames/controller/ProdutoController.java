@@ -101,12 +101,15 @@ public class ProdutoController {
 		for (Comentario cm : comentarios) {
 			nomeComentarios.add(cm.getNomeUsuario());
 		}
+		
+		boolean travarBotao = (anuncio.getQuantAnuncio() <= 0);
 
 		model.addAttribute("nomeComentarios", nomeComentarios);
 		model.addAttribute("comentarios", comentarios);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("anuncio", anuncio);
 		model.addAttribute("anuncios", anuncios);
+		model.addAttribute("travarBotao", travarBotao);
 		return "produto/produto";
 	}
 

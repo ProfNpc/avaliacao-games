@@ -102,7 +102,7 @@
 						</div>
 
 						<div class="d-grid gap-2 col-6 mx-auto">
-							<button class="botao btn btn-primary"
+							<button class="botao btn btn-primary" th:disabled="${travarBotao}"
 								th:formaction="@{/usuario/{cpf}/compra/{codAnuncio}/adicionar (cpf=${cpf}, codAnuncio=${codAnuncio})}"
 								formmethod="post" type="submit">
 								Comprar
@@ -110,7 +110,7 @@
 						</div>
 
 						<div class="d-grid gap-2 col-6 mx-auto">
-							<button class="botao btn btn-primary" type="submit">
+							<button class="botao btn btn-primary" th:disabled="${travarBotao}" type="submit">
 								Adicionar ao carrinho
 							</button>
 						</div>
