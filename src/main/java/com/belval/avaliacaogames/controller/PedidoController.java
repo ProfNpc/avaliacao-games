@@ -36,8 +36,6 @@ import com.belval.avaliacaogames.services.UsuarioService;
 @Controller
 public class PedidoController {
 
-	private static final int ItemPedido = 0;
-
 	@Autowired
 	private UsuarioService usuarioService;
 
