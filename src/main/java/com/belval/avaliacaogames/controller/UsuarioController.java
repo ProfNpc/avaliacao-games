@@ -70,7 +70,7 @@ public class UsuarioController {
 	@Transactional
 	public String indice(Model model) {
 
-		List<Anuncio> anuncios = anuncioService.findAll();
+		List<Anuncio> anuncios = anuncioService.findAllValidAnuncios();
 		model.addAttribute("anuncios", anuncios);
 
 		List<Troca> trocas = trocaService.findAllValidAnuncios();
@@ -87,7 +87,7 @@ public class UsuarioController {
 		Usuario usuario = service.findById(cpf);
 		model.addAttribute(usuario);
 
-		List<Anuncio> anuncios = anuncioService.findAllAnunciosExcetoUsuario(cpf);
+		List<Anuncio> anuncios = anuncioService.findAllValidAnunciosExcetoUsuario(cpf);
 		model.addAttribute("anuncios", anuncios);
 
 		List<Troca> trocas = trocaService.findAllValidAnunciosExcetoUsuario(cpf);

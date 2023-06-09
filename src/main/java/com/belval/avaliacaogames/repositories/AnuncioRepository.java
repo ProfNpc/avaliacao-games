@@ -25,5 +25,7 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Long> {
 	@Query("SELECT a FROM Anuncio a WHERE a.usuario.cpf <> ?1 and a.quantAnuncio > 0 ORDER BY a.nomeAnuncio DESC")
 	List<Anuncio> findAllValidAnunciosExcetoUsuario(Long cpf);
 	
+	List<Anuncio> findAllByQuantAnuncioGreaterThan(Integer quantAnuncio);
+	
 	//List<Anuncio> findAllByQuantVendidaGreaterThanAndUsuarioCpfNotOrderByNomeAnuncioDesc(Integer quantVendida, Long cpf);
 }

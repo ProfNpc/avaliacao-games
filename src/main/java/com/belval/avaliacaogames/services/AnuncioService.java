@@ -41,5 +41,9 @@ public class AnuncioService {
 		Usuario usuario = usuarioService.findById(cpf);
 		return repository.findAllValidAnunciosExcetoUsuario(usuario.getCpf());
 	}
+	
+	public List<Anuncio> findAllValidAnuncios() {
+		return repository.findAllByQuantAnuncioGreaterThan(0);
+	}
 
 }
