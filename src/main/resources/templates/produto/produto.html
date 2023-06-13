@@ -98,7 +98,9 @@
 						th:action="@{/usuario/{cpf}/adicionar/produto/{codAnuncio}/carrinho(cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
 						method="post">
 						<div class="input">
-							<input type="number" placeholder="Quantidade" name="quantidade" value="1" required />
+							<label for="quantidade">Quantidade:</label>
+							<input type="number" placeholder="Quantidade" name="quantidade" value="1" 
+							min="1" th:max="${anuncio.quantAnuncio}" th:disabled="${travarBotao}" required />
 						</div>
 
 						<div class="d-grid gap-2 col-6 mx-auto">
