@@ -46,16 +46,18 @@ public class CarrinhoController {
 		Carrinho carrinho = carrinhoRepository.findByUsuario(usuario);
 
 		List<ItemCarrinho> itens = itemCarrinhoRepository.findByCarrinho(carrinho);
+		boolean travarBotao = itens.isEmpty();
 
 		double total = 0;
 		for (ItemCarrinho item : itens) {
 			total += item.getAnuncio().getValorAnuncio() * item.getQuantidade();
 		}
 
+		
 		ModelAndView mv = new ModelAndView("carrinho/carrinho");
-
 		mv.addObject("itens", itens);
 		mv.addObject("total", total);
+		mv.addObject("travarBotao", travarBotao);
 
 		return mv;
 	}
