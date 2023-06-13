@@ -119,7 +119,7 @@
 			<div class="card-footer text-muted">Total com Frete: R$ <span th:text="${total}"></span></div>
 			<div class="card-footer text-muted">
 				<form th:action="@{/usuario/{cpf}/compra/finalizar (cpf=${cpf})}" method="get">
-					<button class="btn btn-primary" disabled="${travarBotao}">Continuar a compra</button>
+					<button class="btn btn-primary" th:disabled="${travarBotao}">Continuar a compra</button>
 				</form>
 			</div>
 		</div>
