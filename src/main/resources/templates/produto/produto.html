@@ -102,7 +102,8 @@
 							<input type="number" placeholder="Quantidade" name="quantidade" value="1" 
 							min="1" th:max="${anuncio.quantAnuncio}" th:disabled="${travarBotao}" required />
 						</div>
-
+						
+						<!--
 						<div class="d-grid gap-2 col-6 mx-auto">
 							<button class="botao btn btn-primary" th:disabled="${travarBotao}"
 								th:formaction="@{/usuario/{cpf}/compra/{codAnuncio}/adicionar (cpf=${cpf}, codAnuncio=${codAnuncio})}"
@@ -110,6 +111,7 @@
 								Comprar
 							</button>
 						</div>
+						-->
 
 						<div class="d-grid gap-2 col-6 mx-auto">
 							<button class="botao btn btn-primary" th:disabled="${travarBotao}" type="submit">
