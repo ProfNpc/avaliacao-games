@@ -94,14 +94,14 @@
 					<div class="col-md-7">
 						<div class="card-body">
 							<h5 class="card-title"><span th:text="${itens.anuncio.nomeAnuncio}"></span></h5>
-							<p class="card-text"><span th:text="${itens.anuncio.valorAnuncio}"></p>
+							<p class="card-text">R$: <span th:text="${itens.anuncio.valorAnuncio}"></p>
 							<p class="card-text">
-								<small class="text-muted">Frete: </small>
+								<small class="text-muted">Quantidade: </small>
 							</p>
 							<form
 								th:action="@{/usuario/{cpf}/carrinho/{codItemCar}/quantidade (cpf=${cpf}, codItemCar=${itens.codItemCar})}"
 								method="post">
-								<input type="number" placeholder="Quantidade" name="quantidade"
+								<input type="number" min="1" th:max="${itens.anuncio.quantAnuncio}" placeholder="Quantidade" name="quantidade"
 									th:value="${itens.quantidade}" />
 							</form>
 							<form
@@ -115,8 +115,7 @@
 			</div>
 
 			<!-- Container do Carrinho, continuar compra -->
-			<div class="card-footer text-muted">Frete: R$ </div>
-			<div class="card-footer text-muted">Total com Frete: R$ <span th:text="${total}"></span></div>
+			<div class="card-footer text-muted">Total: R$ <span th:text="${total}"></span></div>
 			<div class="card-footer text-muted">
 				<form th:action="@{/usuario/{cpf}/compra/finalizar (cpf=${cpf})}" method="get">
 					<button class="btn btn-primary" th:disabled="${travarBotao}">Continuar a compra</button>
