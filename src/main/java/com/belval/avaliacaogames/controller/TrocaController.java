@@ -245,6 +245,7 @@ public class TrocaController {
 		Troca novaTroca = trocaService.findByCadProduto(cad_produto);
 		novaTroca.setNomeTroca(troca.getNomeTroca());
 		novaTroca.setDescTroca(troca.getDescTroca());
+		novaTroca.setStatusTroca(true);
 		// novaTroca.setNomeImagem(troca.getNomeImagem());
 
 		Imagem imagem = null;
@@ -274,7 +275,7 @@ public class TrocaController {
 
 		trocaRepository.save(troca);
 
-		trocaRepository.deleteById(codTroca);
+		//trocaRepository.deleteById(codTroca);
 
 		ModelAndView mv = new ModelAndView("redirect:/usuario/{cpf}/trocas");
 

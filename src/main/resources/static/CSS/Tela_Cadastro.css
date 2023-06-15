@@ -35,7 +35,7 @@ body {
 }
 
 .form-image {
-  width: 50%;
+  width: 37%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,12 +46,12 @@ body {
 }
 
 .form-image img {
-  width: 20rem;
+  width: 15rem;
   border-radius: 3rem;
 }
 
 .form {
-  width: 50%;
+  width: 63%;
   display: flex;
   justify-content: center;
   align-items: center;

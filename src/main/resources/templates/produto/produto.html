@@ -129,11 +129,11 @@
 					</h3>
 					<h5 class="card-title text-center">Avaliação do Produto</h5>
 					<br />
-					<div class="usuario" th:each="comentarios, iStat: ${comentarios}">
-						<h6 class="card-title">
+					<div class="card usuario my-2" th:each="comentarios, iStat: ${comentarios}">
+						<h6 class="card-title mx-2 mt-2">
 							<span th:text="${nomeComentarios[iStat.index]}"></span>
 						</h6>
-						<p class="card-text">
+						<p class="card-text mx-2 mb-2">
 							<span th:text="${comentarios.comenComentario}"></span>
 						</p>
 						<br />
