@@ -113,9 +113,11 @@
 		<!-- Jogos em ofertas -->
 		<div id="ofertas" class="container">
 			<div th:each="anuncio: ${anuncios}" th:object="${anuncio}">
-				<a href="/usuario/cadastrar" style="text-decoration: none; color: black;">
-					<div class="card" style="max-width: 18rem;">
-						<img th:src="*{imagem.url}" class="card-img-top" alt="...">
+				<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=*{codAnuncio})}"
+					style="text-decoration: none; color: black;">
+					<div class="card" style="width: 25rem;">
+						<img th:src="*{imagem.url}" class="card-img-top"
+							style="width: 100%; height:75%; max-height:290px; min-height:290px;" alt="...">
 						<div class="card-body">
 							<h5 class="card-title"><span th:text="*{nomeAnuncio}"></span></h5>
 							<p class="card-text">R$ <span th:text="*{valorAnuncio}"></span></p>
@@ -124,6 +126,7 @@
 				</a>
 			</div>
 		</div>
+
 
 		<!-- Titulo lista de jogos -->
 		<div id="troca" class="container-mais">

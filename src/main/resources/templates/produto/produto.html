@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/CSS/Tela_Produto.css" />
 	<link rel="stylesheet" href="/CSS/NewNavBar.css" />
+	<link rel="stylesheet" href="/slick/slick.css">
+	<link rel="stylesheet" href="/slick/slick-theme.css">
 
 	<title th:text="${anuncio.nomeAnuncio} + ' - Pacifier'"></title>
 </head>
@@ -99,10 +101,10 @@
 						method="post">
 						<div class="input">
 							<label for="quantidade">Quantidade:</label>
-							<input type="number" placeholder="Quantidade" name="quantidade" value="1" 
-							min="1" th:max="${anuncio.quantAnuncio}" th:disabled="${travarBotao}" required />
+							<input type="number" placeholder="Quantidade" name="quantidade" value="1" min="1"
+								th:max="${anuncio.quantAnuncio}" th:disabled="${travarBotao}" required />
 						</div>
-						
+
 						<!--
 						<div class="d-grid gap-2 col-6 mx-auto">
 							<button class="botao btn btn-primary" th:disabled="${travarBotao}"
@@ -142,7 +144,7 @@
 			</div>
 		</section>
 
-		<section class="containerDescricao">
+		<section class="containerDescricao" style="width: 73%; margin-left: 16em;">
 			<div class="card">
 				<div class="card-header">Descrição</div>
 				<div class="card-body">
@@ -157,28 +159,43 @@
 		</section>
 
 		<section class="containerProdutos">
-			<div class="tituloProduto">Similiares</div>
-			<div class="row row-cols-2 row-cols-md-5 g-4">
-				<div class="col" th:each="anuncios: ${anuncios}">
-					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=${anuncios.codAnuncio})}">
-						<div class="card h-100">
-							<img th:src="${anuncios.imagem.url}" class="card-img-top" alt="..." />
+			<div class="tituloProduto" style="margin-left: 8em;">Similiares</div>
+			<!-- Jogos em ofertas -->
+			<div id="ofertas" class="container">
+				<div th:each="anuncio: ${anuncios}" th:object="${anuncio}">
+					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=*{codAnuncio})}"
+						style="text-decoration: none; color: black;">
+						<div class="card" style="width: 25rem;">
+							<img th:src="*{imagem.url}" class="card-img-top"
+								style="width: 100%; height:75%; max-height:290px; min-height:290px;" alt="...">
 							<div class="card-body">
-								<h5 class="card-title">
-									<span th:text="${anuncios.nomeAnuncio}"></span>
-								</h5>
-								<p class="card-text">
-									<span th:text="${anuncios.valorAnuncio}"></span>
-								</p>
+								<h5 class="card-title"><span th:text="*{nomeAnuncio}"></span></h5>
+								<p class="card-text">R$ <span th:text="*{valorAnuncio}"></span></p>
 							</div>
 						</div>
 					</a>
 				</div>
+				</divi>
+
+			</div>
+			</a>
+			</div>
 			</div>
 		</section>
 	</main>
 	<footer></footer>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/JS/jquery-3.6.4.js"></script>
+	<script src="/slick/slick.min.js"></script>
+	<script>
+		$(document).ready(() => {
+			$("#ofertas").slick({
+				infinite: false,
+				slidesToShow: 3,
+				slidesToScroll: 3,
+			});
+		});
+	</script>
 </body>
 
 </html>

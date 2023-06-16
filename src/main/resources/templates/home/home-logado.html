@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,8 +13,12 @@
 	<link rel="stylesheet" href="/slick/slick.css">
 	<link rel="stylesheet" href="/slick/slick-theme.css">
 
+
+
 	<title>Pacifier</title>
 </head>
+
+
 
 <body>
 	<header>
@@ -30,6 +36,8 @@
 					</ul>
 				</div>
 
+
+
 				<!-- Carrinho -->
 				<div class="nav-list">
 					<ul>
@@ -39,6 +47,8 @@
 						</li>
 					</ul>
 				</div>
+
+
 
 				<div class="login-button">
 					<div class="dropdown">
@@ -56,6 +66,8 @@
 					</div>
 				</div>
 
+
+
 				<div class="mobile-menu-icon">
 					<button onclick="menuShow()">
 						<img class="icon" src="/imagens/menu_white.svg" alt="" />
@@ -68,6 +80,8 @@
 					<li class="nav-item"><a href="#troca" class="nav-link">TROCAS</a></li>
 					<li class="nav-item"><a href="#contato" class="nav-link">CONTATO</a></li>
 				</ul>
+
+
 
 				<div class="login-button">
 					<div class="btn-group mx-auto" role="group" aria-label="Basic outlined example">
@@ -84,12 +98,13 @@
 			<!-- Frase  -->
 			<div class="frase">
 				<p>
-					Temos compra, venda e troca de jogos e produtos derivados, além de uma grande comunidade gamer com a qual você pode interagir.
+					Temos compra, venda e troca de jogos e produtos derivados, além de uma grande comunidade gamer com a
+					qual você pode interagir.
 				</p>
 			</div>
 			<div class="search">
 				<form th:action="@{/usuario/{cpf}/pesquisar (cpf=${cpf})}" method="post">
-					<input type="text" name="nomeAnuncio" placeholder="O que procura?" required/>
+					<input type="text" name="nomeAnuncio" placeholder="O que procura?" required />
 					<input type="submit" value="Pesquisar" />
 				</form>
 			</div>
@@ -97,8 +112,12 @@
 		</section>
 	</header>
 
+
+
 	<main>
 		<h1 class="titleDes">Destaques e Notícias</h1>
+
+
 
 		<div class="carousel">
 			<div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
@@ -126,14 +145,19 @@
 			</div>
 		</div>
 
+
+
 		<!-- Titulo oferta -->
 		<div id="oferta" class="container-mais">
 			<div class="text-container">
 				<h1 class="text-mais title">Ofertas</h1>
 			</div>
 
+
+
 			<div class="button-container">
-				<a class="btn btn-primary" th:href="@{/usuario/{cpf}/mais/anuncios (cpf=${cpf})}" role="button">Ver mais</a>
+				<a class="btn btn-primary" th:href="@{/usuario/{cpf}/mais/anuncios (cpf=${cpf})}" role="button">Ver
+					mais</a>
 			</div>
 		</div>
 		<!-- Jogos em ofertas -->
@@ -141,8 +165,9 @@
 			<div th:each="anuncio: ${anuncios}" th:object="${anuncio}">
 				<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=*{codAnuncio})}"
 					style="text-decoration: none; color: black;">
-					<div class="card" style="width: 18rem;">
-						<img th:src="*{imagem.url}" class="card-img-top" alt="...">
+					<div class="card" style="width: 25rem;">
+						<img th:src="*{imagem.url}" class="card-img-top"
+							style="width: 100%; height:75%; max-height:290px; min-height:290px;" alt="...">
 						<div class="card-body">
 							<h5 class="card-title"><span th:text="*{nomeAnuncio}"></span></h5>
 							<p class="card-text">R$ <span th:text="*{valorAnuncio}"></span></p>
@@ -152,14 +177,19 @@
 			</div>
 		</div>
 
+
+
 		<!-- Titulo lista de jogos -->
 		<div id="troca" class="container-mais">
 			<div class="text-container">
 				<h1 class="text-mais title">Trocas</h1>
 			</div>
 
+
+
 			<div class="button-container">
-				<a class="btn btn-primary" th:href="@{/usuario/{cpf}/mais/trocas (cpf=${cpf})}" role="button">Ver mais</a>
+				<a class="btn btn-primary" th:href="@{/usuario/{cpf}/mais/trocas (cpf=${cpf})}" role="button">Ver
+					mais</a>
 			</div>
 		</div>
 		<!-- Lista de jogos -->
@@ -178,6 +208,8 @@
 			</div>
 		</div>
 
+
+
 		<footer>
 			<section class="backColor">
 				<!-- Roda-pé de contatos -->
@@ -189,6 +221,8 @@
 						<li><img src="" alt="" />Facebook - Pacifier Store</li>
 					</ul>
 					<hr />
+
+
 
 					<p>
 						© 2022, Pacifier Store, Inc. Todos os direitos reservados. Pacifier,
@@ -208,8 +242,12 @@
 		<script src="/slick/slick.min.js"></script>
 		<script src="/JS/Tela_Inicial.js"></script>
 
+
+
 		<script src="/JS/NavBar.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
+
 
 </html>
