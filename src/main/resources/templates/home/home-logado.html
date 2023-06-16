@@ -165,7 +165,7 @@
 			<div th:each="anuncio: ${anuncios}" th:object="${anuncio}">
 				<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=*{codAnuncio})}"
 					style="text-decoration: none; color: black;">
-					<div class="card" style="width: 25rem;">
+					<div  class="card" style="width: 80%;">
 						<img th:src="*{imagem.url}" class="card-img-top"
 							style="width: 100%; height:75%; max-height:290px; min-height:290px;" alt="...">
 						<div class="card-body">
@@ -197,7 +197,7 @@
 			<div th:each="troca: ${trocas}" th:object="${troca}">
 				<a th:href="@{/usuario/{cpf}/troca/{codTroca} (cpf=${cpf}, codTroca=*{codTroca})}"
 					style="text-decoration: none; color: black;">
-					<div class="card" style="width: 20rem;">
+					<div id="troca-card"class="card" style="width: 20rem;">
 						<img th:src="*{cad_produto.produto.imagem.url}" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title"><span th:text="*{nomeTroca}"></span></h5>

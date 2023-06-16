@@ -241,7 +241,7 @@ header {
   }
 }
 
-@media screen and (max-width: 1078px) {
+@media screen and (max-width: 1024px) {
   .nameSite {
     font-size: 3em;
   }
@@ -263,6 +263,20 @@ header {
   header {
     background: url(../imagens/ImgFundo.jpg) no-repeat center;
     background-size: 250%;
+  }
+  #ofertas{
+	  width: 82%;
+	  height: 57%;
+	  margin-bottom: 1em;
+  }
+  #trocas{
+	  width: 80%;
+	  height: 56%;
+  }
+  #troca-card{
+	  max-width: 14em;
+	  height: 57%;
+	  margin-top: 1em;
   }
 }
 
@@ -287,7 +301,7 @@ header {
   }
 }
 
-@media screen and (max-width: 715px) {
+@media screen and (max-width: 768px) {
   .nameSite {
     font-size: 2.5em;
   }
@@ -309,6 +323,11 @@ header {
   header {
     background: url(../imagens/ImgFundo.jpg) no-repeat center;
     background-size: 300%;
+  }
+  #troca-card{
+	  max-width: 9em;
+	  height: 57%;
+	  
   }
 }
 
