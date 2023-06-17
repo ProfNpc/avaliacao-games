@@ -144,7 +144,7 @@
 			</div>
 		</section>
 
-		<section class="containerDescricao" style="width: 73%; margin-left: 16em;">
+		<section class="containerDescricao" style="width: 72.4%; margin-left: 14%;">
 			<div class="card">
 				<div class="card-header">Descrição</div>
 				<div class="card-body">
@@ -158,14 +158,14 @@
 			</div>
 		</section>
 
-		<section class="containerProdutos">
-			<div class="tituloProduto" style="margin-left: 8em;">Similiares</div>
+		<section class="containerProdutos" style="width: 77%; margin-left: 12%;">
+			<div class="tituloProduto" style="margin-left: 3%; margin-bottom: 1em;">Similiares</div>
 			<!-- Jogos em ofertas -->
-			<div id="ofertas" class="container">
+			<div id="ofertas" class="container" style="padding-left: 3%; margin-left: 1em;">
 				<div th:each="anuncio: ${anuncios}" th:object="${anuncio}">
 					<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=*{codAnuncio})}"
 						style="text-decoration: none; color: black;">
-						<div class="card" style="width: 25rem;">
+						<div class="card" style="width: 85%;">
 							<img th:src="*{imagem.url}" class="card-img-top"
 								style="width: 100%; height:75%; max-height:290px; min-height:290px;" alt="...">
 							<div class="card-body">
@@ -175,7 +175,7 @@
 						</div>
 					</a>
 				</div>
-				</divi>
+			</div>
 
 			</div>
 			</a>

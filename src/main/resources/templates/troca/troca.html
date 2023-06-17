@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/CSS/Tela_Produto.css" />
 	<link rel="stylesheet" href="/CSS/NewNavBar.css" />
+	<link rel="stylesheet" href="/slick/slick.css">
+	<link rel="stylesheet" href="/slick/slick-theme.css">
 
 	<title th:text="'Troca por ' + ${troca.nomeTroca} + ' - Pacifier'"></title>
 </head>
@@ -26,10 +28,12 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="colorFont nav-link" aria-current="page" th:href="@{/usuario/{cpf}/mais/anuncios (cpf=${cpf})}">Ofertas</a>
+							<a class="colorFont nav-link" aria-current="page"
+								th:href="@{/usuario/{cpf}/mais/anuncios (cpf=${cpf})}">Ofertas</a>
 						</li>
 						<li class="nav-item">
-							<a class="colorFont nav-link" th:href="@{/usuario/{cpf}/mais/trocas (cpf=${cpf})}">Trocas</a>
+							<a class="colorFont nav-link"
+								th:href="@{/usuario/{cpf}/mais/trocas (cpf=${cpf})}">Trocas</a>
 						</li>
 						<li class="nav-item">
 							<a class="car nav-link" th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}"><img
@@ -66,7 +70,7 @@
 					<form th:action="@{/usuario/{cpf}/pesquisar(cpf=${cpf})}" method="post" class="d-flex"
 						role="search">
 						<input class="form-control me-2" type="search" name="nomeAnuncio"
-							placeholder="Buscar produtos..." aria-label="Search" required/>
+							placeholder="Buscar produtos..." aria-label="Search" required />
 
 						<!-- Botão de pesquisa -->
 						<button class="btn btn-outline-success" type="submit">
@@ -78,9 +82,10 @@
 		</nav>
 	</header>
 	<main>
-		<section class="containerProduto justify-content-center">
-			<div class="card " style="width: 45%">
-				<img th:src="${troca.cad_produto.produto.imagem.url}" class="card-img-top w-50 d-block mx-auto justify-content-center" alt="..."/>
+		<section class="containerProduto justify-content-center" style="width: 92%; margin-left: 5%;">
+			<div class="card " style="width: 32.8%">
+				<img th:src="${troca.cad_produto.produto.imagem.url}"
+					class="card-img-top w-50 d-block mx-auto justify-content-center" alt="..." />
 				<div class="card-body w-100">
 					<h5 class="card-title text-center">
 						<span th:text="${troca.nomeTroca}"></span>
@@ -95,20 +100,22 @@
 					</form>
 				</div>
 			</div>
-			<div class="card mx-4" style="width: 38%" >
+			<div class="card mx-4" style="width: 44%">
 				<div class="card-body ">
 					<h5 class="card-title text-center">
 						<span th:text="'Anunciante: ' + ${usuario.nome}"></span>
 					</h5>
 					<h5 class="card-title text-center">Produtos para troca:</h5>
 					<br />
-					<div class="row row-cols-1 row-cols-md-4">
-						<div class="col mb-4"  th:each="item_troca, iStat: ${itens_troca}">
+					<div class="row row-cols-1 row-cols-md-4" style="width: 100%;">
+						<div class="col mb-4" th:each="item_troca, iStat: ${itens_troca}">
 							<div class="card h-100">
 								<img th:src="${item_troca.produto.imagem.url}" class="card-img-top" alt="..." />
 								<div class="card-body">
 									<h5 class="card-title"><span th:text="${item_troca.produto.nomeProd}"></span></h5>
-									<span th:text="${(#lists.contains(produtosUsuario, item_troca.produto)) ? 'Voce tem!' : 'Voce não tem'}" class="card-text"></span>
+									<span
+										th:text="${(#lists.contains(produtosUsuario, item_troca.produto)) ? 'Voce tem!' : 'Voce não tem'}"
+										class="card-text"></span>
 								</div>
 							</div>
 						</div>
@@ -117,7 +124,7 @@
 			</div>
 		</section>
 
-		<section class="containerDescricao">
+		<section class="containerDescricao" style="width: 72.4%; margin-left: 14%;">
 			<div class="card">
 				<div class="card-header">Descrição</div>
 				<div class="card-body">
@@ -132,18 +139,19 @@
 			</div>
 		</section>
 
-		<section class="containerProdutos">
-			<div class="tituloProduto">Similiares</div>
-			<div class="row row-cols-1 row-cols-md-5 g-4">
-				<div class="col" th:each="trocas: ${trocas}">
-					<a th:href="@{/usuario/{cpf}/troca/{codTroca} (cpf=${cpf}, codTroca=${trocas.codTroca})}">
-						<div class="card h-100">
-							<img th:src="${trocas.cad_produto.produto.imagem.url}" class="card-img-top" alt="..." />
+		<section class="containerProdutos" style="width: 77%; margin-left: 12%;">
+			<div class="tituloProduto" style="margin-left: 3%; margin-bottom: 1em;">Similiares</div>
+			<div id="trocas" class="container" style="padding-left: 3%; margin-left: 1em;">
+				<div th:each="trocas: ${trocas}">
+					<a th:href="@{/usuario/{cpf}/troca/{codTroca} (cpf=${cpf}, codTroca=${trocas.codTroca})}"
+						style="text-decoration: none; color: black;">
+						<div class="card" style="width: 85%;">
+							<img th:src="${trocas.cad_produto.produto.imagem.url}" class="card-img-top"
+								style="width: 100%; height:75%; max-height:290px; min-height:290px;" alt="..." />
 							<div class="card-body">
 								<h5 class="card-title">
 									<span th:text="${trocas.nomeTroca}"></span>
 								</h5>
-								<p class="card-text">sei</p>
 							</div>
 						</div>
 					</a>
@@ -153,6 +161,17 @@
 	</main>
 	<footer></footer>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/JS/jquery-3.6.4.js"></script>
+	<script src="/slick/slick.min.js"></script>
+	<script>
+		$(document).ready(() => {
+			$("#trocas").slick({
+				infinite: false,
+				slidesToShow: 3,
+				slidesToScroll: 3,
+			});
+		});
+	</script>
 </body>
 
 </html>

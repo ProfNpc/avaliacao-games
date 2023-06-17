@@ -142,7 +142,7 @@
 		<div id="trocas" class="container">
 			<div th:each="troca: ${trocas}" th:object="${troca}">
 				<a href="/usuario/cadastrar" style="text-decoration: none; color: black;">
-					<div class="card" style="width: 20rem;">
+					<div id="troca-card" class="card" style="width: 20rem;">
 						<img th:src="*{cad_produto.produto.imagem.url}" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title"><span th:text="*{nomeTroca}"></span></h5>
