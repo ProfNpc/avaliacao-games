@@ -58,12 +58,13 @@ public class TestConfig implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Usuario u1 = new Usuario(89854665412L, "Abner", "Pereira", "abner@gmail.com", "11978889934", "123456");
-		Usuario u2 = new Usuario(47898763225L, "Gabriel", "Barbosa", "gabriel@gmail.com", "11945658523", "123456");
-		Usuario u3 = new Usuario(12365478932L, "Luiz", "Camargo", "luiz@gmail.com", "11978894456", "123456");
-		Usuario u4 = new Usuario(78965432112L, "Arthur", "Felipe", "arthur@gmail.com", "1194563214", "123456");
+		Usuario u1 = new Usuario(89854665412L, "Abner", "Pereira", "abner.admin@gmail.com", "11978889934", "123456");
+		Usuario u2 = new Usuario(47898763225L, "Gabriel", "Barbosa", "gabriel.admin@gmail.com", "11945658523",
+				"123456");
+		Usuario u3 = new Usuario(12365478932L, "Luiz", "Camargo", "luiz.admin@gmail.com", "11978894456", "123456");
+		Usuario u4 = new Usuario(78965432112L, "Arthur", "Felipe", "arthur.admin@gmail.com", "1194563214", "123456");
 		Usuario u5 = new Usuario(123L, "Testador", "adm", "adm@gmail.com", "1194563123", "123456");
-		
+
 		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5));
 
 		Endereco e1 = new Endereco(1L, "06634080", 222, "Avenida Comandante", "Km 18", "Osasco", "São Paulo", "Brasil",
@@ -73,7 +74,7 @@ public class TestConfig implements CommandLineRunner {
 				u3);
 		Endereco e4 = new Endereco(4L, "06563080", 100, "Rua Xang", "Vila do Conde", "Barueri", "São Paulo", "Brasil",
 				u4);
-		
+
 		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
 
 		Imagem img1 = new Imagem(1l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
@@ -112,18 +113,18 @@ public class TestConfig implements CommandLineRunner {
 				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198731/bbe3ee49261344a75b4ac2bdec2da19b_wgzyao.jpg");
 		Imagem img18 = new Imagem(18l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
 				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198828/library_600x900_2x_s1iku6.jpg");
-		Imagem img19 = new Imagem(19l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+		Imagem img19 = new Imagem(19l, "CSGO.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684197894/library_600x900_2x_dece3p.jpg");
 		Imagem img20 = new Imagem(20l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198209/library_600x900_2x_zgrdla.jpg");
 		Imagem img21 = new Imagem(21l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198138/library_600x900_2x_ggivsh.jpg");
 		Imagem img22 = new Imagem(22l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198284/library_600x900_2x_fscgev.jpg");
 		Imagem img23 = new Imagem(23l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684198378/library_600x900_2x_dmsip6.jpg");
 		Imagem img24 = new Imagem(24l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
-				"http://res.cloudinary.com/da1uhb7h7/image/upload/v1678043271/a2xbrbspxnprdd9oxx8v.jpg");
+				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684199497/library_600x900_2x_sq4mks.jpg");
 		Imagem img25 = new Imagem(25l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
 				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1684281630/library_600x900_2x_e5xrrz.jpg");
 		Imagem img26 = new Imagem(26l, "ModeloNegocio.jpg", "image/jpeg", 70079L, "a2xbrbspxnprdd9oxx8v",
@@ -146,8 +147,8 @@ public class TestConfig implements CommandLineRunner {
 				"https://res.cloudinary.com/da1uhb7h7/image/upload/v1685486879/fd93fd1de50e084dd7d3b0b9f6950450_uexfgy.png");
 
 		imagemRepository.saveAll(Arrays.asList(img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11,
-				img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22, img23, img24, img25, 
-				img26, img27, img28, img29, img30, img31, img32, img33, img34));
+				img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22, img23, img24, img25, img26,
+				img27, img28, img29, img30, img31, img32, img33, img34));
 
 		Produto p1 = new Produto(1L, "Grand Theft Auto V", 50,
 				"Grand Theft Auto V é um jogo eletrônico de ação-aventura desenvolvido pela Rockstar North e publicado pela Rockstar Games.",
@@ -209,8 +210,9 @@ public class TestConfig implements CommandLineRunner {
 		Produto p20 = new Produto(20L, "God of War Ragnarök", 150,
 				"God of War Ragnarök é um jogo eletrônico de ação-aventura desenvolvido pela Santa Monica Studio e publicado pela Sony Interactive Entertainment. Foi lançado em 9 de novembro de 2022 para PlayStation 4 e PlayStation 5.",
 				img34);
-		
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20));
+
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16,
+				p17, p18, p19, p20));
 
 		CadProduto cp1 = new CadProduto(1L, p2, 5L, u1);
 		CadProduto cp2 = new CadProduto(2L, p1, 2L, u1);
@@ -233,10 +235,10 @@ public class TestConfig implements CommandLineRunner {
 				"Aventura");
 		Anuncio an4 = new Anuncio(4L, "God of War", "Jogo novo, quase sem utilização", 55.50, 5, 1, true, u3, img4,
 				"Ação");
-		Anuncio an5 = new Anuncio(5L, "Cuphead midia física Xbox One", "Jogo novo, quase sem utilização", 100.50, 5, 4, true, u2, img5,
-				"Aventura");
-		Anuncio an6 = new Anuncio(6L, "Red Dead Redemption 2 semi-novo", "Jogo novo, quase sem utilização", 150.50, 5, 1, true, u3,
-				img6, "Ação");
+		Anuncio an5 = new Anuncio(5L, "Cuphead midia física Xbox One", "Jogo novo, quase sem utilização", 100.50, 5, 4,
+				true, u2, img5, "Aventura");
+		Anuncio an6 = new Anuncio(6L, "Red Dead Redemption 2 semi-novo", "Jogo novo, quase sem utilização", 150.50, 5,
+				1, true, u3, img6, "Ação");
 		Anuncio an7 = new Anuncio(7L, "StarCraft", "Jogo novo, quase sem utilização", 60.50, 5, 0, true, u1, img7,
 				"Aventura");
 		Anuncio an8 = new Anuncio(8L, "GTA V", "Jogo novo, quase sem utilização", 78.50, 5, 3, true, u4, img8, "Ação");

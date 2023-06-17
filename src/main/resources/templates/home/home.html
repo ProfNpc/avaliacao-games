@@ -113,7 +113,7 @@
 		<!-- Jogos em ofertas -->
 		<div id="ofertas" class="container">
 			<div th:each="anuncio: ${anuncios}" th:object="${anuncio}">
-				<a th:href="@{/usuario/{cpf}/produto/{codAnuncio} (cpf=${cpf}, codAnuncio=*{codAnuncio})}"
+				<a href="/usuario/cadastrar"
 					style="text-decoration: none; color: black;">
 					<div class="card" style="width: 85%;">
 						<img th:src="*{imagem.url}" class="card-img-top"

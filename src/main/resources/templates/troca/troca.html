@@ -85,7 +85,7 @@
 		<section class="containerProduto justify-content-center" style="width: 92%; margin-left: 5%;">
 			<div class="card " style="width: 32.8%">
 				<img th:src="${troca.cad_produto.produto.imagem.url}"
-					class="card-img-top w-50 d-block mx-auto justify-content-center" alt="..." />
+					class="card-img-top w-50 d-block mx-auto justify-content-center" style="margin-top: 1em;" alt="..." />
 				<div class="card-body w-100">
 					<h5 class="card-title text-center">
 						<span th:text="${troca.nomeTroca}"></span>
@@ -107,7 +107,7 @@
 					</h5>
 					<h5 class="card-title text-center">Produtos para troca:</h5>
 					<br />
-					<div class="row row-cols-1 row-cols-md-4" style="width: 100%;">
+					<div class="row row-cols-1 row-cols-md-3" style="width: 100%;">
 						<div class="col mb-4" th:each="item_troca, iStat: ${itens_troca}">
 							<div class="card h-100">
 								<img th:src="${item_troca.produto.imagem.url}" class="card-img-top" alt="..." />

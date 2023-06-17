@@ -118,9 +118,6 @@
 									<p class="card-text">
 										Valor: R$<span th:text="${anuncio.valorAnuncio}"></span>
 									</p>
-									<p class="card-text">
-										Status: <span th:text="${anuncio.statusAnuncio}"></span>
-									</p>
 									<form
 										th:action="@{/usuario/{cpf}/anuncio/{codAnuncio}/deletar (cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"
 										method="post">

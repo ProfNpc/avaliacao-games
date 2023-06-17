@@ -84,9 +84,9 @@
 			<!-- Container do Carrinho, continuar compra -->
 			<div class="card-footer text-muted">
 				<div class="card-header">Seus produtos da troca:</div>
-				<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="row row-cols-1 row-cols-md-5 g-4 justify-content-center">
 					<div th:each="itensTroca : ${itensTroca}" class="col">
-						<div class="card h-100">
+						<div class="card">
 							<img th:src="${itensTroca.produto.imagem.url}" class="card-img-top" alt="..." />
 							<div class="card-body">
 								<h5 class="card-title"><span th:text="${itensTroca.produto.nomeProd}"></span></h5>
@@ -98,7 +98,7 @@
 			</div>
 			<div class="card-footer text-muted">
 				<div class="card-header">Produtos do ofertante:</div>
-				<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="row row-cols-1 row-cols-md-5 g-4 justify-content-center">
 					<div class="col">
 						<div class="card h-100">
 							<img th:src="${troca.cad_produto.produto.imagem.url}" class="card-img-top" alt="..." />

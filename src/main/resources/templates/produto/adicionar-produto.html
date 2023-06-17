@@ -112,7 +112,7 @@
 							<form
 								th:action="@{/usuario/{cpf}/biblioteca/{codProd}/adicionar (cpf=${cpf}, codProd=${produto.codProd})}"
 								method="post">
-								<input type="number" name="quantidade" placeholder="Quantidade" />
+								<input type="number" min="1" name="quantidade" placeholder="Quantidade" />
 								<div class="d-grid gap-2 col-6 mx-auto">
 									<button class="btn btn-primary" type="submit">
 										Adicionar
