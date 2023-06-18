@@ -252,7 +252,7 @@ public class TestConfig implements CommandLineRunner {
 		Comentario cm5 = new Comentario(5L, "Tinha mais expectativas!", 3.5, u3, an5);
 		Comentario cm6 = new Comentario(6L, "Péssimo!", 2.0, u4, an6);
 		Comentario cm7 = new Comentario(7L, "Muito bom, amei!", 5.0, u2, an7);
-		Comentario cm8 = new Comentario(8L, "Horrivel!", 1.0, u4, an2);
+		Comentario cm8 = new Comentario(8L, "Horrivel!", 1.0, u1, an2);
 		Comentario cm9 = new Comentario(9L, "Mais ou menos!", 2.5, u3, an3);
 		Comentario cm10 = new Comentario(10L, "Muito top!", 4.0, u2, an3);
 

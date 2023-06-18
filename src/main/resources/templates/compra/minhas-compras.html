@@ -27,10 +27,12 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="colorFont nav-link" aria-current="page" th:href="@{/usuario/{cpf}/mais/anuncios (cpf=${cpf})}">Ofertas</a>
+							<a class="colorFont nav-link" aria-current="page"
+								th:href="@{/usuario/{cpf}/mais/anuncios (cpf=${cpf})}">Ofertas</a>
 						</li>
 						<li class="nav-item">
-							<a class="colorFont nav-link" th:href="@{/usuario/{cpf}/mais/trocas (cpf=${cpf})}">Trocas</a>
+							<a class="colorFont nav-link"
+								th:href="@{/usuario/{cpf}/mais/trocas (cpf=${cpf})}">Trocas</a>
 						</li>
 						<li class="nav-item">
 							<a class="car nav-link" th:href="@{/usuario/{cpf}/carrinho(cpf=${cpf})}"><img
@@ -118,11 +120,13 @@
 									<p class="card-text">
 										Valor: R$ <span th:text="${itensPedido.preco}"></span>
 									</p>
+									<!--
 									<form
 										th:action="@{/usuario/{cpf}/anuncio/{codAnuncio}/comentar (cpf=${cpf}, codAnuncio=${itensPedido.anuncio.codAnuncio})}"
 										method="get">
 										<input class="btn btn-primary" type="submit" value="Avaliar" />
 									</form>
+									-->
 								</div>
 							</div>
 						</div>
