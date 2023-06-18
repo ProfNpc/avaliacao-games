@@ -88,8 +88,8 @@ function confirmarCompra(event) {
 			alertar("Código de segurança inválido");
 			return;
 		}
-		
-		// Tudo certo, enviar form
-		form.submit();
 	}
+	
+	// Tudo certo, enviar form
+	form.submit();
 }

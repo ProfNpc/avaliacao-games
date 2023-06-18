@@ -147,30 +147,26 @@
 							<p class="card-text">
 								Número do cartão:
 								<input id="cartao" type="text" 
-								oninput="inserirAoModelo('xxxx xxxx xxxx xxxx', numeros(this.value), r => this.value = r)" 
-								required />
+								oninput="inserirAoModelo('xxxx xxxx xxxx xxxx', numeros(this.value), r => this.value = r)" />
 							</p>
 							<p class="card-text">
 								Nome completo:
-								<input id="nome" type="text"
-								required />
+								<input id="nome" type="text" />
 							</p>
 							<p class="card-text">
 								Validade:
 								<input id="validade" type="text"
-								oninput="inserirAoModelo('xx/xx', numeros(this.value), r => this.value = r)" 
-								required />
+								oninput="inserirAoModelo('xx/xx', numeros(this.value), r => this.value = r)" />
 							</p>
 							<p class="card-text">
 								Código de Segurança:
 								<input id="cvv" type="text"
-								oninput="inserirAoModelo('xxx', numeros(this.value), r => this.value = r)" 
-								required />
+								oninput="inserirAoModelo('xxx', numeros(this.value), r => this.value = r)"  />
 							</p>
 							<p class="card-text">
 								Número de parcelas:
 							<div class="input-group mb-3">
-								<select class="form-select" id="inputGroupSelect01" required>
+								<select class="form-select" id="inputGroupSelect01">
 									<option selected>À vista</option>
 									<option value="1">Duas</option>
 									<option value="2">Três</option>
