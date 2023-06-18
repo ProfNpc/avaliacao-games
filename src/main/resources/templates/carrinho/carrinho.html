@@ -95,12 +95,10 @@
 						<div class="card-body">
 							<h5 class="card-title"><span th:text="${itens.anuncio.nomeAnuncio}"></span></h5>
 							<p class="card-text">R$: <span th:text="${itens.anuncio.valorAnuncio}"></p>
-							<p class="card-text">
-								<small class="text-muted">Quantidade: </small>
-							</p>
 							<form
-								th:action="@{/usuario/{cpf}/carrinho/{codItemCar}/quantidade (cpf=${cpf}, codItemCar=${itens.codItemCar})}"
-								method="post">
+							th:action="@{/usuario/{cpf}/carrinho/{codItemCar}/quantidade (cpf=${cpf}, codItemCar=${itens.codItemCar})}"
+							method="post">
+								<label>Quantidade: </label>
 								<input type="number" min="1" th:max="${itens.anuncio.quantAnuncio}" placeholder="Quantidade" name="quantidade"
 									th:value="${itens.quantidade}" />
 							</form>

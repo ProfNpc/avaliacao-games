@@ -116,7 +116,7 @@
 										<span th:text="${anuncio.quantAnuncio}"></span>
 									</p>
 									<p class="card-text">
-										Valor: R$<span th:text="${anuncio.valorAnuncio}"></span>
+										Valor: R$ <span th:text="${anuncio.valorAnuncio}"></span>
 									</p>
 									<form
 										th:action="@{/usuario/{cpf}/anuncio/{codAnuncio}/deletar (cpf=${cpf}, codAnuncio=${anuncio.codAnuncio})}"

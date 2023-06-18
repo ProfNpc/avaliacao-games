@@ -117,7 +117,7 @@
 										<span th:text="${cad_produtos[iStat.index].quantidade}"></span>
 									</p>
 									<p class="card-text">
-										Valor: R$<span th:text="${produto.valorProd}"></span>
+										Valor: R$ <span th:text="${produto.valorProd}"></span>
 									</p>
 									<form
 										th:action="@{/usuario/{cpf}/trocar/{codCadProd}/pesquisar (cpf=${cpf}, codCadProd=${cad_produtos[iStat.index].codCadProd})}"
